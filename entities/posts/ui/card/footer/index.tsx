@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
 import { css } from '@emotion/css'
 import { Typography } from 'shared/ui/typography'
-import { Mark } from 'shared/ui/mark'
 import { Props } from './types'
 
-export const PostFooter: FC<Props> = ({ timeInfo, isChiefEditor }) => (
+export const PostFooter: FC<Props> = ({ timeInfo }) => (
   <div
     className={css`
       display: flex;
@@ -12,7 +11,6 @@ export const PostFooter: FC<Props> = ({ timeInfo, isChiefEditor }) => (
       gap: 15px;
     `}
   >
-    {isChiefEditor && <Mark />}
     {timeInfo && (
       <Typography uppercase size='small'>
         {timeInfo}
