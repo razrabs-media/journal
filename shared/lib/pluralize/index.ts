@@ -1,0 +1,1 @@
+export { pluralize } from './pluralize'

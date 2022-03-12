@@ -1,0 +1,1 @@
+export { mockPosts } from './mockPosts'

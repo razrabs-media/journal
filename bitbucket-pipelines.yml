@@ -1,0 +1,56 @@
+image: node:16.9.1
+clone:
+  depth: 1 # latest commit
+
+definitions:
+  steps:
+    - step: &test-and-build
+        name: Test & Build
+        script:
+          - yarn
+          - yarn build
+
+pipelines:
+  pull-requests:
+    '**':
+      - step: *test-and-build
+      - step:
+          name: Deploy to heroku dev
+          trigger: manual
+          deployment: production
+          caches:
+            - node
+          script:
+            - rm -rf build
+            - rm -rf node_modules
+            - ARTIFACT_NAME=$(echo $BITBUCKET_BRANCH | sed -r 's/[//]+/_/g').tar.gz
+            - git archive --format=tar.gz $BITBUCKET_BRANCH -o $ARTIFACT_NAME
+            - pipe: atlassian/heroku-deploy:1.2.1
+              variables:
+                HEROKU_API_KEY: $HEROKU_API_KEY
+                HEROKU_APP_NAME: $HEROKU_DEV
+                ZIP_FILE: $ARTIFACT_NAME
+                WAIT: 'true'
+            - rm -rf $ARTIFACT_NAME
+
+  branches:
+    develop:
+      - step: *test-and-build
+      - step:
+          name: Deploy to heroku dev
+          trigger: manual
+          deployment: production
+          caches:
+            - node
+          script:
+            - rm -rf build
+            - rm -rf node_modules
+            - ARTIFACT_NAME=$(echo $BITBUCKET_BRANCH | sed -r 's/[//]+/_/g').tar.gz
+            - git archive --format=tar.gz $BITBUCKET_BRANCH -o $ARTIFACT_NAME
+            - pipe: atlassian/heroku-deploy:1.2.1
+              variables:
+                HEROKU_API_KEY: $HEROKU_API_KEY
+                HEROKU_APP_NAME: $HEROKU_DEV
+                ZIP_FILE: $ARTIFACT_NAME
+                WAIT: 'true'
+            - rm -rf $ARTIFACT_NAME
