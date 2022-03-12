@@ -4,9 +4,9 @@ import { SocialLinkList } from '../links/SocialLinkList'
 import { NavHeaderStyle } from '../styles/NavHeaderStyle'
 
 export const NavHeader: FC = () => (
-    <NavHeaderStyle>
-        <LinkItem link='новости' />
-        <LinkItem link='подкасты' />
-        <SocialLinkList />
-    </NavHeaderStyle>
+  <NavHeaderStyle>
+    <LinkItem link='новости' />
+    <LinkItem link='подкасты' />
+    <SocialLinkList />
+  </NavHeaderStyle>
 )

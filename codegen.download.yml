@@ -1,0 +1,8 @@
+schema:
+  - 'https://raz-backoffice-api-stage.herokuapp.com/gql'
+generates:
+  ./schema.graphql:
+    plugins:
+      - schema-ast
+    config:
+      includeDirectives: false

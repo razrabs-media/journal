@@ -4,9 +4,9 @@ import { Typography } from 'shared/ui/typography'
 import { Props } from './type'
 
 export const LinkItem: FC<Props> = ({ link, href = '/' }) => (
-    <Link passHref href={href}>
-        <Typography uppercase as='a' color='main' colorVariant='primary'>
-            {link}
-        </Typography>
-    </Link>
+  <Link passHref href={href}>
+    <Typography uppercase as='a' color='main' colorVariant='primary'>
+      {link}
+    </Typography>
+  </Link>
 )

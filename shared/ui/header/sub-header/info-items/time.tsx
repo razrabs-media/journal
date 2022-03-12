@@ -5,11 +5,11 @@ import { DateTime } from '../styles/DateTime'
 import { LiveTime } from 'shared/lib/live-time'
 
 export const Time: FC = () => {
-    const theme = useTheme()
-    return (
-        <DateTime>
-            <Circle color={theme.colors.secondary.main} />
-            <LiveTime />
-        </DateTime>
-    )
+  const theme = useTheme()
+  return (
+    <DateTime>
+      <Circle color={theme.colors.secondary.main} />
+      <LiveTime />
+    </DateTime>
+  )
 }

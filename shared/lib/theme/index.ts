@@ -4,7 +4,7 @@ import { lightTheme } from './light'
 import { ThemeName } from './theme-name'
 
 export const ThemeData: Record<ThemeName, Theme> = {
-    [ThemeName.light]: lightTheme,
-    [ThemeName.dark]: darkTheme,
+  [ThemeName.light]: lightTheme,
+  [ThemeName.dark]: darkTheme,
 }
 export { ThemeName } from './theme-name'

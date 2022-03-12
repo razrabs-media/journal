@@ -1,4 +1,4 @@
 export interface Props {
-    timeInfo: string
-    isChiefEditor: boolean
+  timeInfo: string
+  isChiefEditor: boolean
 }

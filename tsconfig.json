@@ -20,7 +20,8 @@
     "jsx": "preserve",
     "typeRoots": [
       "global-types"
-    ]
+    ],
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",

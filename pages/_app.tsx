@@ -4,11 +4,11 @@ import 'styles/fonts.css'
 import 'styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
-    return (
-        <ThemeManagerProvider>
-            <Component {...pageProps} />
-        </ThemeManagerProvider>
-    )
+  return (
+    <ThemeManagerProvider>
+      <Component {...pageProps} />
+    </ThemeManagerProvider>
+  )
 }
 
 export default MyApp

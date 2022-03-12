@@ -1,0 +1,16 @@
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+charset = utf-8
+
+indent_size = 2
+
+[*.{js,jsx}]
+ij_javascript_enforce_trailing_comma = whenmultiline
+
+[*.{ts,tsx}]
+ij_typescript_enforce_trailing_comma = whenmultiline

@@ -6,17 +6,17 @@ import { useTheme } from '@emotion/react'
 import { FC } from 'react'
 
 export const Layout: FC = ({ children }) => {
-    const theme = useTheme()
-    return (
-        <Wrapper
-            className={css`
-                background-color: ${theme.colors.background};
-            `}
-        >
-            <Content>
-                <main>{children}</main>
-                <Footer />
-            </Content>
-        </Wrapper>
-    )
+  const theme = useTheme()
+  return (
+    <Wrapper
+      className={css`
+        background-color: ${theme.colors.background};
+      `}
+    >
+      <Content>
+        <main>{children}</main>
+        <Footer />
+      </Content>
+    </Wrapper>
+  )
 }

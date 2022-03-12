@@ -1,0 +1,507 @@
+input AssignUserGroupInput {
+  login: String!
+  userGroupsName: [String!]!
+}
+
+type Category {
+  createdAt: Date!
+  name: String!
+  posts: [PostItem!]
+  uid: ID!
+  updatedAt: Date!
+}
+
+type CategoryItem {
+  createdAt: Date!
+  name: String!
+  uid: ID!
+  updatedAt: Date!
+}
+
+input ChangePasswordInput {
+  newPassword: String!
+  password: String!
+}
+
+type Component {
+  configuration: Configuration!
+  createdAt: Date!
+  name: String!
+  postPublication: PostPublication
+  uid: UID!
+  updatedAt: Date!
+}
+
+type ComponentItem {
+  configuration: Configuration!
+  createdAt: Date!
+  name: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type Configuration {
+  h: Int!
+  w: Int!
+  x: Int!
+  y: Int!
+}
+
+input ConfigurationInput {
+  h: Int!
+  w: Int!
+  x: Int!
+  y: Int!
+}
+
+"""Upload scalar"""
+scalar Content
+
+input CreateCategoriesInput {
+  name: String!
+}
+
+input CreateComponentInput {
+  configuration: ConfigurationInput!
+  name: String!
+}
+
+input CreateDataSourceInput {
+  name: DataSourceName!
+  source: String!
+  type: DataSourceType!
+}
+
+input CreateDraftInput {
+  description: String
+  title: String
+}
+
+input CreateFeedsInput {
+  name: String!
+}
+
+input CreatePermissionInput {
+  name: PermissionName!
+}
+
+input CreatePostInput {
+  draftUid: UID!
+}
+
+input CreatePostPublicationDto {
+  componentUid: String!
+  position: PositionInput!
+  postUid: String!
+  publicationUid: String!
+}
+
+input CreatePrioritiesInput {
+  grade: Int!
+  name: String!
+}
+
+input CreatePublicationsInput {
+  body: String!
+  publishDate: Date!
+  title: String!
+}
+
+input CreateUserInput {
+  email: String!
+  fullName: String!
+  login: String!
+}
+
+type DataSource {
+  createdAt: Date!
+  feeds: [Feed!]
+  name: DataSourceName!
+  posts: [PostItem!]
+  source: String!
+  type: DataSourceType!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type DataSourceItem {
+  createdAt: Date!
+  name: DataSourceName!
+  source: String!
+  type: DataSourceType!
+  uid: UID!
+  updatedAt: Date!
+}
+
+enum DataSourceName {
+  Md
+}
+
+enum DataSourceType {
+  External
+  Internal
+}
+
+"""Date scalar type"""
+scalar Date
+
+type DraftItem {
+  content: Content
+  createdAt: Date!
+  description: String!
+  title: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type DraftPagination {
+  count: Int!
+  items: [DraftItem!]!
+  page: Int!
+  pages: Int!
+}
+
+type Feed {
+  createdAt: Date!
+  dataSources: [DataSource!]
+  name: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type FeedItem {
+  createdAt: Date!
+  name: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type Mutation {
+  assignGroupToUser(data: AssignUserGroupInput!): UserItem!
+  changePassword(data: ChangePasswordInput!): UserItem!
+  changePermissions(data: UserGroupInput!): UserGroupItem!
+  createCategory(data: CreateCategoriesInput!): Category!
+  createComponent(data: CreateComponentInput!): Component!
+  createDataSource(data: CreateDataSourceInput!): DataSource!
+  createDraft(content: Upload, data: CreateDraftInput): DraftItem!
+  createFeed(data: CreateFeedsInput!): Feed!
+  createPermission(data: CreatePermissionInput!): PermissionItem!
+  createPost(data: CreatePostInput!): Post!
+  createPostPublication(data: CreatePostPublicationDto!): PostPublicationItem!
+  createPriority(data: CreatePrioritiesInput!): Priority!
+  createPublication(data: CreatePublicationsInput!): Publication!
+  createUser(data: CreateUserInput!): ShortUserItem!
+  createUserGroup(data: UserGroupInput!): UserGroupItem!
+  removeCategory(uid: UID!): Int!
+  removeComponent(uid: UID!): Int!
+  removeDataSource(uid: UID!): Int!
+  removeDraft(uid: UID!): Int!
+  removeFeed(uid: UID!): Int!
+  removePermission(uid: UID!): Int!
+  removePost(uid: UID!): Int!
+  removePostPublication(uid: UID!): Int!
+  removePriority(uid: UID!): Int!
+  removeProfile(uid: UID!): Int!
+  removePublication(uid: UID!): Int!
+  removeUser(uid: UID!): Int!
+  removeUserGroup(uid: UID!): Int!
+  resetPasswordForUser(data: ResetPasswordInput!): UserItem!
+  signIn(data: SignInInput!): UserToken!
+  signOut: ResponseStatus!
+  unAssignGroupToUser(data: AssignUserGroupInput!): UserGroupItem!
+  updateCategory(data: UpdateCategoriesInput!, uid: UID!): Int!
+  updateComponent(data: UpdateComponentInput!, uid: UID!): Component!
+  updateDataSource(data: UpdateDataSourceInput!, uid: UID!): DataSource!
+  updateDraft(content: Upload, data: UpdateDraftInput!, uid: UID!): DraftItem!
+  updateFeed(data: UpdateFeedInput!, uid: UID!): Feed!
+  updatePost(uid: UID!, updatePostDto: UpdatePostInput!): Post!
+  updatePostPublication(data: UpdatePostPublicationDto!, uid: UID!): PostPublicationItem!
+  updatePriority(data: UpdatePrioritiesInput!, uid: UID!): Priority!
+  updatePublication(data: UpdatePublicationInput!, uid: UID!): Publication!
+  updateUser(data: UserInput!, uid: UID!): User!
+}
+
+type PermissionItem {
+  createdAt: Date!
+  name: PermissionName!
+  uid: UID!
+  updatedAt: Date!
+}
+
+enum PermissionName {
+  AddPosts
+  CreateDrafts
+  DeletePosts
+  EditPosts
+  ManageCategories
+  ManageComponents
+  ManageDataSource
+  ManageFeeds
+  ManagePriorities
+  ManagePublication
+  ManageUserGroups
+  ManageUsers
+  SuperAdministrator
+}
+
+type Position {
+  x: Int!
+  y: Int!
+}
+
+input PositionInput {
+  x: Int!
+  y: Int!
+}
+
+type Post {
+  category: CategoryItem!
+  content: Content!
+  createdAt: Date!
+  dataSource: DataSourceItem!
+  description: String
+  previewUrl: String
+  priority: PriorityItem!
+  publicationDate: Date
+  readingTime: Int
+  title: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type PostItem {
+  content: Content!
+  createdAt: Date!
+  description: String
+  previewUrl: String
+  publicationDate: Date
+  readingTime: Int
+  title: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type PostPagination {
+  count: Int!
+  items: [PostItem!]!
+  page: Int!
+  pages: Int!
+}
+
+type PostPublication {
+  uid: UID!
+}
+
+type PostPublicationItem {
+  componentUid: String!
+  createdAt: Date!
+  position: Position!
+  postUid: String!
+  publicationUid: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type Priority {
+  createdAt: Date!
+  grade: Int!
+  name: String!
+  posts: [PostItem!]
+  uid: UID!
+  updatedAt: Date!
+}
+
+type PriorityItem {
+  createdAt: Date!
+  grade: Int!
+  name: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type Profile {
+  uid: UID!
+}
+
+type ProfileItem {
+  avatarUrl: String
+  createdAt: Date
+  email: String
+  fullName: String
+  publicName: String
+  uid: UID!
+  updatedAt: Date
+}
+
+input ProfileUpdateInput {
+  publicName: String
+}
+
+type Publication {
+  body: String!
+  createdAt: Date!
+  postPublications: [PostPublication!]
+  publishDate: Date!
+  title: String!
+  uid: ID!
+  updatedAt: Date!
+}
+
+type PublicationItem {
+  body: String!
+  createdAt: Date!
+  publishDate: Date!
+  title: String!
+  uid: ID!
+  updatedAt: Date!
+}
+
+type Query {
+  categories: [CategoryItem!]!
+  category(uid: UID!): Category!
+  component(uid: UID!): Component!
+  components: [ComponentItem!]!
+  currentUser: User!
+  dataSource(uid: UID!): DataSource!
+  dataSources: [DataSourceItem!]!
+  draft(uid: UID!): DraftItem!
+  drafts(page: Int = 1, perPage: Int = 20): DraftPagination!
+  feed(uid: UID!): Feed!
+  feeds: [FeedItem!]!
+  permissions: [PermissionItem!]!
+  post(uid: UID!): Post!
+  postPublication(uid: UID!): PostPublicationItem!
+  postPublications: [PostPublicationItem!]!
+  posts(page: Int = 1, perPage: Int = 20): [PostPagination!]!
+  priorities: [PriorityItem!]!
+  priority(uid: UID!): Priority!
+  profile(uid: UID!): Profile!
+  profiles: [ProfileItem!]!
+  publication(uid: UID!): Publication!
+  publications: [PublicationItem!]!
+  updateProfile(avatar: Upload, data: ProfileUpdateInput!, uid: UID!): ProfileItem!
+  user(uid: UID!): User!
+  userGroups: [UserGroupItem!]!
+  users: [UserItem!]!
+}
+
+input ResetPasswordInput {
+  login: String!
+}
+
+type ResponseStatus {
+  status: Float!
+}
+
+type ShortUserItem {
+  login: String!
+  password: String!
+}
+
+input SignInInput {
+  login: String!
+  password: String!
+}
+
+"""Uid custom scalar type"""
+scalar UID
+
+input UpdateCategoriesInput {
+  name: String!
+}
+
+input UpdateComponentInput {
+  configuration: ConfigurationInput!
+  name: String!
+}
+
+input UpdateDataSourceInput {
+  name: DataSourceName!
+  source: String!
+  type: DataSourceType!
+}
+
+input UpdateDraftInput {
+  description: String
+  title: String
+}
+
+input UpdateFeedInput {
+  name: String!
+}
+
+input UpdatePostInput {
+  author: String!
+  categoryUid: UID!
+  dataSourceUid: UID!
+  description: String!
+  previewUrl: String!
+  priorityUid: UID!
+  publicationDate: Date!
+  title: String!
+}
+
+input UpdatePostPublicationDto {
+  componentUid: String!
+  postUid: String!
+  publicationUid: String!
+}
+
+input UpdatePrioritiesInput {
+  grade: Int!
+  name: String!
+}
+
+input UpdatePublicationInput {
+  body: String!
+  title: String!
+}
+
+"""Upload scalar"""
+scalar Upload
+
+type User {
+  createdAt: Date!
+  isTransportPassword: Boolean!
+  login: String!
+  passwordHash: String!
+  profile: ProfileItem!
+  profileUid: UID!
+  uid: ID!
+  updatedAt: Date!
+  userGroups: [UserGroupItem!]!
+}
+
+input UserGroupInput {
+  name: String!
+  permissions: [PermissionName!]!
+}
+
+type UserGroupItem {
+  createdAt: Date!
+  name: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+input UserInput {
+  login: String!
+  password: String!
+}
+
+type UserItem {
+  createdAt: Date!
+  isTransportPassword: Boolean!
+  login: String!
+  passwordHash: String!
+  profile: ProfileItem!
+  profileUid: UID!
+  uid: ID!
+  updatedAt: Date!
+}
+
+type UserToken {
+  isTransportPassword: Boolean!
+  token: String!
+  user: UserItem!
+}

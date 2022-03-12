@@ -1,0 +1,40 @@
+schema: "https://raz-backoffice-api-stage.herokuapp.com/gql"
+documents:
+  - '**/*.graphql'
+  - '!schema.graphql'
+generates:
+  __generated__/types.ts:
+    plugins:
+      - typescript
+    config:
+      scalars:
+        Date: "string"
+        RegExpAsString: "string"
+        MongoID: "string"
+        BSONDecimal: "string"
+  ./:
+    preset: near-operation-file
+    presetConfig:
+      folder: __generated__
+      extension: .tsx
+      baseTypesPath: __generated__/types.ts
+    plugins:
+      - add:
+          content:
+            - '// 🛑 NOTICE: __generated__ folders should be added to .gitignore'
+            - '/* eslint-disable */'
+            - '/* tslint:disable */'
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      documentMode: 'documentNodeImportFragments'
+      namingConvention: keep
+      nonOptionalTypename: true
+      dedupeOperationSuffix: true
+      omitOperationSuffix: true
+      withComponent: false
+      withHooks: true
+      withHOC: false
+      reactApolloVersion: 3
+      # documentMode: documentNode
+

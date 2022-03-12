@@ -1,9 +1,9 @@
 export type PropsNews = {
-    news: number
+  news: number
 }
 export type PropsTwits = {
-    twits: number
+  twits: number
 }
 export type PropsPodcasts = {
-    podcasts: number
+  podcasts: number
 }

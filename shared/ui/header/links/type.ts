@@ -1,4 +1,4 @@
 export type Props = {
-    link: string
-    href?: string
+  link: string
+  href?: string
 }

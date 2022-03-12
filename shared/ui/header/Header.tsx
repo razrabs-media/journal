@@ -9,26 +9,26 @@ import { ThemeSwitch } from './ThemeSwitch'
 import { SubHeader } from './sub-header'
 
 export const Header: FC = () => {
-    const theme = useTheme()
-    return (
-        <>
-            <LinkList color={theme.colors.primary.contrast}>
-                <NavHeader />
-                <Typography
-                    uppercase
-                    color='contrast'
-                    letterSpacing='wide'
-                    size='large'
-                    weight='bold'
-                >
-                    разрабы
-                </Typography>
-                <HeaderRight>
-                    <ThemeSwitch />
-                    <LinkItem link='акк' />
-                </HeaderRight>
-            </LinkList>
-            <SubHeader />
-        </>
-    )
+  const theme = useTheme()
+  return (
+    <>
+      <LinkList color={theme.colors.primary.contrast}>
+        <NavHeader />
+        <Typography
+          uppercase
+          color='contrast'
+          letterSpacing='wide'
+          size='large'
+          weight='bold'
+        >
+          разрабы
+        </Typography>
+        <HeaderRight>
+          <ThemeSwitch />
+          <LinkItem link='акк' />
+        </HeaderRight>
+      </LinkList>
+      <SubHeader />
+    </>
+  )
 }
