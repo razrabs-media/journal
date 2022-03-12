@@ -23,6 +23,7 @@ export const withApollo = nextWithApollo(
     render: ({ Page, props }) => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
       const router = useRouter()
+
       return (
         <ApolloProvider client={props.apollo}>
           <Page {...props} {...router} />

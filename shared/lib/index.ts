@@ -1,5 +1,4 @@
 export * from './hooks'
-export * from './live-time'
 export * from './pluralize'
 export * from './theme'
 export * from './with-apollo'
