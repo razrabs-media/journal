@@ -47,6 +47,15 @@ const StyledBody = styled.div`
     color: ${({ theme }) => theme.colors.accentText};
     background-color: ${({ theme }) => theme.colors.accent};
   }
+
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.accent};
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
