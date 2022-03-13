@@ -15,6 +15,9 @@ const COMPONENTS: Components = {
     return !inline && match ? (
       <SyntaxHighlighter
         PreTag='div'
+        codeTagProps={{
+          style: { fontFamily: 'JetBrainsMono', fontSize: 14 },
+        }}
         language={match[1]}
         style={tomorrow}
         {...props}

@@ -15,6 +15,24 @@ const FONT_FACE = css`
   }
 
   @font-face {
+    font-family: 'JetBrainsMono';
+    font-weight: 400;
+    font-style: normal;
+
+    src: url('fonts/Jetbrains/JetBrainsMono-Regular.ttf') format('truetype'),
+      url('fonts/Jetbrains/JetBrainsMono-Regular.woff2') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'JetBrainsMono';
+    font-weight: 700;
+    font-style: normal;
+
+    src: url('fonts/Jetbrains/JetBrainsMono-Bold.ttf') format('truetype'),
+      url('fonts/Jetbrains/JetBrainsMono-Bold.woff2') format('truetype');
+  }
+
+  @font-face {
     font-family: 'Styrene B LC';
     font-weight: 700;
     font-style: normal;
