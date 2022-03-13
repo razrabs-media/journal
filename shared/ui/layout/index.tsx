@@ -1,38 +1,37 @@
-import { css } from '@emotion/css'
-import { useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
-import { FC } from 'react'
-import { Footer } from 'shared/ui/footer'
+import React, { FC } from 'react'
 
-const Content = styled.div`
-  display: grid;
+type LayoutProps = {
+  header?: React.ReactNode
+  footer?: React.ReactNode
+}
+
+const Container = styled.div`
   width: 100%;
   max-width: 1872px;
-  grid-template-rows: repeat(2, auto);
-  gap: 65px 0;
+  margin: auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+
+  @media (max-width: 671px) {
+    padding: 0 10px;
+  }
 `
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-left: 24px;
-  padding-right: 24px;
-  width: calc(100vw - (100vw - 100%));
-  min-height: 100vh;
+const Content = styled.main`
+  padding: 24px 0;
+
+  @media (max-width: 671px) {
+    padding: 10px 0;
+  }
 `
 
-export const Layout: FC = ({ children }) => {
-  const theme = useTheme()
-  return (
-    <Wrapper
-      className={css`
-        background-color: ${theme.colors.background};
-      `}
-    >
-      <Content>
-        <main>{children}</main>
-        <Footer />
-      </Content>
-    </Wrapper>
-  )
-}
+export const Layout: FC<LayoutProps> = ({ header, children, footer }) => (
+  <Container>
+    {header}
+
+    <Content>{children}</Content>
+
+    {footer}
+  </Container>
+)

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { ThemeName } from '../theme'
+import { ThemeName } from 'shared/config/theme'
 
 export function useLocalStorage(
   defaultValue: ThemeName,
