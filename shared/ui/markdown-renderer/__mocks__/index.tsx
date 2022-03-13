@@ -31,6 +31,7 @@ would be parsed as
     title: "This is a test",
     description: "Once upon a time..."
   },
+  keys->tests
   content: "# Title of my great post\\nLorem ipsum dolor..."
 }
 \`\`\`
