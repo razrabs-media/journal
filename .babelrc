@@ -1,0 +1,16 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "plugins": [
+    [
+      "@emotion",
+      {
+        "autoLabel": "dev-only",
+        "labelFormat": "[local]",
+        "cssPropOptimization": true
+      }
+    ],
+    "inline-react-svg"
+  ]
+}

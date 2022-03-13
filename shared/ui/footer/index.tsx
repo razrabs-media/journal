@@ -2,12 +2,17 @@ import styled from '@emotion/styled'
 import { FC } from 'react'
 
 const StyledFooter = styled.footer`
+  position: absolute;
+  bottom: 0;
+
   display: grid;
   grid-auto-flow: row;
 
   padding: 20px 0 0 0;
 
   border-top: 1px solid ${({ theme }) => theme.colors.text.primary};
+
+  overflow: hidden;
 `
 
 const Copyright = styled.span`
@@ -47,6 +52,8 @@ const Logo = styled.span`
   opacity: 5%;
 
   overflow: hidden;
+
+  user-select: none;
 `
 
 export const Footer: FC = () => (

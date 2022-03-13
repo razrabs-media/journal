@@ -1,0 +1,10 @@
+query GetPost($uid: UID!) {
+  post(uid: $uid) {
+    uid,
+    title,
+    previewUrl,
+    description,
+    content,
+    publicationDate,
+  }
+}

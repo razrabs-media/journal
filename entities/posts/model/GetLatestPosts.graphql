@@ -1,7 +1,10 @@
 query GetLatestPosts {
   posts {
     items {
-      title
+      uid,
+      title,
+      previewUrl,
+      publicationDate
     }
   }
 }

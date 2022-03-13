@@ -9,9 +9,9 @@ const FONT_FACE = css`
     font-weight: 400;
     font-style: normal;
 
-    src: url('fonts/styrene/styrene-regular.ttf') format('truetype'),
-      url('fonts/styrene/styrene-regular.woff') format('truetype'),
-      url('fonts/styrene/styrene-regular.woff2') format('truetype');
+    src: url('/fonts/styrene/styrene-regular.ttf') format('truetype'),
+      url('/fonts/styrene/styrene-regular.woff') format('truetype'),
+      url('/fonts/styrene/styrene-regular.woff2') format('truetype');
   }
 
   @font-face {
@@ -19,8 +19,8 @@ const FONT_FACE = css`
     font-weight: 400;
     font-style: normal;
 
-    src: url('fonts/Jetbrains/JetBrainsMono-Regular.ttf') format('truetype'),
-      url('fonts/Jetbrains/JetBrainsMono-Regular.woff2') format('truetype');
+    src: url('/fonts/Jetbrains/JetBrainsMono-Regular.ttf') format('truetype'),
+      url('/fonts/Jetbrains/JetBrainsMono-Regular.woff2') format('truetype');
   }
 
   @font-face {
@@ -28,8 +28,8 @@ const FONT_FACE = css`
     font-weight: 700;
     font-style: normal;
 
-    src: url('fonts/Jetbrains/JetBrainsMono-Bold.ttf') format('truetype'),
-      url('fonts/Jetbrains/JetBrainsMono-Bold.woff2') format('truetype');
+    src: url('/fonts/Jetbrains/JetBrainsMono-Bold.ttf') format('truetype'),
+      url('/fonts/Jetbrains/JetBrainsMono-Bold.woff2') format('truetype');
   }
 
   @font-face {
@@ -37,9 +37,9 @@ const FONT_FACE = css`
     font-weight: 700;
     font-style: normal;
 
-    src: url('fonts/styrene/styrene-bold.ttf') format('truetype'),
-      url('fonts/styrene/styrene-bold.woff') format('truetype'),
-      url('fonts/styrene/styrene-bold.woff2') format('truetype');
+    src: url('/fonts/styrene/styrene-bold.ttf') format('truetype'),
+      url('/fonts/styrene/styrene-bold.woff') format('truetype'),
+      url('/fonts/styrene/styrene-bold.woff2') format('truetype');
   }
 `
 const GLOBAL_STYLES = css`
@@ -56,6 +56,8 @@ const GLOBAL_STYLES = css`
 const DEFAULT_THEME = ThemeData[ThemeName.Dark]
 
 const StyledBody = styled.div`
+  font-size: 20px;
+
   overflow: hidden;
 
   color: ${({ theme }) => theme.colors.text.primary};

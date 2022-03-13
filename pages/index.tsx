@@ -1,63 +1,64 @@
+import { getDataFromTree } from '@apollo/client/react/ssr'
+import { PostCard, useGetLatestPosts } from 'entities/posts'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import React from 'react'
-import { Footer } from 'shared/ui/footer'
+import { withApollo } from 'shared/lib'
+import { Footer, Grid, Layout } from 'shared/ui'
 import { Header } from 'widgets/header'
-import { Layout } from 'shared/ui/layout'
-import { MARKDOWN_MOCK, MarkdownRenderer } from 'shared/ui/markdown-renderer'
-import { METADATA_MOCK, MetadataType } from './__mock__'
 
-type HomePageProps = {
-  content: string
-  metadata: MetadataType
+export const METADATA_MOCK = {
+  title: 'Test Title',
+  description: 'Test description',
+  previewUrl: 'https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg',
 }
 
-const MOCK_URL = 'https://raz-media-web-dev.herokuapp.com/'
+const HomePage: NextPage = () => {
+  const router = useRouter()
+  const currentPage = router.route
 
-const HomePage: NextPage<HomePageProps> = ({ content, metadata }) => (
-  <>
-    <Head>
-      <title>РАЗРАБЫ</title>
-      <meta content='Lorem ipsum' name='description' />
+  const { data } = useGetLatestPosts()
 
-      {/* Twitter */}
-      <meta key='twcard' content='summary' name='twitter:card' />
+  if (!data) {
+    return null
+  }
 
-      <meta key='twtitle' content={metadata.title} name='twitter:title' />
-      <meta
-        key='twdescription'
-        content={metadata.description}
-        property='twitter:description'
-      />
-      <meta
-        key='twimage'
-        content={metadata.previewUrl}
-        property='twitter:image'
-      />
-      <meta key='twurl' content={MOCK_URL} property='twitter:url' />
+  return (
+    <>
+      <Head>
+        <title>РАЗРАБЫ</title>
+        <meta content='Lorem ipsum' name='description' />
 
-      {/* Open Graph */}
-      <meta key='ogurl' content={MOCK_URL} property='og:url' />
-      <meta key='ogsitename' content='Разрабы' property='og:site_name' />
-      <meta key='ogimage' content={metadata.previewUrl} property='og:image' />
-      <meta key='ogtitle' content={metadata.title} property='og:title' />
-      <meta
-        key='ogdesc'
-        content={metadata.description}
-        property='og:description'
-      />
+        {/* Twitter */}
+        <meta content='summary' name='twitter:card' />
+        <meta content={METADATA_MOCK.title} name='twitter:title' />
+        <meta
+          content={METADATA_MOCK.description}
+          property='twitter:description'
+        />
+        <meta content={METADATA_MOCK.previewUrl} property='twitter:image' />
+        <meta content={currentPage} property='twitter:url' />
 
-      <link href='/favicon.ico' rel='icon' />
-    </Head>
-    <Layout footer={<Footer />} header={<Header />}>
-      ✨✨✨✨
-      <MarkdownRenderer>{content}</MarkdownRenderer>
-    </Layout>
-  </>
-)
+        {/* Open Graph */}
+        <meta content={currentPage} property='og:url' />
+        <meta content='Разрабы' property='og:site_name' />
+        <meta content={METADATA_MOCK.previewUrl} property='og:image' />
+        <meta content={METADATA_MOCK.title} property='og:title' />
+        <meta content={METADATA_MOCK.description} property='og:description' />
 
-export async function getServerSideProps() {
-  return { props: { content: MARKDOWN_MOCK, metadata: METADATA_MOCK } }
+        <link href='/favicon.ico' rel='icon' />
+      </Head>
+
+      <Layout footer={<Footer />} header={<Header />}>
+        <Grid>
+          {data.posts.items.map((post) => (
+            <PostCard key={post.uid} {...post} />
+          ))}
+        </Grid>
+      </Layout>
+    </>
+  )
 }
 
-export default HomePage
+export default withApollo(HomePage, { getDataFromTree })

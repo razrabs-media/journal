@@ -1,2 +1,5 @@
+export * from './model'
+
 export { PostCard } from './ui/card'
-export { PostReader } from './ui/reader'
+export { PostAside } from './ui/aside'
+export { PostArticle } from './ui/article'

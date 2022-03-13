@@ -16,18 +16,22 @@ const LogoBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
 
-const Logo = styled.a`
-  color: ${({ theme }) => theme.colors.logo};
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 120%;
-  letter-spacing: 3px;
-  font-feature-settings: 'salt' on;
-  text-align: center;
-  text-decoration: none;
+  a {
+    color: ${({ theme }) => theme.colors.logo};
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: 3px;
+    font-feature-settings: 'salt' on;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `
 
 const PreferencesBlock = styled.div``
@@ -38,7 +42,7 @@ export const Header: VFC = () => (
 
     <LogoBlock>
       <Link passHref href='/'>
-        <Logo>Разрабы</Logo>
+        <a>Разрабы</a>
       </Link>
     </LogoBlock>
 
