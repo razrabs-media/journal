@@ -16,6 +16,10 @@ const Container = styled.div`
   box-sizing: border-box;
   min-height: 100vh;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   @media (max-width: 671px) {
     padding: 0 10px;
   }
@@ -29,7 +33,7 @@ const Content = styled.main<{ withAside?: boolean }>`
     withAside &&
     css`
       display: grid;
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
       grid-gap: 24px;
     `};
 

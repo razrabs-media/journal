@@ -50,7 +50,7 @@ const HomePage: NextPage = () => {
         <link href='/favicon.ico' rel='icon' />
       </Head>
 
-      <Layout footer={<Footer />} header={<Header />}>
+      <Layout footer={<Footer />}>
         <Grid>
           {data.posts.items.map((post) => (
             <PostCard key={post.uid} {...post} />

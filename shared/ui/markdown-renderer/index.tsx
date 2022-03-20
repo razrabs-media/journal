@@ -1,3 +1,4 @@
+import styled from '@emotion/styled'
 import { FC } from 'react'
 import ReactMarkdown, { Components } from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -5,9 +6,6 @@ import remarkGemoji from 'remark-gemoji'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import a11yEmoji from './remark-emoji'
-
-//TODO: HTML-Support
-// 'react-markdown' умеет в HTML через плагин rehypeRaw, однако он чёт не хочет работать
 
 const COMPONENTS: Components = {
   code: ({ inline, className, children, ...props }) => {
@@ -34,13 +32,29 @@ const COMPONENTS: Components = {
 
 const PLUGINS = [remarkGfm, remarkGemoji, a11yEmoji]
 
+const StyleWrapper = styled.div`
+  a {
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.accent};
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  img {
+    max-height: 600px;
+    max-width: 100%;
+  }
+`
+
 type MarkdownRendererProps = {
   children: string
 }
 export const MarkdownRenderer: FC<MarkdownRendererProps> = ({ children }) => (
-  <ReactMarkdown components={COMPONENTS} remarkPlugins={PLUGINS}>
-    {children}
-  </ReactMarkdown>
+  <StyleWrapper>
+    <ReactMarkdown components={COMPONENTS} remarkPlugins={PLUGINS}>
+      {children}
+    </ReactMarkdown>
+  </StyleWrapper>
 )
-
-export { MARKDOWN_MOCK } from './__mocks__'

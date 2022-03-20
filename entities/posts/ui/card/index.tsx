@@ -17,6 +17,7 @@ const Title = styled.h2`
 `
 
 const StyledCard = styled.div`
+  position: relative;
   cursor: pointer;
 
   a {
@@ -46,6 +47,14 @@ const PublicationDate = styled.span`
   color: ${({ theme }) => theme.colors.text.secondary};
 `
 
+const StyledLink = styled.a`
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+`
+
 type PostCardProps = {
   uid: string
   previewUrl?: string | null
@@ -60,17 +69,17 @@ const PostCard: VFC<PostCardProps> = ({
 }) => (
   <Link passHref href={`/post/${uid}`}>
     <StyledCard>
-      <a style={{ width: '100%' }}>
-        <Image alt={title} src={previewUrl} />
+      <Image alt={title} src={previewUrl} />
 
-        <Title>{title}</Title>
+      <Title>{title}</Title>
 
-        {publicationDate && (
-          <PublicationDate>
-            {formatDistance(new Date(), new Date(publicationDate))}
-          </PublicationDate>
-        )}
-      </a>
+      {publicationDate && (
+        <PublicationDate>
+          {formatDistance(new Date(), new Date(publicationDate))}
+        </PublicationDate>
+      )}
+
+      <StyledLink />
     </StyledCard>
   </Link>
 )

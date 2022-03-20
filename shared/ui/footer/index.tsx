@@ -2,9 +2,6 @@ import styled from '@emotion/styled'
 import { FC } from 'react'
 
 const StyledFooter = styled.footer`
-  position: absolute;
-  bottom: 0;
-
   display: grid;
   grid-auto-flow: row;
 

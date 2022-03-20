@@ -2,6 +2,7 @@ import { css, Global, ThemeProvider } from '@emotion/react'
 import styled from '@emotion/styled'
 import type { AppProps } from 'next/app'
 import { ThemeData, ThemeName } from 'shared/config/theme'
+import { Header } from 'widgets/header'
 
 const FONT_FACE = css`
   @font-face {
@@ -58,23 +59,14 @@ const DEFAULT_THEME = ThemeData[ThemeName.Dark]
 const StyledBody = styled.div`
   font-size: 20px;
 
-  overflow: hidden;
-
   color: ${({ theme }) => theme.colors.text.primary};
   background-color: ${({ theme }) => theme.colors.background};
+
+  min-height: 100vh;
 
   *::selection {
     color: ${({ theme }) => theme.colors.accentText};
     background-color: ${({ theme }) => theme.colors.accent};
-  }
-
-  a {
-    text-decoration: none;
-    color: ${({ theme }) => theme.colors.accent};
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 `
 
@@ -84,6 +76,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
     <Global styles={GLOBAL_STYLES} />
 
     <StyledBody>
+      <Header />
+
       <Component {...pageProps} />
     </StyledBody>
   </ThemeProvider>

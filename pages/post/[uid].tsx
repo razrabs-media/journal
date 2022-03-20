@@ -56,7 +56,6 @@ const HomePage: NextPage = () => {
             onImageHeightChange={(newHeight) => setImageHeight(newHeight)}
           />
         }
-        header={<Header />}
       >
         <PostArticle
           content={data.post.content}
