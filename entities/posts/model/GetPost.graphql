@@ -4,7 +4,6 @@ query GetPost($uid: UID!) {
     title,
     previewUrl,
     description,
-    content,
-    publicationDate,
+    content
   }
 }
