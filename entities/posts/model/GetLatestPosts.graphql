@@ -3,8 +3,7 @@ query GetLatestPosts {
     items {
       uid,
       title,
-      previewUrl,
-      publicationDate
+      previewUrl
     }
   }
 }
