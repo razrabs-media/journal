@@ -42,7 +42,7 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>((props, ref) => (
     {props.src !== undefined && (
       <StyledImage {...props} ref={ref} src={props.src || undefined} />
     )}
-    {console.log(props.src)}
+    {/* {console.log(props.src)} */}
   </ImageWrapper>
 ))
 
