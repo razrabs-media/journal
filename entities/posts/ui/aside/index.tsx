@@ -39,7 +39,6 @@ export const PostAside: VFC<PostAsideProps> = ({
     <StyledAside>
       <StaticBlock>
         <Image alt={title} ref={imageEl} src={previewUrl} />
-
         <MetaRow>
           <PublicationDate>{publicationDate}</PublicationDate>
         </MetaRow>
