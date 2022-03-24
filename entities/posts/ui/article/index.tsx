@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 import { VFC } from 'react'
 import { MarkdownRenderer } from 'shared/ui'
-import WebShare from '../webShare/WebShare'
-import styles from './styles.module.scss'
+import ShareIcon from 'shared/ui/shared-icon'
 
 const StyledArticle = styled.article``
 
@@ -12,7 +11,12 @@ const Header = styled.header<{ minHeight?: number }>`
   border-bottom: 1px solid ${({ theme }) => theme.colors.text.primary};
 `
 
-const Preview = styled.h1``
+const Preview = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid red;
+`
+
 const Title = styled.h1`
   font-size: 32px;
   line-height: 120%;
@@ -55,11 +59,9 @@ export const PostArticle: VFC<PostArticleProps> = ({
     </Header>
 
     <Preview>
-      <div className={styles.preview__container}>
-        <div />
-        <div>
-          <WebShare />
-        </div>
+      <div />
+      <div>
+        <ShareIcon />
       </div>
     </Preview>
 

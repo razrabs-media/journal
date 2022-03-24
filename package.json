@@ -36,11 +36,9 @@
     "react-dom": "17.0.2",
     "react-markdown": "8.0.0",
     "react-syntax-highlighter": "15.4.5",
-    "react-web-share": "^1.1.5",
     "rehype-raw": "6.1.1",
     "remark-gemoji": "7.0.1",
-    "remark-gfm": "3.0.1",
-    "sass": "^1.49.9"
+    "remark-gfm": "3.0.1"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "11.7.2",
