@@ -1,5 +1,11 @@
 import styled from '@emotion/styled'
 import { forwardRef, ImgHTMLAttributes } from 'react'
+import fallbackImage from './404.svg'
+
+const StyledFallbackImage = styled(fallbackImage)`
+  width: 100px;
+  height: 100px;
+`
 
 const ImageWrapper = styled.div`
   display: flex;
@@ -8,20 +14,6 @@ const ImageWrapper = styled.div`
   min-height: 80px;
   max-height: 500px;
 `
-const ImgNotFound = () => (
-  <svg
-    fill='none'
-    height='70px'
-    stroke='#E2E2E8'
-    viewBox='0 0 48 48'
-    width='70px'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <rect height='47' width='47' x='0.5' y='0.5' />
-    <path d='M0.5 0.5L47.5 47.5' />
-    <path d='M47.5 0.5L0.5 47.5' />
-  </svg>
-)
 
 const StyledImage = styled.img`
   min-height: 80px;
@@ -36,14 +28,16 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   src: string | undefined | null
 }
 
-export const Image = forwardRef<HTMLImageElement, ImageProps>((props, ref) => (
-  <ImageWrapper>
-    {props.src === undefined && <ImgNotFound />}
-    {props.src !== undefined && (
-      <StyledImage {...props} ref={ref} src={props.src || undefined} />
-    )}
-    {/* {console.log(props.src)} */}
-  </ImageWrapper>
-))
+export const Image = forwardRef<HTMLImageElement, ImageProps>(
+  ({ src, ...restProps }, ref) => (
+    <ImageWrapper>
+      {src === undefined ? (
+        <StyledFallbackImage />
+      ) : (
+        <StyledImage {...restProps} ref={ref} src={src || undefined} />
+      )}
+    </ImageWrapper>
+  ),
+)
 
 Image.displayName = 'Image'
