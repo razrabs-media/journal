@@ -14,7 +14,6 @@ const Header = styled.header<{ minHeight?: number }>`
 const Preview = styled.div`
   display: flex;
   justify-content: space-between;
-  border: 1px solid red;
 `
 
 const Title = styled.h1`
@@ -61,7 +60,8 @@ export const PostArticle: VFC<PostArticleProps> = ({
     <Preview>
       <div />
       <div>
-        <ShareIcon />
+        {' '}
+        <ShareIcon />{' '}
       </div>
     </Preview>
 
