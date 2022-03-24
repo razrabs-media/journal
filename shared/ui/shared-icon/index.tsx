@@ -24,6 +24,8 @@ const handleShareButton = () => {
   }
 }
 
-const ShareIcon = () => <StyledShareIcon onClick={handleShareButton} />
+const ShareIcon: React.FC = (): JSX.Element => (
+  <StyledShareIcon onClick={handleShareButton} />
+)
 
 export default ShareIcon
