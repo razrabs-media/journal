@@ -2,7 +2,7 @@ import React from 'react'
 import { RWebShare } from 'react-web-share'
 import styles from './WebShare.module.scss'
 
-const WebShare: React.FC = () => {
+const WebShare: React.FC = (): JSX.Element => {
   const [url, setUrl] = React.useState<string>('')
 
   React.useEffect(() => {
