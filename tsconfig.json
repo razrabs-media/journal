@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.d.ts"
-, "entities/posts/ui/webShare/WebShare.jsx"  ],
+  ],
   "exclude": [
     "node_modules"
   ]
