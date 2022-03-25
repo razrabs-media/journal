@@ -1,31 +1,19 @@
 import React from 'react'
-import shareIcon from './Share-icon.svg'
+import ShareIconImage from './share-icon.svg'
 import styled from '@emotion/styled'
 
-const StyledShareIcon = styled(shareIcon)`
+const StyledShareIcon = styled(ShareIconImage)`
   width: 12px;
   height: 12px;
   cursor: pointer;
 `
-const handleShareButton = () => {
-  if (navigator.share) {
-    navigator
-      .share({
-        url: `${window.location.href}`,
-      })
-      .then(() => {
-        console.log('Sharing successfull')
-      })
-      .catch(() => {
-        console.log('Sharing failed')
-      })
-  } else {
-    alert('Sorry! Your browser does not support Web Share API')
-  }
+
+type handleShareButtonType = {
+  handleShareButton: () => void
 }
 
-const ShareIcon: React.FC = (): JSX.Element => (
-  <StyledShareIcon onClick={handleShareButton} />
-)
+const ShareIcon: React.FC<handleShareButtonType> = ({
+  handleShareButton,
+}): JSX.Element => <StyledShareIcon onClick={handleShareButton} />
 
 export default ShareIcon

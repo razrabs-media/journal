@@ -13,7 +13,7 @@ const Header = styled.header<{ minHeight?: number }>`
 
 const Preview = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
 `
 
 const Title = styled.h1`
@@ -37,6 +37,12 @@ const Content = styled.div`
   margin-top: 80px;
 `
 
+const handleShareButton = () => {
+  if (navigator.share) {
+    navigator.share({ url: `${window.location.href}` })
+  }
+}
+
 type PostArticleProps = {
   title: string
   description: string
@@ -58,10 +64,8 @@ export const PostArticle: VFC<PostArticleProps> = ({
     </Header>
 
     <Preview>
-      <div />
       <div>
-        {' '}
-        <ShareIcon />{' '}
+        <ShareIcon handleShareButton={handleShareButton} />
       </div>
     </Preview>
 
