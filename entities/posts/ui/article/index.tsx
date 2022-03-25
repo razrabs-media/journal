@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { VFC } from 'react'
 import { MarkdownRenderer } from 'shared/ui'
-import ShareIcon from 'shared/ui/shared-icon'
+import ShareIcon from 'shared/ui/share-icon'
 
 const StyledArticle = styled.article``
 
@@ -12,6 +12,7 @@ const Header = styled.header<{ minHeight?: number }>`
 `
 
 const Preview = styled.div`
+  padding-top: 5px;
   display: flex;
   justify-content: end;
 `
@@ -64,9 +65,7 @@ export const PostArticle: VFC<PostArticleProps> = ({
     </Header>
 
     <Preview>
-      <div>
-        <ShareIcon handleShareButton={handleShareButton} />
-      </div>
+      <ShareIcon handleShareButton={handleShareButton} />
     </Preview>
 
     <Content>
