@@ -3,6 +3,7 @@ query GetPost($uid: UID!) {
     uid,
     title,
     previewUrl,
-    content
+    content,
+    description,
   }
 }
