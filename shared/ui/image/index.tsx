@@ -31,10 +31,10 @@ interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 export const Image = forwardRef<HTMLImageElement, ImageProps>(
   ({ src, ...restProps }, ref) => (
     <ImageWrapper>
-      {src === undefined || src === null || src === '' ? (
-        <StyledFallbackImage />
-      ) : (
+      {src ? (
         <StyledImage {...restProps} ref={ref} src={src} />
+      ) : (
+        <StyledFallbackImage />
       )}
     </ImageWrapper>
   ),
