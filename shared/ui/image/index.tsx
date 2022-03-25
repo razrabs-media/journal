@@ -3,8 +3,9 @@ import { forwardRef, ImgHTMLAttributes } from 'react'
 import fallbackImage from './404.svg'
 
 const StyledFallbackImage = styled(fallbackImage)`
-  width: 100px;
-  height: 100px;
+  stroke: ${({ theme }) => theme.colors.primary}
+  width: 80px;
+  height: 80px;
 `
 
 const ImageWrapper = styled.div`
