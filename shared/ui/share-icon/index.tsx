@@ -8,12 +8,12 @@ const StyledShareIcon = styled(ShareIconImage)`
   cursor: pointer;
 `
 
-type handleShareButtonType = {
+type ShareIconProps = {
   handleShareButton: () => void
 }
 
-const ShareIcon: React.FC<handleShareButtonType> = ({
-  handleShareButton,
-}): JSX.Element => <StyledShareIcon onClick={handleShareButton} />
+const ShareIcon: React.VFC<ShareIconProps> = ({ handleShareButton }) => (
+  <StyledShareIcon onClick={handleShareButton} />
+)
 
 export default ShareIcon
