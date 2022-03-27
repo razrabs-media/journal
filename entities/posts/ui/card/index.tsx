@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { formatDistance } from 'date-fns'
 import Link from 'next/link'
 import { VFC } from 'react'
 import { Image } from 'shared/ui'
@@ -55,33 +54,66 @@ const StyledLink = styled.a`
   bottom: 0;
 `
 
+// todo сократить, когда бэк допилят
+const PostWrapper = styled.div<{
+  h: number
+  w: number
+  y: number
+  x: number
+}>`
+  grid-column: ${({ x }) => x + 1};
+  grid-column-start: ${({ x }) => x + 1};
+  grid-column-end: ${({ x, w }) => x + 1 + w};
+
+  grid-row: ${({ y }) => y + 1};
+  grid-row-start: ${({ y }) => y + 1};
+  grid-row-end: ${({ y, h }) => y + 1 + h};
+`
+
 type PostCardProps = {
-  uid: string
-  previewUrl?: string | null
-  title?: string
-  publicationDate?: number
+  post: {
+    uid: string
+    previewUrl?: string | null
+    title?: string
+    publicationDate?: number
+  }
+  position: {
+    x: number
+    y: number
+  }
+  component: {
+    uid: string
+    name: string
+    configuration: {
+      h: number
+      w: number
+    }
+  }
 }
-const PostCard: VFC<PostCardProps> = ({
-  uid,
-  previewUrl,
-  title,
-  publicationDate,
-}) => (
-  <Link passHref href={`/post/${uid}`}>
-    <StyledCard>
-      <Image alt={title} src={previewUrl} />
 
-      <Title>{title}</Title>
+const PostCard: VFC<PostCardProps> = ({ post, position, component }) => {
+  const { title, uid, previewUrl } = post
+  const { configuration } = component
 
-      {publicationDate && (
-        <PublicationDate>
-          {formatDistance(new Date(), new Date(publicationDate))}
-        </PublicationDate>
-      )}
+  return (
+    <PostWrapper {...configuration} {...position}>
+      <Link passHref href={`/post/${uid}`}>
+        <StyledCard>
+          <Image alt={title} src={post?.previewUrl} />
 
-      <StyledLink />
-    </StyledCard>
-  </Link>
-)
+          <Title>{title}</Title>
+
+          {/*        {publicationDate && (
+          <PublicationDate>
+            {formatDistance(new Date(), new Date(publicationDate))}
+          </PublicationDate>
+        )}*/}
+
+          <StyledLink />
+        </StyledCard>
+      </Link>
+    </PostWrapper>
+  )
+}
 
 export { PostCard }

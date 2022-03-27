@@ -1,11 +1,12 @@
 import { getDataFromTree } from '@apollo/client/react/ssr'
-import { PostCard, useGetLatestPosts } from 'entities/posts'
+import { PostCard } from 'entities/posts'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { withApollo } from 'shared/lib'
 import { Footer, Grid, Layout } from 'shared/ui'
+import { useGetFrontPage } from 'feature/front-page/model'
 
 export const METADATA_MOCK = {
   title: 'Разрабы',
@@ -17,7 +18,7 @@ const HomePage: NextPage = () => {
   const router = useRouter()
   const currentPage = router.route
 
-  const { data } = useGetLatestPosts()
+  const { data } = useGetFrontPage()
 
   if (!data) {
     return null
@@ -51,8 +52,8 @@ const HomePage: NextPage = () => {
 
       <Layout footer={<Footer />}>
         <Grid>
-          {data.posts.items.map((post) => (
-            <PostCard key={post.uid} {...post} />
+          {data?.frontPage.content.map((content) => (
+            <PostCard key={content.postUid} {...content} />
           ))}
         </Grid>
       </Layout>

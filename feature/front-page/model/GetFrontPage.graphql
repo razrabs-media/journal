@@ -1,0 +1,33 @@
+query GetFrontPage {
+  frontPage(uid:"37889fa6-b551-42ca-b4a6-bd83884d4211"){
+    title
+    uid,
+    content{
+      component{
+        uid,
+        name,
+        configuration {
+          h,
+          w,
+        }
+      },
+      postUid,
+      post{
+        uid
+        tags{
+          description
+          name
+        }
+        readingTime
+        previewUrl
+        title
+        content
+        description
+      }
+      position{
+        x
+        y
+      }
+    }
+  }
+}
