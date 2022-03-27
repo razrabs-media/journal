@@ -1,6 +1,26 @@
 import styled from '@emotion/styled'
 import { VFC } from 'react'
 import { MarkdownRenderer } from 'shared/ui'
+import { ShareButton } from 'shared/ui/share-button'
+
+const Preview = styled.div`
+  padding-top: 5px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+`
+
+const ShareBlock = styled.div`
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+`
+
+const onEventShareButton = () => {
+  if (navigator.share) {
+    navigator.share({ url: `${window.location.href}` })
+  }
+}
 
 const StyledArticle = styled.article``
 
@@ -50,6 +70,13 @@ export const PostArticle: VFC<PostArticleProps> = ({
       <Title>{title}</Title>
       <Description>{description}</Description>
     </Header>
+
+    <Preview>
+      <ShareBlock>
+        <ShareButton social='twitter' onClick={() => console.log('test2')} />
+        <ShareButton social='url' onClick={onEventShareButton} />
+      </ShareBlock>
+    </Preview>
 
     <Content>
       <MarkdownRenderer>{content}</MarkdownRenderer>

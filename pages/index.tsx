@@ -6,12 +6,11 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { withApollo } from 'shared/lib'
 import { Footer, Grid, Layout } from 'shared/ui'
-import { Header } from 'widgets/header'
 
 export const METADATA_MOCK = {
-  title: 'Test Title',
-  description: 'Test description',
-  previewUrl: 'https://upload.wikimedia.org/wikipedia/en/9/95/Test_image.jpg',
+  title: 'Разрабы',
+  description: 'Медиа для разработчиков',
+  previewUrl: 'https://avatars.githubusercontent.com/t/5791149?s=280&v=4',
 }
 
 const HomePage: NextPage = () => {
