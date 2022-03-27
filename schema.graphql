@@ -1,3 +1,9 @@
+input AddPostToFrontPageInput {
+  componentUid: String!
+  position: PositionInput!
+  postUid: String!
+}
+
 input AssignUserGroupInput {
   login: String!
   userGroupsName: [String!]!
@@ -7,14 +13,14 @@ type Category {
   createdAt: Date!
   name: String!
   posts: [PostItem!]
-  uid: ID!
+  uid: UID!
   updatedAt: Date!
 }
 
 type CategoryItem {
   createdAt: Date!
   name: String!
-  uid: ID!
+  uid: UID!
   updatedAt: Date!
 }
 
@@ -27,7 +33,6 @@ type Component {
   configuration: Configuration!
   createdAt: Date!
   name: String!
-  postPublication: PostPublication
   uid: UID!
   updatedAt: Date!
 }
@@ -42,16 +47,14 @@ type ComponentItem {
 
 type Configuration {
   h: Int!
+  template: String!
   w: Int!
-  x: Int!
-  y: Int!
 }
 
 input ConfigurationInput {
   h: Int!
+  template: String!
   w: Int!
-  x: Int!
-  y: Int!
 }
 
 """Upload scalar"""
@@ -81,30 +84,21 @@ input CreateFeedsInput {
   name: String!
 }
 
+input CreateFrontPageInput {
+  title: String!
+}
+
 input CreatePermissionInput {
   name: PermissionName!
 }
 
 input CreatePostInput {
-  draftUid: UID!
-}
-
-input CreatePostPublicationDto {
-  componentUid: String!
-  position: PositionInput!
-  postUid: String!
-  publicationUid: String!
+  contentLink: String!
 }
 
 input CreatePrioritiesInput {
   grade: Int!
   name: String!
-}
-
-input CreatePublicationsInput {
-  body: String!
-  publishDate: Date!
-  title: String!
 }
 
 input CreateUserInput {
@@ -176,20 +170,42 @@ type FeedItem {
   updatedAt: Date!
 }
 
+type FrontPage {
+  content: [PostOnFrontPage!]!
+  createdAt: Date!
+  title: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type FrontPageItem {
+  createdAt: Date!
+  title: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type FrontPagePagination {
+  count: Int!
+  items: [FrontPageItem!]!
+  page: Int!
+  pages: Int!
+}
+
 type Mutation {
   assignGroupToUser(data: AssignUserGroupInput!): UserItem!
   changePassword(data: ChangePasswordInput!): UserItem!
   changePermissions(data: UserGroupInput!): UserGroupItem!
+  changePostsOnFrontPage(data: [AddPostToFrontPageInput!]!, frontPageUid: UID!): [PostOnFrontPageItem!]!
   createCategory(data: CreateCategoriesInput!): Category!
   createComponent(data: CreateComponentInput!): Component!
   createDataSource(data: CreateDataSourceInput!): DataSource!
   createDraft(content: Upload, data: CreateDraftInput): DraftItem!
   createFeed(data: CreateFeedsInput!): Feed!
+  createFrontPage(data: CreateFrontPageInput!): FrontPage!
   createPermission(data: CreatePermissionInput!): PermissionItem!
-  createPost(data: CreatePostInput!): Post!
-  createPostPublication(data: CreatePostPublicationDto!): PostPublicationItem!
+  createPost(data: CreatePostInput!): PostItem!
   createPriority(data: CreatePrioritiesInput!): Priority!
-  createPublication(data: CreatePublicationsInput!): Publication!
   createUser(data: CreateUserInput!): ShortUserItem!
   createUserGroup(data: UserGroupInput!): UserGroupItem!
   removeCategory(uid: UID!): Int!
@@ -197,12 +213,11 @@ type Mutation {
   removeDataSource(uid: UID!): Int!
   removeDraft(uid: UID!): Int!
   removeFeed(uid: UID!): Int!
+  removeFrontPage(uid: UID!): Int!
   removePermission(uid: UID!): Int!
   removePost(uid: UID!): Int!
-  removePostPublication(uid: UID!): Int!
   removePriority(uid: UID!): Int!
   removeProfile(uid: UID!): Int!
-  removePublication(uid: UID!): Int!
   removeUser(uid: UID!): Int!
   removeUserGroup(uid: UID!): Int!
   resetPasswordForUser(data: ResetPasswordInput!): UserItem!
@@ -214,10 +229,9 @@ type Mutation {
   updateDataSource(data: UpdateDataSourceInput!, uid: UID!): DataSource!
   updateDraft(content: Upload, data: UpdateDraftInput!, uid: UID!): DraftItem!
   updateFeed(data: UpdateFeedInput!, uid: UID!): Feed!
+  updateFrontPage(data: UpdateFrontPageInput!, uid: UID!): FrontPage!
   updatePost(uid: UID!, updatePostDto: UpdatePostInput!): Post!
-  updatePostPublication(data: UpdatePostPublicationDto!, uid: UID!): PostPublicationItem!
   updatePriority(data: UpdatePrioritiesInput!, uid: UID!): Priority!
-  updatePublication(data: UpdatePublicationInput!, uid: UID!): Publication!
   updateUser(data: UserInput!, uid: UID!): User!
 }
 
@@ -237,8 +251,8 @@ enum PermissionName {
   ManageComponents
   ManageDataSource
   ManageFeeds
+  ManageFrontPage
   ManagePriorities
-  ManagePublication
   ManageUserGroups
   ManageUsers
   SuperAdministrator
@@ -256,27 +270,51 @@ input PositionInput {
 
 type Post {
   category: CategoryItem!
-  content: Content!
+  content: String!
   createdAt: Date!
   dataSource: DataSourceItem!
-  description: String
+  description: String!
+  frontPages: [FrontPageItem!]!
   previewUrl: String
   priority: PriorityItem!
-  publicationDate: Date
   readingTime: Int
+  tags: [TagItem!]
   title: String!
   uid: UID!
   updatedAt: Date!
 }
 
 type PostItem {
-  content: Content!
+  content: String!
   createdAt: Date!
-  description: String
+  description: String!
+  frontPages: [FrontPageItem!]!
   previewUrl: String
-  publicationDate: Date
   readingTime: Int
+  tags: [TagItem!]
   title: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type PostOnFrontPage {
+  component: ComponentItem!
+  componentUid: String!
+  createdAt: Date!
+  frontPageUid: String!
+  position: Position!
+  post: PostItem!
+  postUid: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
+type PostOnFrontPageItem {
+  componentUid: String!
+  createdAt: Date!
+  frontPageUid: String!
+  position: Position!
+  postUid: String!
   uid: UID!
   updatedAt: Date!
 }
@@ -286,20 +324,6 @@ type PostPagination {
   items: [PostItem!]!
   page: Int!
   pages: Int!
-}
-
-type PostPublication {
-  uid: UID!
-}
-
-type PostPublicationItem {
-  componentUid: String!
-  createdAt: Date!
-  position: Position!
-  postUid: String!
-  publicationUid: String!
-  uid: UID!
-  updatedAt: Date!
 }
 
 type Priority {
@@ -320,7 +344,14 @@ type PriorityItem {
 }
 
 type Profile {
+  avatarUrl: String
+  createdAt: Date
+  email: String
+  fullName: String
+  publicName: String
   uid: UID!
+  updatedAt: Date
+  user: User!
 }
 
 type ProfileItem {
@@ -337,25 +368,6 @@ input ProfileUpdateInput {
   publicName: String
 }
 
-type Publication {
-  body: String!
-  createdAt: Date!
-  postPublications: [PostPublication!]
-  publishDate: Date!
-  title: String!
-  uid: ID!
-  updatedAt: Date!
-}
-
-type PublicationItem {
-  body: String!
-  createdAt: Date!
-  publishDate: Date!
-  title: String!
-  uid: ID!
-  updatedAt: Date!
-}
-
 type Query {
   categories: [CategoryItem!]!
   category(uid: UID!): Category!
@@ -368,17 +380,16 @@ type Query {
   drafts(page: Int = 1, perPage: Int = 20): DraftPagination!
   feed(uid: UID!): Feed!
   feeds: [FeedItem!]!
+  frontPage(uid: UID!): FrontPage!
+  frontPages(page: Int = 1, perPage: Int = 20): FrontPagePagination!
   permissions: [PermissionItem!]!
-  post(uid: UID!): Post!
-  postPublication(uid: UID!): PostPublicationItem!
-  postPublications: [PostPublicationItem!]!
-  posts(page: Int = 1, perPage: Int = 20): [PostPagination!]!
+  post(uid: UID!): PostItem!
+  posts(page: Int = 1, perPage: Int = 20): PostPagination!
   priorities: [PriorityItem!]!
   priority(uid: UID!): Priority!
   profile(uid: UID!): Profile!
   profiles: [ProfileItem!]!
-  publication(uid: UID!): Publication!
-  publications: [PublicationItem!]!
+  tags: [TagItem!]!
   updateProfile(avatar: Upload, data: ProfileUpdateInput!, uid: UID!): ProfileItem!
   user(uid: UID!): User!
   userGroups: [UserGroupItem!]!
@@ -401,6 +412,14 @@ type ShortUserItem {
 input SignInInput {
   login: String!
   password: String!
+}
+
+type TagItem {
+  createdAt: Date!
+  description: String!
+  name: String!
+  uid: UID!
+  updatedAt: Date!
 }
 
 """Uid custom scalar type"""
@@ -430,6 +449,10 @@ input UpdateFeedInput {
   name: String!
 }
 
+input UpdateFrontPageInput {
+  title: String!
+}
+
 input UpdatePostInput {
   author: String!
   categoryUid: UID!
@@ -441,20 +464,9 @@ input UpdatePostInput {
   title: String!
 }
 
-input UpdatePostPublicationDto {
-  componentUid: String!
-  postUid: String!
-  publicationUid: String!
-}
-
 input UpdatePrioritiesInput {
   grade: Int!
   name: String!
-}
-
-input UpdatePublicationInput {
-  body: String!
-  title: String!
 }
 
 """Upload scalar"""
@@ -467,7 +479,7 @@ type User {
   passwordHash: String!
   profile: ProfileItem!
   profileUid: UID!
-  uid: ID!
+  uid: UID!
   updatedAt: Date!
   userGroups: [UserGroupItem!]!
 }
@@ -496,7 +508,7 @@ type UserItem {
   passwordHash: String!
   profile: ProfileItem!
   profileUid: UID!
-  uid: ID!
+  uid: UID!
   updatedAt: Date!
 }
 

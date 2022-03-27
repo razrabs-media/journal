@@ -1,9 +1,0 @@
-query GetLatestPosts {
-  posts {
-    items {
-      uid,
-      title,
-      previewUrl
-    }
-  }
-}
