@@ -1,19 +1,37 @@
 import React from 'react'
-import ShareIconImage from './share-icon.svg'
 import styled from '@emotion/styled'
+import ShareImageURL from './share-icon.svg'
+import ShareImageTwitter from './TW.svg'
 
-const StyledShareIcon = styled(ShareIconImage)`
+const StyledShareURL = styled(ShareImageURL)`
   width: 12px;
   height: 12px;
+`
+//svg has different sizes by layout
+const StyledShareTwitter = styled(ShareImageTwitter)`
+  width: 23px;
+  height: 12px;
+`
+
+const ShareComponent = {
+  url: <StyledShareURL />,
+  twitter: <StyledShareTwitter />,
+}
+
+const StyledButton = styled.button`
+  padding: 0;
+  display: flex;
+  align-item: center;
+  background: transparent;
   cursor: pointer;
+  border: none;
 `
 
 type ShareIconProps = {
-  handleShareButton: () => void
-}
+  social: 'url' | 'twitter'
+} & React.ComponentProps<'button'>
 
-const ShareIcon: React.VFC<ShareIconProps> = ({ handleShareButton }) => (
-  <StyledShareIcon onClick={handleShareButton} />
-)
-
-export default ShareIcon
+export const ShareIcon: React.VFC<ShareIconProps> = ({
+  social,
+  ...restProps
+}) => <StyledButton {...restProps}>{ShareComponent[social]}</StyledButton>

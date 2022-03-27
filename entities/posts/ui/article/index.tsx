@@ -1,7 +1,26 @@
 import styled from '@emotion/styled'
 import { VFC } from 'react'
 import { MarkdownRenderer } from 'shared/ui'
-import ShareIcon from 'shared/ui/share-icon'
+import { ShareIcon } from 'shared/ui/share-icon'
+
+const Preview = styled.div`
+  padding-top: 5px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+`
+
+const ShareBlock = styled.div`
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+`
+
+const onEventShareButton = () => {
+  if (navigator.share) {
+    navigator.share({ url: `${window.location.href}` })
+  }
+}
 
 const StyledArticle = styled.article``
 
@@ -9,12 +28,6 @@ const Header = styled.header<{ minHeight?: number }>`
   min-height: ${({ minHeight }) => minHeight || 'auto'};
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.text.primary};
-`
-
-const Preview = styled.div`
-  padding-top: 5px;
-  display: flex;
-  justify-content: end;
 `
 
 const Title = styled.h1`
@@ -38,12 +51,6 @@ const Content = styled.div`
   margin-top: 80px;
 `
 
-const handleShareButton = () => {
-  if (navigator.share) {
-    navigator.share({ url: `${window.location.href}` })
-  }
-}
-
 type PostArticleProps = {
   title: string
   description: string
@@ -65,7 +72,10 @@ export const PostArticle: VFC<PostArticleProps> = ({
     </Header>
 
     <Preview>
-      <ShareIcon handleShareButton={handleShareButton} />
+      <ShareBlock>
+        <ShareIcon social='twitter' onClick={() => console.log('test2')} />
+        <ShareIcon social='url' onClick={onEventShareButton} />
+      </ShareBlock>
     </Preview>
 
     <Content>
