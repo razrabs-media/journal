@@ -1,8 +1,8 @@
 import styled from '@emotion/styled'
 import { forwardRef, ImgHTMLAttributes } from 'react'
-import fallbackImage from './404.svg'
+import FallbackImage from './404.svg'
 
-const StyledFallbackImage = styled(fallbackImage)`
+const StyledFallbackImage = styled(FallbackImage)`
   stroke: ${({ theme }) => theme.colors.primary}
   width: 80px;
   height: 80px;
@@ -23,9 +23,7 @@ const StyledImage = styled.img`
   max-height: 600px;
 `
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+type ImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
   src: string | undefined | null
 }
 

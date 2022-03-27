@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { VFC } from 'react'
 import { MarkdownRenderer } from 'shared/ui'
-import { ShareIcon } from 'shared/ui/share-icon'
+import { ShareButton } from 'shared/ui/share-button'
 
 const Preview = styled.div`
   padding-top: 5px;
@@ -73,8 +73,8 @@ export const PostArticle: VFC<PostArticleProps> = ({
 
     <Preview>
       <ShareBlock>
-        <ShareIcon social='twitter' onClick={() => console.log('test2')} />
-        <ShareIcon social='url' onClick={onEventShareButton} />
+        <ShareButton social='twitter' onClick={() => console.log('test2')} />
+        <ShareButton social='url' onClick={onEventShareButton} />
       </ShareBlock>
     </Preview>
 
