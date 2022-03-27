@@ -6,22 +6,38 @@ import remarkGemoji from 'remark-gemoji'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import a11yEmoji from './remark-emoji'
+import { CopyButton } from 'shared/ui'
+
+const CodeWrapper = styled.div`
+  position: relative;
+`
+
+const handleCopyButton = async (code: string) => {
+  await navigator.clipboard.writeText(code)
+}
 
 const COMPONENTS: Components = {
   code: ({ inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || '')
+    const codeString = String(children).replace(/\n$/, '')
     return !inline && match ? (
-      <SyntaxHighlighter
-        PreTag='div'
-        codeTagProps={{
-          style: { fontFamily: 'JetBrainsMono', fontSize: 14 },
-        }}
-        language={match[1]}
-        style={tomorrow}
-        {...props}
-      >
-        {String(children).replace(/\n$/, '')}
-      </SyntaxHighlighter>
+      <CodeWrapper>
+        <SyntaxHighlighter
+          PreTag='div'
+          codeTagProps={{
+            style: {
+              fontFamily: 'JetBrainsMono',
+              fontSize: 14,
+            },
+          }}
+          language={match[1]}
+          style={tomorrow}
+          {...props}
+        >
+          {codeString}
+        </SyntaxHighlighter>
+        <CopyButton onClick={() => handleCopyButton(codeString)} />
+      </CodeWrapper>
     ) : (
       <code className={className} {...props}>
         {children}
