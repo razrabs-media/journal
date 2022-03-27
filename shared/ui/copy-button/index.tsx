@@ -46,7 +46,7 @@ export const CopyButton: VFC<React.ComponentProps<'button'>> = (props) => {
 
   return (
     <CopyButtonWrapper {...props} disabled={Boolean(text)} onClick={onClick}>
-      {text ? text : <CopySvg />}
+      {text || <CopySvg />}
     </CopyButtonWrapper>
   )
 }
