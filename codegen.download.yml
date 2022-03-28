@@ -1,5 +1,5 @@
 schema:
-  - 'https://raz-backoffice-api-stage.herokuapp.com/gql'
+  - 'http://localhost:3000/gql'
 generates:
   ./schema.graphql:
     plugins:

@@ -3,7 +3,7 @@ import { PostArticle, PostAside, useGetPost } from 'entities/posts'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { withApollo } from 'shared/lib'
 import { Layout } from 'shared/ui'
 
@@ -50,7 +50,7 @@ const HomePage: NextPage = () => {
         aside={
           <PostAside
             previewUrl={data.post.previewUrl || undefined}
-            publicationDate={Date.now()}
+            publicationDate={data.post.createdAt}
             title={data.post.title}
             onImageHeightChange={(newHeight) => setImageHeight(newHeight)}
           />

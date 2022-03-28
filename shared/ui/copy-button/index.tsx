@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import React, { useState, VFC } from 'react'
+import { useState, VFC } from 'react'
 
 import CopySvg from './copy.svg'
 
@@ -15,7 +15,7 @@ const CopyButtonWrapper = styled.button<{ disabled: boolean }>`
   cursor: ${({ disabled }) => (disabled ? 'unset' : 'pointer')};
   outline: inherit;
 
-  font-family: 'JetBrainsMono';
+  font-family: 'JetBrainsMono', serif;
   font-size: 14px;
 
   color: ${({ theme }) => theme.colors.text.secondary};

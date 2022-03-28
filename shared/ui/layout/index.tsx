@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 type LayoutProps = {
   aside?: React.ReactNode

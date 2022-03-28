@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from '@emotion/styled'
 import ShareImageURL from './share-icon.svg'
 import ShareImageTwitter from './twitter-icon.svg'

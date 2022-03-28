@@ -1,4 +1,4 @@
-schema: "https://raz-backoffice-api-stage.herokuapp.com/gql"
+schema: "http://localhost:3000/gql"
 documents:
   - '**/*.graphql'
   - '!schema.graphql'
@@ -8,10 +8,11 @@ generates:
       - typescript
     config:
       scalars:
-        Date: "string"
+        Date: number
         RegExpAsString: "string"
         MongoID: "string"
         BSONDecimal: "string"
+        UID: "string"
   ./:
     preset: near-operation-file
     presetConfig:

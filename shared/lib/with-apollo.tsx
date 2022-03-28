@@ -11,12 +11,8 @@ export const withApollo = nextWithApollo(
   ({ initialState, headers }) =>
     new ApolloClient({
       ssrMode: typeof window === 'undefined',
-      link: new HttpLink({
-        uri: 'https://raz-backoffice-api-stage.herokuapp.com/gql',
-      }),
-      headers: {
-        ...(headers as Record<string, string>),
-      },
+      link: new HttpLink({ uri: process.env.NEXT_PUBLIC_GQL_ENDPOINT }),
+      headers: headers as Record<string, string>,
       cache: new InMemoryCache().restore(initialState || {}),
     }),
   {

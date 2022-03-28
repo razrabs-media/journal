@@ -6,3 +6,8 @@ export const Grid = styled.div`
   grid-template-rows: repeat(auto-fill, max-content);
   gap: 32px 24px;
 `
+
+export const GridAria = styled.div<{ area: string }>`
+  display: grid;
+  grid-area: ${({ area }) => area};
+`
