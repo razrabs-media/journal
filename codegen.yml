@@ -1,4 +1,4 @@
-schema: "http://localhost:3000/gql"
+schema: "./schema.graphql"
 documents:
   - '**/*.graphql'
   - '!schema.graphql'
