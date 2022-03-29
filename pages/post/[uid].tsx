@@ -12,7 +12,7 @@ const HomePage: NextPage = () => {
   const currentPage = router.route
   const { uid } = router.query
 
-  const { data } = useGetPost({ variables: { uid } })
+  const { data } = useGetPost({ variables: { uid: uid?.toString() ?? '' } })
 
   const [imageHeight, setImageHeight] = useState(0)
 
