@@ -73,8 +73,16 @@ export const PostArticle: VFC<PostArticleProps> = ({
 
     <Preview>
       <ShareBlock>
-        <ShareButton social='twitter' onClick={() => console.log('test2')} />
-        <ShareButton social='url' onClick={onEventShareButton} />
+        <ShareButton
+          aria-label='Twitter'
+          social='twitter'
+          onClick={() => console.log('test2')}
+        />
+        <ShareButton
+          aria-label='Share url'
+          social='url'
+          onClick={onEventShareButton}
+        />
       </ShareBlock>
     </Preview>
 
