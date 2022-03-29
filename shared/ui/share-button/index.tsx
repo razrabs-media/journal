@@ -27,11 +27,11 @@ const StyledButton = styled.button`
   border: none;
 `
 
-type ShareIconProps = {
+type ShareButtonProps = {
   social: 'url' | 'twitter'
 } & React.ComponentProps<'button'>
 
-export const ShareButton: React.VFC<ShareIconProps> = ({
+export const ShareButton: React.VFC<ShareButtonProps> = ({
   social,
   ...restProps
 }) => <StyledButton {...restProps}>{ShareComponent[social]}</StyledButton>

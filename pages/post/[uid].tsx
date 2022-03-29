@@ -6,7 +6,6 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { withApollo } from 'shared/lib'
 import { Layout } from 'shared/ui'
-import { Header } from 'widgets/header'
 
 const HomePage: NextPage = () => {
   const router = useRouter()
@@ -51,7 +50,7 @@ const HomePage: NextPage = () => {
         aside={
           <PostAside
             previewUrl={data.post.previewUrl || undefined}
-            publicationDate={data.post.publicationDate}
+            publicationDate={Date.now()}
             title={data.post.title}
             onImageHeightChange={(newHeight) => setImageHeight(newHeight)}
           />
