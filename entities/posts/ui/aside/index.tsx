@@ -12,16 +12,24 @@ const MetaRow = styled.div`
   justify-content: space-between;
   margin-top: 20px;
 `
+const AnimatedBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+`
 
 const PublicationDate = styled.span``
 
 type PostAsideProps = {
+  shouldShowFloated: boolean
   title?: string
   previewUrl?: string
   publicationDate: number
   onImageHeightChange: (height: number) => void
 }
 export const PostAside: VFC<PostAsideProps> = ({
+  shouldShowFloated,
   title,
   previewUrl,
   publicationDate,
@@ -43,6 +51,8 @@ export const PostAside: VFC<PostAsideProps> = ({
           <PublicationDate>{publicationDate}</PublicationDate>
         </MetaRow>
       </StaticBlock>
+
+      {shouldShowFloated && <AnimatedBlock>TEST!!!</AnimatedBlock>}
     </StyledAside>
   )
 }

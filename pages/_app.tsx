@@ -66,26 +66,44 @@ const GLOBAL_STYLES = css`
 
 const DEFAULT_THEME = ThemeData[ThemeName.Dark]
 
-const StyledHeader = styled.div`
-  background-color: ${({ theme }) => theme.colors.background};
-  width: 100%;
-  position: fixed;
-  z-index: 1000;
-`
+// const StyledHeader = styled.div`
+//   background-color: ${({ theme }) => theme.colors.background};
+//   width: 100%;
+//   position: fixed;
+//   z-index: 1000;
+// `
 
 const StyledBody = styled.div`
+  overflow-x: hidden
   font-size: 20px;
 
   color: ${({ theme }) => theme.colors.text.primary};
   background-color: ${({ theme }) => theme.colors.background};
 
   min-height: 100vh;
-  padding-top: 54px;
 
   *::selection {
     color: ${({ theme }) => theme.colors.accentText};
     background-color: ${({ theme }) => theme.colors.accent};
   }
+`
+const Grid = styled.div`
+  display: grid
+  grid-template-areas:
+  "head"
+  "content";
+
+`
+const StyledHeader = styled.div`
+  grid-area: nav;
+  height: 54px;
+  background-color: green;
+`
+
+const StyledComponent = styled.div`
+  grid-area: content;
+  overflow: scroll;
+  height: 100vh;
 `
 
 const App = ({ Component, pageProps }: AppProps) => (
@@ -93,12 +111,16 @@ const App = ({ Component, pageProps }: AppProps) => (
     <Global styles={FONT_FACE} />
     <Global styles={GLOBAL_STYLES} />
 
-    <StyledHeader>
-      <Header />
-    </StyledHeader>
-
     <StyledBody>
-      <Component {...pageProps} />
+      <Grid>
+        <StyledHeader>
+          <Header />
+        </StyledHeader>
+
+        <StyledComponent>
+          <Component {...pageProps} />
+        </StyledComponent>
+      </Grid>
     </StyledBody>
   </ThemeProvider>
 )
