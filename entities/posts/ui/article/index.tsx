@@ -25,12 +25,15 @@ const onEventShareButton = () => {
 const StyledArticle = styled.article``
 
 const Header = styled.header<{ minHeight?: number }>`
-  min-height: ${({ minHeight }) => minHeight || 'auto'};
+  // Вычитаем 1, чтобы скомпенсировать границу снизу
+  min-height: ${({ minHeight }) => (minHeight ? `${minHeight - 1}px` : 'auto')};
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.text.primary};
 `
 
 const Title = styled.h1`
+  margin: 0;
+
   font-size: 32px;
   line-height: 120%;
 
