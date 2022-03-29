@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { useEffect, useRef, VFC } from 'react'
+import { useLayoutEffect, useRef, VFC } from 'react'
 import { Image } from 'shared/ui'
 
 const StyledAside = styled.aside``
@@ -29,7 +29,7 @@ export const PostAside: VFC<PostAsideProps> = ({
 }) => {
   const imageEl = useRef<HTMLImageElement>(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (imageEl.current?.height) {
       onImageHeightChange(imageEl.current.height)
     }
