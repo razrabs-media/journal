@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { withApollo } from 'shared/lib'
 import { Footer, Grid, Layout } from 'shared/ui'
-import { useGetFrontPage } from 'feature/front-page/model'
+import { useGetFrontPage } from 'feature/front-page'
 
 export const METADATA_MOCK = {
   title: 'Разрабы',
