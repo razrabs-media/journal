@@ -22,6 +22,8 @@ const StyledButton = styled.button`
   padding: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 12px;
   background: transparent;
   cursor: pointer;
   border: none;
