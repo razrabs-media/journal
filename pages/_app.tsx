@@ -20,8 +20,8 @@ const FONT_FACE = css`
     font-weight: 400;
     font-style: normal;
 
-    src: url('/fonts/Jetbrains/JetBrainsMono-Regular.ttf') format('truetype'),
-      url('/fonts/Jetbrains/JetBrainsMono-Regular.woff2') format('truetype');
+    src: url('/fonts/jetbrains/JetBrainsMono-Regular.ttf') format('truetype'),
+      url('/fonts/jetbrains/JetBrainsMono-Regular.woff2') format('truetype');
   }
 
   @font-face {
@@ -29,8 +29,8 @@ const FONT_FACE = css`
     font-weight: 700;
     font-style: normal;
 
-    src: url('/fonts/Jetbrains/JetBrainsMono-Bold.ttf') format('truetype'),
-      url('/fonts/Jetbrains/JetBrainsMono-Bold.woff2') format('truetype');
+    src: url('/fonts/jetbrains/JetBrainsMono-Bold.ttf') format('truetype'),
+      url('/fonts/jetbrains/JetBrainsMono-Bold.woff2') format('truetype');
   }
 
   @font-face {
