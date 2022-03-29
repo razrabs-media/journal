@@ -1,19 +1,26 @@
 import styled from '@emotion/styled'
 import { VFC } from 'react'
-import { MarkdownRenderer } from 'shared/ui'
-import { ShareButton } from 'shared/ui/share-button'
+import { MarkdownRenderer, ShareButton } from 'shared/ui'
 
-const Preview = styled.div`
-  padding-top: 5px;
+const TagsAndShare = styled.div`
+  margin-top: 15px;
+  height: 22px;
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
 `
 
+const TagsBlock = styled.div``
+
 const ShareBlock = styled.div`
-  width: 100px;
   display: flex;
+  height: 100%;
   justify-content: space-between;
+  align-items: center;
+
+  & > button {
+    margin-left: 24px;
+  }
 `
 
 const onEventShareButton = () => {
@@ -71,12 +78,14 @@ export const PostArticle: VFC<PostArticleProps> = ({
       <Description>{description}</Description>
     </Header>
 
-    <Preview>
+    <TagsAndShare>
+      <TagsBlock />
+
       <ShareBlock>
         <ShareButton social='twitter' onClick={() => console.log('test2')} />
         <ShareButton social='url' onClick={onEventShareButton} />
       </ShareBlock>
-    </Preview>
+    </TagsAndShare>
 
     <Content>
       <MarkdownRenderer>{content}</MarkdownRenderer>
