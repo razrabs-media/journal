@@ -66,6 +66,13 @@ const GLOBAL_STYLES = css`
 
 const DEFAULT_THEME = ThemeData[ThemeName.Dark]
 
+const StyledHeader = styled.div`
+  background-color: ${({ theme }) => theme.colors.background};
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+`
+
 const StyledBody = styled.div`
   font-size: 20px;
 
@@ -73,6 +80,7 @@ const StyledBody = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
 
   min-height: 100vh;
+  padding-top: 54px;
 
   *::selection {
     color: ${({ theme }) => theme.colors.accentText};
@@ -85,9 +93,11 @@ const App = ({ Component, pageProps }: AppProps) => (
     <Global styles={FONT_FACE} />
     <Global styles={GLOBAL_STYLES} />
 
-    <StyledBody>
+    <StyledHeader>
       <Header />
+    </StyledHeader>
 
+    <StyledBody>
       <Component {...pageProps} />
     </StyledBody>
   </ThemeProvider>
