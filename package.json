@@ -6,7 +6,7 @@
     "update-schema": "graphql-codegen -c ./codegen.download.yml",
     "dev-codegen": "graphql-codegen --watch",
     "dev-next": "next dev",
-    "dev": "concurrently -k npm:dev-codegen npm:dev-next",
+    "dev": "concurrently -k yarn:dev-codegen yarn:dev-next",
     "prebuild": "graphql-codegen",
     "build": "next build",
     "start": "next start",

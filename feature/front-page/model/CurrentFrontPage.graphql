@@ -1,0 +1,33 @@
+query CurrentFrontPage {
+  currentFrontPage {
+    uid
+    content {
+      component {
+        uid
+        configuration {
+          h
+          w
+          type
+        }
+      }
+      postUid
+      post {
+        uid
+        tags {
+          description
+          name
+        }
+        readingTime
+        previewUrl
+        title
+        content
+        description
+        createdAt
+      }
+      position {
+        x
+        y
+      }
+    }
+  }
+}

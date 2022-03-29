@@ -47,13 +47,13 @@ type ComponentItem {
 
 type Configuration {
   h: Int!
-  template: String!
+  type: String!
   w: Int!
 }
 
 input ConfigurationInput {
   h: Int!
-  template: String!
+  type: String!
   w: Int!
 }
 

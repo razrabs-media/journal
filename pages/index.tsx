@@ -3,10 +3,9 @@ import { PostCard } from 'entities/posts'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React from 'react'
 import { withApollo } from 'shared/lib'
 import { Footer, Grid, Layout } from 'shared/ui'
-import { useGetFrontPage } from 'feature/front-page'
+import { useCurrentFrontPage } from 'feature/front-page/model'
 
 export const METADATA_MOCK = {
   title: 'Разрабы',
@@ -18,7 +17,7 @@ const HomePage: NextPage = () => {
   const router = useRouter()
   const currentPage = router.route
 
-  const { data } = useGetFrontPage()
+  const { data } = useCurrentFrontPage()
 
   if (!data) {
     return null
@@ -52,9 +51,15 @@ const HomePage: NextPage = () => {
 
       <Layout footer={<Footer />}>
         <Grid>
-          {data?.frontPage.content.map((content) => (
-            <PostCard key={content.postUid} {...content} />
-          ))}
+          {data?.currentFrontPage.content.map(
+            ({ postUid, component, ...content }) => (
+              <PostCard
+                {...content}
+                key={postUid}
+                configuration={component.configuration}
+              />
+            ),
+          )}
         </Grid>
       </Layout>
     </>

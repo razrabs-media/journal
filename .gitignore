@@ -39,3 +39,4 @@ yarn-error.log*
 .vercel
 
 **/__generated__
+.env

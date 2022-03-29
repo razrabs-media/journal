@@ -20,7 +20,7 @@ const LogoBlock = styled.div`
   a {
     color: ${({ theme }) => theme.colors.logo};
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: bold;
     font-size: 24px;
     line-height: 120%;
     letter-spacing: 3px;

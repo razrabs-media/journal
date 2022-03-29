@@ -16,6 +16,16 @@ const FONT_FACE = css`
   }
 
   @font-face {
+    font-family: 'Styrene B LC';
+    font-weight: 500;
+    font-style: normal;
+
+    src: url('/fonts/styrene/styrene-medium.ttf') format('truetype'),
+      url('/fonts/styrene/styrene-medium.woff') format('truetype'),
+      url('/fonts/styrene/styrene-medium.woff2') format('truetype');
+  }
+
+  @font-face {
     font-family: 'JetBrainsMono';
     font-weight: 400;
     font-style: normal;
@@ -26,7 +36,7 @@ const FONT_FACE = css`
 
   @font-face {
     font-family: 'JetBrainsMono';
-    font-weight: 700;
+    font-weight: bold;
     font-style: normal;
 
     src: url('/fonts/jetbrains/JetBrainsMono-Bold.ttf') format('truetype'),
@@ -35,7 +45,7 @@ const FONT_FACE = css`
 
   @font-face {
     font-family: 'Styrene B LC';
-    font-weight: 700;
+    font-weight: bold;
     font-style: normal;
 
     src: url('/fonts/styrene/styrene-bold.ttf') format('truetype'),
