@@ -80,7 +80,7 @@ const StyledBody = styled.div`
   }
 `
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
+const App = ({ Component, pageProps }: AppProps) => (
   <ThemeProvider theme={DEFAULT_THEME}>
     <Global styles={FONT_FACE} />
     <Global styles={GLOBAL_STYLES} />
@@ -93,4 +93,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   </ThemeProvider>
 )
 
-export default MyApp
+export default App

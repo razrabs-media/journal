@@ -1,6 +1,7 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
 
 export const client = new ApolloClient({
-  uri: 'https://countries.trevorblades.com',
-  cache: new InMemoryCache(),
+  ssrMode: true,
+  link: new HttpLink({ uri: process.env.NEXT_PUBLIC_GQL_ENDPOINT }),
+  cache: new InMemoryCache().restore({}),
 })
