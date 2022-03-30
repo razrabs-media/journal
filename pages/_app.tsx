@@ -66,13 +66,6 @@ const GLOBAL_STYLES = css`
 
 const DEFAULT_THEME = ThemeData[ThemeName.Dark]
 
-// const StyledHeader = styled.div`
-//   background-color: ${({ theme }) => theme.colors.background};
-//   width: 100%;
-//   position: fixed;
-//   z-index: 1000;
-// `
-
 const StyledBody = styled.div`
   overflow-x: hidden
   font-size: 20px;
@@ -87,23 +80,23 @@ const StyledBody = styled.div`
     background-color: ${({ theme }) => theme.colors.accent};
   }
 `
-const Grid = styled.div`
-  display: grid
-  grid-template-areas:
-  "head"
-  "content";
 
+const Grid = styled.div`
+  height: 100vh;
+  display: grid;
+  grid-template:
+    'head' 54px
+    'content' auto / auto;
 `
+
 const StyledHeader = styled.div`
-  grid-area: nav;
-  height: 54px;
-  background-color: green;
+  grid-area: head;
 `
 
 const StyledComponent = styled.div`
   grid-area: content;
   overflow: scroll;
-  height: 100vh;
+  overflow-x: hidden;
 `
 
 const App = ({ Component, pageProps }: AppProps) => (

@@ -57,6 +57,7 @@ const Post: NextPage<GetPost> = ({ post }) => {
           description={post.description || ''}
           headerMinHeight={imageHeight}
           title={post.title}
+          setShouldShowFloated={setShouldShowFloated}
         />
       </Layout>
     </>

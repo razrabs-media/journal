@@ -13,6 +13,7 @@ const MetaRow = styled.div`
   margin-top: 20px;
 `
 const AnimatedBlock = styled.div`
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

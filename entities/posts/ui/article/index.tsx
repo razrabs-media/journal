@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { VFC, Dispatch, SetStateAction, useRef, useEffect } from "react";
 import { MarkdownRenderer, ShareButton } from 'shared/ui'
 
 const TagsAndShare = styled.div`
@@ -65,7 +65,7 @@ type PostArticleProps = {
   title: string
   description: string
   content: string
-
+  setShouldShowFloated: Dispatch<SetStateAction<boolean>>
   headerMinHeight?: number
 }
 
@@ -74,12 +74,35 @@ export const PostArticle: VFC<PostArticleProps> = ({
   description,
   content,
   headerMinHeight,
-}) => (
-  <StyledArticle>
-    <Header minHeight={headerMinHeight}>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
-    </Header>
+  setShouldShowFloated,
+}) => {
+  const headRef = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShouldShowFloated(!entry.isIntersecting)
+      },
+      {
+        rootMargin: '0px',
+        threshold: 0.5,
+      },
+    )
+
+    const currentTarget = headRef.current
+    if (currentTarget) observer.observe(currentTarget)
+
+    return () => {
+      if (currentTarget) observer.unobserve(currentTarget)
+    }
+  }, [headRef])
+
+  return (
+    <StyledArticle>
+      <Header minHeight={headerMinHeight}>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+      </Header>
 
     <TagsAndShare>
       <TagsBlock />
@@ -97,9 +120,16 @@ export const PostArticle: VFC<PostArticleProps> = ({
         />
       </ShareBlock>
     </TagsAndShare>
+      <Preview>
+        <ShareBlock ref={headRef}>
+          <ShareButton social='twitter' onClick={() => console.log('test2')} />
+          <ShareButton social='url' onClick={onEventShareButton} />
+        </ShareBlock>
+      </Preview>
 
-    <Content>
-      <MarkdownRenderer>{content}</MarkdownRenderer>
-    </Content>
-  </StyledArticle>
-)
+      <Content>
+        <MarkdownRenderer>{content}</MarkdownRenderer>
+      </Content>
+    </StyledArticle>
+  )
+}
