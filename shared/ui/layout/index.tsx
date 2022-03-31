@@ -1,11 +1,11 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
 type LayoutProps = {
-  aside?: React.ReactNode
-  header?: React.ReactNode
-  footer?: React.ReactNode
+  aside?: ReactNode
+  header?: ReactNode
+  footer?: ReactNode
 }
 
 const Container = styled.div`

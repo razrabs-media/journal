@@ -1,3 +1,7 @@
+import { GetServerSideProps, NextPage } from 'next'
+import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import {
   GetPost,
   GetPostQuery,
@@ -5,13 +9,8 @@ import {
   PostArticle,
   PostAside,
 } from 'entities/posts'
-import type { NextPage } from 'next'
-import { GetServerSideProps } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { Layout } from 'shared/ui'
 import { client } from 'shared/api'
+import { Layout } from 'shared/ui'
 
 const Post: NextPage<GetPost> = ({ post }) => {
   const router = useRouter()

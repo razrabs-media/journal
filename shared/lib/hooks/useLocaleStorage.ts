@@ -1,11 +1,10 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { ThemeName } from 'shared/config/theme'
 
-export function useLocalStorage(
-  defaultValue: ThemeName,
+export function useLocalStorage<T>(
+  defaultValue: T,
   key: string,
-): [ThemeName, Dispatch<SetStateAction<ThemeName>>] {
-  const [value, setValue] = useState<ThemeName>(defaultValue)
+): [T, Dispatch<SetStateAction<T>>] {
+  const [value, setValue] = useState<T>(defaultValue)
 
   useEffect(() => {
     const stickyValue = window.localStorage.getItem(key)

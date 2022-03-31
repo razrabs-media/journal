@@ -1,8 +1,8 @@
 import { css, Global, ThemeProvider } from '@emotion/react'
 import styled from '@emotion/styled'
 import type { AppProps } from 'next/app'
-import { ThemeData, ThemeName } from 'shared/config/theme'
 import { Header } from 'widgets/header'
+import { ThemeData, ThemeName } from 'shared/config'
 
 const FONT_FACE = css`
   @font-face {

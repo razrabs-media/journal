@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { VFC } from 'react'
 import { GridAria, Image, Typography } from 'shared/ui'
-import { Props } from './types'
 import { DateAgo } from '../date-ago'
 import { ColumnGrid } from '../grid'
+import { Props } from './types'
 
 export const ColumnCard: VFC<Props> = ({
   uid,

@@ -1,13 +1,10 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Footer, Grid, Layout } from 'shared/ui'
-import {
-  CurrentFrontPage,
-  CurrentFrontPageQuery,
-} from 'feature/front-page/model'
-import { client } from '../shared/api'
+import { CurrentFrontPage, CurrentFrontPageQuery } from 'feature/front-page'
 import { PostCard } from 'entities/posts'
+import { client } from 'shared/api'
+import { Footer, Grid, Layout } from 'shared/ui'
 
 export const METADATA_MOCK = {
   title: 'Разрабы',

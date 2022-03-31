@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
 import { FC } from 'react'
 import ReactMarkdown, { Components } from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import remarkGemoji from 'remark-gemoji'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
-import a11yEmoji from './remark-emoji'
+import remarkGemoji from 'remark-gemoji'
+import remarkGfm from 'remark-gfm'
 import { CopyButton } from 'shared/ui'
+import a11yEmoji from './remark-emoji'
 
 const CodeWrapper = styled.div`
   position: relative;
