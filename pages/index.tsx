@@ -1,11 +1,10 @@
-import { getDataFromTree } from '@apollo/client/react/ssr'
-import { PostCard } from 'entities/posts'
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { withApollo } from 'shared/lib'
+import { CurrentFrontPage, CurrentFrontPageQuery } from 'feature/front-page'
+import { PostCard } from 'entities/posts'
+import { client } from 'shared/api'
 import { Footer, Grid, Layout } from 'shared/ui'
-import { useCurrentFrontPage } from 'feature/front-page/model'
 
 export const METADATA_MOCK = {
   title: 'Разрабы',
@@ -13,15 +12,11 @@ export const METADATA_MOCK = {
   previewUrl: 'https://avatars.githubusercontent.com/t/5791149?s=280&v=4',
 }
 
-const HomePage: NextPage = () => {
+const HomePage: NextPage<{
+  currentFrontPage: CurrentFrontPage['currentFrontPage']
+}> = ({ currentFrontPage }) => {
   const router = useRouter()
   const currentPage = router.route
-
-  const { data } = useCurrentFrontPage()
-
-  if (!data) {
-    return null
-  }
 
   return (
     <>
@@ -51,7 +46,7 @@ const HomePage: NextPage = () => {
 
       <Layout footer={<Footer />}>
         <Grid>
-          {data?.currentFrontPage.content.map(
+          {currentFrontPage.content.map(
             ({ postUid, component, ...content }) => (
               <PostCard
                 {...content}
@@ -66,4 +61,16 @@ const HomePage: NextPage = () => {
   )
 }
 
-export default withApollo(HomePage, { getDataFromTree })
+export const getServerSideProps: GetServerSideProps<{
+  currentFrontPage: CurrentFrontPage['currentFrontPage']
+}> = async () => {
+  const { data } = await client.query<CurrentFrontPage>({
+    query: CurrentFrontPageQuery,
+  })
+
+  return {
+    props: { currentFrontPage: data.currentFrontPage },
+  }
+}
+
+export default HomePage

@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { VFC } from 'react'
 import { GridAria, Typography } from 'shared/ui'
-import { Props } from './types'
 import { DateAgo } from '../date-ago'
 import { CenterGrid } from '../grid'
+import { Props } from './types'
 
 export const CenterCard: VFC<Props> = ({ uid, title, publicationDate }) => (
   <Link passHref href={`/post/${uid}`}>

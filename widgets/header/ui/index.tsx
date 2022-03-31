@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import styled from '@emotion/styled'
+import Link from 'next/link'
 import { VFC } from 'react'
 
 const StyledHeader = styled.header`

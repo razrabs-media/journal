@@ -1,8 +1,8 @@
 import { css, Global, ThemeProvider } from '@emotion/react'
 import styled from '@emotion/styled'
 import type { AppProps } from 'next/app'
-import { ThemeData, ThemeName } from 'shared/config/theme'
 import { Header } from 'widgets/header'
+import { ThemeData, ThemeName } from 'shared/config'
 
 const FONT_FACE = css`
   @font-face {
@@ -80,7 +80,7 @@ const StyledBody = styled.div`
   }
 `
 
-const MyApp = ({ Component, pageProps }: AppProps) => (
+const App = ({ Component, pageProps }: AppProps) => (
   <ThemeProvider theme={DEFAULT_THEME}>
     <Global styles={FONT_FACE} />
     <Global styles={GLOBAL_STYLES} />
@@ -93,4 +93,4 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   </ThemeProvider>
 )
 
-export default MyApp
+export default App

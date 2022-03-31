@@ -1,8 +1,8 @@
 import { VFC } from 'react'
-import { Props } from './types'
-import { PostWrapper } from '../post-wraper'
 import { CenterCard } from '../center-card'
 import { ColumnCard } from '../column-card'
+import { PostWrapper } from '../post-wraper'
+import { Props } from './types'
 
 export const PostCard: VFC<Props> = ({ configuration, position, post }) => (
   <PostWrapper {...position} h={configuration.h} w={configuration.w}>

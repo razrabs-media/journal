@@ -1,8 +1,8 @@
 // noinspection NonAsciiCharacters
 
 import emojiRegex from 'emoji-regex'
-import { findAndReplace, Node, Replace } from 'mdast-util-find-and-replace'
 import { gemoji } from 'gemoji'
+import { findAndReplace, Node, Replace } from 'mdast-util-find-and-replace'
 
 const skintoneMap: Record<string, string> = {
   '🏻': 'skin tone 2',

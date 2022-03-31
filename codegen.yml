@@ -1,6 +1,7 @@
 schema: "./schema.graphql"
 documents:
   - '**/*.graphql'
+  - '**/*.gql'
   - '!schema.graphql'
 generates:
   __generated__/types.ts:
@@ -34,7 +35,7 @@ generates:
       dedupeOperationSuffix: true
       omitOperationSuffix: true
       withComponent: false
-      withHooks: true
+      withHooks: false
       withHOC: false
       reactApolloVersion: 3
       # documentMode: documentNode
