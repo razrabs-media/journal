@@ -79,9 +79,6 @@ const StyledBody = styled.div`
     color: ${({ theme }) => theme.colors.accentText};
     background-color: ${({ theme }) => theme.colors.accent};
   }
-`
-
-const Grid = styled.div`
   height: 100vh;
   display: grid;
   grid-template:
@@ -105,15 +102,13 @@ const App = ({ Component, pageProps }: AppProps) => (
     <Global styles={GLOBAL_STYLES} />
 
     <StyledBody>
-      <Grid>
-        <StyledHeader>
-          <Header />
-        </StyledHeader>
+      <StyledHeader>
+        <Header />
+      </StyledHeader>
 
-        <StyledComponent>
-          <Component {...pageProps} />
-        </StyledComponent>
-      </Grid>
+      <StyledComponent>
+        <Component {...pageProps} />
+      </StyledComponent>
     </StyledBody>
   </ThemeProvider>
 )
