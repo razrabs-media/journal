@@ -1,7 +1,7 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { CurrentFrontPage, CurrentFrontPageQuery } from 'feature/front-page'
+import { CurrentFrontPage, CurrentFrontPageQuery } from 'features/front-page'
 import { PostCard } from 'entities/posts'
 import { client } from 'shared/api'
 import { Footer, Grid, Layout } from 'shared/ui'
@@ -12,16 +12,17 @@ export const METADATA_MOCK = {
   previewUrl: 'https://avatars.githubusercontent.com/t/5791149?s=280&v=4',
 }
 
-const HomePage: NextPage<{
-  currentFrontPage: CurrentFrontPage['currentFrontPage']
-}> = ({ currentFrontPage }) => {
+type HomePageProps = {
+  frontPage: CurrentFrontPage['currentFrontPage']
+}
+const HomePage: NextPage<HomePageProps> = ({ frontPage }) => {
   const router = useRouter()
   const currentPage = router.route
 
   return (
     <>
       <Head>
-        <title>РАЗРАБЫ</title>
+        <title>Разрабы</title>
         <meta content='Lorem ipsum' name='description' />
 
         {/* Twitter */}
@@ -46,31 +47,41 @@ const HomePage: NextPage<{
 
       <Layout footer={<Footer />}>
         <Grid>
-          {currentFrontPage.content.map(
-            ({ postUid, component, ...content }) => (
-              <PostCard
-                {...content}
-                key={postUid}
-                configuration={component.configuration}
-              />
-            ),
-          )}
+          {frontPage.content.map(({ postUid, component, ...content }) => (
+            <PostCard
+              key={postUid}
+              configuration={component.configuration}
+              {...content}
+            />
+          ))}
         </Grid>
       </Layout>
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps<{
-  currentFrontPage: CurrentFrontPage['currentFrontPage']
-}> = async () => {
-  const { data } = await client.query<CurrentFrontPage>({
-    query: CurrentFrontPageQuery,
-  })
+export const getServerSideProps: GetServerSideProps<HomePageProps> =
+  async () => {
+    const {
+      data: { currentFrontPage },
+    } = await client.query<CurrentFrontPage>({
+      query: CurrentFrontPageQuery,
+    })
 
-  return {
-    props: { currentFrontPage: data.currentFrontPage },
+    // Необходимо отсортировать, чтобы на мобильных устройствах расставлять контент в +- правильном порядке
+    const sortedContent = [...currentFrontPage.content]
+
+    sortedContent
+      .sort((a, b) => a.position.x - b.position.x)
+      .sort((a, b) => a.position.y - b.position.y)
+
+    const frontPage = Object.assign({}, currentFrontPage, {
+      content: sortedContent,
+    })
+
+    return {
+      props: { frontPage },
+    }
   }
-}
 
 export default HomePage

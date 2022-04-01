@@ -1,6 +1,7 @@
 query CurrentFrontPage {
   currentFrontPage {
     uid
+    title
     content {
       component {
         uid
@@ -29,5 +30,8 @@ query CurrentFrontPage {
         y
       }
     }
+    createdAt
+    updatedAt
+    publicationDate
   }
 }
