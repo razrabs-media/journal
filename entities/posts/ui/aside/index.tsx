@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
+import { format, fromUnixTime } from 'date-fns'
+import { ru } from 'date-fns/locale'
 import { useLayoutEffect, useRef, VFC } from 'react'
-import { Image } from 'shared/ui'
+import { Image, Typography } from 'shared/ui'
 
 const StyledAside = styled.aside`
   position: relative;
@@ -44,12 +46,20 @@ export const PostAside: VFC<PostAsideProps> = ({
     }
   }, [onImageHeightChange, imageEl.current?.height])
 
+  const date = format(fromUnixTime(publicationDate), 'dd MMMM, H:mm', {
+    locale: ru,
+  })
+
   return (
     <StyledAside>
       <StaticBlock>
         <Image alt={title} ref={imageEl} src={previewUrl} />
         <MetaRow>
-          <PublicationDate>{publicationDate}</PublicationDate>
+          <PublicationDate>
+            <Typography uppercase transparent>
+              {date}
+            </Typography>
+          </PublicationDate>
         </MetaRow>
       </StaticBlock>
 
