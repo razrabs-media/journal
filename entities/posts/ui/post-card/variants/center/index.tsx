@@ -3,8 +3,6 @@ import { VFC } from 'react'
 import { GridAria, Typography, DateAgo } from 'shared/ui'
 
 const Card = styled.div`
-  position: relative;
-  cursor: pointer;
   display: grid;
   grid-template:
     '.' 1fr
