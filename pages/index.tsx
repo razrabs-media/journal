@@ -2,9 +2,9 @@ import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { CurrentFrontPage, CurrentFrontPageQuery } from 'features/front-page'
-import { PostCard } from 'entities/posts'
+import { FrontPage } from 'features/front-page'
 import { client } from 'shared/api'
-import { Footer, Grid, Layout } from 'shared/ui'
+import { Footer, Layout } from 'shared/ui'
 
 export const METADATA_MOCK = {
   title: 'Разрабы',
@@ -46,15 +46,7 @@ const HomePage: NextPage<HomePageProps> = ({ frontPage }) => {
       </Head>
 
       <Layout footer={<Footer />}>
-        <Grid>
-          {frontPage.content.map(({ postUid, component, ...content }) => (
-            <PostCard
-              key={postUid}
-              configuration={component.configuration}
-              {...content}
-            />
-          ))}
-        </Grid>
+        <FrontPage frontPage={frontPage} />
       </Layout>
     </>
   )

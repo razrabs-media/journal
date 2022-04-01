@@ -67,7 +67,6 @@ const GLOBAL_STYLES = css`
 const DEFAULT_THEME = ThemeData[ThemeName.Dark]
 
 const StyledBody = styled.div`
-  overflow-x: hidden
   font-size: 20px;
 
   color: ${({ theme }) => theme.colors.text.primary};
@@ -79,15 +78,17 @@ const StyledBody = styled.div`
     color: ${({ theme }) => theme.colors.accentText};
     background-color: ${({ theme }) => theme.colors.accent};
   }
+
   height: 100vh;
+
   display: grid;
   grid-template:
-    'head' 54px
+    'header' 54px
     'content' auto / auto;
 `
 
-const StyledHeader = styled.div`
-  grid-area: head;
+const StyledHeader = styled(Header)`
+  grid-area: header;
 `
 
 const StyledComponent = styled.div`
@@ -102,9 +103,7 @@ const App = ({ Component, pageProps }: AppProps) => (
     <Global styles={GLOBAL_STYLES} />
 
     <StyledBody>
-      <StyledHeader>
-        <Header />
-      </StyledHeader>
+      <StyledHeader />
 
       <StyledComponent>
         <Component {...pageProps} />

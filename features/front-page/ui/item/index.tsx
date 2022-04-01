@@ -1,8 +1,14 @@
 import styled from '@emotion/styled'
-import { Props } from './types'
+import { ReactNode, VFC } from 'react'
 
-// todo сократить, когда бэк допилят
-export const PostWrapper = styled.div<Props>`
+type Position = {
+  x: number
+  y: number
+  w: number
+  h: number
+}
+
+const FrontPageItemWrapper = styled.div<Position>`
   // Для десктопов сетка 4 колонки
   grid-column: ${({ x, w }) => `${x + 1} / ${x + 1 + w}`};
   grid-row: ${({ y, h }) => `${y + 1} / ${y + 1 + h}`};
@@ -21,3 +27,9 @@ export const PostWrapper = styled.div<Props>`
     grid-row: auto;
   }
 `
+
+type FrontPageItemProps = Position & { component: ReactNode }
+export const FrontPageItem: VFC<FrontPageItemProps> = ({
+  component,
+  ...position
+}) => <FrontPageItemWrapper {...position}>{component}</FrontPageItemWrapper>

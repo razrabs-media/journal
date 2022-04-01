@@ -1,9 +1,16 @@
-// eslint-disable-next-line boundaries/element-types
-import { CurrentFrontPage } from 'features/front-page'
-import { Configuration, Position, PostItem } from 'shared/api'
+import { CenteredCardProps, DefaultCardProps } from './variants'
 
-export type Props = {
-  configuration: Configuration
-  position: Position
-  post: CurrentFrontPage['currentFrontPage']['content']['0']['post']
+export enum PostCardVariant {
+  Default = 'default',
+  Center = 'center',
+}
+
+export type PostCardProps = { uid: string } & (
+  | CenteredCardProps
+  | DefaultCardProps
+)
+
+export type PostCardProxyProps = {
+  variant?: PostCardVariant
+  postData: PostCardProps
 }
