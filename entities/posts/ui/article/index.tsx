@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { VFC, Dispatch, SetStateAction, useRef, useEffect } from "react";
+import { VFC, Dispatch, SetStateAction, useRef, useEffect } from 'react'
 import { MarkdownRenderer, ShareButton } from 'shared/ui'
 
 const TagsAndShare = styled.div`
@@ -22,12 +22,6 @@ const ShareBlock = styled.div`
     margin-left: 24px;
   }
 `
-
-const onEventShareButton = () => {
-  if (navigator.share) {
-    navigator.share({ url: `${window.location.href}` })
-  }
-}
 
 const StyledArticle = styled.article``
 
@@ -84,8 +78,7 @@ export const PostArticle: VFC<PostArticleProps> = ({
         setShouldShowFloated(!entry.isIntersecting)
       },
       {
-        rootMargin: '0px',
-        threshold: 0.5,
+        threshold: 0,
       },
     )
 
@@ -95,37 +88,23 @@ export const PostArticle: VFC<PostArticleProps> = ({
     return () => {
       if (currentTarget) observer.unobserve(currentTarget)
     }
-  }, [headRef])
+  }, [headRef, setShouldShowFloated])
 
   return (
     <StyledArticle>
-      <Header minHeight={headerMinHeight}>
+      <Header minHeight={headerMinHeight} ref={headRef}>
         <Title>{title}</Title>
         <Description>{description}</Description>
       </Header>
 
-    <TagsAndShare>
-      <TagsBlock />
+      <TagsAndShare>
+        <TagsBlock />
 
-      <ShareBlock>
-        <ShareButton
-          aria-label='Twitter'
-          social='twitter'
-          onClick={() => console.log('test2')}
-        />
-        <ShareButton
-          aria-label='Share url'
-          social='url'
-          onClick={onEventShareButton}
-        />
-      </ShareBlock>
-    </TagsAndShare>
-      <Preview>
-        <ShareBlock ref={headRef}>
-          <ShareButton social='twitter' onClick={() => console.log('test2')} />
-          <ShareButton social='url' onClick={onEventShareButton} />
+        <ShareBlock>
+          <ShareButton aria-label='Twitter' social='twitter' />
+          <ShareButton aria-label='Share url' social='url' />
         </ShareBlock>
-      </Preview>
+      </TagsAndShare>
 
       <Content>
         <MarkdownRenderer>{content}</MarkdownRenderer>

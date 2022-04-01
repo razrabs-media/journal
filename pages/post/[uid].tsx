@@ -49,6 +49,7 @@ const Post: NextPage<GetPost> = ({ post }) => {
             publicationDate={post.createdAt}
             title={post.title}
             onImageHeightChange={(newHeight) => setImageHeight(newHeight)}
+            shouldShowFloated={shouldShowFloated}
           />
         }
       >
