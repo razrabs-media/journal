@@ -46,7 +46,7 @@ export const PostAside: VFC<PostAsideProps> = ({
     }
   }, [onImageHeightChange, imageEl.current?.height])
 
-  const date = format(fromUnixTime(publicationDate), 'dd MMMM, H:mm', {
+  const date = format(publicationDate, 'dd MMMM, H:mm', {
     locale: ru,
   })
 
