@@ -2,7 +2,9 @@ import styled from '@emotion/styled'
 import { useLayoutEffect, useRef, VFC } from 'react'
 import { Image } from 'shared/ui'
 
-const StyledAside = styled.aside``
+const StyledAside = styled.aside`
+  position: relative;
+`
 
 const StaticBlock = styled.div``
 
@@ -13,15 +15,22 @@ const MetaRow = styled.div`
   margin-top: 20px;
 `
 
+const AnimatedBlock = styled.div`
+  position: fixed;
+  top: 60px; // Отступ высоты шапки
+`
+
 const PublicationDate = styled.span``
 
 type PostAsideProps = {
+  shouldShowFloated: boolean
   title?: string
   previewUrl?: string
   publicationDate: number
   onImageHeightChange: (height: number) => void
 }
 export const PostAside: VFC<PostAsideProps> = ({
+  shouldShowFloated,
   title,
   previewUrl,
   publicationDate,
@@ -43,6 +52,12 @@ export const PostAside: VFC<PostAsideProps> = ({
           <PublicationDate>{publicationDate}</PublicationDate>
         </MetaRow>
       </StaticBlock>
+
+      {shouldShowFloated && (
+        <AnimatedBlock>
+          <i>*Тут будет плавающий блок*</i>
+        </AnimatedBlock>
+      )}
     </StyledAside>
   )
 }

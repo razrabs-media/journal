@@ -13,6 +13,8 @@ import { client } from 'shared/api'
 import { Layout } from 'shared/ui'
 
 const Post: NextPage<GetPost> = ({ post }) => {
+  const [shouldShowFloated, setShouldShowFloated] = useState(true)
+
   const router = useRouter()
   const currentPage = router.route
   const [imageHeight, setImageHeight] = useState(0)
@@ -47,6 +49,7 @@ const Post: NextPage<GetPost> = ({ post }) => {
             publicationDate={post.createdAt}
             title={post.title}
             onImageHeightChange={(newHeight) => setImageHeight(newHeight)}
+            shouldShowFloated={shouldShowFloated}
           />
         }
       >
@@ -55,6 +58,7 @@ const Post: NextPage<GetPost> = ({ post }) => {
           description={post.description || ''}
           headerMinHeight={imageHeight}
           title={post.title}
+          setShouldShowFloated={setShouldShowFloated}
         />
       </Layout>
     </>

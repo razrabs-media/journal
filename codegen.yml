@@ -4,8 +4,13 @@ documents:
   - '**/*.gql'
   - '!schema.graphql'
 generates:
-  __generated__/types.ts:
+  shared/api/types.ts:
     plugins:
+      - add:
+          content:
+            - '// 🛑 NOTICE: __generated__ folders should be added to .gitignore'
+            - '/* eslint-disable */'
+            - '/* tslint:disable */'
       - typescript
     config:
       scalars:

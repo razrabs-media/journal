@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { VFC, Dispatch, SetStateAction, useRef, useEffect } from 'react'
 import { MarkdownRenderer, ShareButton } from 'shared/ui'
 
 const TagsAndShare = styled.div`
@@ -22,12 +22,6 @@ const ShareBlock = styled.div`
     margin-left: 24px;
   }
 `
-
-const onEventShareButton = () => {
-  if (navigator.share) {
-    navigator.share({ url: `${window.location.href}` })
-  }
-}
 
 const StyledArticle = styled.article``
 
@@ -65,7 +59,7 @@ type PostArticleProps = {
   title: string
   description: string
   content: string
-
+  setShouldShowFloated: Dispatch<SetStateAction<boolean>>
   headerMinHeight?: number
 }
 
@@ -74,32 +68,47 @@ export const PostArticle: VFC<PostArticleProps> = ({
   description,
   content,
   headerMinHeight,
-}) => (
-  <StyledArticle>
-    <Header minHeight={headerMinHeight}>
-      <Title>{title}</Title>
-      <Description>{description}</Description>
-    </Header>
+  setShouldShowFloated,
+}) => {
+  const headRef = useRef(null)
 
-    <TagsAndShare>
-      <TagsBlock />
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShouldShowFloated(!entry.isIntersecting)
+      },
+      {
+        threshold: 0,
+      },
+    )
 
-      <ShareBlock>
-        <ShareButton
-          aria-label='Twitter'
-          social='twitter'
-          onClick={() => console.log('test2')}
-        />
-        <ShareButton
-          aria-label='Share url'
-          social='url'
-          onClick={onEventShareButton}
-        />
-      </ShareBlock>
-    </TagsAndShare>
+    const currentTarget = headRef.current
+    if (currentTarget) observer.observe(currentTarget)
 
-    <Content>
-      <MarkdownRenderer>{content}</MarkdownRenderer>
-    </Content>
-  </StyledArticle>
-)
+    return () => {
+      if (currentTarget) observer.unobserve(currentTarget)
+    }
+  }, [headRef, setShouldShowFloated])
+
+  return (
+    <StyledArticle>
+      <Header minHeight={headerMinHeight} ref={headRef}>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+      </Header>
+
+      <TagsAndShare>
+        <TagsBlock />
+
+        <ShareBlock>
+          <ShareButton aria-label='Twitter' social='twitter' />
+          <ShareButton aria-label='Share url' social='url' />
+        </ShareBlock>
+      </TagsAndShare>
+
+      <Content>
+        <MarkdownRenderer>{content}</MarkdownRenderer>
+      </Content>
+    </StyledArticle>
+  )
+}
