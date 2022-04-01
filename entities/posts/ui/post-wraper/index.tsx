@@ -3,11 +3,21 @@ import { Props } from './types'
 
 // todo сократить, когда бэк допилят
 export const PostWrapper = styled.div<Props>`
-  grid-column: ${({ x }) => x + 1};
-  grid-column-start: ${({ x }) => x + 1};
-  grid-column-end: ${({ x, w }) => x + 1 + w};
+  // Для десктопов сетка 4 колонки
+  grid-column: ${({ x, w }) => `${x + 1} / ${x + 1 + w}`};
+  grid-row: ${({ y, h }) => `${y + 1} / ${y + 1 + h}`};
 
-  grid-row: ${({ y }) => y + 1};
-  grid-row-start: ${({ y }) => y + 1};
-  grid-row-end: ${({ y, h }) => y + 1 + h};
+  // Для планшетов сетка 2 колонки
+  // Если ширина элемента больше двух - он должен занять всю строку
+  // Иначе пускай CSS-Grid сам решает расстановку через "grid-auto-flow" (см. shared/ui/grid)
+  @media screen and (max-width: 1320px) {
+    grid-column: ${({ w }) => (w >= 2 ? `1/3` : `auto`)};
+    grid-row: auto;
+  }
+
+  // Для мобильных сетка 1 колонка
+  @media screen and (max-width: 671px) {
+    grid-column: 1;
+    grid-row: auto;
+  }
 `

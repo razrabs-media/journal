@@ -24,7 +24,7 @@ generates:
     presetConfig:
       folder: __generated__
       extension: .tsx
-      baseTypesPath: __generated__/types.ts
+      baseTypesPath: shared/api/types.ts
     plugins:
       - add:
           content:

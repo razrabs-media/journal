@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 
 export const CenterGrid = styled.div`
-  overflow: hidden;
   position: relative;
   cursor: pointer;
   display: grid;

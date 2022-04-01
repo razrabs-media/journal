@@ -1,5 +1,6 @@
-import { Configuration, Position } from '__generated__/types'
-import { CurrentFrontPage } from 'feature/front-page/model'
+// eslint-disable-next-line boundaries/element-types
+import { CurrentFrontPage } from 'features/front-page'
+import { Configuration, Position, PostItem } from 'shared/api'
 
 export type Props = {
   configuration: Configuration
