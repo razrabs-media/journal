@@ -1,7 +1,7 @@
 export { CopyButton } from './copy-button'
 export { DateAgo } from './date-ago'
 export { Footer } from './footer'
-export { Grid, GridAria } from './grid'
+export { Grid, GridArea } from './grid'
 export { Image } from './image'
 export { Layout } from './layout'
 export { MarkdownRenderer } from './markdown-renderer'

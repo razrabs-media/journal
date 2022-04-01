@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 
 export const Card = styled.div`
+  padding: 32px;
   display: grid;
   grid-template:
     '.' 1fr
@@ -11,4 +12,8 @@ export const Card = styled.div`
   gap: 16px;
   border: 1px solid #ffffff;
   aspect-ratio: 4 / 1;
+
+  @media screen and (max-width: 671px) {
+    padding: 16px;
+  }
 `

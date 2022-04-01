@@ -58,9 +58,15 @@ const GLOBAL_STYLES = css`
   body {
     padding: 0;
     margin: 0;
+    height: 100%;
+    overflow: hidden;
     font-family: Styrene B LC, -apple-system, BlinkMacSystemFont, Segoe UI,
       Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
       sans-serif;
+  }
+
+  #__next {
+    height: 100%;
   }
 `
 
@@ -72,23 +78,53 @@ const StyledBody = styled.div`
   color: ${({ theme }) => theme.colors.text.primary};
   background-color: ${({ theme }) => theme.colors.background};
 
-  min-height: 100vh;
+  height: 100%; // Проценты, а не vh потому что у Safari на мобилках снизу менюшка :)
+  min-height: 100%;
+  overflow: hidden;
+
+  display: grid;
+  grid-template:
+    'header' 54px
+    'content' auto / auto;
 
   *::selection {
     color: ${({ theme }) => theme.colors.accentText};
     background-color: ${({ theme }) => theme.colors.accent};
   }
 
-  height: 100vh;
+  *::-webkit-scrollbar {
+    width: 4px;
+  }
 
-  display: grid;
-  grid-template:
-    'header' 54px
-    'content' auto / auto;
+  *::-webkit-scrollbar-button {
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.text.secondary};
+    border-radius: 100px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.colors.text.primary};
+  }
+
+  *::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.background};
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+`
+
+const HeaderWrapper = styled.div`
+  grid-area: header;
+  padding-right: 4px;
 `
 
 const StyledHeader = styled(Header)`
-  grid-area: header;
+  max-width: 1872px;
+  margin: auto;
 `
 
 const StyledComponent = styled.div`
@@ -103,7 +139,9 @@ const App = ({ Component, pageProps }: AppProps) => (
     <Global styles={GLOBAL_STYLES} />
 
     <StyledBody>
-      <StyledHeader />
+      <HeaderWrapper>
+        <StyledHeader />
+      </HeaderWrapper>
 
       <StyledComponent>
         <Component {...pageProps} />
