@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import { useMemo, VFC } from 'react'
 import { LinkSurface, Wrapper } from './styled'
-import { PostCardProxyProps, PostCardVariant } from './types'
+import { Props, PostCardVariant, PostCardMap } from './types'
 import { CenteredCard, DefaultCard } from './variants'
 
-const CARD_BY_VARIANT = {
+const CARD_BY_VARIANT: PostCardMap = {
   [PostCardVariant.Default]: DefaultCard,
   [PostCardVariant.Center]: CenteredCard,
 }
 
-const PostCardProxy: VFC<PostCardProxyProps> = ({
+const PostCardProxy: VFC<Props> = ({
   variant = PostCardVariant.Default,
   postData,
 }) => {
@@ -26,4 +26,4 @@ const PostCardProxy: VFC<PostCardProxyProps> = ({
 }
 
 export { PostCardProxy as PostCard, PostCardVariant }
-export type { PostCardProxyProps as PostCardProps } from './types'
+export type { Props as PostCardProps } from './types'

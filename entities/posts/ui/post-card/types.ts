@@ -1,16 +1,20 @@
-import { CenteredCardProps, DefaultCardProps } from './variants'
+import { VFC } from 'react'
 
 export enum PostCardVariant {
   Default = 'default',
   Center = 'center',
 }
 
-export type PostCardProps = { uid: string } & (
-  | CenteredCardProps
-  | DefaultCardProps
-)
+type PostData = {
+  uid: string
+  title: string
+  previewUrl?: string
+  publicationDate: number
+}
 
-export type PostCardProxyProps = {
+export type PostCardMap = Readonly<Record<PostCardVariant, VFC<PostData>>>
+
+export type Props = {
   variant?: PostCardVariant
-  postData: PostCardProps
+  postData: PostData
 }

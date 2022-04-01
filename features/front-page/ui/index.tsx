@@ -1,14 +1,10 @@
 import { VFC } from 'react'
-import { PostCard, PostCardProps, PostCardVariant } from 'entities/posts'
-import { CurrentFrontPage } from '../model'
+import { PostCard, PostCardVariant } from 'entities/posts'
 import { FrontPageGrid } from './grid'
 import { FrontPageItem } from './item'
+import type { Props } from './types'
 
-type FrontPageProps = {
-  frontPage: CurrentFrontPage['currentFrontPage']
-  PostCardComponent?: VFC<PostCardProps>
-}
-export const FrontPage: VFC<FrontPageProps> = ({
+export const FrontPage: VFC<Props> = ({
   frontPage,
   PostCardComponent = PostCard,
 }) => (

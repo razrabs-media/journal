@@ -1,12 +1,6 @@
 import styled from '@emotion/styled'
-import { ReactNode, VFC } from 'react'
-
-type Position = {
-  x: number
-  y: number
-  w: number
-  h: number
-}
+import { VFC } from 'react'
+import { Position, Props } from './types'
 
 const FrontPageItemWrapper = styled.div<Position>`
   // Для десктопов сетка 4 колонки
@@ -28,8 +22,6 @@ const FrontPageItemWrapper = styled.div<Position>`
   }
 `
 
-type FrontPageItemProps = Position & { component: ReactNode }
-export const FrontPageItem: VFC<FrontPageItemProps> = ({
-  component,
-  ...position
-}) => <FrontPageItemWrapper {...position}>{component}</FrontPageItemWrapper>
+export const FrontPageItem: VFC<Props> = ({ component, ...position }) => (
+  <FrontPageItemWrapper {...position}>{component}</FrontPageItemWrapper>
+)
