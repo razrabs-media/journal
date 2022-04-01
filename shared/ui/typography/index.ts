@@ -7,8 +7,12 @@ const sizes: Record<Size, number> = {
   large: 40,
 }
 
-// letter-spacing: ${({ letterSpacing }) =>
-//   letterSpacing === 'wide' ? '3px' : '1px'};
+const mobileSizes: Record<Size, number> = {
+  small: 10,
+  medium: 16,
+  large: 32,
+}
+
 export const Typography = styled.p<Props>`
   padding: 0;
   margin: 0;
@@ -22,4 +26,8 @@ export const Typography = styled.p<Props>`
   font-weight: ${({ weight = 'normal' }) => weight};
   font-feature-settings: 'salt' on;
   opacity: ${({ transparent }) => (transparent ? 0.6 : 1)};
+
+  @media screen and (max-width: 671px) {
+    font-size: ${({ size = 'small' }) => `${mobileSizes[size]}px`};
+  }
 `
