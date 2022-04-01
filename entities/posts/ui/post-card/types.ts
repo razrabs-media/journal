@@ -1,9 +1,20 @@
-// eslint-disable-next-line boundaries/element-types
-import { CurrentFrontPage } from 'features/front-page'
-import { Configuration, Position, PostItem } from 'shared/api'
+import { VFC } from 'react'
+
+export enum PostCardVariant {
+  Default = 'default',
+  Center = 'center',
+}
+
+type PostData = {
+  uid: string
+  title: string
+  previewUrl?: string
+  publicationDate: number
+}
+
+export type PostCardMap = Readonly<Record<PostCardVariant, VFC<PostData>>>
 
 export type Props = {
-  configuration: Configuration
-  position: Position
-  post: CurrentFrontPage['currentFrontPage']['content']['0']['post']
+  variant?: PostCardVariant
+  postData: PostData
 }

@@ -1,24 +1,29 @@
-import { VFC } from 'react'
-import { CenterCard } from '../center-card'
-import { ColumnCard } from '../column-card'
-import { PostWrapper } from '../post-wraper'
-import { Props } from './types'
+import Link from 'next/link'
+import { useMemo, VFC } from 'react'
+import { LinkSurface, Wrapper } from './styled'
+import { Props, PostCardVariant, PostCardMap } from './types'
+import { CenteredCard, DefaultCard } from './variants'
 
-export const PostCard: VFC<Props> = ({ configuration, position, post }) => (
-  <PostWrapper {...position} h={configuration.h} w={configuration.w}>
-    {configuration.type === 'center' ? (
-      <CenterCard
-        publicationDate={post.createdAt}
-        title={post.title}
-        uid={post.uid}
-      />
-    ) : (
-      <ColumnCard
-        previewUrl={post.previewUrl ?? ''}
-        publicationDate={post.createdAt}
-        title={post.title}
-        uid={post.uid}
-      />
-    )}
-  </PostWrapper>
-)
+const CARD_BY_VARIANT: PostCardMap = {
+  [PostCardVariant.Default]: DefaultCard,
+  [PostCardVariant.Center]: CenteredCard,
+}
+
+const PostCardProxy: VFC<Props> = ({
+  variant = PostCardVariant.Default,
+  postData,
+}) => {
+  const PostCard = useMemo(() => CARD_BY_VARIANT[variant], [variant])
+
+  return (
+    <Link passHref href={`/post/${postData.uid}`}>
+      <Wrapper>
+        <PostCard {...postData} />
+        <LinkSurface />
+      </Wrapper>
+    </Link>
+  )
+}
+
+export { PostCardProxy as PostCard, PostCardVariant }
+export type { Props as PostCardProps } from './types'

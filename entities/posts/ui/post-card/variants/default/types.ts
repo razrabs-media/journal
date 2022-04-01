@@ -1,5 +1,5 @@
 export type Props = {
-  uid: string
+  previewUrl?: string
   title: string
   publicationDate: number
 }

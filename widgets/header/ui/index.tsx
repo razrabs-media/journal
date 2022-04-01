@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { VFC } from 'react'
+import { HTMLAttributes, VFC } from 'react'
 
 const StyledHeader = styled.header`
   display: grid;
@@ -36,8 +36,8 @@ const LogoBlock = styled.div`
 
 const PreferencesBlock = styled.div``
 
-export const Header: VFC = () => (
-  <StyledHeader>
+export const Header: VFC<HTMLAttributes<HTMLElement>> = (props) => (
+  <StyledHeader {...props}>
     <NavigationBlock />
 
     <LogoBlock>

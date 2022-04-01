@@ -1,9 +1,11 @@
 query CurrentFrontPage {
   currentFrontPage {
     uid
+    publicationDate
     content {
+      uid
       component {
-        uid
+        name
         configuration {
           h
           w
