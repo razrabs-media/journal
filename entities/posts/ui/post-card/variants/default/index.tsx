@@ -1,5 +1,5 @@
 import { VFC } from 'react'
-import { GridAria, Image, Typography, DateAgo } from 'shared/ui'
+import { GridArea, Image, Typography, DateAgo } from 'shared/ui'
 import { Card } from './styled'
 import type { Props } from './types'
 
@@ -9,17 +9,17 @@ export const DefaultCard: VFC<Props> = ({
   publicationDate,
 }) => (
   <Card>
-    <GridAria area='preview'>
+    <GridArea area='preview'>
       <Image alt={title} src={previewUrl} />
-    </GridAria>
-    <GridAria area='title'>
+    </GridArea>
+    <GridArea area='title'>
       <Typography uppercase size='medium' weight='500'>
         {title}
       </Typography>
-    </GridAria>
-    <GridAria area='date'>
+    </GridArea>
+    <GridArea area='date'>
       <DateAgo date={publicationDate} />
-    </GridAria>
+    </GridArea>
   </Card>
 )
 

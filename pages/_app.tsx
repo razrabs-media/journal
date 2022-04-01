@@ -73,13 +73,38 @@ const StyledBody = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
 
   min-height: 100vh;
+  height: 100vh;
+  overflow: scroll;
+  overflow-x: hidden;
 
   *::selection {
     color: ${({ theme }) => theme.colors.accentText};
     background-color: ${({ theme }) => theme.colors.accent};
   }
 
-  height: 100vh;
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-button {
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.text.secondary};
+    border-radius: 100px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${({ theme }) => theme.colors.text.primary};
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${({ theme }) => theme.colors.background};
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 
   display: grid;
   grid-template:
@@ -87,14 +112,17 @@ const StyledBody = styled.div`
     'content' auto / auto;
 `
 
-const StyledHeader = styled(Header)`
+const HeaderWrapper = styled.div`
   grid-area: header;
+`
+
+const StyledHeader = styled(Header)`
+  max-width: 1872px;
+  margin: auto;
 `
 
 const StyledComponent = styled.div`
   grid-area: content;
-  overflow: scroll;
-  overflow-x: hidden;
 `
 
 const App = ({ Component, pageProps }: AppProps) => (
@@ -103,7 +131,9 @@ const App = ({ Component, pageProps }: AppProps) => (
     <Global styles={GLOBAL_STYLES} />
 
     <StyledBody>
-      <StyledHeader />
+      <HeaderWrapper>
+        <StyledHeader />
+      </HeaderWrapper>
 
       <StyledComponent>
         <Component {...pageProps} />

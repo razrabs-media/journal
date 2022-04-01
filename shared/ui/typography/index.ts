@@ -15,6 +15,7 @@ export const Typography = styled.p<Props>`
   color: ${({ theme, colorVariant = 'primary' }) =>
     theme.colors.text[colorVariant]};
   text-transform: ${({ uppercase }) => (uppercase ? 'uppercase' : 'none')};
+  text-align: ${({ align = 'left' }) => align};
   font-size: ${({ size = 'small' }) => `${sizes[size]}px`};
   line-height: ${({ size }) => (size === 'small' ? '100%' : '120%')};
   font-family: Styrene B LC, serif;

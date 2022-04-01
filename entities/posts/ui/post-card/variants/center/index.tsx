@@ -1,19 +1,19 @@
 import { VFC } from 'react'
-import { DateAgo, GridAria, Typography } from 'shared/ui'
+import { DateAgo, GridArea, Typography } from 'shared/ui'
 import { Card } from './styled'
 import type { Props } from './types'
 
 export const CenteredCard: VFC<Props> = ({ title, publicationDate }) => (
   <Card>
-    <GridAria area='title'>
-      <Typography uppercase size='large' weight='500'>
+    <GridArea area='title'>
+      <Typography uppercase size='large' align='center' weight='500'>
         {title}
       </Typography>
-    </GridAria>
+    </GridArea>
 
-    <GridAria area='date'>
+    <GridArea area='date'>
       <DateAgo date={publicationDate} />
-    </GridAria>
+    </GridArea>
   </Card>
 )
 
