@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Content } from './styles'
+import { Content } from './styled'
 import { Props } from './types'
 
 export const Layout: FC<Props> = ({ aside, children }) => (

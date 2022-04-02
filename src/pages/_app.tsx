@@ -3,17 +3,17 @@ import { VFC } from 'react'
 import type { AppProps } from 'next/app'
 import { Header } from 'widgets/header'
 import { ThemeData, ThemeName } from 'shared/config'
-import { Footer } from 'shared/ui'
 import {
   ContentArea,
   FONT_FACE,
+  Footer,
   FooterArea,
   GLOBAL_STYLES,
   HeaderArea,
   MainGrid,
   Scroll,
   Wrapper,
-} from './styles'
+} from 'shared/ui'
 
 const DEFAULT_THEME = ThemeData[ThemeName.Dark]
 

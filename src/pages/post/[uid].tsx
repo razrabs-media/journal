@@ -39,7 +39,7 @@ const Post: NextPage<GetPost> = ({ post }) => {
         <meta content={post.description || ''} property='og:description' />
         <meta content={post.previewUrl || ''} property='og:image' />
 
-        <link href='/favicon.ico' rel='icon' />
+        <link href='/public/favicon.ico' rel='icon' />
       </Head>
 
       <Layout

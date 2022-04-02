@@ -46,7 +46,7 @@ const HomePage: NextPage<Props> = ({ frontPage }) => {
         <meta content={METADATA_MOCK.title} property='og:title' />
         <meta content={METADATA_MOCK.description} property='og:description' />
 
-        <link href='/favicon.ico' rel='icon' />
+        <link href='/public/favicon.ico' rel='icon' />
       </Head>
 
       <Layout>

@@ -40,6 +40,7 @@ export const PostAside: VFC<PostAsideProps> = ({
 }) => {
   const imageEl = useRef<HTMLImageElement>(null)
 
+  // TODO: useLayoutEffect does nothing on the server, because its effect cannot be encoded into the server renderer's output format.
   useLayoutEffect(() => {
     if (imageEl.current?.height) {
       onImageHeightChange(imageEl.current.height)

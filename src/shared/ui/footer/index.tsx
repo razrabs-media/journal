@@ -1,5 +1,5 @@
 import { VFC } from 'react'
-import { Copyright, Logo, StyledFooter } from './styles'
+import { Copyright, Logo, StyledFooter } from './styled'
 
 export const Footer: VFC = () => (
   <StyledFooter>
