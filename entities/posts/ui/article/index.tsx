@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { VFC, Dispatch, SetStateAction, useRef, useEffect } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, VFC } from 'react'
 import { MarkdownRenderer, ShareButton } from 'shared/ui'
 
 const TagsAndShare = styled.div`

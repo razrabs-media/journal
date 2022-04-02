@@ -6,7 +6,7 @@ import type { Props } from './types'
 export const CenteredCard: VFC<Props> = ({ title, publicationDate }) => (
   <Card>
     <GridArea area='title'>
-      <Typography uppercase size='large' align='center' weight='500'>
+      <Typography uppercase align='center' size='large' weight='500'>
         {title}
       </Typography>
     </GridArea>

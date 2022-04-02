@@ -1,10 +1,13 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { CurrentFrontPage, CurrentFrontPageQuery } from 'features/front-page'
-import { FrontPage } from 'features/front-page'
+import {
+  CurrentFrontPage,
+  CurrentFrontPageQuery,
+  FrontPage,
+} from 'features/front-page'
 import { client } from 'shared/api'
-import { Footer, Layout } from 'shared/ui'
+import { Layout } from 'shared/ui'
 
 export const METADATA_MOCK = {
   title: 'Разрабы',
@@ -12,10 +15,11 @@ export const METADATA_MOCK = {
   previewUrl: 'https://avatars.githubusercontent.com/t/5791149?s=280&v=4',
 }
 
-type HomePageProps = {
+type Props = {
   frontPage: CurrentFrontPage['currentFrontPage']
 }
-const HomePage: NextPage<HomePageProps> = ({ frontPage }) => {
+
+const HomePage: NextPage<Props> = ({ frontPage }) => {
   const router = useRouter()
   const currentPage = router.route
 
@@ -45,35 +49,34 @@ const HomePage: NextPage<HomePageProps> = ({ frontPage }) => {
         <link href='/favicon.ico' rel='icon' />
       </Head>
 
-      <Layout footer={<Footer />}>
+      <Layout>
         <FrontPage frontPage={frontPage} />
       </Layout>
     </>
   )
 }
 
-export const getServerSideProps: GetServerSideProps<HomePageProps> =
-  async () => {
-    const {
-      data: { currentFrontPage },
-    } = await client.query<CurrentFrontPage>({
-      query: CurrentFrontPageQuery,
-    })
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const {
+    data: { currentFrontPage },
+  } = await client.query<CurrentFrontPage>({
+    query: CurrentFrontPageQuery,
+  })
 
-    // Необходимо отсортировать, чтобы на мобильных устройствах расставлять контент в +- правильном порядке
-    const sortedContent = [...currentFrontPage.content]
+  // Необходимо отсортировать, чтобы на мобильных устройствах расставлять контент в +- правильном порядке
+  const sortedContent = [...currentFrontPage.content]
 
-    sortedContent
-      .sort((a, b) => a.position.x - b.position.x)
-      .sort((a, b) => a.position.y - b.position.y)
+  sortedContent
+    .sort((a, b) => a.position.x - b.position.x)
+    .sort((a, b) => a.position.y - b.position.y)
 
-    const frontPage = Object.assign({}, currentFrontPage, {
-      content: sortedContent,
-    })
+  const frontPage = Object.assign({}, currentFrontPage, {
+    content: sortedContent,
+  })
 
-    return {
-      props: { frontPage },
-    }
+  return {
+    props: { frontPage },
   }
+}
 
 export default HomePage

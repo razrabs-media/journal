@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { format, fromUnixTime } from 'date-fns'
+import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { useLayoutEffect, useRef, VFC } from 'react'
 import { Image, Typography } from 'shared/ui'
@@ -56,7 +56,7 @@ export const PostAside: VFC<PostAsideProps> = ({
         <Image alt={title} ref={imageEl} src={previewUrl} />
         <MetaRow>
           <PublicationDate>
-            <Typography uppercase transparent>
+            <Typography transparent uppercase>
               {date}
             </Typography>
           </PublicationDate>

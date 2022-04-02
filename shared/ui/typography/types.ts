@@ -5,7 +5,7 @@ export type Props = {
   transparent?: boolean
   size?: Size
   align?: 'left' | 'center' | 'right'
-  colorVariant?: 'primary' | 'secondary'
+  color?: 'primary' | 'secondary' | 'contrast'
   weight?: 'normal' | '500' | 'bold'
   letterSpacing?: 'normal' | 'wide'
 }

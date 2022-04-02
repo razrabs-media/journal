@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useMemo, VFC } from 'react'
 import { LinkSurface, Wrapper } from './styled'
-import { Props, PostCardVariant, PostCardMap } from './types'
+import { PostCardMap, PostCardVariant, Props } from './types'
 import { CenteredCard, DefaultCard } from './variants'
 
 const CARD_BY_VARIANT: PostCardMap = {

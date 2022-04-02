@@ -47,9 +47,9 @@ const Post: NextPage<GetPost> = ({ post }) => {
           <PostAside
             previewUrl={post.previewUrl || undefined}
             publicationDate={post.createdAt}
+            shouldShowFloated={shouldShowFloated}
             title={post.title}
             onImageHeightChange={(newHeight) => setImageHeight(newHeight)}
-            shouldShowFloated={shouldShowFloated}
           />
         }
       >
@@ -57,8 +57,8 @@ const Post: NextPage<GetPost> = ({ post }) => {
           content={post.content}
           description={post.description || ''}
           headerMinHeight={imageHeight}
-          title={post.title}
           setShouldShowFloated={setShouldShowFloated}
+          title={post.title}
         />
       </Layout>
     </>

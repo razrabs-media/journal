@@ -1,5 +1,5 @@
 import { VFC } from 'react'
-import { GridArea, Image, Typography, DateAgo } from 'shared/ui'
+import { DateAgo, GridArea, Image, Typography } from 'shared/ui'
 import { Card } from './styled'
 import type { Props } from './types'
 
