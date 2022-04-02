@@ -3,7 +3,7 @@ export type Size = 'large' | 'medium' | 'small'
 export type Props = {
   uppercase?: boolean
   transparent?: boolean
-  size?: Size
+  size?: Size | number
   align?: 'left' | 'center' | 'right'
   color?: 'primary' | 'secondary' | 'contrast'
   weight?: 'normal' | '500' | 'bold'

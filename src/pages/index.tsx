@@ -7,7 +7,6 @@ import {
   FrontPage,
 } from 'features/front-page'
 import { client } from 'shared/api'
-import { Layout } from 'shared/ui'
 
 export const METADATA_MOCK = {
   title: 'Разрабы',
@@ -50,9 +49,7 @@ const HomePage: NextPage<Props> = ({ frontPage }) => {
         <link href='/public/favicon.ico' rel='icon' />
       </Head>
 
-      <Layout>
-        <FrontPage frontPage={frontPage} />
-      </Layout>
+      <FrontPage frontPage={frontPage} />
     </>
   )
 }

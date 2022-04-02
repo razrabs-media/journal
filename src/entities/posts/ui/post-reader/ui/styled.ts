@@ -1,0 +1,16 @@
+import styled from '@emotion/styled'
+import { MarkdownRenderer } from 'shared/ui'
+
+export const StyledReader = styled.div``
+
+export const ContentWrapper = styled.main`
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  grid-template-areas: '. content';
+  grid-gap: 24px;
+`
+
+export const StyledRenderer = styled(MarkdownRenderer)`
+  grid-area: content;
+`

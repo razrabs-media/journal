@@ -64,10 +64,14 @@ const StyleWrapper = styled.div`
 `
 
 type MarkdownRendererProps = {
+  className?: string
   children: string
 }
-export const MarkdownRenderer: FC<MarkdownRendererProps> = ({ children }) => (
-  <StyleWrapper>
+export const MarkdownRenderer: FC<MarkdownRendererProps> = ({
+  children,
+  className,
+}) => (
+  <StyleWrapper className={className}>
     <ReactMarkdown components={COMPONENTS} remarkPlugins={PLUGINS}>
       {children}
     </ReactMarkdown>

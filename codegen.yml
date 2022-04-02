@@ -4,7 +4,7 @@ documents:
   - '**/*.gql'
   - '!schema.graphql'
 generates:
-  shared/api/types.ts:
+  src/shared/api/types.ts:
     plugins:
       - add:
           content:
