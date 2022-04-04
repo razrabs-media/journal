@@ -13,14 +13,13 @@ const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   min-height: 80px;
-  max-height: 500px;
 `
 
 const StyledImage = styled.img`
   min-height: 80px;
   min-width: 80px;
-  max-height: 600px;
   width: 100%;
+  aspect-ratio: 1/1;
   object-fit: cover;
 `
 

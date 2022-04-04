@@ -63,19 +63,6 @@ const StyleWrapper = styled.div`
     object-fit: contain;
     object-position: 0 50%;
   }
-
-  p {
-    display: flex;
-    flex-direction: column;
-    img {
-      margin-top: 24px;
-      display: block;
-      max-height: 600px;
-      width: 100%;
-      object-fit: contain;
-      object-position: 0 50%;
-    }
-  }
 `
 
 type MarkdownRendererProps = {
