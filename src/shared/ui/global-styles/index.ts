@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import styled from '@emotion/styled'
 
 export const FONT_FACE = css`
   @font-face {
@@ -56,12 +55,14 @@ export const GLOBAL_STYLES = css`
   body {
     padding: 0;
     margin: 0;
-    height: 100%;
-    overflow: hidden;
+    // Fix для мобилок
+    //noinspection CssInvalidPropertyValue
+    min-height: --webkit-fill-available;
     font-family: Styrene B LC, -apple-system, BlinkMacSystemFont, Segoe UI,
       Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
       sans-serif;
   }
+
   a {
     text-decoration: none;
 
@@ -71,81 +72,7 @@ export const GLOBAL_STYLES = css`
   }
 
   #__next {
-    height: 100%;
+    min-height: 100%;
+    display: grid;
   }
-`
-
-export const Wrapper = styled.div`
-  display: grid;
-  overflow: auto;
-  color: ${({ theme }) => theme.colors.text.primary};
-  background-color: ${({ theme }) => theme.colors.background};
-`
-
-export const Scroll = styled.div`
-  height: 100%; // Проценты, а не vh потому что у Safari на мобилках снизу менюшка :)
-  display: grid;
-
-  *::selection {
-    color: ${({ theme }) => theme.colors.accentText};
-    background-color: ${({ theme }) => theme.colors.accent};
-  }
-
-  *::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  *::-webkit-scrollbar-button {
-  }
-
-  *::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.text.secondary};
-    border-radius: 100px;
-  }
-
-  *::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.colors.text.primary};
-  }
-
-  *::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.colors.background};
-  }
-
-  *::-webkit-scrollbar-corner {
-    background: transparent;
-  }
-`
-
-export const MainGrid = styled.div`
-  display: grid;
-  row-gap: 24px;
-  grid-template:
-    '. header .' 54px
-    '. content .' 1fr
-    '. footer .' auto /
-    minmax(24px, auto) minmax(auto, 1872px) minmax(24px, auto);
-
-  @media screen and (max-width: 671px) {
-    grid-template:
-      '. header .' 54px
-      '. content .' 1fr
-      '. footer .' auto /
-      minmax(10px, auto) minmax(auto, 1872px) minmax(10px, auto);
-  }
-`
-
-export const HeaderArea = styled.div`
-  grid-area: header;
-  position: sticky;
-  top: 0;
-  background-color: ${({ theme }) => theme.colors.background};
-  z-index: 1;
-`
-
-export const ContentArea = styled.div`
-  grid-area: content;
-`
-
-export const FooterArea = styled.div`
-  grid-area: footer;
 `

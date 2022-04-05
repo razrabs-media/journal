@@ -43,6 +43,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@next/next/no-document-import-in-page': 'off',
     'import/prefer-default-export': 'off',
     'import/newline-after-import': ['error', { count: 1 }],
     'react/react-in-jsx-scope': 'off',
