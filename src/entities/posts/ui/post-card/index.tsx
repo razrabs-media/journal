@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useMemo, VFC } from 'react'
-import { LinkSurface, Wrapper } from './styled'
+import { Wrapper } from './styled'
 import { PostCardMap, PostCardVariant, Props } from './types'
 import { CenteredCard, DefaultCard } from './variants'
 
@@ -18,8 +18,12 @@ const PostCardProxy: VFC<Props> = ({
   return (
     <Link passHref href={`/post/${postData.uid}`}>
       <Wrapper>
-        <PostCard {...postData} />
-        <LinkSurface />
+        <PostCard
+          previewUrl={postData.previewUrl}
+          publicationDate={postData.publicationDate}
+          title={postData.title}
+          uid={postData.uid}
+        />
       </Wrapper>
     </Link>
   )

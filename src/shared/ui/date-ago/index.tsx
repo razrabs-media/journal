@@ -12,7 +12,7 @@ export const DateAgo: VFC<Props> = ({ date, distance = 7 }) => {
   )
 
   return (
-    <Typography transparent uppercase>
+    <Typography transparent uppercase as='span'>
       {isFullDate
         ? format(date, 'd.m.yy')
         : formatDistanceToNow(date, { locale: ru, addSuffix: true })}

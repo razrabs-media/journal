@@ -27,11 +27,6 @@ export const Typography = styled.p<Props>`
   font-weight: ${({ weight = 'normal' }) => weight};
   font-feature-settings: 'salt' on;
   opacity: ${({ transparent }) => (transparent ? 0.6 : 1)};
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: none;
-  }
 
   @media screen and (max-width: 671px) {
     font-size: ${({ size = 'small' }) => `${mobileSizes[size]}px`};

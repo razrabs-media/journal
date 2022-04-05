@@ -62,6 +62,13 @@ export const GLOBAL_STYLES = css`
       Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
       sans-serif;
   }
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 
   #__next {
     height: 100%;

@@ -50,7 +50,6 @@ const PLUGINS = [remarkGfm, remarkGemoji, a11yEmoji]
 
 const StyleWrapper = styled.div`
   a {
-    text-decoration: none;
     color: ${({ theme }) => theme.colors.accent};
 
     &:hover {
