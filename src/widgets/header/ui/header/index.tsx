@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { HTMLAttributes, VFC } from 'react'
+import { VFC } from 'react'
 import { Typography } from 'shared/ui'
 import {
   LogoBlock,
@@ -8,8 +8,8 @@ import {
   StyledHeader,
 } from './styled'
 
-export const Header: VFC<HTMLAttributes<HTMLElement>> = (props) => (
-  <StyledHeader {...props}>
+export const Header: VFC = () => (
+  <StyledHeader>
     <NavigationBlock />
 
     <LogoBlock>
