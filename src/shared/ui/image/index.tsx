@@ -19,7 +19,6 @@ const StyledImage = styled.img`
   min-height: 80px;
   min-width: 80px;
   width: 100%;
-  aspect-ratio: 1/1;
   object-fit: cover;
 `
 
