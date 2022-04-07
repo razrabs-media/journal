@@ -12,11 +12,9 @@ const ImageWrapper = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  min-height: 80px;
 `
 
 const StyledImage = styled.img`
-  min-height: 80px;
   min-width: 80px;
   width: 100%;
   object-fit: cover;
