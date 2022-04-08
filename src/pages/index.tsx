@@ -12,7 +12,7 @@ import { Layout } from 'shared/ui'
 export const METADATA_MOCK = {
   title: 'Разрабы',
   description: 'Медиа для разработчиков',
-  previewUrl: 'https://avatars.githubusercontent.com/u/101455067?s=400&v=4',
+  previewUrl: '/src/shared/ui/logo/avatar.png',
 }
 
 type Props = {
@@ -44,7 +44,7 @@ const HomePage: NextPage<Props> = ({ frontPage }) => {
         <meta content='Разрабы' property='og:site_name' />
         <meta content={METADATA_MOCK.previewUrl} property='og:image' />
         <meta content={METADATA_MOCK.title} property='og:title' />
-        <meta property='og:image:width' content='400' />
+        <meta content='400' property='og:image:width' />
         <meta content={METADATA_MOCK.description} property='og:description' />
 
         <link href='/public/favicon.ico' rel='icon' />
