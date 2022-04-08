@@ -60,8 +60,6 @@ const StyleWrapper = styled.div`
   img {
     max-height: 600px;
     max-width: 100%;
-    object-fit: contain;
-    object-position: 0 50%;
   }
 `
 
