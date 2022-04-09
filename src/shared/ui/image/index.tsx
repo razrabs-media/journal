@@ -12,15 +12,12 @@ const ImageWrapper = styled.div`
   display: flex;
   position: relative;
   width: 100%;
-  min-height: 80px;
-  max-height: 500px;
 `
 
 const StyledImage = styled.img`
-  min-height: 80px;
   min-width: 80px;
   width: 100%;
-  max-height: 600px;
+  object-fit: cover;
 `
 
 type ImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
