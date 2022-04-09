@@ -24,39 +24,48 @@ export const FirstRow = styled.div`
 `
 
 export const ImageWrapper = styled.div`
-  position: relative;
-
   min-height: 80px;
   min-width: 80px;
 
   max-height: 610px;
 
-  object-fit: contain;
+  ${SharedImageWrapper} {
+    height: initial;
+    max-height: initial;
+  }
 
-  @media screen and (max-width: 672px) {
-    max-height: inherit;
+  @media screen and (max-width: 999px) {
+    max-height: initial;
 
-    // У ImageWrapper (который shared/ui), а не который ниже max-height=500px, что мешает на мобильном отображении
+    // У ImageWrapper (который shared/ui), а не этот max-height=500px, что мешает на мобильном отображении
     // :ya-hz: куда ещё вставить его стилизацию, поэтому пусть будет тут
     ${SharedImageWrapper} {
-      max-height: initial;
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 672px) {
+    min-height: initial;
+    ${SharedImageWrapper} {
+      height: auto;
     }
   }
 `
 
 export const PostImage = styled(Image)`
-  @media screen and (max-width: 672px) {
-    width: 100%;
-    height: auto;
-    min-height: initial;
-    max-height: initial;
-  }
-`
+  height: auto;
+  width: 100%;
+  max-height: initial;
 
-export const PublicationDate = styled(Typography)`
-  position: absolute;
-  left: 0;
-  bottom: -32px;
+  @media screen and (max-width: 999px) {
+    height: 100%;
+    width: auto;
+  }
+
+  @media screen and (max-width: 672px) {
+    height: auto;
+    width: 100%;
+  }
 `
 
 // TODO: это заголовок + описание. над неймингом еще надо подумать
@@ -110,14 +119,7 @@ export const TagsBlock = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
-  & > div {
-    margin-right: 4px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
+  gap: 4px;
 `
 
 export const ShareBlock = styled.div`
@@ -125,13 +127,7 @@ export const ShareBlock = styled.div`
   flex-direction: row;
   align-items: center;
 
-  & > button {
-    margin-right: 15px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
+  gap: 15px;
 
   @media screen and (max-width: 672px) {
     width: 100%;

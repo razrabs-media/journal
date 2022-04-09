@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import { forwardRef, ImgHTMLAttributes } from 'react'
+import { Typography } from 'shared/ui/typography'
 import FallbackImage from './404.svg'
 
 const StyledFallbackImage = styled(FallbackImage)`
@@ -10,7 +11,6 @@ const StyledFallbackImage = styled(FallbackImage)`
 
 // Экспортирую отдельно, чтобы была возможность застилизовать в дальнейшем
 export const ImageWrapper = styled.div`
-  display: flex;
   position: relative;
   width: 100%;
   min-height: 80px;
@@ -26,17 +26,29 @@ const StyledImage = styled.img`
   height: 100%;
 `
 
+const Label = styled(Typography)`
+  position: absolute;
+  bottom: -32px;
+`
+
 type ImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'src'> & {
+  label?: string
   src: string | undefined | null
 }
 
 export const Image = forwardRef<HTMLImageElement, ImageProps>(
-  ({ src, ...restProps }, ref) => (
+  ({ src, label, ...restProps }, ref) => (
     <ImageWrapper>
       {src ? (
         <StyledImage {...restProps} ref={ref} src={src} />
       ) : (
         <StyledFallbackImage />
+      )}
+
+      {label && (
+        <Label transparent uppercase size='small'>
+          {label}
+        </Label>
       )}
     </ImageWrapper>
   ),

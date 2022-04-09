@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
-import { VFC } from 'react'
+import { forwardRef } from 'react'
 import { ShareButton, ShareType } from 'shared/ui'
 import { Tag } from 'shared/ui/tag'
 import {
@@ -9,7 +9,6 @@ import {
   ImageWrapper,
   PostImage,
   PostTextWrapper,
-  PublicationDate,
   SecondRow,
   ShareBlock,
   StyledHeader,
@@ -19,42 +18,49 @@ import {
 } from './styled'
 import type { Props } from './types'
 
-export const PostHeader: VFC<Props> = (props) => (
-  <StyledHeader>
-    <FirstRow>
-      <ImageWrapper>
-        <PostImage alt={props.title} src={props.previewUrl} />
+// Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
+export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const formattedDate = format(props.publicationDate, 'dd MMMM, H:mm', {
+    locale: ru,
+  })
 
-        <PublicationDate transparent uppercase size='small'>
-          {format(props.publicationDate, 'dd MMMM, H:mm', {
-            locale: ru,
-          })}
-        </PublicationDate>
-      </ImageWrapper>
-      <PostTextWrapper>
-        <Title>{props.title}</Title>
+  return (
+    <StyledHeader>
+      <FirstRow ref={ref}>
+        <ImageWrapper>
+          <PostImage
+            alt={props.title}
+            label={formattedDate}
+            src={props.previewUrl}
+          />
+        </ImageWrapper>
+        <PostTextWrapper>
+          <Title>{props.title}</Title>
 
-        <Description color='secondary' size='medium'>
-          {props.description}
-        </Description>
-      </PostTextWrapper>
-    </FirstRow>
+          <Description color='secondary' size='medium'>
+            {props.description}
+          </Description>
+        </PostTextWrapper>
+      </FirstRow>
 
-    <SecondRow>
-      <div />
+      <SecondRow>
+        <div />
 
-      <TagsAndShare>
-        <TagsBlock>
-          {props.tags?.map((tag) => (
-            <Tag key={tag} name={tag} />
-          ))}
-        </TagsBlock>
+        <TagsAndShare>
+          <TagsBlock>
+            {props.tags?.map((tag) => (
+              <Tag key={tag} name={tag} />
+            ))}
+          </TagsBlock>
 
-        <ShareBlock>
-          <ShareButton social={ShareType.Twitter} />
-          <ShareButton social={ShareType.Url} />
-        </ShareBlock>
-      </TagsAndShare>
-    </SecondRow>
-  </StyledHeader>
-)
+          <ShareBlock>
+            <ShareButton social={ShareType.Twitter} />
+            <ShareButton social={ShareType.Url} />
+          </ShareBlock>
+        </TagsAndShare>
+      </SecondRow>
+    </StyledHeader>
+  )
+})
+
+PostHeader.displayName = 'PostHeader'
