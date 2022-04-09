@@ -1,5 +1,9 @@
 import styled from '@emotion/styled'
-import { Image, Typography } from 'shared/ui'
+import {
+  Image,
+  ImageWrapper as SharedImageWrapper,
+  Typography,
+} from 'shared/ui'
 
 export const StyledHeader = styled.header``
 
@@ -28,9 +32,26 @@ export const ImageWrapper = styled.div`
   max-height: 610px;
 
   object-fit: contain;
+
+  @media screen and (max-width: 672px) {
+    max-height: inherit;
+
+    // У ImageWrapper (который shared/ui), а не который ниже max-height=500px, что мешает на мобильном отображении
+    // :ya-hz: куда ещё вставить его стилизацию, поэтому пусть будет тут
+    ${SharedImageWrapper} {
+      max-height: initial;
+    }
+  }
 `
 
-export const PostImage = styled(Image)``
+export const PostImage = styled(Image)`
+  @media screen and (max-width: 672px) {
+    width: 100%;
+    height: auto;
+    min-height: initial;
+    max-height: initial;
+  }
+`
 
 export const PublicationDate = styled(Typography)`
   position: absolute;
@@ -66,9 +87,10 @@ export const SecondRow = styled.div`
 
   @media screen and (max-width: 999px) {
     grid-template-columns: minmax(0, 1fr);
+    height: auto;
 
     // Первый див в этой строке - отступ слева для картинки. В мобилке его убираем
-    & > div:first-child {
+    & > div:first-of-type {
       display: none;
     }
   }
@@ -78,6 +100,10 @@ export const TagsAndShare = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  @media screen and (max-width: 672px) {
+    flex-direction: column;
+  }
 `
 
 export const TagsBlock = styled.div`
@@ -104,6 +130,19 @@ export const ShareBlock = styled.div`
 
     &:last-child {
       margin-right: 0;
+    }
+  }
+
+  @media screen and (max-width: 672px) {
+    width: 100%;
+    justify-content: space-evenly;
+    height: 52px;
+    margin-top: 20px;
+    background-color: ${({ theme }) => theme.colors.tag};
+
+    button {
+      flex-grow: 1;
+      height: 100%;
     }
   }
 `

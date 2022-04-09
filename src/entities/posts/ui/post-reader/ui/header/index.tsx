@@ -19,46 +19,42 @@ import {
 } from './styled'
 import type { Props } from './types'
 
-export const PostHeader: VFC<Props> = (props) => {
-  console.log(props.tags)
+export const PostHeader: VFC<Props> = (props) => (
+  <StyledHeader>
+    <FirstRow>
+      <ImageWrapper>
+        <PostImage alt={props.title} src={props.previewUrl} />
 
-  return (
-    <StyledHeader>
-      <FirstRow>
-        <ImageWrapper>
-          <PostImage alt={props.title} src={props.previewUrl} />
+        <PublicationDate transparent uppercase size='small'>
+          {format(props.publicationDate, 'dd MMMM, H:mm', {
+            locale: ru,
+          })}
+        </PublicationDate>
+      </ImageWrapper>
+      <PostTextWrapper>
+        <Title>{props.title}</Title>
 
-          <PublicationDate transparent uppercase size='small'>
-            {format(props.publicationDate, 'dd MMMM, H:mm', {
-              locale: ru,
-            })}
-          </PublicationDate>
-        </ImageWrapper>
-        <PostTextWrapper>
-          <Title>{props.title}</Title>
+        <Description color='secondary' size='medium'>
+          {props.description}
+        </Description>
+      </PostTextWrapper>
+    </FirstRow>
 
-          <Description color='secondary' size='medium'>
-            {props.description}
-          </Description>
-        </PostTextWrapper>
-      </FirstRow>
+    <SecondRow>
+      <div />
 
-      <SecondRow>
-        <div />
+      <TagsAndShare>
+        <TagsBlock>
+          {props.tags?.map((tag) => (
+            <Tag key={tag} name={tag} />
+          ))}
+        </TagsBlock>
 
-        <TagsAndShare>
-          <TagsBlock>
-            {props.tags?.map((tag) => (
-              <Tag key={tag} name={tag} />
-            ))}
-          </TagsBlock>
-
-          <ShareBlock>
-            <ShareButton social={ShareType.Twitter} />
-            <ShareButton social={ShareType.Url} />
-          </ShareBlock>
-        </TagsAndShare>
-      </SecondRow>
-    </StyledHeader>
-  )
-}
+        <ShareBlock>
+          <ShareButton social={ShareType.Twitter} />
+          <ShareButton social={ShareType.Url} />
+        </ShareBlock>
+      </TagsAndShare>
+    </SecondRow>
+  </StyledHeader>
+)
