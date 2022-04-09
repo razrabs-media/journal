@@ -12,7 +12,7 @@ import { Layout } from 'shared/ui'
 export const METADATA_MOCK = {
   title: 'Разрабы',
   description: 'Медиа для разработчиков',
-  previewUrl: '/src/shared/ui/logo/avatar.png',
+  previewUrl: '/public/images/logo/avatar.png',
 }
 
 type Props = {
