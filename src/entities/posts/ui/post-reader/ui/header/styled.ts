@@ -9,6 +9,14 @@ export const FirstRow = styled.div`
 
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   grid-gap: 24px;
+
+  @media screen and (max-width: 999px) {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-gap: calc(
+      16px + 32px
+    ); // 16px - отступ по макету + 32px отступ для даты под картинкой
+  }
 `
 
 export const ImageWrapper = styled.div`
@@ -55,6 +63,15 @@ export const SecondRow = styled.div`
 
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   grid-gap: 24px;
+
+  @media screen and (max-width: 999px) {
+    grid-template-columns: minmax(0, 1fr);
+
+    // Первый див в этой строке - отступ слева для картинки. В мобилке его убираем
+    & > div:first-child {
+      display: none;
+    }
+  }
 `
 
 export const TagsAndShare = styled.div`
