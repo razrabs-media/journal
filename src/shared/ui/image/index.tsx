@@ -8,7 +8,8 @@ const StyledFallbackImage = styled(FallbackImage)`
   height: 80px;
 `
 
-const ImageWrapper = styled.div`
+// Экспортирую отдельно, чтобы была возможность застилизовать в дальнейшем
+export const ImageWrapper = styled.div`
   display: flex;
   position: relative;
   width: 100%;

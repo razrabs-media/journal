@@ -11,6 +11,7 @@ const Document: FC = () => (
     <ThemeProvider theme={DEFAULT_THEME}>
       <Global styles={FONT_FACE} />
       <Global styles={GLOBAL_STYLES} />
+
       <Head />
       <Body>
         <Main />
