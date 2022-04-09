@@ -9,8 +9,6 @@ export const useFloatedBlock = () => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        console.log(entry.intersectionRatio)
-
         setShouldDisplay(!entry.isIntersecting)
       },
       {

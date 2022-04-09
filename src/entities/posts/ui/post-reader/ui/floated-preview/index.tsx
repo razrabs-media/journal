@@ -15,8 +15,6 @@ import {
 } from './styled'
 import type { Props } from './types'
 
-const TAGZ = ['hackthebox', 'linux', 'rop', 'статьи', 'ядро linux']
-
 export const FloatedPreview: VFC<Props> = ({
   shouldDisplay,
   previewUrl,
@@ -51,7 +49,7 @@ export const FloatedPreview: VFC<Props> = ({
         <Line />
 
         <TagsBlock>
-          {TAGZ?.map((tag) => (
+          {tags?.map((tag) => (
             <Tag key={tag} name={tag} />
           ))}
         </TagsBlock>
