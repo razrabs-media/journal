@@ -61,6 +61,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     data: { currentFrontPage },
   } = await client.query<CurrentFrontPage>({
     query: CurrentFrontPageQuery,
+    fetchPolicy: 'no-cache',
   })
 
   // Необходимо отсортировать, чтобы на мобильных устройствах расставлять контент в +- правильном порядке
