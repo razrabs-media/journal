@@ -7,7 +7,7 @@ export const FrontPageGrid = styled.div`
 
   // Если экран планшета - расставить контент точно не выйдет, так как колонок теперь 2
   // Отдаем это дело в руки grid-auto-flow, с доверием к тому, что контент уже отсортирован
-  @media screen and (max-width: 1320px) {
+  @media screen and (max-width: 1319px) {
     grid-auto-flow: row dense;
     grid-template-columns: repeat(2, minmax(300px, 1fr));
   }
