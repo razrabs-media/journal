@@ -17,6 +17,5 @@ export type PostData = {
 export type PostCardMap = Readonly<Record<PostCardVariant, FC<PostData>>>
 
 export type Props = {
-  variant?: PostCardVariant
   postData: PostData
 }
