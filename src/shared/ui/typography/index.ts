@@ -13,8 +13,6 @@ const mobileSizes: Record<Size, number> = {
   large: 32,
 }
 
-// Webstorm не понимает, что там помимо строки может придти число
-// noinspection SuspiciousTypeOfGuard
 export const Typography = styled.p<Props>`
   padding: 0;
   margin: 0;
@@ -22,22 +20,19 @@ export const Typography = styled.p<Props>`
     color === 'contrast' ? theme.colors.logo : theme.colors.text[color]};
   text-transform: ${({ uppercase }) => (uppercase ? 'uppercase' : 'none')};
   text-align: ${({ align = 'left' }) => align};
-  font-size: ${({ size = 'small' }) =>
-    typeof size === 'string' ? `${sizes[size]}px` : `${size}px`};
+  font-size: ${({ size = 'small' }) => `${sizes[size]}px`};
   line-height: ${({ size }) => (size === 'small' ? '100%' : '120%')};
   letter-spacing: ${({ size }) => `${size === 'medium' ? 3 : 1}px`};
   font-family: Styrene B LC, serif;
   font-weight: ${({ weight = 'normal' }) => weight};
   font-feature-settings: 'salt' on;
   opacity: ${({ transparent }) => (transparent ? 0.6 : 1)};
-  text-decoration: none;
 
   &:hover {
     text-decoration: none;
   }
 
   @media screen and (max-width: 671px) {
-    font-size: ${({ size = 'small' }) =>
-      typeof size === 'string' ? `${mobileSizes[size]}px` : `${size}px`};
+    font-size: ${({ size = 'small' }) => `${mobileSizes[size]}px`};
   }
 `
