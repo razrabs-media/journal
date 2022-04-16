@@ -20,11 +20,7 @@ export const FrontPage: FC<Props> = ({
               previewUrl: item.post.previewUrl || '',
               publicationDate: frontPage.publicationDate || item.post.createdAt,
             }}
-            variant={
-              item.component.configuration.type === 'center'
-                ? PostCardVariant.Center
-                : PostCardVariant.Default
-            }
+            variant={item.component.name as PostCardVariant}
           />
         }
         h={item.component.configuration.h}

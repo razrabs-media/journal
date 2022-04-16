@@ -9,6 +9,7 @@ declare module '@emotion/react' {
         primary: string
         secondary: string
       }
+      tag: string
       accent: string
       accentText: string
       background: string

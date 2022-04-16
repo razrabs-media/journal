@@ -1,11 +1,13 @@
 import { FC } from 'react'
 
 export enum PostCardVariant {
-  Default = 'default',
-  Center = 'center',
+  Point = 'point',
+  Line = 'line',
+  LongLine = 'long line',
 }
 
-type PostData = {
+export type PostData = {
+  variant: PostCardVariant
   uid: string
   title: string
   previewUrl?: string

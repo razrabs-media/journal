@@ -1,23 +1,17 @@
 import { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
 import {
   GetPost,
   GetPostQuery,
   GetPostVariables,
-  PostArticle,
-  PostAside,
+  PostReader,
 } from 'entities/posts'
 import { client } from 'shared/api'
-import { Layout } from 'shared/ui'
 
 const Post: NextPage<GetPost> = ({ post }) => {
-  const [shouldShowFloated, setShouldShowFloated] = useState(true)
-
   const router = useRouter()
   const currentPage = router.route
-  const [imageHeight, setImageHeight] = useState(0)
 
   return (
     <>
@@ -42,25 +36,12 @@ const Post: NextPage<GetPost> = ({ post }) => {
         <link href='/public/favicon.ico' rel='icon' />
       </Head>
 
-      <Layout
-        aside={
-          <PostAside
-            previewUrl={post.previewUrl || undefined}
-            publicationDate={post.createdAt}
-            shouldShowFloated={shouldShowFloated}
-            title={post.title}
-            onImageHeightChange={(newHeight) => setImageHeight(newHeight)}
-          />
-        }
-      >
-        <PostArticle
-          content={post.content}
-          description={post.description || ''}
-          headerMinHeight={imageHeight}
-          setShouldShowFloated={setShouldShowFloated}
-          title={post.title}
-        />
-      </Layout>
+      <PostReader
+        {...post}
+        previewUrl={post.previewUrl || undefined}
+        publicationDate={post.createdAt}
+        tags={post.tags?.map((tag) => tag.name)}
+      />
     </>
   )
 }

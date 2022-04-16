@@ -1,16 +1,17 @@
-import { FC } from 'react'
-import { DateAgo, GridArea, Image, Typography } from 'shared/ui'
-import { Card } from './styled'
-import type { Props } from './types'
+import { VFC } from 'react'
+import { DateAgo, GridArea, Typography } from 'shared/ui'
+import type { PostData } from '../../types'
+import { Card, Preview } from './styled'
 
-export const DefaultCard: FC<Props> = ({
+export const DefaultCard: VFC<PostData> = ({
+  variant,
   title,
   previewUrl,
   publicationDate,
 }) => (
   <Card>
     <GridArea area='preview'>
-      <Image alt={title} src={previewUrl} />
+      <Preview alt={title} src={previewUrl} variant={variant} />
     </GridArea>
     <GridArea area='title'>
       <Typography uppercase size='medium' weight='500'>

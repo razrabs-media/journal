@@ -9,6 +9,7 @@ export const lightTheme: Theme = {
       primary: '#1D1D21',
       secondary: '#636369',
     },
+    tag: 'red',
     accent: '#FF9B25',
     accentText: '#1D1D21',
     background: '#FFFFFF',

@@ -2,9 +2,12 @@ query GetPost($uid: UID!) {
   post(uid: $uid) {
     uid
     title
+    description
     previewUrl
     content
-    description
+    tags {
+      name
+    }
     createdAt
   }
 }

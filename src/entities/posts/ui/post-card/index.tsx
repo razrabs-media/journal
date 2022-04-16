@@ -1,16 +1,17 @@
 import Link from 'next/link'
-import { FC, useMemo } from 'react'
+import { useMemo, VFC } from 'react'
 import { Wrapper } from './styled'
 import { PostCardMap, PostCardVariant, Props } from './types'
 import { CenteredCard, DefaultCard } from './variants'
 
 const CARD_BY_VARIANT: PostCardMap = {
-  [PostCardVariant.Default]: DefaultCard,
-  [PostCardVariant.Center]: CenteredCard,
+  [PostCardVariant.Point]: DefaultCard,
+  [PostCardVariant.Line]: DefaultCard,
+  [PostCardVariant.LongLine]: CenteredCard,
 }
 
-const PostCardProxy: FC<Props> = ({
-  variant = PostCardVariant.Default,
+const PostCardProxy: VFC<Props> = ({
+  variant = PostCardVariant.Point,
   postData,
 }) => {
   const PostCard = useMemo(() => CARD_BY_VARIANT[variant], [variant])
@@ -23,6 +24,7 @@ const PostCardProxy: FC<Props> = ({
           publicationDate={postData.publicationDate}
           title={postData.title}
           uid={postData.uid}
+          variant={variant}
         />
       </Wrapper>
     </Link>
