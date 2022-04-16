@@ -44,7 +44,7 @@ export const StyledFloatedBlock = styled.div<{ shouldDisplay: boolean }>`
 
   ${SharedImageWrapper} {
     height: initial;
-    max-height: initial;
+    max-height: 610px;
   }
 
   @media screen and (max-width: 1319px) {
@@ -55,7 +55,8 @@ export const StyledFloatedBlock = styled.div<{ shouldDisplay: boolean }>`
 export const Preview = styled(Image)`
   width: 100%;
   height: auto;
-  max-height: initial;
+  max-height: 610px;
+  object-fit: cover;
 `
 
 export const Title = styled(Typography)`
