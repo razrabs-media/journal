@@ -16,7 +16,6 @@ export const Layout = styled.div`
 
   // Учитываем гэпы корневого лэйаута
   width: calc(100% - 48px);
-  max-width: 1872px;
 
   @media screen and (max-width: 999px) {
     //TODO Мобильное отображение

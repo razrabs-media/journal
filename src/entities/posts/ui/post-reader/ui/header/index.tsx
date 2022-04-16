@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
-import { forwardRef } from 'react'
+import { forwardRef, useMemo } from 'react'
 import { ShareButton, ShareType } from 'shared/ui'
 import { Tag } from 'shared/ui/tag'
 import {
@@ -20,9 +20,13 @@ import type { Props } from './types'
 
 // Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
 export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const formattedDate = format(props.publicationDate, 'dd MMMM, H:mm', {
-    locale: ru,
-  })
+  const formattedDate = useMemo(
+    () =>
+      format(props.publicationDate, 'dd MMMM, H:mm', {
+        locale: ru,
+      }),
+    [props.publicationDate],
+  )
 
   return (
     <StyledHeader>
@@ -35,7 +39,9 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
           />
         </ImageWrapper>
         <PostTextWrapper>
-          <Title>{props.title}</Title>
+          <Title uppercase as='h1'>
+            {props.title}
+          </Title>
 
           <Description color='secondary' size='medium'>
             {props.description}
@@ -44,8 +50,6 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
       </FirstRow>
 
       <SecondRow>
-        <div />
-
         <TagsAndShare>
           <TagsBlock>
             {props.tags?.map((tag) => (

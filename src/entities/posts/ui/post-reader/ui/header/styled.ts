@@ -74,11 +74,8 @@ export const PostTextWrapper = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.text.primary};
 `
 
-export const Title = styled.h1`
+export const Title = styled(Typography)`
   font-size: 32px;
-  text-transform: uppercase;
-  margin: 0;
-  font-weight: normal;
 `
 
 export const Description = styled(Typography)`
@@ -92,6 +89,7 @@ export const SecondRow = styled.div`
   align-items: center;
 
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  grid-template-areas: '. tags-and-share';
   grid-gap: 24px;
 
   @media screen and (max-width: 999px) {
@@ -109,6 +107,7 @@ export const TagsAndShare = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  grid-area: tags-and-share;
 
   @media screen and (max-width: 672px) {
     flex-direction: column;
