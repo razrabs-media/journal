@@ -31,7 +31,7 @@ export const ImageWrapper = styled.div`
 
   ${SharedImageWrapper} {
     height: initial;
-    max-height: initial;
+    max-height: 610px;
   }
 
   @media screen and (max-width: 999px) {
@@ -55,7 +55,8 @@ export const ImageWrapper = styled.div`
 export const PostImage = styled(Image)`
   height: auto;
   width: 100%;
-  max-height: initial;
+  max-height: 610px;
+  object-fit: cover;
 
   @media screen and (max-width: 999px) {
     height: 100%;

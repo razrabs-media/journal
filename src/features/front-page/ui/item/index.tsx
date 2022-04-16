@@ -10,7 +10,7 @@ const FrontPageItemWrapper = styled.div<Position>`
   // Для планшетов сетка 2 колонки
   // Если ширина элемента больше двух - он должен занять всю строку
   // Иначе пускай CSS-Grid сам решает расстановку через "grid-auto-flow" (см. shared/ui/grid)
-  @media screen and (max-width: 1320px) {
+  @media screen and (max-width: 1319px) {
     grid-column: ${({ w }) => (w >= 2 ? `1/3` : `auto`)};
     grid-row: auto;
   }

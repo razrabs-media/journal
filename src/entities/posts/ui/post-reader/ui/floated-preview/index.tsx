@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { VFC } from 'react'
-import { ShareButton, ShareType, Tag, Typography } from 'shared/ui'
+import { ShareButton, ShareType, Tag } from 'shared/ui'
 import {
   DateAndShareRow,
   Layout,
