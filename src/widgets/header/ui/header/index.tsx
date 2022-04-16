@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { Typography } from 'shared/ui'
 import {
   LogoBlock,
@@ -8,7 +8,7 @@ import {
   StyledHeader,
 } from './styled'
 
-export const Header: VFC = () => (
+export const Header: FC = () => (
   <StyledHeader>
     <NavigationBlock />
 

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { ComponentProps, FC } from 'react'
 import ShareImageURL from './share-icon.svg'
 import ShareImageTwitter from './twitter-icon.svg'
 
@@ -30,9 +31,8 @@ const StyledButton = styled.button`
 
 type ShareButtonProps = {
   social: 'url' | 'twitter'
-} & React.ComponentProps<'button'>
+} & ComponentProps<'button'>
 
-export const ShareButton: React.VFC<ShareButtonProps> = ({
-  social,
-  ...restProps
-}) => <StyledButton {...restProps}>{ShareComponent[social]}</StyledButton>
+export const ShareButton: FC<ShareButtonProps> = ({ social, ...restProps }) => (
+  <StyledButton {...restProps}>{ShareComponent[social]}</StyledButton>
+)
