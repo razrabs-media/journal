@@ -1,9 +1,9 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { DateAgo, GridArea, Typography } from 'shared/ui'
 import type { PostData } from '../../types'
 import { Card, Preview } from './styled'
 
-export const DefaultCard: VFC<PostData> = ({
+export const DefaultCard: FC<PostData> = ({
   variant,
   title,
   previewUrl,

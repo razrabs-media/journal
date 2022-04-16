@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { Typography } from 'shared/ui'
 
 const TagBackground = styled.div`
@@ -7,7 +7,7 @@ const TagBackground = styled.div`
   background-color: ${({ theme }) => theme.colors.tag};
 `
 
-export const Tag: VFC<{ name: string }> = ({ name }) => (
+export const Tag: FC<{ name: string }> = ({ name }) => (
   <TagBackground>
     <Typography uppercase color='secondary' size='small'>
       {name}

@@ -1,9 +1,9 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { DateAgo, GridArea, Typography } from 'shared/ui'
 import type { PostData } from '../../types'
 import { Card } from './styled'
 
-export const CenteredCard: VFC<PostData> = ({ title, publicationDate }) => (
+export const CenteredCard: FC<PostData> = ({ title, publicationDate }) => (
   <Card>
     <GridArea area='title'>
       <Typography uppercase align='center' size='large' weight='500'>

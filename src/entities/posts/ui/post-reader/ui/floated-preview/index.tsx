@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { ShareButton, ShareType, Tag } from 'shared/ui'
 import {
   DateAndShareRow,
@@ -15,7 +15,7 @@ import {
 } from './styled'
 import type { Props } from './types'
 
-export const FloatedPreview: VFC<Props> = ({
+export const FloatedPreview: FC<Props> = ({
   shouldDisplay,
   previewUrl,
   title,
