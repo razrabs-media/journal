@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { Position, Props } from './types'
 
 const FrontPageItemWrapper = styled.div<Position>`
@@ -22,6 +22,6 @@ const FrontPageItemWrapper = styled.div<Position>`
   }
 `
 
-export const FrontPageItem: VFC<Props> = ({ component, ...position }) => (
+export const FrontPageItem: FC<Props> = ({ component, ...position }) => (
   <FrontPageItemWrapper {...position}>{component}</FrontPageItemWrapper>
 )

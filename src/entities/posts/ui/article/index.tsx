@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Dispatch, SetStateAction, useEffect, useRef, VFC } from 'react'
+import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react'
 import { MarkdownRenderer, ShareButton } from 'shared/ui'
 
 const TagsAndShare = styled.div`
@@ -63,7 +63,7 @@ type PostArticleProps = {
   headerMinHeight?: number
 }
 
-export const PostArticle: VFC<PostArticleProps> = ({
+export const PostArticle: FC<PostArticleProps> = ({
   title,
   description,
   content,

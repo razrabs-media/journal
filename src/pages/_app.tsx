@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@emotion/react'
-import { VFC } from 'react'
+import { FC } from 'react'
 import type { AppProps } from 'next/app'
 import { Header } from 'widgets/header'
 import { ThemeData, ThemeName } from 'shared/config'
@@ -7,7 +7,7 @@ import { Footer, GridArea, MainGrid, StickyGridArea } from 'shared/ui'
 
 const DEFAULT_THEME = ThemeData[ThemeName.Dark]
 
-const App: VFC<AppProps> = ({ Component, pageProps }) => (
+const App: FC<AppProps> = ({ Component, pageProps }) => (
   <ThemeProvider theme={DEFAULT_THEME}>
     <MainGrid>
       <StickyGridArea area='header'>

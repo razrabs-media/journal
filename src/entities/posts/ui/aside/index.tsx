@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
-import { useLayoutEffect, useRef, VFC } from 'react'
+import { FC, useLayoutEffect, useRef } from 'react'
 import { Image, Typography } from 'shared/ui'
 
 const StyledAside = styled.aside`
@@ -31,7 +31,7 @@ type PostAsideProps = {
   publicationDate: number
   onImageHeightChange: (height: number) => void
 }
-export const PostAside: VFC<PostAsideProps> = ({
+export const PostAside: FC<PostAsideProps> = ({
   shouldShowFloated,
   title,
   previewUrl,

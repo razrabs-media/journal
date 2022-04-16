@@ -1,12 +1,12 @@
 import { Global, ThemeProvider } from '@emotion/react'
 import { Head, Html, Main, NextScript } from 'next/document'
-import { VFC } from 'react'
+import { FC } from 'react'
 import { ThemeData, ThemeName } from 'shared/config'
 import { Body, FONT_FACE, GLOBAL_STYLES } from 'shared/ui'
 
 const DEFAULT_THEME = ThemeData[ThemeName.Dark]
 
-const Document: VFC = () => (
+const Document: FC = () => (
   <Html>
     <ThemeProvider theme={DEFAULT_THEME}>
       <Global styles={FONT_FACE} />

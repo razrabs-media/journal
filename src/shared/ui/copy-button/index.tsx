@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { useState, VFC } from 'react'
+import { ComponentProps, FC, MouseEventHandler, useState } from 'react'
 
 import CopySvg from './copy.svg'
 
@@ -19,6 +19,7 @@ const CopyButtonWrapper = styled.button<{ disabled: boolean }>`
   font-size: 14px;
 
   color: ${({ theme }) => theme.colors.text.secondary};
+
   svg {
     fill: ${({ theme }) => theme.colors.text.primary};
     width: 18px;
@@ -30,9 +31,10 @@ const CopyButtonWrapper = styled.button<{ disabled: boolean }>`
   }
 `
 
-export const CopyButton: VFC<React.ComponentProps<'button'>> = (props) => {
+export const CopyButton: FC<ComponentProps<'button'>> = (props) => {
   const [text, setText] = useState<string | null>()
-  const onClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+
+  const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
     if (!props.onClick) return
 
     props.onClick(e)

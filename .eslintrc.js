@@ -30,22 +30,17 @@ module.exports = {
     'next/core-web-vitals',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:import/recommended',
-    'plugin:import/typescript',
     'plugin:prettier/recommended',
   ],
   rules: {
     // TODO: Включить после исправления
     // https://github.com/feature-sliced/eslint-config/issues/92
     // https://github.com/feature-sliced/eslint-config/issues/93
-    'import/no-internal-modules': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@next/next/no-document-import-in-page': 'off',
-    'import/prefer-default-export': 'off',
-    'import/newline-after-import': ['error', { count: 1 }],
     'react/react-in-jsx-scope': 'off',
     'react/jsx-sort-props': [
       'error',
@@ -101,7 +96,15 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['pages/**'],
+      files: ['src/**'],
+      rules: {
+        'import/no-internal-modules': 'off',
+        'import/prefer-default-export': 'off',
+        'import/newline-after-import': ['error', { count: 1 }],
+      },
+    },
+    {
+      files: ['src/pages/**'],
       rules: {
         'import/prefer-default-export': 'error',
         'import/no-default-export': 'off',

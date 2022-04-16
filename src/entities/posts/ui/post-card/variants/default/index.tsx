@@ -1,9 +1,9 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { DateAgo, GridArea, Image, Typography } from 'shared/ui'
 import { Card } from './styled'
 import type { Props } from './types'
 
-export const DefaultCard: VFC<Props> = ({
+export const DefaultCard: FC<Props> = ({
   title,
   previewUrl,
   publicationDate,
@@ -22,5 +22,3 @@ export const DefaultCard: VFC<Props> = ({
     </GridArea>
   </Card>
 )
-
-export type { Props as DefaultCardProps }

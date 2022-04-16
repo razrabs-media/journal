@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 
 export enum PostCardVariant {
   Default = 'default',
@@ -12,7 +12,7 @@ type PostData = {
   publicationDate: number
 }
 
-export type PostCardMap = Readonly<Record<PostCardVariant, VFC<PostData>>>
+export type PostCardMap = Readonly<Record<PostCardVariant, FC<PostData>>>
 
 export type Props = {
   variant?: PostCardVariant

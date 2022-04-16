@@ -1,9 +1,9 @@
-import { VFC } from 'react'
+import { FC } from 'react'
 import { DateAgo, GridArea, Typography } from 'shared/ui'
 import { Card } from './styled'
 import type { Props } from './types'
 
-export const CenteredCard: VFC<Props> = ({ title, publicationDate }) => (
+export const CenteredCard: FC<Props> = ({ title, publicationDate }) => (
   <Card>
     <GridArea area='title'>
       <Typography uppercase align='center' size='large' weight='500'>
@@ -16,5 +16,3 @@ export const CenteredCard: VFC<Props> = ({ title, publicationDate }) => (
     </GridArea>
   </Card>
 )
-
-export type { Props as CenteredCardProps }
