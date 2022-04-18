@@ -109,6 +109,7 @@ export type CreateDraftInput = {
 
 export type CreateFeedsInput = {
   name: Scalars['String'];
+  tagUids: Array<Scalars['String']>;
 };
 
 export type CreateFrontPageInput = {
@@ -188,6 +189,7 @@ export type Feed = {
   createdAt: Scalars['Date'];
   dataSources?: Maybe<Array<DataSource>>;
   name: Scalars['String'];
+  tags?: Maybe<Array<TagItem>>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
@@ -196,6 +198,7 @@ export type FeedItem = {
   __typename?: 'FeedItem';
   createdAt: Scalars['Date'];
   name: Scalars['String'];
+  tags?: Maybe<Array<TagItem>>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
@@ -246,6 +249,7 @@ export type Mutation = {
   createPriority: Priority;
   createUser: ShortUserItem;
   createUserGroup: UserGroupItem;
+  downloadLabels: Array<TagItem>;
   publishFrontPage: FrontPage;
   removeCategory: Scalars['Int'];
   removeComponent: Scalars['Int'];
@@ -559,7 +563,7 @@ export type PostOnFrontPage = {
   createdAt: Scalars['Date'];
   frontPageUid: Scalars['String'];
   position: Position;
-  post: PostItem;
+  post: SimplePost;
   postUid: Scalars['String'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
@@ -642,7 +646,7 @@ export type Query = {
   dataSources: Array<DataSourceItem>;
   draft: DraftItem;
   drafts: DraftPagination;
-  feed: Feed;
+  feed: FeedItem;
   feeds: Array<FeedItem>;
   frontPage: FrontPage;
   frontPages: FrontPagePagination;
@@ -755,6 +759,18 @@ export type SignInInput = {
   password: Scalars['String'];
 };
 
+export type SimplePost = {
+  __typename?: 'SimplePost';
+  content: Scalars['String'];
+  createdAt: Scalars['Date'];
+  description: Scalars['String'];
+  previewUrl?: Maybe<Scalars['String']>;
+  readingTime?: Maybe<Scalars['Int']>;
+  title: Scalars['String'];
+  uid: Scalars['UID'];
+  updatedAt: Scalars['Date'];
+};
+
 export type TagItem = {
   __typename?: 'TagItem';
   createdAt: Scalars['Date'];
@@ -786,6 +802,7 @@ export type UpdateDraftInput = {
 
 export type UpdateFeedInput = {
   name: Scalars['String'];
+  tagUids: Array<Scalars['UID']>;
 };
 
 export type UpdateFrontPageInput = {

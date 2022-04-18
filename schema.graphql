@@ -82,6 +82,7 @@ input CreateDraftInput {
 
 input CreateFeedsInput {
   name: String!
+  tagUids: [String!]!
 }
 
 input CreateFrontPageInput {
@@ -159,6 +160,7 @@ type Feed {
   createdAt: Date!
   dataSources: [DataSource!]
   name: String!
+  tags: [TagItem!]
   uid: UID!
   updatedAt: Date!
 }
@@ -166,6 +168,7 @@ type Feed {
 type FeedItem {
   createdAt: Date!
   name: String!
+  tags: [TagItem!]
   uid: UID!
   updatedAt: Date!
 }
@@ -212,6 +215,7 @@ type Mutation {
   createPriority(data: CreatePrioritiesInput!): Priority!
   createUser(data: CreateUserInput!): ShortUserItem!
   createUserGroup(data: UserGroupInput!): UserGroupItem!
+  downloadLabels: [TagItem!]!
   publishFrontPage(uid: UID!): FrontPage!
   removeCategory(uid: UID!): Int!
   removeComponent(uid: UID!): Int!
@@ -308,7 +312,7 @@ type PostOnFrontPage {
   createdAt: Date!
   frontPageUid: String!
   position: Position!
-  post: PostItem!
+  post: SimplePost!
   postUid: String!
   uid: UID!
   updatedAt: Date!
@@ -384,7 +388,7 @@ type Query {
   dataSources: [DataSourceItem!]!
   draft(uid: UID!): DraftItem!
   drafts(page: Int = 1, perPage: Int = 20): DraftPagination!
-  feed(uid: UID!): Feed!
+  feed(uid: UID!): FeedItem!
   feeds: [FeedItem!]!
   frontPage(uid: UID!): FrontPage!
   frontPages(page: Int = 1, perPage: Int = 20): FrontPagePagination!
@@ -420,6 +424,17 @@ input SignInInput {
   password: String!
 }
 
+type SimplePost {
+  content: String!
+  createdAt: Date!
+  description: String!
+  previewUrl: String
+  readingTime: Int
+  title: String!
+  uid: UID!
+  updatedAt: Date!
+}
+
 type TagItem {
   createdAt: Date!
   description: String!
@@ -453,6 +468,7 @@ input UpdateDraftInput {
 
 input UpdateFeedInput {
   name: String!
+  tagUids: [UID!]!
 }
 
 input UpdateFrontPageInput {

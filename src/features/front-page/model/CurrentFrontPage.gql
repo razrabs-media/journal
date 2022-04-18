@@ -15,10 +15,6 @@ query CurrentFrontPage {
       postUid
       post {
         uid
-        tags {
-          description
-          name
-        }
         readingTime
         previewUrl
         title
