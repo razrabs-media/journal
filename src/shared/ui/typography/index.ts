@@ -3,12 +3,14 @@ import { Props, Size } from './types'
 
 const sizes: Record<Size, number> = {
   small: 12,
+  default: 20,
   medium: 24,
   large: 40,
 }
 
 const mobileSizes: Record<Size, number> = {
   small: 10,
+  default: 20,
   medium: 16,
   large: 32,
 }

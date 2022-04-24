@@ -1,4 +1,4 @@
-export type Size = 'large' | 'medium' | 'small'
+export type Size = 'large' | 'medium' | 'small' | 'default'
 
 export type Props = {
   uppercase?: boolean
