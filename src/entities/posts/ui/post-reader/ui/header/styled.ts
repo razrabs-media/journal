@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+
 import {
   Image,
   ImageWrapper as SharedImageWrapper,
@@ -8,6 +9,13 @@ import {
 export const StyledHeader = styled.header`
   display: grid;
   grid-template-rows: auto auto auto;
+`
+
+export const StyledCurrentDateBlock = styled.div`
+  display: grid;
+  grid-template-columns: 11px auto;
+  grid-gap: 10px;
+  margin-bottom: 64px;
 `
 
 // Первая строка - картинка, текст, описание
