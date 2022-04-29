@@ -1,6 +1,7 @@
 import { css } from '@emotion/css'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
+import { useState } from 'react'
 import { forwardRef, useMemo } from 'react'
 import { ShareButton, ShareType, Typography } from 'shared/ui'
 import { Tag } from 'shared/ui/tag'
@@ -22,6 +23,8 @@ import type { Props } from './types'
 
 // Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
 export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const [minutes, setMinutes] = useState<number>(0)
+
   const formattedDate = useMemo(
     () =>
       format(props.publicationDate, 'dd MMMM, H:mm', {
@@ -30,12 +33,16 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
     [props.publicationDate],
   )
 
+  setInterval(() => {
+    setMinutes(new Date().getMinutes())
+  }, 60000)
+
   const currentDate = useMemo(
     () =>
       format(Date.now(), 'dd MMMM, H:mm', {
         locale: ru,
       }),
-    [new Date().get()],
+    [minutes],
   )
 
   return (
