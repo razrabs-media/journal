@@ -1,7 +1,8 @@
+import { css } from '@emotion/css'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { forwardRef, useMemo } from 'react'
-import { ShareButton, ShareType } from 'shared/ui'
+import { ShareButton, ShareType, Typography } from 'shared/ui'
 import { Tag } from 'shared/ui/tag'
 import {
   Description,
@@ -11,6 +12,7 @@ import {
   PostTextWrapper,
   SecondRow,
   ShareBlock,
+  StyledCurrentDateBlock,
   StyledHeader,
   TagsAndShare,
   TagsBlock,
@@ -28,8 +30,23 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
     [props.publicationDate],
   )
 
+  const currentDate = useMemo(
+    () =>
+      format(Date.now(), 'dd MMMM, H:mm', {
+        locale: ru,
+      }),
+    [new Date().get()],
+  )
+
   return (
     <StyledHeader>
+      <StyledCurrentDateBlock>
+        <img alt='Текущая дата' src='/images/svg/ellipse.svg' />
+        <Typography uppercase size='small'>
+          {currentDate}
+        </Typography>
+      </StyledCurrentDateBlock>
+
       <FirstRow ref={ref}>
         <ImageWrapper>
           <PostImage
