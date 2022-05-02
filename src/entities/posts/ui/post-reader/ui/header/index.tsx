@@ -1,9 +1,9 @@
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
-import { useState } from 'react'
 import { forwardRef, useMemo } from 'react'
-import { ShareButton, ShareType, Typography } from 'shared/ui'
+import { ShareButton, ShareType } from 'shared/ui'
 import { Tag } from 'shared/ui/tag'
+import { CurrentDateBlock } from './current-date-block'
 import {
   Description,
   FirstRow,
@@ -12,7 +12,6 @@ import {
   PostTextWrapper,
   SecondRow,
   ShareBlock,
-  StyledCurrentDateBlock,
   StyledHeader,
   TagsAndShare,
   TagsBlock,
@@ -22,8 +21,6 @@ import type { Props } from './types'
 
 // Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
 export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
-  const [minutes, setMinutes] = useState<number>(0)
-
   const formattedDate = useMemo(
     () =>
       format(props.publicationDate, 'dd MMMM, H:mm', {
@@ -32,26 +29,9 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
     [props.publicationDate],
   )
 
-  setInterval(() => {
-    setMinutes(new Date().getMinutes())
-  }, 60000)
-
-  const currentDate = useMemo(
-    () =>
-      format(Date.now(), 'dd MMMM, H:mm', {
-        locale: ru,
-      }),
-    [minutes],
-  )
-
   return (
     <StyledHeader>
-      <StyledCurrentDateBlock>
-        <img alt='Текущая дата' src='/images/svg/ellipse.svg' />
-        <Typography uppercase size='small'>
-          {currentDate}
-        </Typography>
-      </StyledCurrentDateBlock>
+      <CurrentDateBlock />
 
       <FirstRow ref={ref}>
         <ImageWrapper>
