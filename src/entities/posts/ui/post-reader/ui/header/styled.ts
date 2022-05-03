@@ -129,8 +129,13 @@ export const ShareBlock = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
   gap: 15px;
+
+  p {
+    position: relative;
+    top: 20px;
+    right: 100px;
+  }
 
   @media screen and (max-width: 672px) {
     width: 100%;

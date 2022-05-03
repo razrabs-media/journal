@@ -1,7 +1,8 @@
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { ShareButton, ShareType, Tag } from 'shared/ui'
+import { useCopyToClipboard } from 'shared/ui/hooks/useCopyToClipboard'
 import {
   DateAndShareRow,
   Layout,
@@ -22,6 +23,7 @@ export const FloatedPreview: FC<Props> = ({
   publicationDate,
   tags,
 }) => {
+  const { clicked, onClick } = useCopyToClipboard()
   const formattedDate = format(publicationDate, 'dd MMMM, H:mm', {
     locale: ru,
   })
@@ -42,7 +44,11 @@ export const FloatedPreview: FC<Props> = ({
 
           <ShareBlock>
             <ShareButton social={ShareType.Twitter} />
-            <ShareButton social={ShareType.Url} />
+            <ShareButton
+              clicked={clicked}
+              social={ShareType.Url}
+              onClick={() => onClick()}
+            />
           </ShareBlock>
         </DateAndShareRow>
 
