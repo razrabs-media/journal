@@ -16,6 +16,7 @@ export const CurrentDateBlock: VFC = () => {
       >
         <circle cx='5.5' cy='5.5' fill='#C799E3' r='5.5' />
       </svg>
+
       <Typography uppercase size='small'>
         {currentDate}
       </Typography>

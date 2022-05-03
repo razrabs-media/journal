@@ -1,7 +1,8 @@
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
-import { forwardRef, useMemo } from 'react'
+import { forwardRef, useMemo, useState } from 'react'
 import { ShareButton, ShareType } from 'shared/ui'
+import { useCopyToClipboard } from 'shared/ui/hooks/useCopyToClipboard'
 import { Tag } from 'shared/ui/tag'
 import { CurrentDateBlock } from './current-date-block'
 import {
@@ -21,6 +22,7 @@ import type { Props } from './types'
 
 // Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
 export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const { clicked, onClick } = useCopyToClipboard()
   const formattedDate = useMemo(
     () =>
       format(props.publicationDate, 'dd MMMM, H:mm', {
@@ -62,7 +64,11 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
           <ShareBlock>
             <ShareButton social={ShareType.Twitter} />
-            <ShareButton social={ShareType.Url} />
+            <ShareButton
+              clicked={clicked}
+              social={ShareType.Url}
+              onClick={() => onClick()}
+            />
           </ShareBlock>
         </TagsAndShare>
       </SecondRow>
