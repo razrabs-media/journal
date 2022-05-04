@@ -31,7 +31,7 @@ export const Logo = styled.span`
 
   text-transform: uppercase;
   text-align: center;
-  font-size: calc(var(--width) * 0.163);
+  font-size: calc(var(--width) * 0.165);
   font-weight: bold;
   line-height: calc(var(--width) * 0.131);
   letter-spacing: calc(var(--width) * 0.024);
@@ -41,4 +41,8 @@ export const Logo = styled.span`
 
   overflow: hidden;
   user-select: none;
+
+  @media screen and (max-width: 671px) {
+    font-size: calc(var(--width) * 0.174);
+  }
 `
