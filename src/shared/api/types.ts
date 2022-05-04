@@ -2,7 +2,6 @@
 /* eslint-disable */
 /* tslint:disable */
 export type Maybe<T> = T | null;
-export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
@@ -103,8 +102,8 @@ export type CreateDataSourceInput = {
 };
 
 export type CreateDraftInput = {
-  description?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type CreateFeedsInput = {
@@ -316,8 +315,8 @@ export type MutationCreateDataSourceArgs = {
 
 
 export type MutationCreateDraftArgs = {
-  content?: InputMaybe<Scalars['Upload']>;
-  data?: InputMaybe<CreateDraftInput>;
+  content?: Maybe<Scalars['Upload']>;
+  data?: Maybe<CreateDraftInput>;
 };
 
 
@@ -455,7 +454,7 @@ export type MutationUpdateDataSourceArgs = {
 
 
 export type MutationUpdateDraftArgs = {
-  content?: InputMaybe<Scalars['Upload']>;
+  content?: Maybe<Scalars['Upload']>;
   data: UpdateDraftInput;
   uid: Scalars['UID'];
 };
@@ -631,7 +630,7 @@ export type ProfileItem = {
 };
 
 export type ProfileUpdateInput = {
-  publicName?: InputMaybe<Scalars['String']>;
+  publicName?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
@@ -686,8 +685,8 @@ export type QueryDraftArgs = {
 
 
 export type QueryDraftsArgs = {
-  page?: InputMaybe<Scalars['Int']>;
-  perPage?: InputMaybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  perPage?: Maybe<Scalars['Int']>;
 };
 
 
@@ -702,8 +701,8 @@ export type QueryFrontPageArgs = {
 
 
 export type QueryFrontPagesArgs = {
-  page?: InputMaybe<Scalars['Int']>;
-  perPage?: InputMaybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  perPage?: Maybe<Scalars['Int']>;
 };
 
 
@@ -713,8 +712,8 @@ export type QueryPostArgs = {
 
 
 export type QueryPostsArgs = {
-  page?: InputMaybe<Scalars['Int']>;
-  perPage?: InputMaybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  perPage?: Maybe<Scalars['Int']>;
 };
 
 
@@ -729,7 +728,7 @@ export type QueryProfileArgs = {
 
 
 export type QueryUpdateProfileArgs = {
-  avatar?: InputMaybe<Scalars['Upload']>;
+  avatar?: Maybe<Scalars['Upload']>;
   data: ProfileUpdateInput;
   uid: Scalars['UID'];
 };
@@ -796,8 +795,8 @@ export type UpdateDataSourceInput = {
 };
 
 export type UpdateDraftInput = {
-  description?: InputMaybe<Scalars['String']>;
-  title?: InputMaybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
 };
 
 export type UpdateFeedInput = {
