@@ -1,0 +1,5 @@
+node_modules
+.husky
+.editorconfig
+.git
+.gitignore

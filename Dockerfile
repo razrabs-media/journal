@@ -1,20 +1,34 @@
-FROM node:17.8.0 as production
+FROM node:16.15.0-alpine as dependencies
 
-WORKDIR /usr/src/app
+WORKDIR /journal
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-COPY package.json ./
-COPY yarn.lock ./
-
-RUN yarn
-
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+FROM node:16.15.0-alpine as builder
+WORKDIR /journal
 
 COPY . .
-
-RUN yarn prebuild
+COPY --from=dependencies /journal/node_modules ./node_modules
 RUN yarn build
 
-RUN cp .env.example .env
+FROM node:16.15.0-alpine as runner
+WORKDIR /journal
 
-CMD ['yarn', 'start']
+# -> from proccess .env.development, env.production
+ENV NODE_ENV {JOURNAL_NODE_ENV}
+ENV JOURNAL_API_GATEWAY_PATH ${JOURNAL_API_GATEWAY_PATH}
+
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+COPY --from=builder /journal/next.config.js ./
+COPY --from=builder /journal/public ./public
+COPY --from=builder /journal/package.json ./package.json
+COPY --from=builder /journal/.next ./.next
+COPY --from=builder /journal/node_modules ./node_modules
+
+
+EXPOSE ${JOURNAL_PORT}
+ENV PORT ${JOURNAL_PORT}
+
+CMD ["yarn", "start"]
