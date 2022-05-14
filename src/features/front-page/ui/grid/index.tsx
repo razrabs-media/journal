@@ -16,6 +16,6 @@ export const FrontPageGrid = styled.div`
   @media screen and (max-width: 671px) {
     grid-auto-flow: row dense;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 `

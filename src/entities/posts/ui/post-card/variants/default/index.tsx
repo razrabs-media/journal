@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { DateAgo, GridArea, Typography } from 'shared/ui'
+import { GridArea, Typography } from 'shared/ui'
 import type { PostData } from '../../types'
-import { Card, Preview } from './styled'
+import { Card, Date, Preview, TitleGridArea } from './styled'
 
 export const DefaultCard: FC<PostData> = ({
   variant,
@@ -9,17 +9,17 @@ export const DefaultCard: FC<PostData> = ({
   previewUrl,
   publicationDate,
 }) => (
-  <Card>
+  <Card variant={variant}>
     <GridArea area='preview'>
       <Preview alt={title} src={previewUrl} variant={variant} />
     </GridArea>
-    <GridArea area='title'>
+
+    <TitleGridArea area='title'>
       <Typography uppercase size='medium' weight='500'>
         {title}
       </Typography>
-    </GridArea>
-    <GridArea area='date'>
-      <DateAgo date={publicationDate} />
-    </GridArea>
+
+      <Date date={publicationDate} />
+    </TitleGridArea>
   </Card>
 )

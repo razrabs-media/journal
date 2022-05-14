@@ -4,7 +4,7 @@ import { FC, useMemo } from 'react'
 import { Typography } from 'shared/ui'
 import { Props } from './types'
 
-export const DateAgo: FC<Props> = ({ date, distance = 7 }) => {
+export const DateAgo: FC<Props> = ({ date, distance = 7, className }) => {
   // Если больше, чем distance (7) дней назад - показываем полную дату
   const isFullDate = useMemo(
     () => isBefore(date, subDays(new Date(), distance)),
@@ -12,7 +12,7 @@ export const DateAgo: FC<Props> = ({ date, distance = 7 }) => {
   )
 
   return (
-    <Typography transparent uppercase as='span'>
+    <Typography transparent uppercase as='span' className={className}>
       {isFullDate
         ? format(date, 'd.m.yy')
         : formatDistanceToNow(date, { locale: ru, addSuffix: true })}
