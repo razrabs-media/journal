@@ -7,4 +7,5 @@ export enum ShareType {
 
 export type Props = {
   social: ShareType
+  clicked?: boolean
 } & ComponentProps<'button'>

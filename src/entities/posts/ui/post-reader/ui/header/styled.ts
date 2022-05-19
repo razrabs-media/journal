@@ -5,7 +5,10 @@ import {
   Typography,
 } from 'shared/ui'
 
-export const StyledHeader = styled.header``
+export const StyledHeader = styled.header`
+  display: grid;
+  grid-template-rows: auto auto auto;
+`
 
 // Первая строка - картинка, текст, описание
 export const FirstRow = styled.div`
@@ -126,8 +129,13 @@ export const ShareBlock = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-
   gap: 15px;
+
+  p {
+    position: relative;
+    top: 20px;
+    right: 100px;
+  }
 
   @media screen and (max-width: 672px) {
     width: 100%;

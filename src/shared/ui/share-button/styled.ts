@@ -1,9 +1,14 @@
 import styled from '@emotion/styled'
+import ClickedShareImageURL from './icons/clicked-share.svg'
 import ShareImageURL from './icons/share-icon.svg'
 import ShareImageTwitter from './icons/twitter-icon.svg'
 
 export const StyledShareURL = styled(ShareImageURL)`
-  width: 12px;
+  width: 14px;
+  height: 12px;
+`
+export const StyledClickedShareURL = styled(ClickedShareImageURL)`
+  width: 14px;
   height: 12px;
 `
 //svg has different sizes by layout
