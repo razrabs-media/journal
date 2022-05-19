@@ -95,12 +95,8 @@ export const SecondRow = styled.div`
 
   @media screen and (max-width: 999px) {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'tags-and-share';
     height: auto;
-
-    // Первый див в этой строке - отступ слева для картинки. В мобилке его убираем
-    & > div:first-of-type {
-      display: none;
-    }
   }
 `
 
