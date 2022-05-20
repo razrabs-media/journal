@@ -49,6 +49,11 @@ const COMPONENTS: Components = {
 const PLUGINS = [remarkGfm, remarkGemoji, a11yEmoji]
 
 const StyleWrapper = styled.div`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+
   a {
     color: ${({ theme }) => theme.colors.accent};
 
