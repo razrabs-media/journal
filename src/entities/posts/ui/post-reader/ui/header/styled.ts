@@ -77,10 +77,12 @@ export const PostTextWrapper = styled.div`
 
 export const Title = styled(Typography)`
   font-size: 32px;
+  letter-spacing: 1px;
 `
 
 export const Description = styled(Typography)`
   margin-top: 16px;
+  letter-spacing: 1px;
 `
 
 export const SecondRow = styled.div`
