@@ -6,5 +6,5 @@ export enum ShareType {
 }
 
 export type Props = {
-  social: ShareType
+  shareType: ShareType
 } & ComponentProps<'button'>

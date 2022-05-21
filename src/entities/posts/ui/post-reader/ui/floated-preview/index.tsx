@@ -41,8 +41,8 @@ export const FloatedPreview: FC<Props> = ({
           </PublicationDate>
 
           <ShareBlock>
-            <ShareButton social={ShareType.Twitter} />
-            <ShareButton social={ShareType.Url} />
+            <ShareButton shareType={ShareType.Twitter} />
+            <ShareButton shareType={ShareType.Url} />
           </ShareBlock>
         </DateAndShareRow>
 

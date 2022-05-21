@@ -58,8 +58,8 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
           </TagsBlock>
 
           <ShareBlock>
-            <ShareButton social={ShareType.Twitter} />
-            <ShareButton social={ShareType.Url} />
+            <ShareButton shareType={ShareType.Twitter} />
+            <ShareButton shareType={ShareType.Url} />
           </ShareBlock>
         </TagsAndShare>
       </SecondRow>
