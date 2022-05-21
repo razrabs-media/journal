@@ -1,5 +1,5 @@
 schema:
-  - 'http://localhost:3000/gql' ## TODO host from env
+  - 'https://api.dev.razrabs.ru/gql' ## TODO host from env
 generates:
   ./schema.graphql:
     plugins:
