@@ -29,17 +29,14 @@ export const Layout = styled.div`
 `
 
 export const StyledFloatedBlock = styled.div<{ shouldDisplay: boolean }>`
-  display: ${({ shouldDisplay }) => (shouldDisplay ? 'flex' : 'none')};
+  opacity: ${({ shouldDisplay }) => (shouldDisplay ? 0.3 : 0)};
+  transition: opacity 400ms;
   flex-direction: column;
 
   max-width: 450px;
 
-  opacity: 0.3;
-
-  transition: opacity 75ms ease-in-out;
-
   &:hover {
-    opacity: 1;
+    opacity: ${({ shouldDisplay }) => (shouldDisplay ? 1 : 0)};
   }
 
   ${SharedImageWrapper} {
