@@ -1,3 +1,4 @@
+import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
 import {
   Image,
@@ -28,15 +29,50 @@ export const Layout = styled.div`
   }
 `
 
-export const StyledFloatedBlock = styled.div<{ shouldDisplay: boolean }>`
-  opacity: ${({ shouldDisplay }) => (shouldDisplay ? 0.3 : 0)};
-  transition: opacity 400ms;
-  flex-direction: column;
+const fadeInAnimation = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.3;
+  }
+`
 
+const fadeOutAnimation = keyframes`
+  from{
+    opacity: 0.3;
+  }
+  to {
+    opacity: 0;
+  }
+`
+
+export const StyledFloatedBlock = styled.div<{
+  shouldDisplay: boolean
+  fadeIn: boolean
+  fadeOut: boolean
+  transitionTime: number
+}>`
+  display: ${({ shouldDisplay }) => (shouldDisplay ? 'flex' : 'none')};
+
+  flex-direction: column;
   max-width: 450px;
 
+  ${({ fadeIn, fadeOut, transitionTime }) =>
+    fadeIn
+      ? css`
+          animation: ${fadeInAnimation} ${transitionTime}ms ease-in;
+        `
+      : fadeOut
+      ? css`
+          animation: ${fadeOutAnimation} ${transitionTime}ms ease-out;
+        `
+      : null}
+
+  opacity: 0.3;
+
   &:hover {
-    opacity: ${({ shouldDisplay }) => (shouldDisplay ? 1 : 0)};
+    opacity: 1;
   }
 
   ${SharedImageWrapper} {
