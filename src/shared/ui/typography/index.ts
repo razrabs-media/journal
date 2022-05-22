@@ -3,14 +3,17 @@ import { Props, Size } from './types'
 
 const sizes: Record<Size, number> = {
   small: 12,
+  // TODO: надо подумать
+  large: 20,
   medium: 24,
-  large: 40,
+  xlarge: 40,
 }
 
 const mobileSizes: Record<Size, number> = {
   small: 10,
   medium: 16,
-  large: 32,
+  large: 20,
+  xlarge: 32,
 }
 
 export const Typography = styled.p<Props>`

@@ -5,7 +5,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import remarkGemoji from 'remark-gemoji'
 import remarkGfm from 'remark-gfm'
-import { CopyButton } from 'shared/ui'
+import { CopyButton, Typography } from 'shared/ui'
 import a11yEmoji from './remark-emoji'
 
 const CodeWrapper = styled.div`
@@ -17,6 +17,7 @@ const handleCopyButton = async (code: string) => {
 }
 
 const COMPONENTS: Components = {
+  p: (props) => <Typography {...props} color='primary' size='large' />,
   code: ({ inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || '')
     const codeString = String(children).replace(/\n$/, '')
@@ -62,9 +63,15 @@ const StyleWrapper = styled.div`
     }
   }
 
+  p {
+    margin: 24px 0;
+  }
+
+  //TODO parse image to figcaption
   img {
     max-height: 600px;
     max-width: 100%;
+    display: inline-block;
   }
 `
 

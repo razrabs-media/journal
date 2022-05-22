@@ -1,7 +1,7 @@
-import { format, formatDistanceToNow, isBefore, subDays } from 'date-fns'
+import { format, formatDistanceStrict, isBefore, subDays } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { FC, useMemo } from 'react'
-import { Typography } from 'shared/ui'
+import { StyledTypography } from './styles'
 import { Props } from './types'
 
 export const DateAgo: FC<Props> = ({ date, distance = 7, className }) => {
@@ -12,10 +12,13 @@ export const DateAgo: FC<Props> = ({ date, distance = 7, className }) => {
   )
 
   return (
-    <Typography transparent uppercase as='span' className={className}>
+    <StyledTypography transparent uppercase as='span' className={className}>
       {isFullDate
         ? format(date, 'd.m.yy')
-        : formatDistanceToNow(date, { locale: ru, addSuffix: true })}
-    </Typography>
+        : formatDistanceStrict(date, new Date(), {
+            locale: ru,
+            addSuffix: true,
+          })}
+    </StyledTypography>
   )
 }
