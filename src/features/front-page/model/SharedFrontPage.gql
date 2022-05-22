@@ -1,0 +1,7 @@
+#import "./FrontPageResultPartial.gql"
+
+query SharedFrontPage($uid: UID!) {
+  sharedFrontPage(uid: $uid) {
+      ...FrontPageResultPartial
+    }
+}

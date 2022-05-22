@@ -1,0 +1,29 @@
+fragment FrontPageResultPartial on FrontPage {
+  uid
+  publicationDate
+  content {
+    uid
+    component {
+      name
+      configuration {
+        h
+        w
+        type
+      }
+    }
+    postUid
+    post {
+      uid
+      readingTime
+      previewUrl
+      title
+      content
+      description
+      createdAt
+    }
+    position {
+      x
+      y
+    }
+  }
+}

@@ -30,15 +30,15 @@ export type AddPostToFrontPageInput = {
 };
 
 export type AssignUserGroupInput = {
-  login: Scalars['String'];
   userGroupsName: Array<Scalars['String']>;
+  userUid: Scalars['String'];
 };
 
 export type Category = {
   __typename?: 'Category';
   createdAt: Scalars['Date'];
   name: Scalars['String'];
-  posts?: Maybe<Array<PostItem>>;
+  posts?: Maybe<Array<Post>>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
@@ -54,6 +54,28 @@ export type CategoryItem = {
 export type ChangePasswordInput = {
   newPassword: Scalars['String'];
   password: Scalars['String'];
+};
+
+export type CommentItem = {
+  __typename?: 'CommentItem';
+  author: ProfileItem;
+  authorUid: Scalars['UID'];
+  content: Scalars['String'];
+  createdAt: Scalars['Date'];
+  post: SimplePost;
+  postUid: Scalars['UID'];
+  replyingToComment?: Maybe<CommentItem>;
+  replyingToCommentUid?: Maybe<Scalars['UID']>;
+  uid: Scalars['UID'];
+  updatedAt: Scalars['Date'];
+};
+
+export type CommentPagination = {
+  __typename?: 'CommentPagination';
+  count: Scalars['Int'];
+  items: Array<CommentItem>;
+  page: Scalars['Int'];
+  pages: Scalars['Int'];
 };
 
 export type Component = {
@@ -89,6 +111,12 @@ export type ConfigurationInput = {
 
 export type CreateCategoriesInput = {
   name: Scalars['String'];
+};
+
+export type CreateCommentInput = {
+  content: Scalars['String'];
+  postUid: Scalars['String'];
+  replyingToCommentUid?: InputMaybe<Scalars['String']>;
 };
 
 export type CreateComponentInput = {
@@ -140,7 +168,7 @@ export type DataSource = {
   createdAt: Scalars['Date'];
   feeds?: Maybe<Array<Feed>>;
   name: DataSourceName;
-  posts?: Maybe<Array<PostItem>>;
+  posts?: Maybe<Array<Post>>;
   source: Scalars['String'];
   type: DataSourceType;
   uid: Scalars['UID'];
@@ -165,6 +193,11 @@ export enum DataSourceType {
   External = 'External',
   Internal = 'Internal'
 }
+
+export type DownloadLabelsDto = {
+  projectName: Scalars['String'];
+  repoName: Scalars['String'];
+};
 
 export type DraftItem = {
   __typename?: 'DraftItem';
@@ -203,6 +236,10 @@ export type FeedItem = {
   updatedAt: Scalars['Date'];
 };
 
+export type FilterCommentArgs = {
+  postUid?: InputMaybe<Scalars['String']>;
+};
+
 export type FrontPage = {
   __typename?: 'FrontPage';
   content: Array<PostOnFrontPage>;
@@ -232,6 +269,11 @@ export type FrontPagePagination = {
   pages: Scalars['Int'];
 };
 
+export enum FrontPageType {
+  Archive = 'Archive',
+  Draft = 'Draft'
+}
+
 export type Mutation = {
   __typename?: 'Mutation';
   assignGroupToUser: UserItem;
@@ -239,19 +281,23 @@ export type Mutation = {
   changePermissions: UserGroupItem;
   changePostsOnFrontPage: Array<PostOnFrontPageItem>;
   createCategory: Category;
+  createComment: CommentItem;
   createComponent: Component;
   createDataSource: DataSource;
   createDraft: DraftItem;
   createFeed: Feed;
   createFrontPage: FrontPage;
   createPermission: PermissionItem;
-  createPost: PostItem;
+  createPost: Post;
   createPriority: Priority;
-  createUser: ShortUserItem;
+  createUser: UserWithPasswordDto;
   createUserGroup: UserGroupItem;
   downloadLabels: Array<TagItem>;
   publishFrontPage: FrontPage;
+  refreshToken: TokensDto;
+  registration: UserToken;
   removeCategory: Scalars['Int'];
+  removeComment: Scalars['Int'];
   removeComponent: Scalars['Int'];
   removeDataSource: Scalars['Int'];
   removeDraft: Scalars['Int'];
@@ -264,10 +310,13 @@ export type Mutation = {
   removeUser: Scalars['Int'];
   removeUserGroup: Scalars['Int'];
   resetPasswordForUser: UserItem;
+  setGithubPrivateToken: ResponseStatus;
+  shareFrontPage: FrontPage;
   signIn: UserToken;
   signOut: ResponseStatus;
   unAssignGroupToUser: UserGroupItem;
   updateCategory: Scalars['Int'];
+  updateComment: CommentItem;
   updateComponent: Component;
   updateDataSource: DataSource;
   updateDraft: DraftItem;
@@ -302,6 +351,11 @@ export type MutationChangePostsOnFrontPageArgs = {
 
 export type MutationCreateCategoryArgs = {
   data: CreateCategoriesInput;
+};
+
+
+export type MutationCreateCommentArgs = {
+  data: CreateCommentInput;
 };
 
 
@@ -356,12 +410,28 @@ export type MutationCreateUserGroupArgs = {
 };
 
 
+export type MutationDownloadLabelsArgs = {
+  data: DownloadLabelsDto;
+};
+
+
 export type MutationPublishFrontPageArgs = {
   uid: Scalars['UID'];
 };
 
 
+export type MutationRegistrationArgs = {
+  data: CreateUserInput;
+  password: Scalars['String'];
+};
+
+
 export type MutationRemoveCategoryArgs = {
+  uid: Scalars['UID'];
+};
+
+
+export type MutationRemoveCommentArgs = {
   uid: Scalars['UID'];
 };
 
@@ -426,6 +496,16 @@ export type MutationResetPasswordForUserArgs = {
 };
 
 
+export type MutationSetGithubPrivateTokenArgs = {
+  data: SetGithubPrivateTokenDto;
+};
+
+
+export type MutationShareFrontPageArgs = {
+  uid: Scalars['UID'];
+};
+
+
 export type MutationSignInArgs = {
   data: SignInInput;
 };
@@ -438,6 +518,12 @@ export type MutationUnAssignGroupToUserArgs = {
 
 export type MutationUpdateCategoryArgs = {
   data: UpdateCategoriesInput;
+  uid: Scalars['UID'];
+};
+
+
+export type MutationUpdateCommentArgs = {
+  data: UpdateCommentDto;
   uid: Scalars['UID'];
 };
 
@@ -500,6 +586,7 @@ export type PermissionItem = {
 
 export enum PermissionName {
   AddPosts = 'AddPosts',
+  CreateComments = 'CreateComments',
   CreateDrafts = 'CreateDrafts',
   DeletePosts = 'DeletePosts',
   EditPosts = 'EditPosts',
@@ -527,23 +614,6 @@ export type PositionInput = {
 
 export type Post = {
   __typename?: 'Post';
-  category: CategoryItem;
-  content: Scalars['String'];
-  createdAt: Scalars['Date'];
-  dataSource: DataSourceItem;
-  description: Scalars['String'];
-  frontPages: Array<FrontPageItem>;
-  previewUrl?: Maybe<Scalars['String']>;
-  priority: PriorityItem;
-  readingTime?: Maybe<Scalars['Int']>;
-  tags?: Maybe<Array<TagItem>>;
-  title: Scalars['String'];
-  uid: Scalars['UID'];
-  updatedAt: Scalars['Date'];
-};
-
-export type PostItem = {
-  __typename?: 'PostItem';
   content: Scalars['String'];
   createdAt: Scalars['Date'];
   description: Scalars['String'];
@@ -583,7 +653,7 @@ export type PostOnFrontPageItem = {
 export type PostPagination = {
   __typename?: 'PostPagination';
   count: Scalars['Int'];
-  items: Array<PostItem>;
+  items: Array<Post>;
   page: Scalars['Int'];
   pages: Scalars['Int'];
 };
@@ -593,7 +663,7 @@ export type Priority = {
   createdAt: Scalars['Date'];
   grade: Scalars['Int'];
   name: Scalars['String'];
-  posts?: Maybe<Array<PostItem>>;
+  posts?: Maybe<Array<Post>>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
@@ -638,6 +708,7 @@ export type Query = {
   __typename?: 'Query';
   categories: Array<CategoryItem>;
   category: Category;
+  comments: CommentPagination;
   component: Component;
   components: Array<ComponentItem>;
   currentFrontPage: FrontPage;
@@ -651,12 +722,13 @@ export type Query = {
   frontPage: FrontPage;
   frontPages: FrontPagePagination;
   permissions: Array<PermissionItem>;
-  post: PostItem;
+  post: Post;
   posts: PostPagination;
   priorities: Array<PriorityItem>;
   priority: Priority;
   profile: Profile;
   profiles: Array<ProfileItem>;
+  sharedFrontPage?: Maybe<FrontPage>;
   tags: Array<TagItem>;
   updateProfile: ProfileItem;
   user: User;
@@ -667,6 +739,13 @@ export type Query = {
 
 export type QueryCategoryArgs = {
   uid: Scalars['UID'];
+};
+
+
+export type QueryCommentsArgs = {
+  filter?: InputMaybe<FilterCommentArgs>;
+  page?: InputMaybe<Scalars['Int']>;
+  perPage?: InputMaybe<Scalars['Int']>;
 };
 
 
@@ -702,6 +781,7 @@ export type QueryFrontPageArgs = {
 
 
 export type QueryFrontPagesArgs = {
+  frontPageType?: InputMaybe<Array<FrontPageType>>;
   page?: InputMaybe<Scalars['Int']>;
   perPage?: InputMaybe<Scalars['Int']>;
 };
@@ -728,6 +808,11 @@ export type QueryProfileArgs = {
 };
 
 
+export type QuerySharedFrontPageArgs = {
+  uid: Scalars['UID'];
+};
+
+
 export type QueryUpdateProfileArgs = {
   avatar?: InputMaybe<Scalars['Upload']>;
   data: ProfileUpdateInput;
@@ -748,10 +833,9 @@ export type ResponseStatus = {
   status: Scalars['Float'];
 };
 
-export type ShortUserItem = {
-  __typename?: 'ShortUserItem';
-  login: Scalars['String'];
-  password: Scalars['String'];
+export type SetGithubPrivateTokenDto = {
+  githubLogin: Scalars['String'];
+  token: Scalars['String'];
 };
 
 export type SignInInput = {
@@ -780,8 +864,18 @@ export type TagItem = {
   updatedAt: Scalars['Date'];
 };
 
+export type TokensDto = {
+  __typename?: 'TokensDto';
+  accessToken: Scalars['String'];
+  refreshToken: Scalars['String'];
+};
+
 export type UpdateCategoriesInput = {
   name: Scalars['String'];
+};
+
+export type UpdateCommentDto = {
+  content: Scalars['String'];
 };
 
 export type UpdateComponentInput = {
@@ -810,14 +904,11 @@ export type UpdateFrontPageInput = {
 };
 
 export type UpdatePostInput = {
-  author: Scalars['String'];
-  categoryUid: Scalars['UID'];
-  dataSourceUid: Scalars['UID'];
-  description: Scalars['String'];
-  previewUrl: Scalars['String'];
-  priorityUid: Scalars['UID'];
-  publicationDate: Scalars['Date'];
-  title: Scalars['String'];
+  content?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  previewUrl?: InputMaybe<Scalars['String']>;
+  tagUids?: InputMaybe<Array<Scalars['UID']>>;
+  title?: InputMaybe<Scalars['String']>;
 };
 
 export type UpdatePrioritiesInput = {
@@ -870,7 +961,12 @@ export type UserItem = {
 
 export type UserToken = {
   __typename?: 'UserToken';
-  isTransportPassword: Scalars['Boolean'];
-  token: Scalars['String'];
+  tokens: TokensDto;
+  user: UserItem;
+};
+
+export type UserWithPasswordDto = {
+  __typename?: 'UserWithPasswordDto';
+  password: Scalars['String'];
   user: UserItem;
 };

@@ -5,14 +5,14 @@ input AddPostToFrontPageInput {
 }
 
 input AssignUserGroupInput {
-  login: String!
   userGroupsName: [String!]!
+  userUid: String!
 }
 
 type Category {
   createdAt: Date!
   name: String!
-  posts: [PostItem!]
+  posts: [Post!]
   uid: UID!
   updatedAt: Date!
 }
@@ -27,6 +27,26 @@ type CategoryItem {
 input ChangePasswordInput {
   newPassword: String!
   password: String!
+}
+
+type CommentItem {
+  author: ProfileItem!
+  authorUid: UID!
+  content: String!
+  createdAt: Date!
+  post: SimplePost!
+  postUid: UID!
+  replyingToComment: CommentItem
+  replyingToCommentUid: UID
+  uid: UID!
+  updatedAt: Date!
+}
+
+type CommentPagination {
+  count: Int!
+  items: [CommentItem!]!
+  page: Int!
+  pages: Int!
 }
 
 type Component {
@@ -62,6 +82,12 @@ scalar Content
 
 input CreateCategoriesInput {
   name: String!
+}
+
+input CreateCommentInput {
+  content: String!
+  postUid: String!
+  replyingToCommentUid: String
 }
 
 input CreateComponentInput {
@@ -112,7 +138,7 @@ type DataSource {
   createdAt: Date!
   feeds: [Feed!]
   name: DataSourceName!
-  posts: [PostItem!]
+  posts: [Post!]
   source: String!
   type: DataSourceType!
   uid: UID!
@@ -139,6 +165,11 @@ enum DataSourceType {
 
 """Date scalar type"""
 scalar Date
+
+input DownloadLabelsDto {
+  projectName: String!
+  repoName: String!
+}
 
 type DraftItem {
   content: Content
@@ -173,6 +204,10 @@ type FeedItem {
   updatedAt: Date!
 }
 
+input FilterCommentArgs {
+  postUid: String
+}
+
 type FrontPage {
   content: [PostOnFrontPage!]!
   createdAt: Date!
@@ -199,25 +234,34 @@ type FrontPagePagination {
   pages: Int!
 }
 
+enum FrontPageType {
+  Archive
+  Draft
+}
+
 type Mutation {
   assignGroupToUser(data: AssignUserGroupInput!): UserItem!
   changePassword(data: ChangePasswordInput!): UserItem!
   changePermissions(data: UserGroupInput!): UserGroupItem!
   changePostsOnFrontPage(data: [AddPostToFrontPageInput!]!, frontPageUid: UID!): [PostOnFrontPageItem!]!
   createCategory(data: CreateCategoriesInput!): Category!
+  createComment(data: CreateCommentInput!): CommentItem!
   createComponent(data: CreateComponentInput!): Component!
   createDataSource(data: CreateDataSourceInput!): DataSource!
   createDraft(content: Upload, data: CreateDraftInput): DraftItem!
   createFeed(data: CreateFeedsInput!): Feed!
   createFrontPage(data: CreateFrontPageInput!): FrontPage!
   createPermission(data: CreatePermissionInput!): PermissionItem!
-  createPost(data: CreatePostInput!): PostItem!
+  createPost(data: CreatePostInput!): Post!
   createPriority(data: CreatePrioritiesInput!): Priority!
-  createUser(data: CreateUserInput!): ShortUserItem!
+  createUser(data: CreateUserInput!): UserWithPasswordDto!
   createUserGroup(data: UserGroupInput!): UserGroupItem!
-  downloadLabels: [TagItem!]!
+  downloadLabels(data: DownloadLabelsDto!): [TagItem!]!
   publishFrontPage(uid: UID!): FrontPage!
+  refreshToken: TokensDto!
+  registration(data: CreateUserInput!, password: String!): UserToken!
   removeCategory(uid: UID!): Int!
+  removeComment(uid: UID!): Int!
   removeComponent(uid: UID!): Int!
   removeDataSource(uid: UID!): Int!
   removeDraft(uid: UID!): Int!
@@ -230,10 +274,13 @@ type Mutation {
   removeUser(uid: UID!): Int!
   removeUserGroup(uid: UID!): Int!
   resetPasswordForUser(data: ResetPasswordInput!): UserItem!
+  setGithubPrivateToken(data: SetGithubPrivateTokenDto!): ResponseStatus!
+  shareFrontPage(uid: UID!): FrontPage!
   signIn(data: SignInInput!): UserToken!
   signOut: ResponseStatus!
   unAssignGroupToUser(data: AssignUserGroupInput!): UserGroupItem!
   updateCategory(data: UpdateCategoriesInput!, uid: UID!): Int!
+  updateComment(data: UpdateCommentDto!, uid: UID!): CommentItem!
   updateComponent(data: UpdateComponentInput!, uid: UID!): Component!
   updateDataSource(data: UpdateDataSourceInput!, uid: UID!): DataSource!
   updateDraft(content: Upload, data: UpdateDraftInput!, uid: UID!): DraftItem!
@@ -253,6 +300,7 @@ type PermissionItem {
 
 enum PermissionName {
   AddPosts
+  CreateComments
   CreateDrafts
   DeletePosts
   EditPosts
@@ -278,22 +326,6 @@ input PositionInput {
 }
 
 type Post {
-  category: CategoryItem!
-  content: String!
-  createdAt: Date!
-  dataSource: DataSourceItem!
-  description: String!
-  frontPages: [FrontPageItem!]!
-  previewUrl: String
-  priority: PriorityItem!
-  readingTime: Int
-  tags: [TagItem!]
-  title: String!
-  uid: UID!
-  updatedAt: Date!
-}
-
-type PostItem {
   content: String!
   createdAt: Date!
   description: String!
@@ -330,7 +362,7 @@ type PostOnFrontPageItem {
 
 type PostPagination {
   count: Int!
-  items: [PostItem!]!
+  items: [Post!]!
   page: Int!
   pages: Int!
 }
@@ -339,7 +371,7 @@ type Priority {
   createdAt: Date!
   grade: Int!
   name: String!
-  posts: [PostItem!]
+  posts: [Post!]
   uid: UID!
   updatedAt: Date!
 }
@@ -380,6 +412,7 @@ input ProfileUpdateInput {
 type Query {
   categories: [CategoryItem!]!
   category(uid: UID!): Category!
+  comments(filter: FilterCommentArgs, page: Int = 1, perPage: Int = 20): CommentPagination!
   component(uid: UID!): Component!
   components: [ComponentItem!]!
   currentFrontPage: FrontPage!
@@ -391,14 +424,15 @@ type Query {
   feed(uid: UID!): FeedItem!
   feeds: [FeedItem!]!
   frontPage(uid: UID!): FrontPage!
-  frontPages(page: Int = 1, perPage: Int = 20): FrontPagePagination!
+  frontPages(frontPageType: [FrontPageType!], page: Int = 1, perPage: Int = 20): FrontPagePagination!
   permissions: [PermissionItem!]!
-  post(uid: UID!): PostItem!
+  post(uid: UID!): Post!
   posts(page: Int = 1, perPage: Int = 20): PostPagination!
   priorities: [PriorityItem!]!
   priority(uid: UID!): Priority!
   profile(uid: UID!): Profile!
   profiles: [ProfileItem!]!
+  sharedFrontPage(uid: UID!): FrontPage
   tags: [TagItem!]!
   updateProfile(avatar: Upload, data: ProfileUpdateInput!, uid: UID!): ProfileItem!
   user(uid: UID!): User!
@@ -414,9 +448,9 @@ type ResponseStatus {
   status: Float!
 }
 
-type ShortUserItem {
-  login: String!
-  password: String!
+input SetGithubPrivateTokenDto {
+  githubLogin: String!
+  token: String!
 }
 
 input SignInInput {
@@ -443,11 +477,20 @@ type TagItem {
   updatedAt: Date!
 }
 
+type TokensDto {
+  accessToken: String!
+  refreshToken: String!
+}
+
 """Uid custom scalar type"""
 scalar UID
 
 input UpdateCategoriesInput {
   name: String!
+}
+
+input UpdateCommentDto {
+  content: String!
 }
 
 input UpdateComponentInput {
@@ -476,14 +519,11 @@ input UpdateFrontPageInput {
 }
 
 input UpdatePostInput {
-  author: String!
-  categoryUid: UID!
-  dataSourceUid: UID!
-  description: String!
-  previewUrl: String!
-  priorityUid: UID!
-  publicationDate: Date!
-  title: String!
+  content: String
+  description: String
+  previewUrl: String
+  tagUids: [UID!]
+  title: String
 }
 
 input UpdatePrioritiesInput {
@@ -535,7 +575,11 @@ type UserItem {
 }
 
 type UserToken {
-  isTransportPassword: Boolean!
-  token: String!
+  tokens: TokensDto!
+  user: UserItem!
+}
+
+type UserWithPasswordDto {
+  password: String!
   user: UserItem!
 }

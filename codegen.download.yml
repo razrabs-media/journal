@@ -1,5 +1,4 @@
-schema:
-  - 'https://api.dev.razrabs.ru/gql' ## TODO host from env
+schema: ${NEXT_PUBLIC_API_GATEWAY}
 generates:
   ./schema.graphql:
     plugins:
