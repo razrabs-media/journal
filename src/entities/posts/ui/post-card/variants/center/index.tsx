@@ -6,7 +6,7 @@ import { Card } from './styled'
 export const CenteredCard: FC<PostData> = ({ title, publicationDate }) => (
   <Card>
     <GridArea area='title'>
-      <Typography uppercase align='center' size='large' weight='500'>
+      <Typography uppercase align='center' size='xlarge' weight='500'>
         {title}
       </Typography>
     </GridArea>
