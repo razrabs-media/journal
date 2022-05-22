@@ -1,15 +1,23 @@
-import { FC } from 'react'
-import { StyledButton, StyledShareTwitter, StyledShareURL } from './styled'
-import { Props, ShareType } from './types'
+import { FC, useMemo } from 'react'
 
-const ShareComponent = {
-  [ShareType.Url]: <StyledShareURL />,
-  [ShareType.Twitter]: <StyledShareTwitter />,
+import { withShareTwitter, withShareUrl } from './lib'
+import { Props, ShareType } from './types'
+import { StyledButton } from './ui'
+
+const ShareButtonHOC = {
+  [ShareType.Url]: withShareUrl,
+  [ShareType.Twitter]: withShareTwitter,
 }
 
-export const ShareButton: FC<Props> = ({ social, ...restProps }) => (
-  <StyledButton {...restProps}>{ShareComponent[social]}</StyledButton>
-)
+export const ShareButton: FC<Props> = ({ shareType, ...restProps }) => {
+  const Component = useMemo(() => {
+    const HOC = ShareButtonHOC[shareType]
+
+    return HOC ? HOC(StyledButton) : StyledButton
+  }, [shareType])
+
+  return <Component {...restProps} />
+}
 
 export { ShareType }
 export type { Props as ShareButtonProps }
