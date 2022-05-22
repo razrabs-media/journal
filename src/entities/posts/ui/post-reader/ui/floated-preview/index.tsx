@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { FC } from 'react'
 import { ShareButton, ShareType, Tag } from 'shared/ui'
+import { useDisplayAnimation } from '../../lib'
 import {
   DateAndShareRow,
   Layout,
@@ -17,6 +18,7 @@ import type { Props } from './types'
 
 export const FloatedPreview: FC<Props> = ({
   shouldDisplay,
+  transitionTime,
   previewUrl,
   title,
   publicationDate,
@@ -26,9 +28,19 @@ export const FloatedPreview: FC<Props> = ({
     locale: ru,
   })
 
+  const { display, fadeIn, fadeOut } = useDisplayAnimation(
+    shouldDisplay,
+    transitionTime,
+  )
+
   return (
     <Layout>
-      <StyledFloatedBlock shouldDisplay={shouldDisplay}>
+      <StyledFloatedBlock
+        fadeIn={fadeIn}
+        fadeOut={fadeOut}
+        shouldDisplay={display}
+        transitionTime={transitionTime}
+      >
         <Preview alt={title} src={previewUrl} />
 
         <Title uppercase size='medium'>

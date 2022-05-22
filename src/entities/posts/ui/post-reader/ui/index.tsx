@@ -16,6 +16,7 @@ export const PostReader: FC<Props> = (props) => {
         shouldDisplay={shouldDisplay}
         tags={props.tags}
         title={props.title}
+        transitionTime={400}
       />
 
       <PostHeader
