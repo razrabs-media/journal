@@ -72,7 +72,10 @@ export const GLOBAL_STYLES = css`
   }
 
   #__next {
-    min-height: 100%;
+    // Fix для мобилок
+    //noinspection CssInvalidPropertyValue
+    min-height: --webkit-fill-available;
+    min-height: 100vh;
     display: grid;
   }
 `
