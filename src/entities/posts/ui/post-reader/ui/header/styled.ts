@@ -71,6 +71,9 @@ export const PostImage = styled(Image)`
 
 // TODO: это заголовок + описание. над неймингом еще надо подумать
 export const PostTextWrapper = styled.div`
+  p {
+    max-width: 1027px;
+  }
   padding-bottom: 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.text.primary};
 `

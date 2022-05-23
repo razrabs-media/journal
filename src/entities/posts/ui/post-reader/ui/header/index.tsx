@@ -39,13 +39,14 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
           />
         </ImageWrapper>
         <PostTextWrapper>
-          <Title uppercase as='h1'>
-            {props.title}
-          </Title>
-
-          <Description color='secondary' size='medium'>
-            {props.description}
-          </Description>
+          <p>
+            <Title uppercase as='h1'>
+              {props.title}
+            </Title>
+            <Description color='secondary' size='medium'>
+              {props.description}
+            </Description>
+          </p>
         </PostTextWrapper>
       </FirstRow>
 
