@@ -24,7 +24,7 @@ export const Typography = styled.p<Props>`
   text-transform: ${({ uppercase }) => (uppercase ? 'uppercase' : 'none')};
   text-align: ${({ align = 'left' }) => align};
   font-size: ${({ size = 'small' }) => `${sizes[size]}px`};
-  line-height: ${({ size }) => (size === 'small' ? '100%' : '120%')};
+  line-height: ${({ size = 'small' }) => (size === 'small' ? '100%' : '120%')};
   letter-spacing: ${({ size }) => `${size === 'medium' ? 3 : 1}px`};
   font-family: Styrene B LC, serif;
   font-weight: ${({ weight = 'normal' }) => weight};
