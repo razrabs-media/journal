@@ -1,0 +1,10 @@
+query CurrentUser {
+  currentUser {
+    login
+    profile {
+      avatarUrl
+      createdAt
+      fullName
+    }
+  }
+}

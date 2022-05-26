@@ -16,7 +16,7 @@ export type Scalars = {
   /** Upload scalar */
   Content: any;
   /** Date scalar type */
-  Date: number;
+  Date: string;
   /** Uid custom scalar type */
   UID: string;
   /** Upload scalar */
@@ -330,7 +330,7 @@ export type Mutation = {
   createPermission: PermissionItem;
   createPost: Post;
   createPriority: Priority;
-  createUser: UserWithPasswordDto;
+  createUser: UserWithPassword;
   createUserGroup: UserGroupItem;
   downloadLabels: Array<TagItem>;
   downloadPosts: Array<ResponseStatus>;
@@ -353,6 +353,7 @@ export type Mutation = {
   removeUserGroup: Scalars['Int'];
   resetPasswordForUser: UserItem;
   setGithubPrivateToken: ResponseStatus;
+  share: PostInteractions;
   shareFrontPage: FrontPage;
   signIn: UserToken;
   signOut: ResponseStatus;
@@ -368,6 +369,7 @@ export type Mutation = {
   updatePriority: Priority;
   updateProfile: ProfileItem;
   updateUser: User;
+  view: PostInteractions;
 };
 
 
@@ -559,6 +561,11 @@ export type MutationSetGithubPrivateTokenArgs = {
 };
 
 
+export type MutationShareArgs = {
+  uid: Scalars['UID'];
+};
+
+
 export type MutationShareFrontPageArgs = {
   uid: Scalars['UID'];
 };
@@ -641,6 +648,11 @@ export type MutationUpdateUserArgs = {
   uid: Scalars['UID'];
 };
 
+
+export type MutationViewArgs = {
+  uid: Scalars['UID'];
+};
+
 export type PermissionItem = {
   __typename?: 'PermissionItem';
   createdAt: Scalars['Date'];
@@ -673,12 +685,22 @@ export type Post = {
   description: Scalars['String'];
   frontPages: Array<FrontPageItem>;
   githubAuthor?: Maybe<GithubAuthor>;
+  interactions: PostInteractions;
   previewUrl?: Maybe<Scalars['String']>;
   readingTime?: Maybe<Scalars['Int']>;
   tags?: Maybe<Array<TagItem>>;
   title: Scalars['String'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
+};
+
+export type PostInteractions = {
+  __typename?: 'PostInteractions';
+  createdAt: Scalars['Date'];
+  sharesCount: Scalars['Int'];
+  uid: Scalars['UID'];
+  updatedAt: Scalars['Date'];
+  viewsCount: Scalars['Int'];
 };
 
 export type PostOnFrontPage = {
@@ -776,6 +798,7 @@ export type Query = {
   feeds: Array<FeedItem>;
   frontPage: FrontPage;
   frontPages: FrontPagePagination;
+  getTokenPayload: TokenPayloadDto;
   githubAuthor: GithubAuthor;
   githubAuthors: Array<GithubAuthor>;
   permissions: Array<PermissionItem>;
@@ -951,6 +974,13 @@ export type TagItem = {
   updatedAt: Scalars['Date'];
 };
 
+export type TokenPayloadDto = {
+  __typename?: 'TokenPayloadDto';
+  email: Scalars['String'];
+  login: Scalars['String'];
+  permissions: Array<Scalars['String']>;
+};
+
 export type TokensDto = {
   __typename?: 'TokensDto';
   accessToken: Scalars['String'];
@@ -1008,7 +1038,6 @@ export type User = {
   createdAt: Scalars['Date'];
   isTransportPassword: Scalars['Boolean'];
   login: Scalars['String'];
-  passwordHash: Scalars['String'];
   profile?: Maybe<ProfileItem>;
   profileUid: Scalars['UID'];
   uid: Scalars['UID'];
@@ -1039,7 +1068,6 @@ export type UserItem = {
   createdAt: Scalars['Date'];
   isTransportPassword: Scalars['Boolean'];
   login: Scalars['String'];
-  passwordHash: Scalars['String'];
   profile?: Maybe<ProfileItem>;
   profileUid: Scalars['UID'];
   uid: Scalars['UID'];
@@ -1052,8 +1080,8 @@ export type UserToken = {
   user: UserItem;
 };
 
-export type UserWithPasswordDto = {
-  __typename?: 'UserWithPasswordDto';
+export type UserWithPassword = {
+  __typename?: 'UserWithPassword';
   password: Scalars['String'];
   user: UserItem;
 };

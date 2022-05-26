@@ -1,7 +1,6 @@
 import { useTheme } from '@emotion/react'
 import Image from '@razrabs-ui/image'
 import Typography from '@razrabs-ui/typography'
-import { CommentProps } from 'comments/src/types'
 import { forwardRef } from 'react'
 import {
   FirstRow,
@@ -10,6 +9,7 @@ import {
   SecondRow,
   StyledComment,
 } from './styled'
+import { CommentProps } from './types'
 
 const ReplyIcon = () => {
   const {

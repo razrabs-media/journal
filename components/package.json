@@ -4,7 +4,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "start": "start-storybook -p 3002",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 3002",
     "build": "build-storybook"
   },
   "devDependencies": {

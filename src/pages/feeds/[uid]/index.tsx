@@ -9,7 +9,7 @@ import {
   GetFeedsQuery,
 } from 'features/feeds'
 import { GetPostsByFeed, GetPostsByFeedQuery } from 'entities/posts'
-import { client, FeedItem, Post } from 'shared/api'
+import { FeedItem, initializeApollo, Post } from 'shared/api'
 import { Helmet } from 'shared/lib/helmet'
 import { parseDate } from 'shared/lib/parse-date'
 
@@ -50,12 +50,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
   query,
 }) => {
   const currentFeedUid: string = query.uid?.toString() ?? ''
+  const apolloClient = initializeApollo()
 
   const {
     data: {
       postsByFeed: { items: postsByFeed },
     },
-  } = await client.query<GetPostsByFeed>({
+  } = await apolloClient.query<GetPostsByFeed>({
     variables: { uid: currentFeedUid },
     query: GetPostsByFeedQuery,
     fetchPolicy: 'no-cache',
@@ -63,7 +64,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 
   const {
     data: { feeds },
-  } = await client.query<GetFeeds>({
+  } = await apolloClient.query<GetFeeds>({
     query: GetFeedsQuery,
     fetchPolicy: 'no-cache',
   })

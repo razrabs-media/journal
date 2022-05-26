@@ -13,6 +13,7 @@ declare module '@emotion/react' {
 
       brand: string
       background: string
+      backgroundSecondary: string
     }
     breakpoints: {
       sm: string

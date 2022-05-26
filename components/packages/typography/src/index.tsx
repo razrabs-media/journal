@@ -1,12 +1,12 @@
 import styled from '@emotion/styled'
 
-import type { Alignment, Color, Size, TypographyProps, Weight } from './types'
+import type { TypographyProps } from './types'
 
-const defaultProps = {
-  size: 'lg' as Size,
-  color: 'primary' as Color,
-  align: 'left' as Alignment,
-  weight: 'normal' as Weight,
+const defaultProps: Omit<TypographyProps, 'letterSpacing' | 'lineHeight'> = {
+  size: 'lg',
+  color: 'primary',
+  align: 'left',
+  weight: 'normal',
   uppercase: false,
 }
 
@@ -25,6 +25,8 @@ const Typography = styled.p<Partial<TypographyProps>>`
 
   letter-spacing: ${({ letterSpacing }) =>
     typeof letterSpacing === 'number' ? `${letterSpacing}px` : letterSpacing};
+
+  line-height: ${({ lineHeight }) => (lineHeight ? `${lineHeight}px` : '120%')};
 
   text-align: ${({ align }) => align};
   text-transform: ${({ uppercase = defaultProps.uppercase }) =>

@@ -111,6 +111,13 @@ module.exports = {
       },
     },
     {
+      files: ['components/**'],
+      rules: {
+        'import/no-default-export': 'off',
+        'import/no-anonymous-default-export': 'off',
+      },
+    },
+    {
       files: ['components/packages/**'],
       rules: {
         'import/no-internal-modules': 'off',

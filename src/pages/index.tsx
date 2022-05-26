@@ -8,7 +8,7 @@ import {
   FrontPageItem,
   sortContent,
 } from 'features/front-page'
-import { client, FeedItem } from 'shared/api'
+import { FeedItem, initializeApollo } from 'shared/api'
 import { Helmet } from 'shared/lib/helmet'
 
 type Props = {
@@ -50,16 +50,18 @@ const HomePage: NextPage<Props> = ({ frontPage, feeds }) => (
 )
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const apolloClient = initializeApollo()
+
   const {
     data: { currentFrontPage },
-  } = await client.query<CurrentFrontPage>({
+  } = await apolloClient.query<CurrentFrontPage>({
     query: CurrentFrontPageQuery,
     fetchPolicy: 'no-cache',
   })
 
   const {
     data: { feeds },
-  } = await client.query<GetFeeds>({
+  } = await apolloClient.query<GetFeeds>({
     query: GetFeedsQuery,
     fetchPolicy: 'no-cache',
   })
