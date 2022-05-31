@@ -76,6 +76,7 @@ export const PostTextWrapper = styled.div`
 `
 
 export const Title = styled(Typography)`
+  max-width: 1027px;
   font-size: 32px;
   letter-spacing: inherit;
 
@@ -85,6 +86,7 @@ export const Title = styled(Typography)`
 `
 
 export const Description = styled(Typography)`
+  max-width: 1027px;
   margin-top: 16px;
   letter-spacing: inherit;
 
