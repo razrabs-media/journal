@@ -1,34 +1,31 @@
 FROM node:16.15.0-alpine as dependencies
-
-WORKDIR /journal
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 FROM node:16.15.0-alpine as builder
-WORKDIR /journal
+WORKDIR /app
 
 COPY . .
-COPY --from=dependencies /journal/node_modules ./node_modules
+COPY --from=dependencies /app/node_modules ./node_modules
 RUN yarn build
 
-FROM node:16.15.0-alpine as runner
-WORKDIR /journal
-
-# -> from proccess .env.development, env.production
+FROM nginx:stable-alpine as runner
+WORKDIR /usr/share/nginx/html
 ENV NODE_ENV=production
-
-RUN addgroup -g 1001 -S nodejs
+RUN rm -rf ./*
+RUN addgroup -g 1001 -S runner
 RUN adduser -S nextjs -u 1001
 
-COPY --from=builder /journal/next.config.js ./
-COPY --from=builder /journal/public ./public
-COPY --from=builder /journal/package.json ./package.json
-COPY --from=builder /journal/.next ./.next
-COPY --from=builder /journal/node_modules ./node_modules
+COPY --from=builder /app/next.config.js ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/nginx.conf /etc/nginx/conf.d/default.conf
 
-ENV PORT 3000
+USER nextjs
+EXPOSE 80
+ENV PORT 80
 
-EXPOSE $PORT
-
-
-CMD ["yarn", "start"]
+CMD ["nginx", "-g", "daemon off;"]
