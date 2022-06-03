@@ -58,6 +58,7 @@ export const StyledNav = styled.nav`
     cursor: pointer;
     color: ${({ theme }) => theme.colors.primary};
   }
+
   @media screen and (max-width: 671px) {
     width: 135px;
     flex-direction: column;
@@ -66,6 +67,8 @@ export const StyledNav = styled.nav`
 export const StyledShareNav = styled(StyledNav)``
 export const StyledText = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
+  color: ${({ theme }) => theme.colors.secondary};
+
   @media screen and (max-width: 671px) {
     display: none;
   }
