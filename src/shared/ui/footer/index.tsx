@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { FC } from 'react'
 import {
   Copyright,
@@ -16,17 +17,17 @@ export const Footer: FC = () => (
       <Copyright>In code we trust since 2021</Copyright>
       <StyledMenuBlock>
         <StyledNav>
-          <a href='#'>о нас</a>
-          <a href='#'>условия</a>
-          <a href='#'>лицензия</a>
-          <a href='#'>связаться</a>
+          <Link href='#'>о нас</Link>
+          <Link href='#'>условия</Link>
+          <Link href='#'>лицензия</Link>
+          <Link href='#'>связаться</Link>
         </StyledNav>
         <StyledShareNav>
           <StyledText>еще и тут:</StyledText>
-          <a href='#'>github</a>
-          <a href='#'>yt</a>
-          <a href='#'>tg</a>
-          <a href='#'>tw</a>
+          <Link href='#'>github</Link>
+          <Link href='#'>yt</Link>
+          <Link href='#'>tg</Link>
+          <Link href='#'>tw</Link>
         </StyledShareNav>
       </StyledMenuBlock>
     </StyledFootMenu>
