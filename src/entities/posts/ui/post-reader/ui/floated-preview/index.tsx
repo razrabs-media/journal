@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
+import Link from 'next/link'
 import { FC } from 'react'
 import { ShareButton, ShareType, Tag } from 'shared/ui'
 import { useDisplayAnimation } from '../../lib'
@@ -53,7 +54,11 @@ export const FloatedPreview: FC<Props> = ({
           </PublicationDate>
 
           <ShareBlock>
-            <ShareButton shareType={ShareType.Twitter} />
+            <Link href='https://twitter.com/'>
+              <a rel='noreferrer' target='_blank' title='Twitter.com'>
+                <ShareButton shareType={ShareType.Twitter} />
+              </a>
+            </Link>
             <ShareButton shareType={ShareType.Url} />
           </ShareBlock>
         </DateAndShareRow>

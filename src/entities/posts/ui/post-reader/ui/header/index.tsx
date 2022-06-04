@@ -1,5 +1,6 @@
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
+import Link from 'next/link'
 import { forwardRef, useMemo } from 'react'
 import { ShareButton, ShareType } from 'shared/ui'
 import { Tag } from 'shared/ui/tag'
@@ -58,7 +59,11 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
           </TagsBlock>
 
           <ShareBlock>
-            <ShareButton shareType={ShareType.Twitter} />
+            <Link href='https://twitter.com/'>
+              <a rel='noreferrer' target='_blank' title='Twitter.com'>
+                <ShareButton shareType={ShareType.Twitter} />
+              </a>
+            </Link>
             <ShareButton shareType={ShareType.Url} />
           </ShareBlock>
         </TagsAndShare>
