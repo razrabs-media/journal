@@ -1,9 +1,8 @@
 import { ThemeProvider } from '@emotion/react'
 import { themeDark } from '@razrabs-ui/theme'
-import { NextPageContext } from 'next'
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import type { NextPageContext } from 'next'
+import { useEffect, useState } from 'react'
 import { Context as ResponsiveContext } from 'react-responsive'
-import parser from 'ua-parser-js'
 import type { AppProps as _AppProps } from 'next/app'
 import { Header } from 'widgets/header'
 import { Footer, GridArea, MainGrid, StickyGridArea } from 'shared/ui'
@@ -11,8 +10,6 @@ import { Footer, GridArea, MainGrid, StickyGridArea } from 'shared/ui'
 type AppProps = {
   suggestedWidth: number
 } & _AppProps
-
-type Width = string | number | undefined
 
 const App = ({ Component, pageProps, suggestedWidth }: AppProps) => {
   const app = (
@@ -49,6 +46,8 @@ const App = ({ Component, pageProps, suggestedWidth }: AppProps) => {
 }
 
 App.getInitialProps = async ({ ctx }: { ctx: NextPageContext }) => {
+  const parser = eval("require('ua-parser-js')") // it's not bundled to a browser js
+
   const userAgent = parser(ctx.req?.headers['user-agent'])
   const deviceType = userAgent.device.type
 

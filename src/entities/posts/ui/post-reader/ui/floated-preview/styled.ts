@@ -5,6 +5,8 @@ import Typography from '@razrabs-ui/typography'
 export const Layout = styled.div`
   position: fixed;
 
+  pointer-events: none;
+
   display: grid;
 
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
@@ -50,6 +52,8 @@ export const StyledFloatedBlock = styled.div<{
   transitionTime: number
 }>`
   display: ${({ shouldDisplay }) => (shouldDisplay ? 'flex' : 'none')};
+
+  pointer-events: all;
 
   flex-direction: column;
   max-width: 450px;

@@ -2,6 +2,10 @@ FROM node:16.15.0-alpine as dependencies
 
 WORKDIR /journal
 COPY package.json yarn.lock ./
+
+COPY components components
+RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
+
 RUN yarn install --frozen-lockfile
 
 FROM node:16.15.0-alpine as builder

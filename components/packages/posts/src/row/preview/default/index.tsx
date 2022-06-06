@@ -28,6 +28,7 @@ const POST_PREVIEW_PROPS = {
 export const DefaultPreview: FC<PreviewProps> = ({
   type,
   preview,
+  alt,
   ...props
 }) => {
   const [error, setError] = useState(false)
@@ -47,6 +48,7 @@ export const DefaultPreview: FC<PreviewProps> = ({
       <Image
         {...previewProps}
         align={error ? 'center' : previewProps?.align}
+        alt={alt}
         fallback={<FallbackX />}
         src={preview}
         onError={onError}

@@ -42,7 +42,14 @@ export const FloatedPreview: FC<Props> = ({
         shouldDisplay={display}
         transitionTime={transitionTime}
       >
-        <Image alt={title} maxH={505} src={previewUrl} w='100%' />
+        <Image
+          align='center'
+          alt={title}
+          fit='cover'
+          maxH={505}
+          src={previewUrl}
+          w='100%'
+        />
 
         <Title uppercase size='lg'>
           {title}

@@ -20,7 +20,7 @@ const POST_PREVIEW_PROPS = {
   align: 'left' as const,
 }
 
-export const Preview: FC<PreviewProps> = ({ type, preview, ...props }) => {
+export const Preview: FC<PreviewProps> = ({ type, preview, alt, ...props }) => {
   const previewProps = usePreviewProps(type, {
     videoProps: VIDEO_PREVIEW_PROPS,
     tweetProps: TWEET_PREVIEW_PROPS,
@@ -30,6 +30,7 @@ export const Preview: FC<PreviewProps> = ({ type, preview, ...props }) => {
   return (
     <StyledPreview>
       <Image
+        alt={alt}
         {...previewProps}
         fallback={<FallbackSquare />}
         fit='cover'

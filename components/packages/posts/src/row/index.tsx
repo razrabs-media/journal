@@ -45,7 +45,7 @@ export const PostRow = forwardRef<HTMLDivElement, PostRowProps>(
             {date}
           </Typography>
         }
-        preview={<Preview preview={preview} type={type} />}
+        preview={<Preview alt={title} preview={preview} type={type} />}
         ref={ref}
         small={small}
         title={

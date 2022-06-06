@@ -3,8 +3,8 @@
   "version": "2.0.0",
   "private": true,
   "workspaces": [
-    "packages",
-    "packages/packages/**"
+    "components",
+    "components/packages/**"
   ],
   "scripts": {
     "update-schema": "graphql-codegen -c ./codegen.download.yml --require dotenv/config",

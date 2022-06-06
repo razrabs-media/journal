@@ -26,7 +26,12 @@ const POST_PREVIEW_PROPS = {
   fit: 'scale-down' as const,
 }
 
-export const SmallPreview: FC<PreviewProps> = ({ type, preview, ...props }) => {
+export const SmallPreview: FC<PreviewProps> = ({
+  type,
+  preview,
+  alt,
+  ...props
+}) => {
   const previewProps = usePreviewProps(type, {
     videoProps: VIDEO_PREVIEW_PROPS,
     tweetProps: TWEET_PREVIEW_PROPS,
@@ -43,6 +48,7 @@ export const SmallPreview: FC<PreviewProps> = ({ type, preview, ...props }) => {
     <StyledPreview>
       <Image
         align={error ? POST_PREVIEW_PROPS.align : previewProps.align}
+        alt={alt}
         fallback={<FallbackSquare />}
         fit={error ? POST_PREVIEW_PROPS.fit : previewProps.fit}
         h={error ? POST_PREVIEW_PROPS.h : previewProps.h}
