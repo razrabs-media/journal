@@ -60,3 +60,5 @@ export const PostRow = forwardRef<HTMLDivElement, PostRowProps>(
 )
 
 PostRow.displayName = 'PostRow'
+
+export type { PostRowProps } from './types'

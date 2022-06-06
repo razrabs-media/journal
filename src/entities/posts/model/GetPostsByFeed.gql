@@ -1,0 +1,10 @@
+query GetPostsByFeed($uid: String!, $page: Int!) {
+  postsByFeed(uid: $uid, page: $page) {
+    items {
+      uid,
+      title,
+      previewUrl,
+      description
+    }
+  }
+}

@@ -12,6 +12,7 @@ export type PostData = {
   title: string
   previewUrl?: string
   publicationDate: number
+  chiefPost?: boolean
 }
 
 export type PostCardMap = Readonly<Record<PostCardVariant, FC<PostData>>>

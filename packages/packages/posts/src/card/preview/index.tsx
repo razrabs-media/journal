@@ -33,6 +33,7 @@ export const Preview: FC<PreviewProps> = ({ type, preview, ...props }) => {
         {...previewProps}
         fallback={<FallbackSquare />}
         fit='cover'
+        maxH={505}
         src={preview}
         {...props}
       />

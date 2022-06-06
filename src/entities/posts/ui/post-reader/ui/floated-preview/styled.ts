@@ -1,10 +1,6 @@
 import { css, keyframes } from '@emotion/react'
 import styled from '@emotion/styled'
-import {
-  Image,
-  ImageWrapper as SharedImageWrapper,
-  Typography,
-} from 'shared/ui'
+import Typography from '@razrabs-ui/typography'
 
 export const Layout = styled.div`
   position: fixed;
@@ -75,21 +71,9 @@ export const StyledFloatedBlock = styled.div<{
     opacity: 1;
   }
 
-  ${SharedImageWrapper} {
-    height: initial;
-    max-height: 610px;
-  }
-
   @media screen and (max-width: 1319px) {
     max-width: initial;
   }
-`
-
-export const Preview = styled(Image)`
-  width: 100%;
-  height: auto;
-  max-height: 610px;
-  object-fit: cover;
 `
 
 export const Title = styled(Typography)`

@@ -1,13 +1,14 @@
+import Badge from '@razrabs-ui/badge'
+import Image from '@razrabs-ui/image'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { FC } from 'react'
-import { ShareButton, ShareType, Tag } from 'shared/ui'
+import { ShareButton, ShareType } from 'shared/ui'
 import { useDisplayAnimation } from '../../lib'
 import {
   DateAndShareRow,
   Layout,
   Line,
-  Preview,
   PublicationDate,
   ShareBlock,
   StyledFloatedBlock,
@@ -41,14 +42,14 @@ export const FloatedPreview: FC<Props> = ({
         shouldDisplay={display}
         transitionTime={transitionTime}
       >
-        <Preview alt={title} src={previewUrl} />
+        <Image alt={title} maxH={505} src={previewUrl} w='100%' />
 
-        <Title uppercase size='medium'>
+        <Title uppercase size='lg'>
           {title}
         </Title>
 
         <DateAndShareRow>
-          <PublicationDate transparent uppercase size='small'>
+          <PublicationDate uppercase color='secondary' size='sm'>
             {formattedDate}
           </PublicationDate>
 
@@ -62,7 +63,7 @@ export const FloatedPreview: FC<Props> = ({
 
         <TagsBlock>
           {tags?.map((tag) => (
-            <Tag key={tag} name={tag} />
+            <Badge key={tag}>{tag}</Badge>
           ))}
         </TagsBlock>
       </StyledFloatedBlock>

@@ -18,10 +18,10 @@ const CopyButtonWrapper = styled.button<{ disabled: boolean }>`
   font-family: 'JetBrainsMono', serif;
   font-size: 14px;
 
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.secondary};
 
   svg {
-    fill: ${({ theme }) => theme.colors.text.primary};
+    fill: ${({ theme }) => theme.colors.primary};
     width: 18px;
     height: 18px;
 

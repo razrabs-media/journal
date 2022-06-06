@@ -1,6 +1,6 @@
+import Typography from '@razrabs-ui/typography'
 import Link from 'next/link'
 import { FC } from 'react'
-import { Typography } from 'shared/ui'
 import {
   LogoBlock,
   NavigationBlock,
@@ -14,13 +14,7 @@ export const Header: FC = () => (
 
     <LogoBlock>
       <Link passHref href='/'>
-        <Typography
-          uppercase
-          as='a'
-          color='contrast'
-          size='medium'
-          weight='bold'
-        >
+        <Typography uppercase as='a' color='logo' size='xl' weight='bold'>
           Разрабы
         </Typography>
       </Link>
