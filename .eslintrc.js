@@ -111,7 +111,7 @@ module.exports = {
       },
     },
     {
-      files: ['packages/packages/**'],
+      files: ['components/packages/**'],
       rules: {
         'import/no-internal-modules': 'off',
       },

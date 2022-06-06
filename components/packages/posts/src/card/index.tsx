@@ -32,7 +32,7 @@ export const PostCard = forwardRef<HTMLDivElement, PostCardProps>(
             {date}
           </Typography>
         }
-        preview={<Preview preview={preview} type={type} />}
+        preview={<Preview alt={title} preview={preview} type={type} />}
         ref={ref}
         title={
           <Typography

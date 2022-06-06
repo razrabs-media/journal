@@ -33,7 +33,9 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
       <FirstRow ref={ref}>
         <ImageWrapper>
           <Image
+            align='center'
             alt={props.title}
+            fit='cover'
             maxH={505}
             src={props.previewUrl}
             width='100%'
