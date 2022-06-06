@@ -18,7 +18,7 @@ export const FrontPage: FC<Props> = ({
               uid: item.post.uid,
               title: item.post.title,
               previewUrl: item.post.previewUrl || '',
-              publicationDate: frontPage.publicationDate || item.post.createdAt,
+              publicationDate: item.post.createdAt,
               variant: item.component.name as PostCardVariant,
             }}
           />

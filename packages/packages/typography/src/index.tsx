@@ -33,5 +33,5 @@ const Typography = styled.p<Partial<TypographyProps>>`
 
 Typography.defaultProps = defaultProps
 
-export { TypographyProps }
+export type { TypographyProps }
 export default Typography

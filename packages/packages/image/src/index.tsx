@@ -12,10 +12,16 @@ import type {
 type NativeProps = ComponentProps<'img'>
 
 type StyledImageProps = {
+  maxW?: CSSProperties['maxWidth']
+  maxH?: CSSProperties['maxHeight']
+
   align?: CSSProperties['objectPosition']
   fit?: CSSProperties['objectFit']
 }
 const StyledImage = styled.img<StyledImageProps>((props) => ({
+  maxWidth: props.maxW,
+  maxHeight: props.maxH,
+
   objectFit: props.fit,
   objectPosition: props.align,
 }))

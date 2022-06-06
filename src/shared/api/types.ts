@@ -135,8 +135,9 @@ export type CreateDraftInput = {
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type CreateFeedsInput = {
+export type CreateFeedInput = {
   name: Scalars['String'];
+  status?: InputMaybe<FeedStatus>;
   tagUids: Array<Scalars['String']>;
 };
 
@@ -222,6 +223,7 @@ export type Feed = {
   createdAt: Scalars['Date'];
   dataSources?: Maybe<Array<DataSource>>;
   name: Scalars['String'];
+  status?: Maybe<FeedStatus>;
   tags?: Maybe<Array<TagItem>>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
@@ -231,13 +233,25 @@ export type FeedItem = {
   __typename?: 'FeedItem';
   createdAt: Scalars['Date'];
   name: Scalars['String'];
+  status?: Maybe<FeedStatus>;
   tags?: Maybe<Array<TagItem>>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
 
+export enum FeedStatus {
+  Hidden = 'Hidden',
+  Private = 'Private',
+  Public = 'Public'
+}
+
 export type FilterCommentArgs = {
+  contains?: InputMaybe<Scalars['String']>;
   postUid?: InputMaybe<Scalars['String']>;
+};
+
+export type FilterFeedsArgs = {
+  feedStatuses?: InputMaybe<Array<FeedStatus>>;
 };
 
 export type FrontPage = {
@@ -274,6 +288,16 @@ export enum FrontPageType {
   Draft = 'Draft'
 }
 
+export type GithubAuthor = {
+  __typename?: 'GithubAuthor';
+  createdAt: Scalars['Date'];
+  posts?: Maybe<Array<Post>>;
+  uid: Scalars['UID'];
+  updatedAt: Scalars['Date'];
+  user?: Maybe<User>;
+  usernameUrl: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   assignGroupToUser: UserItem;
@@ -285,7 +309,7 @@ export type Mutation = {
   createComponent: Component;
   createDataSource: DataSource;
   createDraft: DraftItem;
-  createFeed: Feed;
+  createFeed: FeedItem;
   createFrontPage: FrontPage;
   createPermission: PermissionItem;
   createPost: Post;
@@ -303,6 +327,7 @@ export type Mutation = {
   removeDraft: Scalars['Int'];
   removeFeed: Scalars['Int'];
   removeFrontPage: Scalars['Int'];
+  removeGithubAuthor: Scalars['Int'];
   removePermission: Scalars['Int'];
   removePost: Scalars['Int'];
   removePriority: Scalars['Int'];
@@ -320,7 +345,7 @@ export type Mutation = {
   updateComponent: Component;
   updateDataSource: DataSource;
   updateDraft: DraftItem;
-  updateFeed: Feed;
+  updateFeed: FeedItem;
   updateFrontPage: FrontPage;
   updatePost: Post;
   updatePriority: Priority;
@@ -376,7 +401,7 @@ export type MutationCreateDraftArgs = {
 
 
 export type MutationCreateFeedArgs = {
-  data: CreateFeedsInput;
+  data: CreateFeedInput;
 };
 
 
@@ -457,6 +482,11 @@ export type MutationRemoveFeedArgs = {
 
 
 export type MutationRemoveFrontPageArgs = {
+  uid: Scalars['UID'];
+};
+
+
+export type MutationRemoveGithubAuthorArgs = {
   uid: Scalars['UID'];
 };
 
@@ -585,19 +615,8 @@ export type PermissionItem = {
 };
 
 export enum PermissionName {
-  AddPosts = 'AddPosts',
-  CreateComments = 'CreateComments',
-  CreateDrafts = 'CreateDrafts',
-  DeletePosts = 'DeletePosts',
-  EditPosts = 'EditPosts',
-  ManageCategories = 'ManageCategories',
-  ManageComponents = 'ManageComponents',
-  ManageDataSource = 'ManageDataSource',
-  ManageFeeds = 'ManageFeeds',
-  ManageFrontPage = 'ManageFrontPage',
-  ManagePriorities = 'ManagePriorities',
-  ManageUserGroups = 'ManageUserGroups',
-  ManageUsers = 'ManageUsers',
+  CreateComment = 'CreateComment',
+  CreateFeed = 'CreateFeed',
   SuperAdministrator = 'SuperAdministrator'
 }
 
@@ -618,6 +637,7 @@ export type Post = {
   createdAt: Scalars['Date'];
   description: Scalars['String'];
   frontPages: Array<FrontPageItem>;
+  githubAuthor?: Maybe<GithubAuthor>;
   previewUrl?: Maybe<Scalars['String']>;
   readingTime?: Maybe<Scalars['Int']>;
   tags?: Maybe<Array<TagItem>>;
@@ -721,9 +741,12 @@ export type Query = {
   feeds: Array<FeedItem>;
   frontPage: FrontPage;
   frontPages: FrontPagePagination;
+  githubAuthor: GithubAuthor;
+  githubAuthors: Array<GithubAuthor>;
   permissions: Array<PermissionItem>;
   post: Post;
   posts: PostPagination;
+  postsByFeed: PostPagination;
   priorities: Array<PriorityItem>;
   priority: Priority;
   profile: Profile;
@@ -775,6 +798,12 @@ export type QueryFeedArgs = {
 };
 
 
+export type QueryFeedsArgs = {
+  filter?: InputMaybe<FilterFeedsArgs>;
+  sort?: InputMaybe<SortFeedsArgs>;
+};
+
+
 export type QueryFrontPageArgs = {
   uid: Scalars['UID'];
 };
@@ -784,6 +813,12 @@ export type QueryFrontPagesArgs = {
   frontPageType?: InputMaybe<Array<FrontPageType>>;
   page?: InputMaybe<Scalars['Int']>;
   perPage?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<SortFrontPageArgs>;
+};
+
+
+export type QueryGithubAuthorArgs = {
+  uid: Scalars['UID'];
 };
 
 
@@ -795,6 +830,13 @@ export type QueryPostArgs = {
 export type QueryPostsArgs = {
   page?: InputMaybe<Scalars['Int']>;
   perPage?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryPostsByFeedArgs = {
+  page?: InputMaybe<Scalars['Int']>;
+  perPage?: InputMaybe<Scalars['Int']>;
+  uid: Scalars['String'];
 };
 
 
@@ -854,6 +896,24 @@ export type SimplePost = {
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
+
+export type SortFeedsArgs = {
+  byCreationDate?: InputMaybe<SortType>;
+  byName?: InputMaybe<SortType>;
+  byUpdateDate?: InputMaybe<SortType>;
+};
+
+export type SortFrontPageArgs = {
+  byCreationDate?: InputMaybe<SortType>;
+  byEndDate?: InputMaybe<SortType>;
+  byPublicationDate?: InputMaybe<SortType>;
+  byUpdateDate?: InputMaybe<SortType>;
+};
+
+export enum SortType {
+  Asc = 'asc',
+  Desc = 'desc'
+}
 
 export type TagItem = {
   __typename?: 'TagItem';
@@ -922,7 +982,7 @@ export type User = {
   isTransportPassword: Scalars['Boolean'];
   login: Scalars['String'];
   passwordHash: Scalars['String'];
-  profile: ProfileItem;
+  profile?: Maybe<ProfileItem>;
   profileUid: Scalars['UID'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
@@ -953,7 +1013,7 @@ export type UserItem = {
   isTransportPassword: Scalars['Boolean'];
   login: Scalars['String'];
   passwordHash: Scalars['String'];
-  profile: ProfileItem;
+  profile?: Maybe<ProfileItem>;
   profileUid: Scalars['UID'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];

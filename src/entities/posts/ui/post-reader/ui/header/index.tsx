@@ -1,13 +1,13 @@
+import Badge from '@razrabs-ui/badge'
+import Image from '@razrabs-ui/image'
 import { format } from 'date-fns'
 import { ru } from 'date-fns/locale'
 import { forwardRef, useMemo } from 'react'
-import { ShareButton, ShareType } from 'shared/ui'
-import { Tag } from 'shared/ui/tag'
+import { DateAgo, ShareButton, ShareType } from 'shared/ui'
 import {
   Description,
   FirstRow,
   ImageWrapper,
-  PostImage,
   PostTextWrapper,
   SecondRow,
   ShareBlock,
@@ -32,18 +32,21 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
     <StyledHeader>
       <FirstRow ref={ref}>
         <ImageWrapper>
-          <PostImage
+          <Image
             alt={props.title}
-            label={formattedDate}
+            maxH={505}
             src={props.previewUrl}
+            width='100%'
           />
+          <DateAgo date={props.publicationDate} size='sm' />
         </ImageWrapper>
+
         <PostTextWrapper>
           <Title uppercase as='h1'>
             {props.title}
           </Title>
 
-          <Description color='secondary' size='medium'>
+          <Description color='secondary' size='xl'>
             {props.description}
           </Description>
         </PostTextWrapper>
@@ -53,7 +56,7 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
         <TagsAndShare>
           <TagsBlock>
             {props.tags?.map((tag) => (
-              <Tag key={tag} name={tag} />
+              <Badge key={tag}>{tag}</Badge>
             ))}
           </TagsBlock>
 

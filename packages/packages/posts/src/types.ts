@@ -20,7 +20,7 @@ type _PostMeta = {
 
 export type PostMeta<T extends PostType = PostType> = _PostMeta[T]
 
-export interface IPostProps<T extends PostType = PostType> {
+interface IPostProps<T extends PostType = PostType> {
   as?: ElementType
   className?: string
 

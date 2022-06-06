@@ -1,0 +1,7 @@
+query GetFeeds {
+  feeds {
+    uid,
+    name,
+    status,
+  }
+}

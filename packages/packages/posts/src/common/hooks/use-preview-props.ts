@@ -1,4 +1,4 @@
-import type { ImageProps } from 'image'
+import type { ImageProps } from '@razrabs-ui/image'
 import { useMemo } from 'react'
 
 import { PostType } from '../../types'

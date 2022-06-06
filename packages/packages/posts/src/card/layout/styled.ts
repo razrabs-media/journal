@@ -5,6 +5,12 @@ export const StyledCard = styled.div`
   flex-direction: column;
 
   gap: 10px;
+
+  &:hover {
+    .title {
+      color: ${({ theme }) => theme.colors.brand};
+    }
+  }
 `
 
 export const Content = styled.div`

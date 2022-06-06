@@ -35,7 +35,13 @@ export const PostCard = forwardRef<HTMLDivElement, PostCardProps>(
         preview={<Preview preview={preview} type={type} />}
         ref={ref}
         title={
-          <Typography uppercase as='h2' size='xl'>
+          <Typography
+            uppercase
+            as='h2'
+            className='title'
+            size='xl'
+            weight='medium'
+          >
             {title}
           </Typography>
         }
@@ -46,3 +52,5 @@ export const PostCard = forwardRef<HTMLDivElement, PostCardProps>(
 )
 
 PostCard.displayName = 'PostCard'
+
+export type { PostCardProps } from './types'

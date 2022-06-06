@@ -106,8 +106,9 @@ input CreateDraftInput {
   title: String
 }
 
-input CreateFeedsInput {
+input CreateFeedInput {
   name: String!
+  status: FeedStatus
   tagUids: [String!]!
 }
 
@@ -191,6 +192,7 @@ type Feed {
   createdAt: Date!
   dataSources: [DataSource!]
   name: String!
+  status: FeedStatus
   tags: [TagItem!]
   uid: UID!
   updatedAt: Date!
@@ -199,13 +201,25 @@ type Feed {
 type FeedItem {
   createdAt: Date!
   name: String!
+  status: FeedStatus
   tags: [TagItem!]
   uid: UID!
   updatedAt: Date!
 }
 
+enum FeedStatus {
+  Hidden
+  Private
+  Public
+}
+
 input FilterCommentArgs {
+  contains: String
   postUid: String
+}
+
+input FilterFeedsArgs {
+  feedStatuses: [FeedStatus!]
 }
 
 type FrontPage {
@@ -239,6 +253,15 @@ enum FrontPageType {
   Draft
 }
 
+type GithubAuthor {
+  createdAt: Date!
+  posts: [Post!]
+  uid: UID!
+  updatedAt: Date!
+  user: User
+  usernameUrl: String!
+}
+
 type Mutation {
   assignGroupToUser(data: AssignUserGroupInput!): UserItem!
   changePassword(data: ChangePasswordInput!): UserItem!
@@ -249,7 +272,7 @@ type Mutation {
   createComponent(data: CreateComponentInput!): Component!
   createDataSource(data: CreateDataSourceInput!): DataSource!
   createDraft(content: Upload, data: CreateDraftInput): DraftItem!
-  createFeed(data: CreateFeedsInput!): Feed!
+  createFeed(data: CreateFeedInput!): FeedItem!
   createFrontPage(data: CreateFrontPageInput!): FrontPage!
   createPermission(data: CreatePermissionInput!): PermissionItem!
   createPost(data: CreatePostInput!): Post!
@@ -267,6 +290,7 @@ type Mutation {
   removeDraft(uid: UID!): Int!
   removeFeed(uid: UID!): Int!
   removeFrontPage(uid: UID!): Int!
+  removeGithubAuthor(uid: UID!): Int!
   removePermission(uid: UID!): Int!
   removePost(uid: UID!): Int!
   removePriority(uid: UID!): Int!
@@ -284,7 +308,7 @@ type Mutation {
   updateComponent(data: UpdateComponentInput!, uid: UID!): Component!
   updateDataSource(data: UpdateDataSourceInput!, uid: UID!): DataSource!
   updateDraft(content: Upload, data: UpdateDraftInput!, uid: UID!): DraftItem!
-  updateFeed(data: UpdateFeedInput!, uid: UID!): Feed!
+  updateFeed(data: UpdateFeedInput!, uid: UID!): FeedItem!
   updateFrontPage(data: UpdateFrontPageInput!, uid: UID!): FrontPage!
   updatePost(uid: UID!, updatePostDto: UpdatePostInput!): Post!
   updatePriority(data: UpdatePrioritiesInput!, uid: UID!): Priority!
@@ -299,19 +323,8 @@ type PermissionItem {
 }
 
 enum PermissionName {
-  AddPosts
-  CreateComments
-  CreateDrafts
-  DeletePosts
-  EditPosts
-  ManageCategories
-  ManageComponents
-  ManageDataSource
-  ManageFeeds
-  ManageFrontPage
-  ManagePriorities
-  ManageUserGroups
-  ManageUsers
+  CreateComment
+  CreateFeed
   SuperAdministrator
 }
 
@@ -330,6 +343,7 @@ type Post {
   createdAt: Date!
   description: String!
   frontPages: [FrontPageItem!]!
+  githubAuthor: GithubAuthor
   previewUrl: String
   readingTime: Int
   tags: [TagItem!]
@@ -422,12 +436,15 @@ type Query {
   draft(uid: UID!): DraftItem!
   drafts(page: Int = 1, perPage: Int = 20): DraftPagination!
   feed(uid: UID!): FeedItem!
-  feeds: [FeedItem!]!
+  feeds(filter: FilterFeedsArgs, sort: SortFeedsArgs): [FeedItem!]!
   frontPage(uid: UID!): FrontPage!
-  frontPages(frontPageType: [FrontPageType!], page: Int = 1, perPage: Int = 20): FrontPagePagination!
+  frontPages(frontPageType: [FrontPageType!], page: Int = 1, perPage: Int = 20, sort: SortFrontPageArgs): FrontPagePagination!
+  githubAuthor(uid: UID!): GithubAuthor!
+  githubAuthors: [GithubAuthor!]!
   permissions: [PermissionItem!]!
   post(uid: UID!): Post!
   posts(page: Int = 1, perPage: Int = 20): PostPagination!
+  postsByFeed(page: Int = 1, perPage: Int = 20, uid: String!): PostPagination!
   priorities: [PriorityItem!]!
   priority(uid: UID!): Priority!
   profile(uid: UID!): Profile!
@@ -467,6 +484,24 @@ type SimplePost {
   title: String!
   uid: UID!
   updatedAt: Date!
+}
+
+input SortFeedsArgs {
+  byCreationDate: SortType
+  byName: SortType
+  byUpdateDate: SortType
+}
+
+input SortFrontPageArgs {
+  byCreationDate: SortType
+  byEndDate: SortType
+  byPublicationDate: SortType
+  byUpdateDate: SortType
+}
+
+enum SortType {
+  asc
+  desc
 }
 
 type TagItem {
@@ -539,7 +574,7 @@ type User {
   isTransportPassword: Boolean!
   login: String!
   passwordHash: String!
-  profile: ProfileItem!
+  profile: ProfileItem
   profileUid: UID!
   uid: UID!
   updatedAt: Date!
@@ -568,7 +603,7 @@ type UserItem {
   isTransportPassword: Boolean!
   login: String!
   passwordHash: String!
-  profile: ProfileItem!
+  profile: ProfileItem
   profileUid: UID!
   uid: UID!
   updatedAt: Date!

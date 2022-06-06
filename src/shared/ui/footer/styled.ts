@@ -4,7 +4,7 @@ export const StyledFooter = styled.footer`
   display: grid;
   grid-auto-flow: row;
   padding: 20px 0 0 0;
-  border-top: 1px solid ${({ theme }) => theme.colors.text.primary};
+  border-top: 1px solid ${({ theme }) => theme.colors.logo};
   overflow: hidden;
 `
 
@@ -21,7 +21,7 @@ export const Copyright = styled.span`
   letter-spacing: 1px;
   text-transform: uppercase;
   font-feature-settings: 'salt' on;
-  color: ${({ theme }) => theme.colors.text.secondary};
+  color: ${({ theme }) => theme.colors.secondary};
 `
 
 export const Logo = styled.span`
@@ -36,7 +36,7 @@ export const Logo = styled.span`
   line-height: calc(var(--width) * 0.131);
   letter-spacing: calc(var(--width) * 0.024);
   font-feature-settings: 'salt' on;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.colors.primary};
   opacity: 5%;
 
   overflow: hidden;

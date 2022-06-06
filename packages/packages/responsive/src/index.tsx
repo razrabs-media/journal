@@ -18,20 +18,20 @@ const Desktop: FC<MediaQueryComponentProps> = ({ children }) => {
 
 const TabletAndAbove: FC<MediaQueryComponentProps> = ({ children }) => {
   const {
-    breakpoints: { lg },
+    breakpoints: { sm },
   } = useTheme()
 
-  const isTablet = useMediaQuery({ minWidth: parseInt(lg) - 1 })
+  const isTablet = useMediaQuery({ minWidth: sm })
 
   return isTablet ? <>{children}</> : null
 }
 
 const Tablet: FC<MediaQueryComponentProps> = ({ children }) => {
   const {
-    breakpoints: { lg, sm },
+    breakpoints: { md, sm },
   } = useTheme()
 
-  const isTablet = useMediaQuery({ maxWidth: parseInt(lg) - 1, minWidth: sm })
+  const isTablet = useMediaQuery({ maxWidth: parseInt(md) - 1, minWidth: sm })
   return isTablet ? <>{children}</> : null
 }
 

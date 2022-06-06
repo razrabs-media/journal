@@ -3,12 +3,12 @@ import styled from '@emotion/styled'
 export const Body = styled.body`
   min-height: 100vh;
 
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.background};
 
   &::selection {
-    color: ${({ theme }) => theme.colors.accentText};
-    background-color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.contrastPrimary};
+    background-color: ${({ theme }) => theme.colors.brand};
   }
 
   &::-webkit-scrollbar {
@@ -20,12 +20,12 @@ export const Body = styled.body`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.text.secondary};
+    background: ${({ theme }) => theme.colors.secondary};
     border-radius: 100px;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.colors.text.primary};
+    background: ${({ theme }) => theme.colors.primary};
   }
 
   &::-webkit-scrollbar-track {
@@ -37,8 +37,8 @@ export const Body = styled.body`
   }
 
   *::selection {
-    color: ${({ theme }) => theme.colors.accentText};
-    background-color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.contrastPrimary};
+    background-color: ${({ theme }) => theme.colors.brand};
   }
 
   *::-webkit-scrollbar {
@@ -50,12 +50,12 @@ export const Body = styled.body`
   }
 
   *::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.text.secondary};
+    background: ${({ theme }) => theme.colors.secondary};
     border-radius: 100px;
   }
 
   *::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.colors.text.primary};
+    background: ${({ theme }) => theme.colors.primary};
   }
 
   *::-webkit-scrollbar-track {

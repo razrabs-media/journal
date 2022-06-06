@@ -1,11 +1,12 @@
 import styled from '@emotion/styled'
+import Typography from '@razrabs-ui/typography'
 import { FC } from 'react'
 import ReactMarkdown, { Components } from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import remarkGemoji from 'remark-gemoji'
 import remarkGfm from 'remark-gfm'
-import { CopyButton, Typography } from 'shared/ui'
+import { CopyButton } from 'shared/ui'
 import a11yEmoji from './remark-emoji'
 
 const CodeWrapper = styled.div`
@@ -17,7 +18,7 @@ const handleCopyButton = async (code: string) => {
 }
 
 const COMPONENTS: Components = {
-  p: (props) => <Typography {...props} color='primary' size='large' />,
+  p: (props) => <Typography {...props} color='primary' size='lg' />,
   code: ({ inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || '')
     const codeString = String(children).replace(/\n$/, '')
@@ -56,7 +57,7 @@ const StyleWrapper = styled.div`
   line-height: 140%;
 
   a {
-    color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.brand};
 
     &:hover {
       text-decoration: underline;
