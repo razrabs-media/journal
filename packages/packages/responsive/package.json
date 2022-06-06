@@ -1,0 +1,15 @@
+{
+  "name": "@razrabs-ui/responsive",
+  "version": "0.0.0-stub",
+  "private": true,
+  "license": "UNLICENSED",
+  "main": "src/index.tsx",
+  "devDependencies": {
+    "@razrabs-ui/theme": "0.0.0-stub",
+    "@types/react": "18.0.0",
+    "react": "18.0.0"
+  },
+  "dependencies": {
+    "react-responsive": "^9.0.0-beta.8"
+  }
+}
