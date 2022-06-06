@@ -110,5 +110,11 @@ module.exports = {
         'import/no-default-export': 'off',
       },
     },
+    {
+      files: ['packages/packages/**'],
+      rules: {
+        'import/no-internal-modules': 'off',
+      },
+    }
   ],
 }

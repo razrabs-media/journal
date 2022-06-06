@@ -1,0 +1,11 @@
+{
+  "name": "@razrabs-ui/posts",
+  "version": "0.0.0-stub",
+  "private": true,
+  "license": "UNLICENSED",
+  "main": "src/index.tsx",
+  "devDependencies": {
+    "@types/react": "18.0.0",
+    "react": "18.0.0"
+  }
+}
