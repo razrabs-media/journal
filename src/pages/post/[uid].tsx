@@ -1,6 +1,4 @@
 import { GetServerSideProps, NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
 import {
   GetPost,
   GetPostQuery,
@@ -10,27 +8,22 @@ import {
 import { client } from 'shared/api'
 import { Helmet } from '../../shared/lib/helmet'
 
-const Post: NextPage<GetPost> = ({ post }) => {
-  const router = useRouter()
-  const currentPage = router.route
+const Post: NextPage<GetPost> = ({ post }) => (
+  <>
+    <Helmet
+      description={post.description}
+      image={post.previewUrl || undefined}
+      title={post.title}
+    />
 
-  return (
-    <>
-      <Helmet
-        description={post.description}
-        image={post.previewUrl || undefined}
-        title={post.title}
-      />
-
-      <PostReader
-        {...post}
-        previewUrl={post.previewUrl || undefined}
-        publicationDate={post.createdAt}
-        tags={post.tags?.map((tag) => tag.name)}
-      />
-    </>
-  )
-}
+    <PostReader
+      {...post}
+      previewUrl={post.previewUrl || undefined}
+      publicationDate={post.createdAt}
+      tags={post.tags?.map((tag) => tag.name)}
+    />
+  </>
+)
 
 export const getServerSideProps: GetServerSideProps<{
   post: GetPost['post']

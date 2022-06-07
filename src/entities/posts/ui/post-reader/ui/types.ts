@@ -4,6 +4,6 @@ export type Props = {
   description: string
   previewUrl?: string
   tags?: string[]
-  publicationDate: number
+  publicationDate: string
   content: string
 }

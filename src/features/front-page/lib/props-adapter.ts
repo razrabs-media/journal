@@ -9,6 +9,7 @@ export function propsAdapter(
     type: PostType.Article,
     title: props.title || 'Инопланетяне похитили этот пост',
     preview: props.previewUrl || undefined,
-    date: parseDate(props.createdAt) || '',
+    // TODO убрать приведение типов, когда на бэке изменят тип скаляра
+    date: parseDate(props.createdAt as unknown as string) || '',
   }
 }

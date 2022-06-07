@@ -30,7 +30,7 @@ export default {
 } as ComponentMeta<typeof Image>
 
 const Template: ComponentStory<typeof Image> = (args) => (
-  <Image {...args} fallback={<FallbackSquare />} />
+  <Image {...args} alt='Example image' fallback={<FallbackSquare />} />
 )
 
 export const Basic = Template.bind({})

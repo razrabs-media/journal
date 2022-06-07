@@ -23,4 +23,4 @@ export const usePreviewProps = (
     }
 
     return postProps
-  }, [type])
+  }, [type, videoProps, tweetProps, postProps])
