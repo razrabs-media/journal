@@ -1,10 +1,10 @@
 import Typography from '@razrabs-ui/typography'
 import { forwardRef } from 'react'
 import { ChiefBadge } from '../common/components'
+import { PostProps } from '../types'
 import { Layout } from './layout'
-import { PostOutlineCardProps } from './types'
 
-export const PostOutlineCard = forwardRef<HTMLDivElement, PostOutlineCardProps>(
+export const PostOutlineCard = forwardRef<HTMLDivElement, PostProps>(
   ({ as, className, title, chiefPost, date, small }, ref) => (
     <Layout
       as={as}

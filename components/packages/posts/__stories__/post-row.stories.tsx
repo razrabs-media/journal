@@ -1,7 +1,7 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import type { PostRowProps } from '../src'
 import { PostRow, PostType } from '../src'
+import { PostProps } from '../src/types'
 
 export default {
   title: '@razrabs-ui/Компоненты/PostRow',
@@ -51,7 +51,7 @@ const Template: ComponentStory<typeof PostRow> = ({
   // @ts-ignore
   longRead,
   ...args
-}: PostRowProps) => (
+}: PostProps) => (
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   <PostRow contentMeta={{ duration, longRead }} {...args} />

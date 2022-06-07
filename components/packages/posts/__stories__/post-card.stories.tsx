@@ -1,12 +1,14 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import type { PostCardProps } from '../src'
 import { PostCard, PostType } from '../src'
+import { PostProps } from '../src/types'
 
 export default {
   title: '@razrabs-ui/Компоненты/PostCard',
   component: PostCard,
   args: {
+    small: false,
+
     type: PostType.Article,
 
     title:
@@ -20,6 +22,8 @@ export default {
     chiefPost: true,
   },
   argTypes: {
+    small: { control: 'boolean' },
+
     type: {
       control: 'radio',
       options: [PostType.Article, PostType.Video, PostType.Tweet],
@@ -47,7 +51,7 @@ const OneWideColumnTemplate: ComponentStory<typeof PostCard> = ({
   // @ts-ignore
   longRead,
   ...args
-}: PostCardProps) => (
+}: PostProps) => (
   <div style={{ width: 370 }}>
     <PostCard contentMeta={{ duration, longRead }} {...args} />
   </div>
@@ -61,7 +65,7 @@ const TwoColumnsTemplate: ComponentStory<typeof PostCard> = ({
   // @ts-ignore
   longRead,
   ...args
-}: PostCardProps) => (
+}: PostProps) => (
   <div style={{ width: 764 }}>
     <PostCard contentMeta={{ duration, longRead }} {...args} />
   </div>
@@ -75,7 +79,7 @@ const GridTemplate: ComponentStory<typeof PostCard> = ({
   // @ts-ignore
   longRead,
   ...args
-}: PostCardProps) => (
+}: PostProps) => (
   <div
     style={{ display: 'flex', flexDirection: 'row', gap: 24, flexWrap: 'wrap' }}
   >

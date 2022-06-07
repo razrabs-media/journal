@@ -6,6 +6,9 @@ export const StyledHeader = styled.header`
   padding: 12px 0;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.logo};
+
+  height: 54px;
+  box-sizing: border-box;
 `
 
 export const NavigationBlock = styled.nav``

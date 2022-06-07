@@ -35,8 +35,12 @@ interface IPostProps<T extends PostType = PostType> {
   chiefPost?: boolean
 }
 
+export type SizeProps = { small?: boolean }
+
 // TODO: можно ли spread по enum?
-export type PostProps =
+export type PostProps = (
   | IPostProps<PostType.Article>
   | IPostProps<PostType.Video>
   | IPostProps<PostType.Tweet>
+) &
+  SizeProps
