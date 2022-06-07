@@ -14,7 +14,6 @@ export const StyledFooter = styled.footer`
   letter-spacing: 1px;
   text-transform: uppercase;
   font-feature-settings: 'salt' on;
-
   color: ${({ theme }) => theme.colors.secondary};
 
   @media screen and (max-width: 671px) {
