@@ -1,8 +1,7 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { PostRow } from '../src'
-import type { PostRowProps } from '../src/row/types'
-import { PostType } from '../src/types'
+import type { PostRowProps } from '../src'
+import { PostRow, PostType } from '../src'
 
 export default {
   title: '@razrabs-ui/Компоненты/PostRow',
@@ -16,7 +15,6 @@ export default {
       'Погружение в недра. Разбираем kernel exploitation, чтобы добраться до рута на виртуалке c Hack The Box',
     preview: 'https://i.ibb.co/5KL0rqm/Rectangle1.jpg',
     date: '26 апреля',
-    tags: [],
 
     duration: '1:12:54',
     longRead: true,
@@ -34,7 +32,6 @@ export default {
     title: { control: 'text' },
     preview: { type: 'file', accept: ['.png', '.jpg'] },
     date: { control: 'text' },
-    tags: { control: 'array' },
 
     duration: { control: 'text', if: { arg: 'type', eq: PostType.Video } },
     longRead: {

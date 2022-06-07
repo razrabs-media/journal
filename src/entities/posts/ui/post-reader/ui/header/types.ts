@@ -3,6 +3,6 @@ export type Props = {
   title: string
   description: string
   previewUrl?: string
-  publicationDate: number
+  publicationDate: string
   tags?: string[]
 }

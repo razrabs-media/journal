@@ -6,8 +6,13 @@ export const StyledRow = styled.div<SizeProps>`
   display: flex;
   flex-direction: row;
 
-  min-height: ${({ small }) => (small ? '105px' : '140px')};
   gap: ${({ small }) => (small ? '10px' : '24px')};
+
+  &:hover {
+    .title {
+      color: ${({ theme }) => theme.colors.brand};
+    }
+  }
 `
 
 export const Content = styled.div<SizeProps>`

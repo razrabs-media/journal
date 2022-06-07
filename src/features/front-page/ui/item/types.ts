@@ -1,4 +1,5 @@
-import { ReactNode } from 'react'
+import { ElementType } from 'react'
+import { PostOnFrontPage } from 'shared/api'
 
 export type Position = {
   x: number
@@ -7,4 +8,9 @@ export type Position = {
   h: number
 }
 
-export type Props = Position & { component: ReactNode }
+export type Props = Position & {
+  as?: ElementType
+
+  variant: string
+  postProps: Partial<PostOnFrontPage['post']>
+}

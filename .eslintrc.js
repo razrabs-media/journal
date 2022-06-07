@@ -52,7 +52,7 @@ module.exports = {
     ],
     'react/jsx-max-props-per-line': [
       'error',
-      { maximum: { single: 5, multi: 1 } },
+      { maximum: { single: 6, multi: 1 } },
     ],
     'react/jsx-curly-spacing': [
       'error',

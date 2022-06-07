@@ -1,58 +1,49 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import Head from 'next/head'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import {
   CurrentFrontPage,
   CurrentFrontPageQuery,
-  FrontPage,
+  FrontPageGrid,
+  FrontPageItem,
+  sortContent,
 } from 'features/front-page'
 import { client } from 'shared/api'
-
-export const METADATA_MOCK = {
-  title: 'Разрабы',
-  description: 'Медиа для разработчиков',
-  previewUrl: '/public/images/logo/avatar.png',
-}
+import { Helmet } from 'shared/lib/helmet'
 
 type Props = {
   frontPage: CurrentFrontPage['currentFrontPage']
 }
 
-const HomePage: NextPage<Props> = ({ frontPage }) => {
-  const router = useRouter()
-  const currentPage = router.route
+const HomePage: NextPage<Props> = ({ frontPage }) => (
+  <>
+    <Helmet />
 
-  return (
-    <>
-      <Head>
-        <title>Разрабы</title>
-        <meta content='Lorem ipsum' name='description' />
-
-        {/* Twitter */}
-        <meta content='summary' name='twitter:card' />
-        <meta content={METADATA_MOCK.title} name='twitter:title' />
-        <meta
-          content={METADATA_MOCK.description}
-          property='twitter:description'
-        />
-        <meta content={METADATA_MOCK.previewUrl} property='twitter:image' />
-        <meta content={currentPage} property='twitter:url' />
-
-        {/* Open Graph */}
-        <meta content={currentPage} property='og:url' />
-        <meta content='Разрабы' property='og:site_name' />
-        <meta content={METADATA_MOCK.previewUrl} property='og:image' />
-        <meta content={METADATA_MOCK.title} property='og:title' />
-        <meta content='400' property='og:image:width' />
-        <meta content={METADATA_MOCK.description} property='og:description' />
-
-        <link href='/public/favicon.ico' rel='icon' />
-      </Head>
-
-      <FrontPage frontPage={frontPage} />
-    </>
-  )
-}
+    <FrontPageGrid>
+      {frontPage.content.map(
+        ({
+          uid,
+          position: { x, y },
+          component: {
+            name,
+            configuration: { h, w },
+          },
+          post,
+        }) => (
+          <Link key={uid} passHref href={`/post/${post.uid}`}>
+            <FrontPageItem
+              h={h}
+              postProps={post}
+              variant={name}
+              w={w}
+              x={x}
+              y={y}
+            />
+          </Link>
+        ),
+      )}
+    </FrontPageGrid>
+  </>
+)
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const {
@@ -62,15 +53,8 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     fetchPolicy: 'no-cache',
   })
 
-  // Необходимо отсортировать, чтобы на мобильных устройствах расставлять контент в +- правильном порядке
-  const sortedContent = [...currentFrontPage.content]
-
-  sortedContent
-    .sort((a, b) => a.position.x - b.position.x)
-    .sort((a, b) => a.position.y - b.position.y)
-
   const frontPage = Object.assign({}, currentFrontPage, {
-    content: sortedContent,
+    content: sortContent(currentFrontPage.content),
   })
 
   return {

@@ -45,4 +45,4 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
   )
 })
 
-Layout.displayName = 'MaterialCardLayout'
+Layout.displayName = 'PostCardLayout'
