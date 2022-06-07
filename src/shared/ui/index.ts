@@ -1,4 +1,5 @@
 export { CopyButton } from './copy-button'
+export { ShareBlock } from './share-buttons-block'
 export { DateAgo } from './date-ago'
 export { Footer } from './footer'
 export { Grid, GridArea, StickyGridArea } from './grid'

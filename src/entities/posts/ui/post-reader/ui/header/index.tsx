@@ -1,15 +1,16 @@
 import Badge from '@razrabs-ui/badge'
 import Image from '@razrabs-ui/image'
 import { forwardRef } from 'react'
-import { DateAgo, ShareButton, ShareType } from 'shared/ui'
+import { DateAgo, ShareBlock } from 'shared/ui'
+
 import {
   Description,
   FirstRow,
   ImageWrapper,
   PostTextWrapper,
   SecondRow,
-  ShareBlock,
   StyledHeader,
+  StyledShareBlock,
   TagsAndShare,
   TagsBlock,
   Title,
@@ -50,11 +51,9 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => (
             <Badge key={tag}>{tag}</Badge>
           ))}
         </TagsBlock>
-
-        <ShareBlock>
-          <ShareButton shareType={ShareType.Twitter} />
-          <ShareButton shareType={ShareType.Url} />
-        </ShareBlock>
+        <StyledShareBlock>
+          <ShareBlock />
+        </StyledShareBlock>
       </TagsAndShare>
     </SecondRow>
   </StyledHeader>

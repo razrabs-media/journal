@@ -94,14 +94,6 @@ export const DateAndShareRow = styled.div`
 
 export const PublicationDate = styled(Typography)``
 
-export const ShareBlock = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  gap: 15px;
-`
-
 export const Line = styled.div`
   margin-top: 16px;
   width: 100%;
@@ -115,4 +107,12 @@ export const TagsBlock = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 4px;
+`
+
+export const StyledShareBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 15px;
 `
