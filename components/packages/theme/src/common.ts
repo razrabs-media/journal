@@ -11,7 +11,7 @@ export const common = {
     lg: '20px',
     xl: '24px',
     '2xl': '32px',
-    '3xl': '48px',
+    '3xl': '40px',
   },
   fontWeights: {
     normal: '400',

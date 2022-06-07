@@ -1,2 +1,4 @@
 export * from './model'
-export * from './ui'
+export { FrontPageItem, FrontPageGrid } from './ui'
+
+export { sortContent } from './lib/sort-content'

@@ -44,4 +44,4 @@ export const Layout = forwardRef<HTMLDivElement, LayoutProps>(
     </StyledRow>
   ),
 )
-Layout.displayName = 'MaterialRowLayout'
+Layout.displayName = 'PostRowLayout'

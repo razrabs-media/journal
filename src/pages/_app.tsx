@@ -1,65 +1,37 @@
 import { ThemeProvider } from '@emotion/react'
 import { themeDark } from '@razrabs-ui/theme'
 import type { NextPageContext } from 'next'
-import { useEffect, useState } from 'react'
-import { Context as ResponsiveContext } from 'react-responsive'
-import type { AppProps as _AppProps } from 'next/app'
+import { AppProps } from 'next/app'
 import { Header } from 'widgets/header'
+import { getContextMedia, withMediaProvider } from 'shared/lib/client-hints'
 import { Footer, GridArea, MainGrid, StickyGridArea } from 'shared/ui'
 
-type AppProps = {
-  suggestedWidth: number
-} & _AppProps
+const _App = ({ Component, pageProps }: AppProps) => (
+  <ThemeProvider theme={themeDark}>
+    <MainGrid>
+      <StickyGridArea area='header'>
+        <Header />
+      </StickyGridArea>
 
-const App = ({ Component, pageProps, suggestedWidth }: AppProps) => {
-  const app = (
-    <ThemeProvider theme={themeDark}>
-      <MainGrid>
-        <StickyGridArea area='header'>
-          <Header />
-        </StickyGridArea>
+      <GridArea area='content'>
+        <Component {...pageProps} />
+      </GridArea>
 
-        <GridArea area='content'>
-          <Component {...pageProps} />
-        </GridArea>
+      <GridArea area='footer'>
+        <Footer />
+      </GridArea>
+    </MainGrid>
+  </ThemeProvider>
+)
 
-        <GridArea area='footer'>
-          <Footer />
-        </GridArea>
-      </MainGrid>
-    </ThemeProvider>
-  )
+const App = withMediaProvider(_App)
 
-  const [initialized, setInitialized] = useState(false)
-
-  useEffect(() => {
-    setInitialized(true)
-  }, [])
-
-  return initialized ? (
-    app
-  ) : (
-    <ResponsiveContext.Provider value={{ width: suggestedWidth }}>
-      {app}
-    </ResponsiveContext.Provider>
-  )
-}
-
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 App.getInitialProps = async ({ ctx }: { ctx: NextPageContext }) => {
-  const parser = eval("require('ua-parser-js')") // it's not bundled to a browser js
+  const contextMedia = getContextMedia(ctx)
 
-  const userAgent = parser(ctx.req?.headers['user-agent'])
-  const deviceType = userAgent.device.type
-
-  // TODO сохранять suggestedWidth в куки и брать оттуда
-  const suggestedWidth =
-    deviceType === 'mobile'
-      ? parseInt(themeDark.breakpoints.sm) - 1
-      : deviceType === 'tablet'
-      ? parseInt(themeDark.breakpoints.md) - 1
-      : parseInt(themeDark.breakpoints.lg)
-
-  return { suggestedWidth }
+  return { media: contextMedia }
 }
 
 export default App

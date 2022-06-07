@@ -9,9 +9,7 @@ const Document: FC = () => (
     <ThemeProvider theme={themeDark}>
       <Global styles={FONT_FACE} />
       <Global styles={GLOBAL_STYLES} />
-      <Head>
-        <link href='/favicon.svg' rel='shortcut icon' />
-      </Head>
+      <Head />
       <Body>
         <Main />
         <NextScript />

@@ -1,8 +1,7 @@
 import Badge from '@razrabs-ui/badge'
 import Image from '@razrabs-ui/image'
-import { format } from 'date-fns'
-import { ru } from 'date-fns/locale'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
+import { parseDate } from 'shared/lib/parse-date'
 import { ShareButton, ShareType } from 'shared/ui'
 import { useDisplayAnimation } from '../../lib'
 import {
@@ -25,9 +24,10 @@ export const FloatedPreview: FC<Props> = ({
   publicationDate,
   tags,
 }) => {
-  const formattedDate = format(publicationDate, 'dd MMMM, H:mm', {
-    locale: ru,
-  })
+  const formattedDate = useMemo(
+    () => parseDate(publicationDate),
+    [publicationDate],
+  )
 
   const { display, fadeIn, fadeOut } = useDisplayAnimation(
     shouldDisplay,

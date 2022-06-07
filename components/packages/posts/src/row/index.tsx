@@ -49,7 +49,13 @@ export const PostRow = forwardRef<HTMLDivElement, PostRowProps>(
         ref={ref}
         small={small}
         title={
-          <Typography uppercase as='h2' size={small ? 'md' : 'xl'}>
+          <Typography
+            uppercase
+            as='h2'
+            className='title'
+            size={small ? 'md' : 'xl'}
+            weight='medium'
+          >
             {title}
           </Typography>
         }

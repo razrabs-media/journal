@@ -3,6 +3,6 @@ export type Props = {
   transitionTime: number
   previewUrl?: string
   title: string
-  publicationDate: number
+  publicationDate: string
   tags?: string[]
 }
