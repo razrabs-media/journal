@@ -1,11 +1,11 @@
 import styled from '@emotion/styled'
-
-import type { SizeProps } from '../types'
+import { SizeProps } from '../../types'
 
 export const StyledRow = styled.div<SizeProps>`
   display: flex;
   flex-direction: row;
 
+  min-height: ${({ small }) => (small ? '105px' : '140px')};
   gap: ${({ small }) => (small ? '10px' : '24px')};
 
   &:hover {

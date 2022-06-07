@@ -1,7 +1,7 @@
 import type { ElementType, ReactNode } from 'react'
 import { forwardRef } from 'react'
+import { SizeProps } from '../../types'
 
-import type { SizeProps } from '../types'
 import {
   AdditionalInfoWrapper,
   ChiefBadgeWrapper,

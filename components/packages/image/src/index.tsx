@@ -1,6 +1,5 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import { useState } from 'react'
 import type {
   ComponentProps,
   CSSProperties,
@@ -8,6 +7,7 @@ import type {
   ReactNode,
   SyntheticEvent,
 } from 'react'
+import { useState } from 'react'
 
 type NativeProps = ComponentProps<'img'>
 
@@ -107,7 +107,7 @@ const Image: FC<ImageProps> = (props) => {
   }
 
   // Если ошибка и передан компонент - возвращаем компонент
-  if ((error || !src) && fallback) {
+  if ((error || src === undefined) && fallback) {
     return (
       <FallbackWrapper
         height={preferredHeight}

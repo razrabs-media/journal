@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import Typography from '@razrabs-ui/typography'
+import { forwardRef } from 'react'
 import type { ElementType, FC, ReactNode } from 'react'
 
 type StyleBadgeProps = {
@@ -54,13 +55,17 @@ type BadgeProps = {
   className?: string
   children?: ReactNode
 } & StyleBadgeProps
-const Badge: FC<BadgeProps> = ({ as = 'span', children, ...props }) => (
-  <StyledBadge uppercase as={as} size='sm' {...props}>
-    {children}
-  </StyledBadge>
+const Badge: FC<BadgeProps> = forwardRef<any, BadgeProps>(
+  ({ as = 'span', children, ...props }, ref) => (
+    <StyledBadge uppercase as={as} ref={ref} size='sm' {...props}>
+      {children}
+    </StyledBadge>
+  ),
 )
 Badge.defaultProps = {
   color: 'secondary',
 }
+
+Badge.displayName = 'Badge'
 
 export default Badge

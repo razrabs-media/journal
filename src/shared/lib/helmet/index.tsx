@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { HelmetProps } from './types'
@@ -6,12 +7,15 @@ export const Helmet = ({ title, description, image }: HelmetProps) => {
   const router = useRouter()
   const currentPage = router.route
 
+  const theme = useTheme()
+
   return (
     <Head>
       <title>{title}</title>
       <meta content={description} name='description' />
 
       <link href='/favicon.svg' rel='shortcut icon' />
+      <meta content={theme.colors.background} name='theme-color' />
 
       {/* Twitter */}
       <meta content='summary' name='twitter:card' />
