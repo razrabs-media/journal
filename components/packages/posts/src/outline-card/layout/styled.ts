@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { SizeProps } from '../types'
+import { SizeProps } from '../../types'
 
 export const StyledCard = styled.div<SizeProps>`
   display: flex;

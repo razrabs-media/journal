@@ -117,4 +117,9 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: [
+    '*.stories.ts',
+    '*.stories.tsx',
+    '*.stories.mdx',
+  ],
 };

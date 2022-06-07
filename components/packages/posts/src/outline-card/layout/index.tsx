@@ -1,5 +1,5 @@
 import { ElementType, forwardRef, ReactNode } from 'react'
-import { SizeProps } from '../../row/types'
+import { SizeProps } from '../../types'
 import { StyledCard } from './styled'
 
 type LayoutProps = {
