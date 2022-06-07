@@ -44,7 +44,7 @@ export const FrontPageItem = forwardRef<HTMLAnchorElement, Props>(
         </TabletAndAbove>
 
         <Mobile>
-          <PostComponent {...props} mobile />
+          <PostComponent {...props} small />
         </Mobile>
       </FrontPageItemWrapper>
     )

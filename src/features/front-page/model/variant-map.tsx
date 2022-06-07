@@ -8,12 +8,11 @@ export enum CardVariant {
   Outline = 'long line',
 }
 
-type Props = PostProps & { mobile?: boolean }
+type Props = PostProps
 export const CARD_BY_VARIANT: Readonly<Record<CardVariant, FC<Props>>> = {
-  [CardVariant.Point]: ({ mobile, ...postProps }: Props) =>
-    !mobile ? <PostCard {...postProps} /> : <PostRow small {...postProps} />,
-  [CardVariant.Line]: (props) => <PostCard {...props} />,
-  [CardVariant.Outline]: ({ mobile, ...postProps }) => (
-    <PostOutlineCard small={mobile} {...postProps} />
-  ),
+  [CardVariant.Point]: ({ small, ...postProps }: Props) =>
+    !small ? <PostCard {...postProps} /> : <PostRow small {...postProps} />,
+
+  [CardVariant.Line]: (props: Props) => <PostCard {...props} />,
+  [CardVariant.Outline]: (props) => <PostOutlineCard {...props} />,
 }
