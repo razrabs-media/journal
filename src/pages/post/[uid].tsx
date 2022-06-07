@@ -8,6 +8,7 @@ import {
   PostReader,
 } from 'entities/posts'
 import { client } from 'shared/api'
+import { Helmet } from '../../shared/lib/helmet'
 
 const Post: NextPage<GetPost> = ({ post }) => {
   const router = useRouter()
@@ -15,26 +16,11 @@ const Post: NextPage<GetPost> = ({ post }) => {
 
   return (
     <>
-      <Head>
-        <title>{post.title}</title>
-        <meta content={post.description || ''} name='description' />
-
-        {/* Twitter */}
-        <meta content='summary' name='twitter:card' />
-        <meta content={post.title} name='twitter:title' />
-        <meta content={post.description || ''} property='twitter:description' />
-        <meta content={post.previewUrl || ''} property='twitter:image' />
-        <meta content={currentPage} property='twitter:url' />
-
-        {/* Open Graph */}
-        <meta content={currentPage} property='og:url' />
-        <meta content='Разрабы' property='og:site_name' />
-        <meta content={post.title} property='og:title' />
-        <meta content={post.description || ''} property='og:description' />
-        <meta content={post.previewUrl || ''} property='og:image' />
-
-        <link href='/public/favicon.ico' rel='icon' />
-      </Head>
+      <Helmet
+        description={post.description}
+        image={post.previewUrl || undefined}
+        title={post.title}
+      />
 
       <PostReader
         {...post}
