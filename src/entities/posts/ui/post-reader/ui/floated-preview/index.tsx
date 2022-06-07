@@ -2,15 +2,15 @@ import Badge from '@razrabs-ui/badge'
 import Image from '@razrabs-ui/image'
 import { FC, useMemo } from 'react'
 import { parseDate } from 'shared/lib/parse-date'
-import { ShareButton, ShareType } from 'shared/ui'
+import { ShareBlock } from 'shared/ui'
 import { useDisplayAnimation } from '../../lib'
 import {
   DateAndShareRow,
   Layout,
   Line,
   PublicationDate,
-  ShareBlock,
   StyledFloatedBlock,
+  StyledShareBlock,
   TagsBlock,
   Title,
 } from './styled'
@@ -60,10 +60,9 @@ export const FloatedPreview: FC<Props> = ({
             {formattedDate}
           </PublicationDate>
 
-          <ShareBlock>
-            <ShareButton shareType={ShareType.Twitter} />
-            <ShareButton shareType={ShareType.Url} />
-          </ShareBlock>
+          <StyledShareBlock>
+            <ShareBlock />
+          </StyledShareBlock>
         </DateAndShareRow>
 
         <Line />

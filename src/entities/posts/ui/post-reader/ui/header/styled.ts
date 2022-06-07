@@ -82,7 +82,7 @@ export const TagsBlock = styled.div`
   gap: 4px;
 `
 
-export const ShareBlock = styled.div`
+export const StyledShareBlock = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
