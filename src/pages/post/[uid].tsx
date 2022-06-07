@@ -31,6 +31,7 @@ export const getServerSideProps: GetServerSideProps<{
   const { data } = await client.query<GetPost, GetPostVariables>({
     query: GetPostQuery,
     variables: { uid: query.uid?.toString() ?? '' },
+    fetchPolicy: 'no-cache',
   })
 
   return {

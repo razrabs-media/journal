@@ -11,7 +11,7 @@ import styled from '@emotion/styled'
 // https://github.com/react-theming/storybook-addon/issues/45
 const onThemeSwitch = (context) => {
   const { theme } = context
-  const background = theme.colors.background || 'white'
+  const background = theme.colors.background ?? 'white'
 
   return {
     parameters: {

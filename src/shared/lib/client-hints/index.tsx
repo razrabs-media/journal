@@ -31,7 +31,7 @@ export function getContextMedia(ctx: NextPageContext): MediaInfo {
   const parser = eval("require('ua-parser-js')") // it's not bundled to a browser js
 
   const userAgent = ctx.req?.headers['user-agent']
-  const deviceType: string = parser(userAgent).device.type || 'desktop'
+  const deviceType: string = parser(userAgent).device.type ?? 'desktop'
 
   switch (deviceType) {
     case 'mobile':

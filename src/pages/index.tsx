@@ -1,5 +1,6 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
+import { FeedSelector, GetFeeds, GetFeedsQuery } from 'features/feeds'
 import {
   CurrentFrontPage,
   CurrentFrontPageQuery,
@@ -7,16 +8,19 @@ import {
   FrontPageItem,
   sortContent,
 } from 'features/front-page'
-import { client } from 'shared/api'
+import { client, FeedItem } from 'shared/api'
 import { Helmet } from 'shared/lib/helmet'
 
 type Props = {
   frontPage: CurrentFrontPage['currentFrontPage']
+  feeds: Pick<FeedItem, 'uid' | 'name'>[]
 }
 
-const HomePage: NextPage<Props> = ({ frontPage }) => (
+const HomePage: NextPage<Props> = ({ frontPage, feeds }) => (
   <>
     <Helmet />
+
+    <FeedSelector feeds={feeds} />
 
     <FrontPageGrid>
       {frontPage.content.map(
@@ -53,12 +57,19 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     fetchPolicy: 'no-cache',
   })
 
+  const {
+    data: { feeds },
+  } = await client.query<GetFeeds>({
+    query: GetFeedsQuery,
+    fetchPolicy: 'no-cache',
+  })
+
   const frontPage = Object.assign({}, currentFrontPage, {
     content: sortContent(currentFrontPage.content),
   })
 
   return {
-    props: { frontPage },
+    props: { frontPage, feeds: feeds.slice(0, 10) },
   }
 }
 
