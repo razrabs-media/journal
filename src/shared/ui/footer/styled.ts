@@ -43,6 +43,10 @@ export const Logo = styled.span`
   user-select: none;
 
   @media screen and (max-width: 671px) {
-    font-size: calc(var(--width) * 0.174);
+    display: none;
+  }
+
+  @media screen and (min-width: 1900px) {
+    letter-spacing: calc(var(--width) * 0.026);
   }
 `
