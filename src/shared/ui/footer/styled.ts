@@ -86,12 +86,9 @@ export const Logo = styled.span`
 
   @media screen and (max-width: 671px) {
     display: none;
-<<<<<<< HEAD
   }
 
   @media screen and (min-width: 1900px) {
     letter-spacing: calc(var(--width) * 0.026);
-=======
->>>>>>> e784fa3 (fix: footer final change)
   }
 `
