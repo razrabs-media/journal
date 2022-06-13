@@ -34,6 +34,10 @@ export type AssignUserGroupInput = {
   userUid: Scalars['String'];
 };
 
+export type CancelCommentDto = {
+  token: Scalars['String'];
+};
+
 export type Category = {
   __typename?: 'Category';
   createdAt: Scalars['Date'];
@@ -111,6 +115,11 @@ export type ConfigurationInput = {
 
 export type CreateCategoriesInput = {
   name: Scalars['String'];
+};
+
+export type CreateCommentDto = {
+  __typename?: 'CreateCommentDto';
+  token: Scalars['String'];
 };
 
 export type CreateCommentInput = {
@@ -196,6 +205,12 @@ export enum DataSourceType {
 }
 
 export type DownloadLabelsDto = {
+  projectName: Scalars['String'];
+  repoName: Scalars['String'];
+};
+
+export type DownloadPostsDto = {
+  branchName: Scalars['String'];
   projectName: Scalars['String'];
   repoName: Scalars['String'];
 };
@@ -301,11 +316,12 @@ export type GithubAuthor = {
 export type Mutation = {
   __typename?: 'Mutation';
   assignGroupToUser: UserItem;
+  cancelComment: ResponseStatus;
   changePassword: UserItem;
   changePermissions: UserGroupItem;
   changePostsOnFrontPage: Array<PostOnFrontPageItem>;
   createCategory: Category;
-  createComment: CommentItem;
+  createComment: CreateCommentDto;
   createComponent: Component;
   createDataSource: DataSource;
   createDraft: DraftItem;
@@ -317,6 +333,7 @@ export type Mutation = {
   createUser: UserWithPasswordDto;
   createUserGroup: UserGroupItem;
   downloadLabels: Array<TagItem>;
+  downloadPosts: Array<ResponseStatus>;
   publishFrontPage: FrontPage;
   refreshToken: TokensDto;
   registration: UserToken;
@@ -349,12 +366,18 @@ export type Mutation = {
   updateFrontPage: FrontPage;
   updatePost: Post;
   updatePriority: Priority;
+  updateProfile: ProfileItem;
   updateUser: User;
 };
 
 
 export type MutationAssignGroupToUserArgs = {
   data: AssignUserGroupInput;
+};
+
+
+export type MutationCancelCommentArgs = {
+  data: CancelCommentDto;
 };
 
 
@@ -437,6 +460,11 @@ export type MutationCreateUserGroupArgs = {
 
 export type MutationDownloadLabelsArgs = {
   data: DownloadLabelsDto;
+};
+
+
+export type MutationDownloadPostsArgs = {
+  data: DownloadPostsDto;
 };
 
 
@@ -601,6 +629,13 @@ export type MutationUpdatePriorityArgs = {
 };
 
 
+export type MutationUpdateProfileArgs = {
+  avatar?: InputMaybe<Scalars['Upload']>;
+  data: ProfileUpdateInput;
+  uid: Scalars['UID'];
+};
+
+
 export type MutationUpdateUserArgs = {
   data: UserInput;
   uid: Scalars['UID'];
@@ -753,7 +788,6 @@ export type Query = {
   profiles: Array<ProfileItem>;
   sharedFrontPage?: Maybe<FrontPage>;
   tags: Array<TagItem>;
-  updateProfile: ProfileItem;
   user: User;
   userGroups: Array<UserGroupItem>;
   users: Array<UserItem>;
@@ -836,7 +870,7 @@ export type QueryPostsArgs = {
 export type QueryPostsByFeedArgs = {
   page?: InputMaybe<Scalars['Int']>;
   perPage?: InputMaybe<Scalars['Int']>;
-  uid: Scalars['String'];
+  uid: Scalars['UID'];
 };
 
 
@@ -851,13 +885,6 @@ export type QueryProfileArgs = {
 
 
 export type QuerySharedFrontPageArgs = {
-  uid: Scalars['UID'];
-};
-
-
-export type QueryUpdateProfileArgs = {
-  avatar?: InputMaybe<Scalars['Upload']>;
-  data: ProfileUpdateInput;
   uid: Scalars['UID'];
 };
 
