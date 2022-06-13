@@ -9,6 +9,10 @@ input AssignUserGroupInput {
   userUid: String!
 }
 
+input CancelCommentDto {
+  token: String!
+}
+
 type Category {
   createdAt: Date!
   name: String!
@@ -82,6 +86,10 @@ scalar Content
 
 input CreateCategoriesInput {
   name: String!
+}
+
+type CreateCommentDto {
+  token: String!
 }
 
 input CreateCommentInput {
@@ -168,6 +176,12 @@ enum DataSourceType {
 scalar Date
 
 input DownloadLabelsDto {
+  projectName: String!
+  repoName: String!
+}
+
+input DownloadPostsDto {
+  branchName: String!
   projectName: String!
   repoName: String!
 }
@@ -264,11 +278,12 @@ type GithubAuthor {
 
 type Mutation {
   assignGroupToUser(data: AssignUserGroupInput!): UserItem!
+  cancelComment(data: CancelCommentDto!): ResponseStatus!
   changePassword(data: ChangePasswordInput!): UserItem!
   changePermissions(data: UserGroupInput!): UserGroupItem!
   changePostsOnFrontPage(data: [AddPostToFrontPageInput!]!, frontPageUid: UID!): [PostOnFrontPageItem!]!
   createCategory(data: CreateCategoriesInput!): Category!
-  createComment(data: CreateCommentInput!): CommentItem!
+  createComment(data: CreateCommentInput!): CreateCommentDto!
   createComponent(data: CreateComponentInput!): Component!
   createDataSource(data: CreateDataSourceInput!): DataSource!
   createDraft(content: Upload, data: CreateDraftInput): DraftItem!
@@ -280,6 +295,7 @@ type Mutation {
   createUser(data: CreateUserInput!): UserWithPasswordDto!
   createUserGroup(data: UserGroupInput!): UserGroupItem!
   downloadLabels(data: DownloadLabelsDto!): [TagItem!]!
+  downloadPosts(data: DownloadPostsDto!): [ResponseStatus!]!
   publishFrontPage(uid: UID!): FrontPage!
   refreshToken: TokensDto!
   registration(data: CreateUserInput!, password: String!): UserToken!
@@ -312,6 +328,7 @@ type Mutation {
   updateFrontPage(data: UpdateFrontPageInput!, uid: UID!): FrontPage!
   updatePost(uid: UID!, updatePostDto: UpdatePostInput!): Post!
   updatePriority(data: UpdatePrioritiesInput!, uid: UID!): Priority!
+  updateProfile(avatar: Upload, data: ProfileUpdateInput!, uid: UID!): ProfileItem!
   updateUser(data: UserInput!, uid: UID!): User!
 }
 
@@ -444,14 +461,13 @@ type Query {
   permissions: [PermissionItem!]!
   post(uid: UID!): Post!
   posts(page: Int = 1, perPage: Int = 20): PostPagination!
-  postsByFeed(page: Int = 1, perPage: Int = 20, uid: String!): PostPagination!
+  postsByFeed(page: Int = 1, perPage: Int = 20, uid: UID!): PostPagination!
   priorities: [PriorityItem!]!
   priority(uid: UID!): Priority!
   profile(uid: UID!): Profile!
   profiles: [ProfileItem!]!
   sharedFrontPage(uid: UID!): FrontPage
   tags: [TagItem!]!
-  updateProfile(avatar: Upload, data: ProfileUpdateInput!, uid: UID!): ProfileItem!
   user(uid: UID!): User!
   userGroups: [UserGroupItem!]!
   users: [UserItem!]!
