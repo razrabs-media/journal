@@ -1,10 +1,11 @@
 import styled from '@emotion/styled'
 import Typography from '@razrabs-ui/typography'
-import { forwardRef } from 'react'
+import { CSSProperties, forwardRef } from 'react'
 import type { ElementType, FC, ReactNode } from 'react'
 
 type StyleBadgeProps = {
   wide?: boolean
+  letterSpacing?: CSSProperties['letterSpacing']
   color?: 'primary' | 'secondary' | 'brand'
 }
 const StyledBadge = styled(Typography)<StyleBadgeProps>(
@@ -64,6 +65,7 @@ const Badge: FC<BadgeProps> = forwardRef<any, BadgeProps>(
 )
 Badge.defaultProps = {
   color: 'secondary',
+  letterSpacing: 1,
 }
 
 Badge.displayName = 'Badge'

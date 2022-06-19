@@ -6,7 +6,7 @@ import {
   PostReader,
 } from 'entities/posts'
 import { client } from 'shared/api'
-import { Helmet } from '../../shared/lib/helmet'
+import { Helmet } from 'shared/lib/helmet'
 
 const Post: NextPage<GetPost> = ({ post }) => (
   <>
