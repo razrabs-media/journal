@@ -182,6 +182,7 @@ input DownloadLabelsDto {
 
 input DownloadPostsDto {
   branchName: String!
+  githubAuthorUid: String!
   projectName: String!
   repoName: String!
 }
@@ -268,7 +269,9 @@ enum FrontPageType {
 }
 
 type GithubAuthor {
+  avatarUrl: String
   createdAt: Date!
+  name: String
   posts: [Post!]
   uid: UID!
   updatedAt: Date!
@@ -315,6 +318,7 @@ type Mutation {
   removeUserGroup(uid: UID!): Int!
   resetPasswordForUser(data: ResetPasswordInput!): UserItem!
   setGithubPrivateToken(data: SetGithubPrivateTokenDto!): ResponseStatus!
+  share(uid: UID!): PostInteractions!
   shareFrontPage(uid: UID!): FrontPage!
   signIn(data: SignInInput!): UserToken!
   signOut: ResponseStatus!
@@ -330,6 +334,7 @@ type Mutation {
   updatePriority(data: UpdatePrioritiesInput!, uid: UID!): Priority!
   updateProfile(avatar: Upload, data: ProfileUpdateInput!, uid: UID!): ProfileItem!
   updateUser(data: UserInput!, uid: UID!): User!
+  view(uid: UID!): PostInteractions!
 }
 
 type PermissionItem {
@@ -361,12 +366,21 @@ type Post {
   description: String!
   frontPages: [FrontPageItem!]!
   githubAuthor: GithubAuthor
+  interactions: PostInteractions!
   previewUrl: String
   readingTime: Int
   tags: [TagItem!]
   title: String!
   uid: UID!
   updatedAt: Date!
+}
+
+type PostInteractions {
+  createdAt: Date!
+  sharesCount: Int!
+  uid: UID!
+  updatedAt: Date!
+  viewsCount: Int!
 }
 
 type PostOnFrontPage {
@@ -456,6 +470,7 @@ type Query {
   feeds(filter: FilterFeedsArgs, sort: SortFeedsArgs): [FeedItem!]!
   frontPage(uid: UID!): FrontPage!
   frontPages(frontPageType: [FrontPageType!], page: Int = 1, perPage: Int = 20, sort: SortFrontPageArgs): FrontPagePagination!
+  getTokenPayload: TokenPayloadDto!
   githubAuthor(uid: UID!): GithubAuthor!
   githubAuthors: [GithubAuthor!]!
   permissions: [PermissionItem!]!
@@ -526,6 +541,12 @@ type TagItem {
   name: String!
   uid: UID!
   updatedAt: Date!
+}
+
+type TokenPayloadDto {
+  email: String!
+  login: String!
+  permissions: [String!]!
 }
 
 type TokensDto {
