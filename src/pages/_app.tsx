@@ -1,28 +1,36 @@
+import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@emotion/react'
 import { themeDark } from '@razrabs-ui/theme'
 import type { NextPageContext } from 'next'
 import { AppProps } from 'next/app'
 import { Header } from 'widgets/header'
+import { useApollo } from 'shared/api'
 import { getContextMedia, withMediaProvider } from 'shared/lib/client-hints'
 import { Footer, GridArea, MainGrid, StickyGridArea } from 'shared/ui'
 
-const _App = ({ Component, pageProps }: AppProps) => (
-  <ThemeProvider theme={themeDark}>
-    <MainGrid>
-      <StickyGridArea area='header'>
-        <Header />
-      </StickyGridArea>
+const _App = ({ Component, pageProps }: AppProps) => {
+  const apolloClient = useApollo()
 
-      <GridArea area='content'>
-        <Component {...pageProps} />
-      </GridArea>
+  return (
+    <ThemeProvider theme={themeDark}>
+      <ApolloProvider client={apolloClient}>
+        <MainGrid>
+          <StickyGridArea area='header'>
+            <Header />
+          </StickyGridArea>
 
-      <GridArea area='footer'>
-        <Footer />
-      </GridArea>
-    </MainGrid>
-  </ThemeProvider>
-)
+          <GridArea area='content'>
+            <Component {...pageProps} />
+          </GridArea>
+
+          <GridArea area='footer'>
+            <Footer />
+          </GridArea>
+        </MainGrid>
+      </ApolloProvider>
+    </ThemeProvider>
+  )
+}
 
 const App = withMediaProvider(_App)
 

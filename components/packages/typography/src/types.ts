@@ -13,5 +13,6 @@ export type TypographyProps = {
   align: Alignment
   weight: Weight
   letterSpacing: CSSProperties['letterSpacing']
+  lineHeight: number
   uppercase: boolean
 }

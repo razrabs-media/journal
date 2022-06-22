@@ -14,7 +14,7 @@ generates:
       - typescript
     config:
       scalars:
-        Date: number
+        Date: string
         RegExpAsString: "string"
         MongoID: "string"
         BSONDecimal: "string"
@@ -40,7 +40,7 @@ generates:
       dedupeOperationSuffix: true
       omitOperationSuffix: true
       withComponent: false
-      withHooks: false
+      withHooks: true
       withHOC: false
       reactApolloVersion: 3
       # documentMode: documentNode
