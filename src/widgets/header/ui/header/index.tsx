@@ -12,6 +12,7 @@ export const Header: FC = () => {
 
   return (
     <StyledHeader>
+      <div className='dateNow' />
       <LogoBlock>
         <Link passHref href='/'>
           <Typography
