@@ -21,4 +21,7 @@ module.exports = {
   experimental: {
     scrollRestoration: true,
   },
+  env: {
+    NEXT_PUBLIC_API_GATEWAY: process.env.NEXT_PUBLIC_API_GATEWAY,
+  },
 }
