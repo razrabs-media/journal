@@ -4,15 +4,17 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client'
+import getConfig from 'next/config'
 import { useMemo } from 'react'
 
+const { publicRuntimeConfig } = getConfig()
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
 const createApolloClient = () =>
   new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: `${process.env.NEXT_PUBLIC_API_GATEWAY}/gql`,
+      uri: `${publicRuntimeConfig.NEXT_PUBLIC_API_GATEWAY}/gql`,
       credentials: 'include',
     }),
     cache: new InMemoryCache(),
