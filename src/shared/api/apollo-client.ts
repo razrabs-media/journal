@@ -12,7 +12,7 @@ const createApolloClient = () =>
   new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({
-      uri: `${process.env.NEXT_PUBLIC_API_GATEWAY}/gql`,
+      uri: `https://dev.razrabs.ru/api`,
       credentials: 'include',
     }),
     cache: new InMemoryCache(),
