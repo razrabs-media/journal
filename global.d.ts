@@ -5,7 +5,7 @@ declare module '*.svg' {
 }
 
 declare module '*.graphql' {
-  import { DocumentNode, DocumentNode } from 'graphql'
+  import { DocumentNode } from 'graphql'
 
   const content: DocumentNode
 

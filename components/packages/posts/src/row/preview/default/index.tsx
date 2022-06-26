@@ -1,6 +1,6 @@
 import Image, { FallbackX } from '@razrabs-ui/image'
-import { useState } from 'react'
 import type { FC } from 'react'
+import { useState } from 'react'
 
 import { usePreviewProps } from '../../../common/hooks'
 import { PostType } from '../../../types'
