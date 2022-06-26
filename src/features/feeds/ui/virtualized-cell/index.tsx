@@ -1,9 +1,12 @@
-import {PostRow, PostType} from '@razrabs-ui/posts'
+import { PostRow, PostType } from '@razrabs-ui/posts'
 import Link from 'next/link'
-import {MutableRefObject} from 'react'
-import {CellMeasurer, CellMeasurerCache} from 'react-virtualized'
-import {ListRowProps} from 'react-virtualized/dist/es/List'
-import {parseDate} from 'shared/lib/parse-date'
+import { MutableRefObject } from 'react'
+import {
+  CellMeasurer,
+  CellMeasurerCache,
+  ListRowProps,
+} from 'react-virtualized'
+import { parseDate } from 'shared/lib/parse-date'
 
 type Props = {
   cacheRef: MutableRefObject<CellMeasurerCache>
