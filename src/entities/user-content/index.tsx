@@ -1,8 +1,8 @@
-import {FC} from 'react'
-import {Flex, ModalContent} from 'shared/ui'
-import {Avatar} from './styles'
-import {Props} from './types'
-import {Name, UserInfo} from './ui'
+import { FC } from 'react'
+import { Flex, ModalContent } from 'shared/ui'
+import { Avatar } from './styles'
+import { Props } from './types'
+import { Name, UserInfo } from './ui'
 
 export const User: FC<Props> = ({
   avatarUrl,

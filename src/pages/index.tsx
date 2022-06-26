@@ -1,9 +1,15 @@
-import type {GetServerSideProps, NextPage} from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
-import {FeedSelector, GetFeeds, GetFeedsQuery} from 'features/feeds'
-import {CurrentFrontPage, CurrentFrontPageQuery, FrontPageGrid, FrontPageItem, sortContent} from 'features/front-page'
-import {FeedItem, initializeApollo} from 'shared/api'
-import {Helmet} from 'shared/lib/helmet'
+import { FeedSelector, GetFeeds, GetFeedsQuery } from 'features/feeds'
+import {
+  CurrentFrontPage,
+  CurrentFrontPageQuery,
+  FrontPageGrid,
+  FrontPageItem,
+  sortContent,
+} from 'features/front-page'
+import { FeedItem, initializeApollo } from 'shared/api'
+import { Helmet } from 'shared/lib/helmet'
 
 type Props = {
   frontPage: CurrentFrontPage['currentFrontPage']

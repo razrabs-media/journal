@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import {Props} from './types'
+import { Props } from './types'
 
 export const Flex = styled.div<Props>`
   display: flex;

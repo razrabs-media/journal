@@ -1,4 +1,4 @@
-import {IconTypes} from '../icons/types'
+import { IconTypes } from '../icons/types'
 
 export type Props = {
   children: string

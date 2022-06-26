@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import {MarkdownRenderer} from 'shared/ui'
+import { MarkdownRenderer } from 'shared/ui'
 
 export const StyledReader = styled.div``
 

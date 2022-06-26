@@ -63,6 +63,11 @@ const FeedPage: NextPage<Props> = ({
   )
 
   const handleLoadMoreRows = async ({ startIndex, stopIndex }: IndexRange) => {
+    if (rangeCache[0] === startIndex || rangeCache[1] === stopIndex) {
+      return
+    }
+    setRangeCache([startIndex, stopIndex])
+
     await fetchMore({
       variables: {
         page: Math.ceil(stopIndex / 10),

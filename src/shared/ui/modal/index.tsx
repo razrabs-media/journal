@@ -1,10 +1,10 @@
 import Typography from '@razrabs-ui/typography'
-import {forwardRef} from 'react'
-import {CrossIcon} from '..'
-import {IconButton} from '../icon-button'
-import {useDisableScroll} from './hooks'
-import {Background, Body, Box, Header} from './styles'
-import {Props} from './types'
+import { forwardRef } from 'react'
+import { CrossIcon } from '..'
+import { IconButton } from '../icon-button'
+import { useDisableScroll } from './hooks'
+import { Background, Body, Box, Header } from './styles'
+import { Props } from './types'
 
 export { Content as ModalContent } from './styles'
 

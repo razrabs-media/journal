@@ -1,5 +1,5 @@
-import {UrlObject} from 'url'
-import {useRouter} from 'next/router'
+import { UrlObject } from 'url'
+import { useRouter } from 'next/router'
 
 export function useQueryParamsStore(): any {
   const { pathname, query } = useRouter()

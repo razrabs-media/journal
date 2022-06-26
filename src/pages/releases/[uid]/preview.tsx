@@ -1,7 +1,11 @@
-import type {GetServerSideProps} from 'next'
+import type { GetServerSideProps } from 'next'
 import HomePage from 'pages'
-import {SharedFrontPage, SharedFrontPageQuery, sortContent} from 'features/front-page'
-import {initializeApollo} from 'shared/api'
+import {
+  SharedFrontPage,
+  SharedFrontPageQuery,
+  sortContent,
+} from 'features/front-page'
+import { initializeApollo } from 'shared/api'
 
 type Props = {
   frontPage?: SharedFrontPage['sharedFrontPage']

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 
 export const useClientSide = (lazyHook: VoidFunction): void => {
   const [state, setState] = useState(false)

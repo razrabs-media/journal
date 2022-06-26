@@ -1,5 +1,5 @@
-import { forwardRef } from 'react'
 import type { ElementType, ReactNode } from 'react'
+import { forwardRef } from 'react'
 
 import {
   AdditionalInfoWrapper,

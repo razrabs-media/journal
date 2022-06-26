@@ -1,9 +1,9 @@
-import {FC} from 'react'
-import {useCurrentUserLazyQuery} from 'features/auth'
-import {useClientSide} from 'shared/lib'
-import {Button, FillButton} from 'shared/ui'
-import {PreferencesBox} from './styled'
-import {Props} from './types'
+import { FC } from 'react'
+import { useCurrentUserLazyQuery } from 'features/auth'
+import { useClientSide } from 'shared/lib'
+import { Button, FillButton } from 'shared/ui'
+import { PreferencesBox } from './styled'
+import { Props } from './types'
 
 export const Preferences: FC<Props> = ({ onClick }) => {
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({

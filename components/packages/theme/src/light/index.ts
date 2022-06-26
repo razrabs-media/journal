@@ -1,8 +1,8 @@
-import type {Theme} from '@emotion/react'
+import type { Theme } from '@emotion/react'
 
-import {common} from '../common'
-import {FallbackSquare} from './components/FallbackSquare'
-import {FallbackX} from './components/FallbackX'
+import { common } from '../common'
+import { FallbackSquare } from './components/FallbackSquare'
+import { FallbackX } from './components/FallbackX'
 
 // TODO: Функция, чтобы прокидывать тему в создаваемые темы компонентов
 // Пример:

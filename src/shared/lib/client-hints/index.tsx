@@ -1,9 +1,9 @@
-import {getCookie, setCookies} from 'cookies-next'
-import {NextPageContext} from 'next'
-import {useEffect, useState} from 'react'
-import {Context as ResponsiveContext} from 'react-responsive'
-import {AppProps as _AppProps} from 'next/app'
-import {MediaInfo} from './types'
+import { getCookie, setCookies } from 'cookies-next'
+import { NextPageContext } from 'next'
+import { useEffect, useState } from 'react'
+import { Context as ResponsiveContext } from 'react-responsive'
+import { AppProps as _AppProps } from 'next/app'
+import { MediaInfo } from './types'
 
 export const COOKIE_NAME_MEDIA_INFO = 'mediaInfo'
 

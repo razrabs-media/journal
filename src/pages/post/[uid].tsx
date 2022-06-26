@@ -1,7 +1,12 @@
-import {GetServerSideProps, NextPage} from 'next'
-import {GetPost, GetPostQuery, GetPostVariables, PostReader} from 'entities/posts'
-import {initializeApollo} from 'shared/api'
-import {Helmet} from 'shared/lib'
+import { GetServerSideProps, NextPage } from 'next'
+import {
+  GetPost,
+  GetPostQuery,
+  GetPostVariables,
+  PostReader,
+} from 'entities/posts'
+import { initializeApollo } from 'shared/api'
+import { Helmet } from 'shared/lib'
 
 const Post: NextPage<GetPost> = ({ post }) => (
   <>

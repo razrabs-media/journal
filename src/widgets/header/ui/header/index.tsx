@@ -1,10 +1,10 @@
 import Typography from '@razrabs-ui/typography'
 import Link from 'next/link'
-import {FC} from 'react'
-import {Auth} from 'features/auth'
-import {useBoolean, useEscape} from 'shared/lib'
-import {Preferences} from '../preferences'
-import {LogoBlock, StyledHeader} from './styled'
+import { FC } from 'react'
+import { Auth } from 'features/auth'
+import { useBoolean, useEscape } from 'shared/lib'
+import { Preferences } from '../preferences'
+import { LogoBlock, StyledHeader } from './styled'
 
 export const Header: FC = () => {
   const [open, { trusty, falsy }] = useBoolean()

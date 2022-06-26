@@ -1,4 +1,4 @@
-import {Ref, useEffect, useRef} from 'react'
+import { Ref, useEffect, useRef } from 'react'
 
 export const useEscape = <T extends HTMLElement>(
   onEscape: VoidFunction,

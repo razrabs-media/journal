@@ -1,9 +1,9 @@
 import Typography from '@razrabs-ui/typography'
-import {format, formatDistanceToNow} from 'date-fns'
-import {ru} from 'date-fns/locale'
-import {FC} from 'react'
-import {Flex} from 'shared/ui'
-import {Props} from './types'
+import { format, formatDistanceToNow } from 'date-fns'
+import { ru } from 'date-fns/locale'
+import { FC } from 'react'
+import { Flex } from 'shared/ui'
+import { Props } from './types'
 
 export const UserInfo: FC<Props> = ({ date }) => {
   const formattedDate = format(new Date(date), 'dd MMMM yyyy', {
