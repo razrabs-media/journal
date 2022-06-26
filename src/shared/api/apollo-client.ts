@@ -4,19 +4,26 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client'
+import getConfig from 'next/config'
 import { useMemo } from 'react'
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
-const createApolloClient = () =>
-  new ApolloClient({
-    ssrMode: typeof window === 'undefined',
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
+
+const createApolloClient = () => {
+  const isServerSide = typeof window === 'undefined'
+  const host = (isServerSide ? serverRuntimeConfig : publicRuntimeConfig).HOST
+
+  return new ApolloClient({
+    ssrMode: isServerSide,
     link: new HttpLink({
-      uri: `${process.env.NEXT_PUBLIC_API_GATEWAY}/gql`,
+      uri: new URL('api', host).toString(),
       credentials: 'include',
     }),
     cache: new InMemoryCache(),
   })
+}
 
 export function initializeApollo() {
   const _apolloClient = apolloClient ?? createApolloClient()
