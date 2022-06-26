@@ -18,7 +18,7 @@ const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: isServerSide,
     link: new HttpLink({
-      uri: `${host}/gql`,
+      uri: new URL('api', host).toString(),
       credentials: 'include',
     }),
     cache: new InMemoryCache(),
