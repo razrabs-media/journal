@@ -1,24 +1,8 @@
 import { PostRow, PostType } from '@razrabs-ui/posts'
 import Link from 'next/link'
-import { MutableRefObject } from 'react'
-import {
-  CellMeasurer,
-  CellMeasurerCache,
-  ListRowProps,
-} from 'react-virtualized'
+import { CellMeasurer } from 'react-virtualized'
 import { parseDate } from 'shared/lib/parse-date'
-
-type Props = {
-  cacheRef: MutableRefObject<CellMeasurerCache>
-  smallRow: boolean
-  postData: {
-    uid: string
-    createdAt: string
-    previewUrl?: string | null
-    title: string
-  }
-  props: ListRowProps
-}
+import { Props } from './types'
 
 export const FeedVirtualizedCell = ({
   cacheRef,
