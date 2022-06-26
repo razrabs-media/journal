@@ -6,8 +6,8 @@ export const useDisplayAnimation = (
 ) => {
   const [display, setDisplay] = useState(shouldDisplay)
 
-  const [fadeIn, setFadeIn] = useState(false)
-  const [fadeOut, setFadeOut] = useState(false)
+  const [animationIn, setAnimationIn] = useState(false)
+  const [animationOut, setAnimationOut] = useState(false)
 
   // TODO: Надо бы тролить анимашку, по-хорошему, чтобы не моргало если быстро скролить туда-сюда
   useEffect(() => {
@@ -21,25 +21,25 @@ export const useDisplayAnimation = (
     // Сначала включаем отображение, потом играем анимацию
     if (shouldDisplay) {
       setDisplay(true)
-      setFadeIn(true)
+      setAnimationIn(true)
 
       timeoutCallback = () => {
-        setFadeIn(false)
+        setAnimationIn(false)
       }
     }
     // Если true -> false
     // Сначала играем анимацию, потом выключаем отображение
     else {
-      setFadeOut(true)
+      setAnimationOut(true)
 
       timeoutCallback = () => {
-        setFadeOut(false)
         setDisplay(false)
+        setAnimationOut(false)
       }
     }
 
     setTimeout(timeoutCallback, transitionTime)
   }, [display, transitionTime, shouldDisplay])
 
-  return { display, fadeIn, fadeOut }
+  return { display, animationIn, animationOut }
 }

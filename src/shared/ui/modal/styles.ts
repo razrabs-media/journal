@@ -16,7 +16,7 @@ export const Background = styled.div<{ hide: boolean }>`
   top: 0;
   left: 0;
   display: grid;
-  visibility: ${({ hide }) => (hide ? 'hidden' : 'visible')};
+  pointer-events:  ${({ hide }) => (hide ? 'none' : 'auto')};;
   grid-template:
     '. body' 1fr
     / auto minmax(auto, 525px);

@@ -6,12 +6,19 @@ export const StyledComment = styled.div`
   flex-direction: row;
 
   gap: 10px;
+
+  padding: 20px 24px;
+
+  &:hover {
+    background: #38393d;
+  }
 `
 
 export const RowsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 0;
+  flex-grow: 1;
 `
 
 export const FirstRow = styled.div`

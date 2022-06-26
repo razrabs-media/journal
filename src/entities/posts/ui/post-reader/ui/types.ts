@@ -1,3 +1,5 @@
+import { ReactElement } from 'react'
+
 import { GithubAuthor } from 'shared/api'
 
 export type PickedGithubAuthor = Pick<
@@ -14,4 +16,6 @@ export type Props = {
   publicationDate: string
   githubAuthor?: PickedGithubAuthor
   content: string
+
+  commentsButton?: ReactElement
 }

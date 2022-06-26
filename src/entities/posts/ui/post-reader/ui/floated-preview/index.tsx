@@ -2,9 +2,9 @@ import Badge from '@razrabs-ui/badge'
 import Image from '@razrabs-ui/image'
 import PostAuthor from '@razrabs-ui/post-author'
 import { FC, useMemo } from 'react'
+import { useDisplayAnimation } from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
 import { ShareButton, ShareType } from 'shared/ui'
-import { useDisplayAnimation } from '../../lib'
 import {
   DateAndShareRow,
   Layout,
@@ -31,7 +31,7 @@ export const FloatedPreview: FC<Props> = ({
     [publicationDate],
   )
 
-  const { display, fadeIn, fadeOut } = useDisplayAnimation(
+  const { display, animationIn, animationOut } = useDisplayAnimation(
     shouldDisplay,
     transitionTime,
   )
@@ -39,8 +39,8 @@ export const FloatedPreview: FC<Props> = ({
   return (
     <Layout>
       <StyledFloatedBlock
-        fadeIn={fadeIn}
-        fadeOut={fadeOut}
+        fadeIn={animationIn}
+        fadeOut={animationOut}
         shouldDisplay={display}
         transitionTime={transitionTime}
       >

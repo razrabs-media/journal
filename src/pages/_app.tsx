@@ -3,10 +3,18 @@ import { ThemeProvider } from '@emotion/react'
 import { themeDark } from '@razrabs-ui/theme'
 import type { NextPageContext } from 'next'
 import { AppProps } from 'next/app'
+import { CommentsWidget } from 'widgets/comments'
 import { Header } from 'widgets/header'
+import { CommentsProvider } from 'entities/comments'
 import { useApollo } from 'shared/api'
 import { getContextMedia, withMediaProvider } from 'shared/lib/client-hints'
-import { Footer, GridArea, MainGrid, StickyGridArea } from 'shared/ui'
+import {
+  DrawerGrid,
+  Footer,
+  GridArea,
+  MainGrid,
+  StickyGridArea,
+} from 'shared/ui'
 
 const _App = ({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo()
@@ -14,19 +22,29 @@ const _App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider theme={themeDark}>
       <ApolloProvider client={apolloClient}>
-        <MainGrid>
-          <StickyGridArea area='header'>
-            <Header />
-          </StickyGridArea>
+        <CommentsProvider>
+          <DrawerGrid>
+            <GridArea area='main' style={{ overflowY: 'scroll' }}>
+              <MainGrid>
+                <StickyGridArea area='header'>
+                  <Header />
+                </StickyGridArea>
 
-          <GridArea area='content'>
-            <Component {...pageProps} />
-          </GridArea>
+                <GridArea area='content'>
+                  <Component {...pageProps} />
+                </GridArea>
 
-          <GridArea area='footer'>
-            <Footer />
-          </GridArea>
-        </MainGrid>
+                <GridArea area='footer'>
+                  <Footer />
+                </GridArea>
+              </MainGrid>
+            </GridArea>
+
+            <StickyGridArea area='drawer' style={{ overflowY: 'scroll' }}>
+              <CommentsWidget />
+            </StickyGridArea>
+          </DrawerGrid>
+        </CommentsProvider>
       </ApolloProvider>
     </ThemeProvider>
   )
