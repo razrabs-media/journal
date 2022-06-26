@@ -1,4 +1,3 @@
-import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import { forwardRef, ReactNode } from 'react'
 import { SignInContent } from 'entities/sign-in-content'
@@ -7,8 +6,6 @@ import { Modal, ModalAction } from 'shared/ui'
 import { useClientSide } from '../../../shared/lib'
 import { CurrentUserQuery, useCurrentUserLazyQuery, useSignOut } from '../model'
 import type { Props } from './types'
-
-const { publicRuntimeConfig } = getConfig()
 
 export const Auth = forwardRef<HTMLDivElement, Props>(
   ({ open, onClose }, ref) => {
