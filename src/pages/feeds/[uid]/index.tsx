@@ -1,12 +1,26 @@
-import {useQuery} from '@apollo/client'
-import {useIsMobile} from '@razrabs-ui/responsive'
-import type {GetServerSideProps, NextPage} from 'next'
-import {useRef, useState} from 'react'
-import {AutoSizer, CellMeasurerCache, Index, IndexRange, InfiniteLoader, List, WindowScroller} from 'react-virtualized'
-import {FeedContainer, FeedSelector, FeedVirtualizedCell, GetFeeds, GetFeedsQuery} from 'features/feeds'
-import {GetPostsByFeed, GetPostsByFeedQuery} from 'entities/posts'
-import {FeedItem, initializeApollo, Post} from 'shared/api'
-import {Helmet} from 'shared/lib/helmet'
+import { useQuery } from '@apollo/client'
+import { useIsMobile } from '@razrabs-ui/responsive'
+import type { GetServerSideProps, NextPage } from 'next'
+import { useRef, useState } from 'react'
+import {
+  AutoSizer,
+  CellMeasurerCache,
+  Index,
+  IndexRange,
+  InfiniteLoader,
+  List,
+  WindowScroller,
+} from 'react-virtualized'
+import {
+  FeedContainer,
+  FeedSelector,
+  FeedVirtualizedCell,
+  GetFeeds,
+  GetFeedsQuery,
+} from 'features/feeds'
+import { GetPostsByFeed, GetPostsByFeedQuery } from 'entities/posts'
+import { FeedItem, initializeApollo, Post } from 'shared/api'
+import { Helmet } from 'shared/lib/helmet'
 
 type Props = {
   postsByFeed: Pick<Post, 'uid' | 'title' | 'previewUrl' | 'createdAt'>[]
@@ -17,25 +31,29 @@ type Props = {
 
 const FeedPage: NextPage<Props> = ({
   currentFeedUid,
-  postsByFeed,
   feeds,
   total,
+  postsByFeed,
 }) => {
   const smallRow = useIsMobile()
   const [rangeCache, setRangeCache] = useState<number[]>([-1, -1])
 
-  const { data, fetchMore } = useQuery<GetPostsByFeed>(GetPostsByFeedQuery, {
+  const {
+    data = { postsByFeed: { items: postsByFeed, count: total } },
+    fetchMore,
+  } = useQuery<GetPostsByFeed>(GetPostsByFeedQuery, {
     notifyOnNetworkStatusChange: true,
     ssr: false,
     variables: {
       uid: currentFeedUid,
       page: 1,
-      perPage: 2,
+      perPage: 10,
     },
     fetchPolicy: 'network-only',
   })
 
-  const isRowLoaded = ({ index }: Index): boolean => !!postsByFeed[index]
+  const isRowLoaded = ({ index }: Index): boolean =>
+    !!data.postsByFeed.items[index]
 
   const cache = useRef(
     new CellMeasurerCache({
@@ -45,23 +63,25 @@ const FeedPage: NextPage<Props> = ({
   )
 
   const handleLoadMoreRows = async ({ startIndex, stopIndex }: IndexRange) => {
-    if (rangeCache[0] === startIndex || rangeCache[1] === stopIndex) {
-      return
-    }
-    setRangeCache([startIndex, stopIndex])
-
-    const {
-      data: {
-        postsByFeed: { count, items },
-      },
-    } = await fetchMore({
+    await fetchMore({
       variables: {
-        page: startIndex,
-        perPage: 2,
+        page: Math.ceil(stopIndex / 10),
+        perPage: 10,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
         console.log('fetchMoreResult', fetchMoreResult)
-        return prev
+        return {
+          ...prev,
+          __typename: fetchMoreResult.__typename,
+          postsByFeed: {
+            items: [
+              ...prev.postsByFeed.items,
+              ...fetchMoreResult.postsByFeed.items,
+            ],
+            __typename: fetchMoreResult.postsByFeed.__typename,
+            count: fetchMoreResult.postsByFeed.count,
+          },
+        }
       },
     })
   }
@@ -89,13 +109,13 @@ const FeedPage: NextPage<Props> = ({
                       data={data}
                       deferredMeasurementCache={cache.current}
                       height={height}
-                      overscanRowCount={2}
-                      rowCount={postsByFeed.length}
+                      overscanRowCount={5}
+                      rowCount={data.postsByFeed.items.length}
                       rowHeight={cache.current.rowHeight}
                       rowRenderer={(props) => (
                         <FeedVirtualizedCell
                           cacheRef={cache}
-                          postData={postsByFeed[props.index]}
+                          postData={data.postsByFeed.items[props.index]}
                           props={props}
                           smallRow={smallRow}
                         />
@@ -127,7 +147,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
       postsByFeed: { items: postsByFeed, count },
     },
   } = await apolloClient.query<GetPostsByFeed>({
-    variables: { uid: currentFeedUid, page: 1, perPage: 2 },
+    variables: { uid: currentFeedUid, page: 1, perPage: 10 },
     query: GetPostsByFeedQuery,
     fetchPolicy: 'no-cache',
   })
