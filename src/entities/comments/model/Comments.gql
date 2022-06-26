@@ -1,0 +1,18 @@
+query Comments($postUid: UID!, $perPage: Int! ) {
+  comments(filter: { postUid: $postUid }, perPage: $perPage){
+    items {
+      uid
+      author {
+        uid
+        avatarUrl
+        publicName
+      }
+      replyingToComment {
+        uid,
+        content
+      }
+      content
+      createdAt
+    }
+  }
+}

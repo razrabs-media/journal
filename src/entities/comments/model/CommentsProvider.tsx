@@ -4,68 +4,83 @@ import {
   Dispatch,
   FC,
   ReactNode,
-  SetStateAction,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react'
-import { useCommentsDrawer } from '../lib/useCommentsDrawer'
-import { Comment } from '../model'
+import { useBoolean } from 'shared/lib'
+import { commentAdapter } from '../lib/commentAdapter'
+import { Comment, useCommentsLazyQuery } from '.'
 
 export type CommentsContextValue = {
   opened: boolean
-
-  comments?: Comment[]
-  setComments: Dispatch<SetStateAction<Comment[] | undefined>>
-
+  comments: Comment[]
   postUid?: string
   setPostUid: Dispatch<string>
-
-  openHandler: (...args: never[]) => void
-  closeHandler: (...args: never[]) => void
+  openHandler: VoidFunction
+  closeHandler: VoidFunction
 }
 
 export const CommentsContext = createContext<CommentsContextValue>({
   opened: false,
-
-  comments: undefined,
-  setComments: () => undefined,
-
+  comments: [],
   postUid: undefined,
   setPostUid: () => undefined,
-
   openHandler: () => undefined,
   closeHandler: () => undefined,
 })
 
-export const useComments = () => useContext(CommentsContext)
+export const useContextComments = () => useContext(CommentsContext)
 
 type Props = {
   children: ReactNode
 }
+
 export const CommentsProvider: FC<Props> = ({ children }) => {
   const router = useRouter()
 
-  const { commentsOpened, openCommentsHandler, closeCommentsHandler } =
-    useCommentsDrawer()
-
-  const [comments, setComments] = useState<Comment[] | undefined>(undefined)
+  const [commentsLazyQuery, { data, startPolling, stopPolling }] =
+    useCommentsLazyQuery()
   const [postUid, setPostUid] = useState<string | undefined>(undefined)
+  const [opened, { trusty: openHandler, falsy: closeHandler }] = useBoolean()
+  const comments = useMemo(
+    () =>
+      (opened &&
+        data?.comments.items.map((comment) => commentAdapter(comment))) ||
+      [],
+    [data?.comments.items, opened],
+  )
 
-  const value = {
-    opened: commentsOpened,
+  const value: CommentsContextValue = {
+    opened,
     comments,
-    setComments,
     postUid,
     setPostUid,
-    openHandler: openCommentsHandler,
-    closeHandler: closeCommentsHandler,
+    openHandler,
+    closeHandler,
   }
 
   // Закрываем комменты, когда уходим со страницы
   useEffect(() => {
-    closeCommentsHandler()
-  }, [closeCommentsHandler, router.route])
+    closeHandler()
+  }, [closeHandler, router.route])
+
+  useEffect(() => {
+    if (postUid) {
+      commentsLazyQuery({
+        variables: { postUid, perPage: 3_000 },
+        fetchPolicy: 'no-cache',
+      })
+    }
+  }, [commentsLazyQuery, opened, postUid])
+
+  useEffect(() => {
+    if (opened) {
+      startPolling(3_000)
+    }
+    return () => stopPolling()
+  }, [opened, startPolling, stopPolling])
 
   return (
     <CommentsContext.Provider value={{ ...value }}>

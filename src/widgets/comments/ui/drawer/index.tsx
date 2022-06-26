@@ -1,50 +1,11 @@
-import { css, keyframes } from '@emotion/react'
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import { FADE_IN, FADE_OUT, SWIPE_IN, SWIPE_OUT } from './styled'
+import { Props } from './types'
 
-const SWIPE_IN = keyframes`
-  from {
-    width: 0;
-  }
-  to {
-    width: 390px;
-  }
-`
-
-const SWIPE_OUT = keyframes`
-  from {
-    width: 390px;
-  }
-  to {
-    width: 0;
-  }
-`
-
-const FADE_IN = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`
-const FADE_OUT = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-`
-
-type Props = {
-  shouldDisplay: boolean
-  animationIn: boolean
-  animationOut: boolean
-  transitionTime: number
-}
 export const Drawer = styled.div<Props>`
   position: relative;
-  width: 390px;
+  width: 525px;
 
   display: ${({ shouldDisplay }) => (shouldDisplay ? 'grid' : 'none')};
   flex-direction: column;

@@ -3,11 +3,10 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
 import { useCurrentUserLazyQuery } from 'features/auth'
-import { commentAdapter, useComments } from 'entities/comments'
+import { commentAdapter, useContextComments } from 'entities/comments'
 import { useClientSide, useDisplayAnimation } from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
 import { CrossIcon, IconButton, StickyGridArea } from 'shared/ui'
-
 import { CommentsEmpty } from './comments-empty'
 import { Drawer } from './drawer'
 import { CommentData, CommentInput } from './input'
@@ -24,7 +23,7 @@ const TRANSITION_TIME = 150
 export const CommentsWidget = () => {
   const router = useRouter()
 
-  const { opened, postUid, comments, setComments, closeHandler } = useComments()
+  const { opened, postUid, comments, closeHandler } = useContextComments()
 
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
     errorPolicy: 'all',
@@ -72,7 +71,6 @@ export const CommentsWidget = () => {
       response.data?.createComment !== undefined
     ) {
       const newComment = commentAdapter(response.data.createComment)
-      setComments((prev) => (prev ? [...prev, newComment] : [newComment]))
 
       // Надо подождать, пока реакт примаунтит компонент после обновления стейта
       requestAnimationFrame(() => {
@@ -103,27 +101,20 @@ export const CommentsWidget = () => {
       </StickyGridArea>
 
       <CommentsContainer area='content'>
-        {comments?.length ? (
-          comments.map((comment) => {
-            const { replyComment: reply } = comment
-
-            return (
-              <Comment
-                key={comment.uid}
-                author={comment.author.name}
-                avatar={comment.author.avatarUrl}
-                content={comment.content}
-                reply={reply}
-                time={parseDate(comment.createdAt) ?? ''}
-                uid={comment.uid}
-                onCommentClick={onCommentClick}
-                onReplyClick={onScrollToComment}
-              />
-            )
-          })
-        ) : (
-          <CommentsEmpty />
-        )}
+        {comments.map((comment) => (
+          <Comment
+            key={comment.uid}
+            author={comment.author.name}
+            avatar={comment.author.avatarUrl}
+            content={comment.content}
+            reply={comment.replyComment}
+            time={parseDate(comment.createdAt) ?? ''}
+            uid={comment.uid}
+            onCommentClick={onCommentClick}
+            onReplyClick={onScrollToComment}
+          />
+        ))}
+        {!comments?.length && <CommentsEmpty />}
       </CommentsContainer>
 
       <CommentsAction area='action'>

@@ -9,6 +9,5 @@ export type Props = {
   publicationDate: string
   tags?: string[]
   githubAuthor?: PickedGithubAuthor
-
   commentsButton?: ReactElement
 }
