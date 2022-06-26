@@ -6,6 +6,20 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 module.exports = {
   reactStrictMode: true,
   ignoreDevErrors: false,
+  rewrites: () => [
+    {
+      source: '/api',
+      destination: `${process.env.NEXT_PUBLIC_API_GATEWAY}/gql`,
+    },
+    {
+      source: '/auth/github',
+      destination: `${process.env.NEXT_PUBLIC_API_GATEWAY}/auth/github`,
+    },
+    {
+      source: '/auth/github/callback',
+      destination: `${process.env.NEXT_PUBLIC_API_GATEWAY}/auth/github/callback`,
+    },
+  ],
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
       config.plugins.push(new ForkTsCheckerWebpackPlugin())
@@ -21,7 +35,10 @@ module.exports = {
   experimental: {
     scrollRestoration: true,
   },
+  serverRuntimeConfig: {
+    HOST: process.env.NEXT_PUBLIC_HOST,
+  },
   publicRuntimeConfig: {
-    NEXT_PUBLIC_API_GATEWAY: process.env.NEXT_PUBLIC_API_GATEWAY,
+    HOST: process.env.NEXT_PUBLIC_HOST,
   },
 }

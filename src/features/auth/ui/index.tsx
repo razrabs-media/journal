@@ -52,14 +52,7 @@ export const Auth = forwardRef<HTMLDivElement, Props>(
       )
     } else {
       Action = (
-        <ModalAction
-          icon='right'
-          onClick={() =>
-            router.push(
-              `${publicRuntimeConfig.NEXT_PUBLIC_API_GATEWAY}/auth/github`,
-            )
-          }
-        >
+        <ModalAction icon='right' onClick={() => router.push('/auth/github')}>
           Залогиниться через github
         </ModalAction>
       )
