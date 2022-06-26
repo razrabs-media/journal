@@ -1,12 +1,28 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client'
+import {ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject} from '@apollo/client'
+import {useMemo} from 'react'
 
-const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_API_GATEWAY,
-  credentials: 'include',
-})
+let apolloClient: ApolloClient<NormalizedCacheObject> | undefined
 
-export const client = new ApolloClient({
-  ssrMode: typeof window === 'undefined',
-  link: httpLink,
-  cache: new InMemoryCache().restore({}),
-})
+const createApolloClient = () =>
+  new ApolloClient({
+    ssrMode: typeof window === 'undefined',
+    link: new HttpLink({
+      uri: `${process.env.NEXT_PUBLIC_API_GATEWAY}/gql`,
+      credentials: 'include',
+    }),
+    cache: new InMemoryCache(),
+  })
+
+export function initializeApollo() {
+  const _apolloClient = apolloClient ?? createApolloClient()
+
+  if (typeof window === 'undefined') return _apolloClient
+
+  if (!apolloClient) apolloClient = _apolloClient
+
+  return _apolloClient
+}
+
+export function useApollo() {
+  return useMemo(() => initializeApollo(), [])
+}

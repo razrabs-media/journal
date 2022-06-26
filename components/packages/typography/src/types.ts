@@ -1,5 +1,5 @@
-import type { Theme } from '@emotion/react'
-import type { CSSProperties } from 'react'
+import type {Theme} from '@emotion/react'
+import type {CSSProperties} from 'react'
 
 export type Size = keyof Theme['fontSizes']
 export type Weight = keyof Theme['fontWeights']
@@ -13,5 +13,6 @@ export type TypographyProps = {
   align: Alignment
   weight: Weight
   letterSpacing: CSSProperties['letterSpacing']
+  lineHeight: number
   uppercase: boolean
 }

@@ -11,12 +11,8 @@ export const StyledHeader = styled.header`
   box-sizing: border-box;
 `
 
-export const NavigationBlock = styled.nav``
-
 export const LogoBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `
-
-export const PreferencesBlock = styled.div``

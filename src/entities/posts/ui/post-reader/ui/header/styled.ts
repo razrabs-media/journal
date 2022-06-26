@@ -1,7 +1,11 @@
 import styled from '@emotion/styled'
 import Typography from '@razrabs-ui/typography'
 
-export const StyledHeader = styled.header``
+export const StyledHeader = styled.header`
+  @media screen and (min-width: 1000px) {
+    margin-top: 64px;
+  }
+`
 
 // Первая строка - картинка, текст, описание
 export const FirstRow = styled.div`

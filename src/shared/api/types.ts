@@ -16,7 +16,7 @@ export type Scalars = {
   /** Upload scalar */
   Content: any;
   /** Date scalar type */
-  Date: number;
+  Date: string;
   /** Uid custom scalar type */
   UID: string;
   /** Upload scalar */
@@ -333,7 +333,7 @@ export type Mutation = {
   createPermission: PermissionItem;
   createPost: Post;
   createPriority: Priority;
-  createUser: UserWithPasswordDto;
+  createUser: UserWithPassword;
   createUserGroup: UserGroupItem;
   downloadLabels: Array<TagItem>;
   downloadPosts: Array<ResponseStatus>;
@@ -1041,7 +1041,6 @@ export type User = {
   createdAt: Scalars['Date'];
   isTransportPassword: Scalars['Boolean'];
   login: Scalars['String'];
-  passwordHash: Scalars['String'];
   profile?: Maybe<ProfileItem>;
   profileUid: Scalars['UID'];
   uid: Scalars['UID'];
@@ -1072,7 +1071,6 @@ export type UserItem = {
   createdAt: Scalars['Date'];
   isTransportPassword: Scalars['Boolean'];
   login: Scalars['String'];
-  passwordHash: Scalars['String'];
   profile?: Maybe<ProfileItem>;
   profileUid: Scalars['UID'];
   uid: Scalars['UID'];
@@ -1085,8 +1083,8 @@ export type UserToken = {
   user: UserItem;
 };
 
-export type UserWithPasswordDto = {
-  __typename?: 'UserWithPasswordDto';
+export type UserWithPassword = {
+  __typename?: 'UserWithPassword';
   password: Scalars['String'];
   user: UserItem;
 };

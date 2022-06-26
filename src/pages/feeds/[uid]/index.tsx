@@ -1,26 +1,12 @@
-import { useQuery } from '@apollo/client'
-import { useIsMobile } from '@razrabs-ui/responsive'
-import type { GetServerSideProps, NextPage } from 'next'
-import { useRef, useState } from 'react'
-import {
-  AutoSizer,
-  CellMeasurerCache,
-  Index,
-  IndexRange,
-  InfiniteLoader,
-  List,
-  WindowScroller,
-} from 'react-virtualized'
-import {
-  FeedContainer,
-  FeedSelector,
-  FeedVirtualizedCell,
-  GetFeeds,
-  GetFeedsQuery,
-} from 'features/feeds'
-import { GetPostsByFeed, GetPostsByFeedQuery } from 'entities/posts'
-import { client, FeedItem, Post } from 'shared/api'
-import { Helmet } from 'shared/lib/helmet'
+import {useQuery} from '@apollo/client'
+import {useIsMobile} from '@razrabs-ui/responsive'
+import type {GetServerSideProps, NextPage} from 'next'
+import {useRef, useState} from 'react'
+import {AutoSizer, CellMeasurerCache, Index, IndexRange, InfiniteLoader, List, WindowScroller} from 'react-virtualized'
+import {FeedContainer, FeedSelector, FeedVirtualizedCell, GetFeeds, GetFeedsQuery} from 'features/feeds'
+import {GetPostsByFeed, GetPostsByFeedQuery} from 'entities/posts'
+import {FeedItem, initializeApollo, Post} from 'shared/api'
+import {Helmet} from 'shared/lib/helmet'
 
 type Props = {
   postsByFeed: Pick<Post, 'uid' | 'title' | 'previewUrl' | 'createdAt'>[]
@@ -134,12 +120,13 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
   query,
 }) => {
   const currentFeedUid: string = query.uid?.toString() ?? ''
+  const apolloClient = initializeApollo()
 
   const {
     data: {
       postsByFeed: { items: postsByFeed, count },
     },
-  } = await client.query<GetPostsByFeed>({
+  } = await apolloClient.query<GetPostsByFeed>({
     variables: { uid: currentFeedUid, page: 1, perPage: 2 },
     query: GetPostsByFeedQuery,
     fetchPolicy: 'no-cache',
@@ -147,7 +134,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 
   const {
     data: { feeds },
-  } = await client.query<GetFeeds>({
+  } = await apolloClient.query<GetFeeds>({
     query: GetFeedsQuery,
     fetchPolicy: 'no-cache',
   })

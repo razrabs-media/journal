@@ -1,12 +1,7 @@
-import { GetServerSideProps, NextPage } from 'next'
-import {
-  GetPost,
-  GetPostQuery,
-  GetPostVariables,
-  PostReader,
-} from 'entities/posts'
-import { client } from 'shared/api'
-import { Helmet } from '../../shared/lib/helmet'
+import {GetServerSideProps, NextPage} from 'next'
+import {GetPost, GetPostQuery, GetPostVariables, PostReader} from 'entities/posts'
+import {initializeApollo} from 'shared/api'
+import {Helmet} from 'shared/lib'
 
 const Post: NextPage<GetPost> = ({ post }) => (
   <>
@@ -28,7 +23,9 @@ const Post: NextPage<GetPost> = ({ post }) => (
 export const getServerSideProps: GetServerSideProps<{
   post: GetPost['post']
 }> = async ({ query }) => {
-  const { data } = await client.query<GetPost, GetPostVariables>({
+  const apolloClient = initializeApollo()
+
+  const { data } = await apolloClient.query<GetPost, GetPostVariables>({
     query: GetPostQuery,
     variables: { uid: query.uid?.toString() ?? '' },
     fetchPolicy: 'no-cache',

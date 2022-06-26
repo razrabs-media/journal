@@ -1,15 +1,9 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type {GetServerSideProps, NextPage} from 'next'
 import Link from 'next/link'
-import { FeedSelector, GetFeeds, GetFeedsQuery } from 'features/feeds'
-import {
-  CurrentFrontPage,
-  CurrentFrontPageQuery,
-  FrontPageGrid,
-  FrontPageItem,
-  sortContent,
-} from 'features/front-page'
-import { client, FeedItem } from 'shared/api'
-import { Helmet } from 'shared/lib/helmet'
+import {FeedSelector, GetFeeds, GetFeedsQuery} from 'features/feeds'
+import {CurrentFrontPage, CurrentFrontPageQuery, FrontPageGrid, FrontPageItem, sortContent} from 'features/front-page'
+import {FeedItem, initializeApollo} from 'shared/api'
+import {Helmet} from 'shared/lib/helmet'
 
 type Props = {
   frontPage: CurrentFrontPage['currentFrontPage']
@@ -50,16 +44,18 @@ const HomePage: NextPage<Props> = ({ frontPage, feeds }) => (
 )
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const apolloClient = initializeApollo()
+
   const {
     data: { currentFrontPage },
-  } = await client.query<CurrentFrontPage>({
+  } = await apolloClient.query<CurrentFrontPage>({
     query: CurrentFrontPageQuery,
     fetchPolicy: 'no-cache',
   })
 
   const {
     data: { feeds },
-  } = await client.query<GetFeeds>({
+  } = await apolloClient.query<GetFeeds>({
     query: GetFeedsQuery,
     fetchPolicy: 'no-cache',
   })

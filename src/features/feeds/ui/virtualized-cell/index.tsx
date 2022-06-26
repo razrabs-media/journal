@@ -1,16 +1,16 @@
-import { PostRow, PostType } from '@razrabs-ui/posts'
+import {PostRow, PostType} from '@razrabs-ui/posts'
 import Link from 'next/link'
-import { MutableRefObject } from 'react'
-import { CellMeasurer, CellMeasurerCache } from 'react-virtualized'
-import { ListRowProps } from 'react-virtualized/dist/es/List'
-import { parseDate } from 'shared/lib/parse-date'
+import {MutableRefObject} from 'react'
+import {CellMeasurer, CellMeasurerCache} from 'react-virtualized'
+import {ListRowProps} from 'react-virtualized/dist/es/List'
+import {parseDate} from 'shared/lib/parse-date'
 
 type Props = {
   cacheRef: MutableRefObject<CellMeasurerCache>
   smallRow: boolean
   postData: {
     uid: string
-    createdAt: number
+    createdAt: string
     previewUrl?: string | null
     title: string
   }
@@ -37,7 +37,7 @@ export const FeedVirtualizedCell = ({
         <Link key={postData.uid} passHref href={`/post/${postData.uid}`}>
           <PostRow
             as='a'
-            date={parseDate(postData.createdAt as unknown as string) ?? ''}
+            date={parseDate(postData.createdAt) ?? ''}
             preview={postData.previewUrl ?? ''}
             small={smallRow}
             title={postData.title}

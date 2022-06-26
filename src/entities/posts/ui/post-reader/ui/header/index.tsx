@@ -29,11 +29,11 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => (
           src={props.previewUrl}
           width='100%'
         />
-        <DateAgo date={props.publicationDate} size='sm' />
+        <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
       </ImageWrapper>
 
       <PostTextWrapper>
-        <Title uppercase as='h1'>
+        <Title uppercase as='h1' weight='medium'>
           {props.title}
         </Title>
 

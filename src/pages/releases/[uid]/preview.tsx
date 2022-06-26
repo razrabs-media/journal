@@ -1,11 +1,7 @@
-import type { GetServerSideProps } from 'next'
-import {
-  SharedFrontPage,
-  SharedFrontPageQuery,
-  sortContent,
-} from 'features/front-page'
-import { client } from 'shared/api'
-import HomePage from '../../index'
+import type {GetServerSideProps} from 'next'
+import HomePage from 'pages'
+import {SharedFrontPage, SharedFrontPageQuery, sortContent} from 'features/front-page'
+import {initializeApollo} from 'shared/api'
 
 type Props = {
   frontPage?: SharedFrontPage['sharedFrontPage']
@@ -14,9 +10,11 @@ type Props = {
 export const getServerSideProps: GetServerSideProps<Props> = async ({
   query,
 }) => {
+  const apolloClient = initializeApollo()
+
   const {
     data: { sharedFrontPage },
-  } = await client.query<SharedFrontPage>({
+  } = await apolloClient.query<SharedFrontPage>({
     query: SharedFrontPageQuery,
     fetchPolicy: 'no-cache',
     variables: { uid: query.uid?.toString() ?? '' },

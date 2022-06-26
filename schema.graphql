@@ -295,7 +295,7 @@ type Mutation {
   createPermission(data: CreatePermissionInput!): PermissionItem!
   createPost(data: CreatePostInput!): Post!
   createPriority(data: CreatePrioritiesInput!): Priority!
-  createUser(data: CreateUserInput!): UserWithPasswordDto!
+  createUser(data: CreateUserInput!): UserWithPassword!
   createUserGroup(data: UserGroupInput!): UserGroupItem!
   downloadLabels(data: DownloadLabelsDto!): [TagItem!]!
   downloadPosts(data: DownloadPostsDto!): [ResponseStatus!]!
@@ -610,7 +610,6 @@ type User {
   createdAt: Date!
   isTransportPassword: Boolean!
   login: String!
-  passwordHash: String!
   profile: ProfileItem
   profileUid: UID!
   uid: UID!
@@ -639,7 +638,6 @@ type UserItem {
   createdAt: Date!
   isTransportPassword: Boolean!
   login: String!
-  passwordHash: String!
   profile: ProfileItem
   profileUid: UID!
   uid: UID!
@@ -651,7 +649,7 @@ type UserToken {
   user: UserItem!
 }
 
-type UserWithPasswordDto {
+type UserWithPassword {
   password: String!
   user: UserItem!
 }
