@@ -1,4 +1,4 @@
-import { useApolloClient, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { PostRow, PostType } from '@razrabs-ui/posts'
 import { useIsMobile } from '@razrabs-ui/responsive'
 import type { GetServerSideProps, NextPage } from 'next'
@@ -42,15 +42,13 @@ const FeedPage: NextPage<Props> = ({
   const smallRow = useIsMobile()
   const [rangeCache, setRangeCache] = useState<number[]>([-1, -1])
 
-  const providedClient = useApolloClient()
-
   const [total, setTotal] = useState<number>(initialTotal)
 
   const { data, fetchMore } = useQuery<GetPostsByFeed>(GetPostsByFeedQuery, {
     notifyOnNetworkStatusChange: true,
-    client: providedClient,
     ssr: false,
     variables: {
+      uid: currentFeedUid,
       page: 1,
       perPage: 2,
     },
@@ -121,7 +119,6 @@ const FeedPage: NextPage<Props> = ({
     }
     setRangeCache([startIndex, stopIndex])
 
-    console.log('start index', startIndex)
     const {
       data: {
         postsByFeed: { count, items },
@@ -136,11 +133,6 @@ const FeedPage: NextPage<Props> = ({
         return prev
       },
     })
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    setData((prevState) => [...prevState, newPosts])
-    setTotal(count)
   }
   return (
     <>
