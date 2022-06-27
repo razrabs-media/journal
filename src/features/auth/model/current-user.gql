@@ -1,6 +1,8 @@
 query CurrentUser {
   currentUser {
     login
+    commentsCount
+    postsCount
     profile {
       avatarUrl
       createdAt

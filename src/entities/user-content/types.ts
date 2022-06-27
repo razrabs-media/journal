@@ -3,4 +3,6 @@ export type Props = {
   login: string
   name: string
   registrationDate: string
+  commentsCount: number
+  postsCount: number
 }

@@ -42,8 +42,10 @@ export const Auth = forwardRef<HTMLDivElement, Props>(
       Content = (
         <User
           avatarUrl={data.currentUser.profile?.avatarUrl ?? ''}
+          commentsCount={data.currentUser.commentsCount}
           login={data.currentUser.login}
           name={data.currentUser.profile?.fullName ?? ''}
+          postsCount={data.currentUser.postsCount}
           registrationDate={data.currentUser.profile?.createdAt ?? ''}
         />
       )

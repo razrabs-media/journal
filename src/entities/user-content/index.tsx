@@ -9,6 +9,8 @@ export const User: FC<Props> = ({
   login,
   name,
   registrationDate,
+  postsCount,
+  commentsCount,
 }) => (
   <ModalContent>
     <Flex direction='column' gap={48}>
@@ -17,7 +19,11 @@ export const User: FC<Props> = ({
         <Name login={login} name={name} />
       </Flex>
 
-      <UserInfo date={registrationDate} />
+      <UserInfo
+        commentsCount={commentsCount}
+        date={registrationDate}
+        postsCount={postsCount}
+      />
     </Flex>
   </ModalContent>
 )

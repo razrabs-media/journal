@@ -9,10 +9,6 @@ input AssignUserGroupInput {
   userUid: String!
 }
 
-input CancelCommentDto {
-  token: String!
-}
-
 type Category {
   createdAt: Date!
   name: String!
@@ -34,11 +30,10 @@ input ChangePasswordInput {
 }
 
 type CommentItem {
-  author: ProfileItem!
+  author: ProfileItem
   authorUid: UID!
   content: String!
   createdAt: Date!
-  post: SimplePost!
   postUid: UID!
   replyingToComment: CommentItem
   replyingToCommentUid: UID
@@ -86,10 +81,6 @@ scalar Content
 
 input CreateCategoriesInput {
   name: String!
-}
-
-type CreateCommentDto {
-  token: String!
 }
 
 input CreateCommentInput {
@@ -141,6 +132,17 @@ input CreateUserInput {
   email: String!
   fullName: String!
   login: String!
+}
+
+type CurrentUser {
+  commentsCount: Float!
+  login: String!
+  permissions: [String!]!
+  postsCount: Float!
+  profile: Profile
+  profileUid: UID
+  registrationDate: String!
+  uid: String!
 }
 
 type DataSource {
@@ -281,12 +283,11 @@ type GithubAuthor {
 
 type Mutation {
   assignGroupToUser(data: AssignUserGroupInput!): UserItem!
-  cancelComment(data: CancelCommentDto!): ResponseStatus!
   changePassword(data: ChangePasswordInput!): UserItem!
   changePermissions(data: UserGroupInput!): UserGroupItem!
   changePostsOnFrontPage(data: [AddPostToFrontPageInput!]!, frontPageUid: UID!): [PostOnFrontPageItem!]!
   createCategory(data: CreateCategoriesInput!): Category!
-  createComment(data: CreateCommentInput!): CreateCommentDto!
+  createComment(data: CreateCommentInput!): CommentItem!
   createComponent(data: CreateComponentInput!): Component!
   createDataSource(data: CreateDataSourceInput!): DataSource!
   createDraft(content: Upload, data: CreateDraftInput): DraftItem!
@@ -316,7 +317,7 @@ type Mutation {
   removeProfile(uid: UID!): Int!
   removeUser(uid: UID!): Int!
   removeUserGroup(uid: UID!): Int!
-  resetPasswordForUser(data: ResetPasswordInput!): UserItem!
+  resetPasswordForUser(data: ResetPasswordInput!): ResetPasswordDto!
   setGithubPrivateToken(data: SetGithubPrivateTokenDto!): ResponseStatus!
   share(uid: UID!): PostInteractions!
   shareFrontPage(uid: UID!): FrontPage!
@@ -361,6 +362,7 @@ input PositionInput {
 }
 
 type Post {
+  comments: [CommentItem!]
   content: String!
   createdAt: Date!
   description: String!
@@ -431,6 +433,7 @@ type PriorityItem {
 
 type Profile {
   avatarUrl: String
+  commentsCount: Float
   createdAt: Date!
   email: String
   fullName: String
@@ -442,6 +445,7 @@ type Profile {
 
 type ProfileItem {
   avatarUrl: String
+  commentsCount: Float
   createdAt: Date!
   email: String
   fullName: String
@@ -457,11 +461,11 @@ input ProfileUpdateInput {
 type Query {
   categories: [CategoryItem!]!
   category(uid: UID!): Category!
-  comments(filter: FilterCommentArgs, page: Int = 1, perPage: Int = 20): CommentPagination!
+  comments(filter: FilterCommentArgs, page: Int = 1, perPage: Int = 20, sort: SortCommentsArgs): CommentPagination!
   component(uid: UID!): Component!
   components: [ComponentItem!]!
   currentFrontPage: FrontPage!
-  currentUser: User!
+  currentUser: CurrentUser!
   dataSource(uid: UID!): DataSource!
   dataSources: [DataSourceItem!]!
   draft(uid: UID!): DraftItem!
@@ -485,7 +489,12 @@ type Query {
   tags: [TagItem!]!
   user(uid: UID!): User!
   userGroups: [UserGroupItem!]!
-  users: [UserItem!]!
+  users: [User!]!
+}
+
+type ResetPasswordDto {
+  login: String!
+  password: String!
 }
 
 input ResetPasswordInput {
@@ -515,6 +524,10 @@ type SimplePost {
   title: String!
   uid: UID!
   updatedAt: Date!
+}
+
+input SortCommentsArgs {
+  byCreationDate: SortType
 }
 
 input SortFeedsArgs {
@@ -611,7 +624,7 @@ type User {
   isTransportPassword: Boolean!
   login: String!
   profile: ProfileItem
-  profileUid: UID!
+  profileUid: UID
   uid: UID!
   updatedAt: Date!
   userGroups: [UserGroupItem!]!
@@ -639,7 +652,7 @@ type UserItem {
   isTransportPassword: Boolean!
   login: String!
   profile: ProfileItem
-  profileUid: UID!
+  profileUid: UID
   uid: UID!
   updatedAt: Date!
 }
