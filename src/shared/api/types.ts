@@ -34,10 +34,6 @@ export type AssignUserGroupInput = {
   userUid: Scalars['String'];
 };
 
-export type CancelCommentDto = {
-  token: Scalars['String'];
-};
-
 export type Category = {
   __typename?: 'Category';
   createdAt: Scalars['Date'];
@@ -62,11 +58,10 @@ export type ChangePasswordInput = {
 
 export type CommentItem = {
   __typename?: 'CommentItem';
-  author: ProfileItem;
+  author?: Maybe<ProfileItem>;
   authorUid: Scalars['UID'];
   content: Scalars['String'];
   createdAt: Scalars['Date'];
-  post: SimplePost;
   postUid: Scalars['UID'];
   replyingToComment?: Maybe<CommentItem>;
   replyingToCommentUid?: Maybe<Scalars['UID']>;
@@ -115,11 +110,6 @@ export type ConfigurationInput = {
 
 export type CreateCategoriesInput = {
   name: Scalars['String'];
-};
-
-export type CreateCommentDto = {
-  __typename?: 'CreateCommentDto';
-  token: Scalars['String'];
 };
 
 export type CreateCommentInput = {
@@ -171,6 +161,18 @@ export type CreateUserInput = {
   email: Scalars['String'];
   fullName: Scalars['String'];
   login: Scalars['String'];
+};
+
+export type CurrentUser = {
+  __typename?: 'CurrentUser';
+  commentsCount: Scalars['Float'];
+  login: Scalars['String'];
+  permissions: Array<Scalars['String']>;
+  postsCount: Scalars['Float'];
+  profile?: Maybe<Profile>;
+  profileUid?: Maybe<Scalars['UID']>;
+  registrationDate: Scalars['String'];
+  uid: Scalars['String'];
 };
 
 export type DataSource = {
@@ -319,12 +321,11 @@ export type GithubAuthor = {
 export type Mutation = {
   __typename?: 'Mutation';
   assignGroupToUser: UserItem;
-  cancelComment: ResponseStatus;
   changePassword: UserItem;
   changePermissions: UserGroupItem;
   changePostsOnFrontPage: Array<PostOnFrontPageItem>;
   createCategory: Category;
-  createComment: CreateCommentDto;
+  createComment: CommentItem;
   createComponent: Component;
   createDataSource: DataSource;
   createDraft: DraftItem;
@@ -354,7 +355,7 @@ export type Mutation = {
   removeProfile: Scalars['Int'];
   removeUser: Scalars['Int'];
   removeUserGroup: Scalars['Int'];
-  resetPasswordForUser: UserItem;
+  resetPasswordForUser: ResetPasswordDto;
   setGithubPrivateToken: ResponseStatus;
   share: PostInteractions;
   shareFrontPage: FrontPage;
@@ -378,11 +379,6 @@ export type Mutation = {
 
 export type MutationAssignGroupToUserArgs = {
   data: AssignUserGroupInput;
-};
-
-
-export type MutationCancelCommentArgs = {
-  data: CancelCommentDto;
 };
 
 
@@ -683,6 +679,7 @@ export type PositionInput = {
 
 export type Post = {
   __typename?: 'Post';
+  comments?: Maybe<Array<CommentItem>>;
   content: Scalars['String'];
   createdAt: Scalars['Date'];
   description: Scalars['String'];
@@ -760,6 +757,7 @@ export type PriorityItem = {
 export type Profile = {
   __typename?: 'Profile';
   avatarUrl?: Maybe<Scalars['String']>;
+  commentsCount?: Maybe<Scalars['Float']>;
   createdAt: Scalars['Date'];
   email?: Maybe<Scalars['String']>;
   fullName?: Maybe<Scalars['String']>;
@@ -772,6 +770,7 @@ export type Profile = {
 export type ProfileItem = {
   __typename?: 'ProfileItem';
   avatarUrl?: Maybe<Scalars['String']>;
+  commentsCount?: Maybe<Scalars['Float']>;
   createdAt: Scalars['Date'];
   email?: Maybe<Scalars['String']>;
   fullName?: Maybe<Scalars['String']>;
@@ -792,7 +791,7 @@ export type Query = {
   component: Component;
   components: Array<ComponentItem>;
   currentFrontPage: FrontPage;
-  currentUser: User;
+  currentUser: CurrentUser;
   dataSource: DataSource;
   dataSources: Array<DataSourceItem>;
   draft: DraftItem;
@@ -816,7 +815,7 @@ export type Query = {
   tags: Array<TagItem>;
   user: User;
   userGroups: Array<UserGroupItem>;
-  users: Array<UserItem>;
+  users: Array<User>;
 };
 
 
@@ -829,6 +828,7 @@ export type QueryCommentsArgs = {
   filter?: InputMaybe<FilterCommentArgs>;
   page?: InputMaybe<Scalars['Int']>;
   perPage?: InputMaybe<Scalars['Int']>;
+  sort?: InputMaybe<SortCommentsArgs>;
 };
 
 
@@ -919,6 +919,12 @@ export type QueryUserArgs = {
   uid: Scalars['UID'];
 };
 
+export type ResetPasswordDto = {
+  __typename?: 'ResetPasswordDto';
+  login: Scalars['String'];
+  password: Scalars['String'];
+};
+
 export type ResetPasswordInput = {
   login: Scalars['String'];
 };
@@ -948,6 +954,10 @@ export type SimplePost = {
   title: Scalars['String'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
+};
+
+export type SortCommentsArgs = {
+  byCreationDate?: InputMaybe<SortType>;
 };
 
 export type SortFeedsArgs = {
@@ -1042,7 +1052,7 @@ export type User = {
   isTransportPassword: Scalars['Boolean'];
   login: Scalars['String'];
   profile?: Maybe<ProfileItem>;
-  profileUid: Scalars['UID'];
+  profileUid?: Maybe<Scalars['UID']>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
   userGroups: Array<UserGroupItem>;
@@ -1072,7 +1082,7 @@ export type UserItem = {
   isTransportPassword: Scalars['Boolean'];
   login: Scalars['String'];
   profile?: Maybe<ProfileItem>;
-  profileUid: Scalars['UID'];
+  profileUid?: Maybe<Scalars['UID']>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
