@@ -5,7 +5,7 @@ import { FC } from 'react'
 import { Flex } from 'shared/ui'
 import { Props } from './types'
 
-export const UserInfo: FC<Props> = ({ date }) => {
+export const UserInfo: FC<Props> = ({ date, postsCount, commentsCount }) => {
   const formattedDate = format(new Date(date), 'dd MMMM yyyy', {
     locale: ru,
   })
@@ -13,8 +13,8 @@ export const UserInfo: FC<Props> = ({ date }) => {
 
   return (
     <Flex direction='column' gap={8}>
-      <Typography size='lg'>{0} материалов открыто</Typography>
-      <Typography size='lg'>{0} комментов написано</Typography>
+      <Typography size='lg'>{postsCount} материалов открыто</Typography>
+      <Typography size='lg'>{commentsCount} комментов написано</Typography>
 
       <Flex gap={16}>
         <Typography size='lg'>С Разрабами с {formattedDate}</Typography>
