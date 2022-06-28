@@ -58,7 +58,7 @@ export type ChangePasswordInput = {
 
 export type CommentItem = {
   __typename?: 'CommentItem';
-  author?: Maybe<ProfileItem>;
+  author: ProfileItem;
   authorUid: Scalars['UID'];
   content: Scalars['String'];
   createdAt: Scalars['Date'];
@@ -213,6 +213,7 @@ export type DownloadLabelsDto = {
 
 export type DownloadPostsDto = {
   branchName: Scalars['String'];
+  githubAuthorUid: Scalars['String'];
   projectName: Scalars['String'];
   repoName: Scalars['String'];
 };
@@ -307,7 +308,9 @@ export enum FrontPageType {
 
 export type GithubAuthor = {
   __typename?: 'GithubAuthor';
+  avatarUrl?: Maybe<Scalars['String']>;
   createdAt: Scalars['Date'];
+  name?: Maybe<Scalars['String']>;
   posts?: Maybe<Array<Post>>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
