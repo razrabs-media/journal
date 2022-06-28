@@ -9,6 +9,7 @@ export const StyledComment = styled.div`
 
   padding: 20px 24px;
 
+  // TODO: вынести в @razrabs-ui/theme
   &:hover {
     background: #38393d;
   }

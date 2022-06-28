@@ -2,6 +2,7 @@ import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@emotion/react'
 import { themeDark } from '@razrabs-ui/theme'
 import type { NextPageContext } from 'next'
+import Head from 'next/head'
 import { AppProps } from 'next/app'
 import { CommentsWidget } from 'widgets/comments'
 import { Header } from 'widgets/header'
@@ -20,33 +21,42 @@ const _App = ({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo()
 
   return (
-    <ThemeProvider theme={themeDark}>
-      <ApolloProvider client={apolloClient}>
-        <CommentsProvider>
-          <DrawerGrid>
-            <GridArea area='main' style={{ overflowY: 'scroll' }}>
-              <MainGrid>
-                <StickyGridArea area='header'>
-                  <Header />
-                </StickyGridArea>
+    <>
+      {/* https://nextjs.org/docs/messages/no-document-viewport-meta */}
+      <Head>
+        <meta
+          content='width=device-width, initial-scale=1, maximum-scale=1'
+          name='viewport'
+        />
+      </Head>
+      <ThemeProvider theme={themeDark}>
+        <ApolloProvider client={apolloClient}>
+          <CommentsProvider>
+            <DrawerGrid>
+              <GridArea area='main' style={{ overflowY: 'scroll' }}>
+                <MainGrid>
+                  <StickyGridArea area='header'>
+                    <Header />
+                  </StickyGridArea>
 
-                <GridArea area='content'>
-                  <Component {...pageProps} />
-                </GridArea>
+                  <GridArea area='content'>
+                    <Component {...pageProps} />
+                  </GridArea>
 
-                <GridArea area='footer'>
-                  <Footer />
-                </GridArea>
-              </MainGrid>
-            </GridArea>
+                  <GridArea area='footer'>
+                    <Footer />
+                  </GridArea>
+                </MainGrid>
+              </GridArea>
 
-            <StickyGridArea area='drawer' style={{ overflowY: 'scroll' }}>
-              <CommentsWidget />
-            </StickyGridArea>
-          </DrawerGrid>
-        </CommentsProvider>
-      </ApolloProvider>
-    </ThemeProvider>
+              <StickyGridArea area='drawer' style={{ overflowY: 'scroll' }}>
+                <CommentsWidget />
+              </StickyGridArea>
+            </DrawerGrid>
+          </CommentsProvider>
+        </ApolloProvider>
+      </ThemeProvider>
+    </>
   )
 }
 

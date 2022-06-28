@@ -37,7 +37,7 @@ const ReplyIcon = () => {
 const Comment = forwardRef<HTMLDivElement, CommentProps>(
   ({ as, className, avatar, author, time, content, replyContent }, ref) => (
     <StyledComment as={as} className={className} ref={ref}>
-      <Image alt={author} h={40} src={avatar} w={40} />
+      <Image alt={author} fit='fill' h={40} src={avatar} w={40} />
 
       <RowsWrapper>
         <FirstRow>

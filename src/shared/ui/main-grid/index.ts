@@ -14,6 +14,7 @@ export const MainGrid = styled.div`
 
   @media screen and (max-width: 671px) {
     row-gap: 10px;
+    column-gap: 10px;
 
     grid-template:
       '. header .' 54px

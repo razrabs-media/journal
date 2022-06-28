@@ -3,7 +3,9 @@ import { useComments } from 'entities/comments'
 import { useDisplayAnimation } from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
 import { CrossIcon, IconButton } from 'shared/ui'
+
 import { Drawer } from './drawer'
+import { CommentInput } from './input'
 import { CommentsAmount, CommentsContainer, Header } from './styled'
 
 const TRANSITION_TIME = 150
@@ -43,6 +45,8 @@ export const CommentsWidget = () => {
           />
         ))}
       </CommentsContainer>
+
+      <CommentInput />
     </Drawer>
   )
 }

@@ -46,10 +46,10 @@ export const Drawer = styled.div<Props>`
   position: static;
   left: 0;
   top: 0;
-  height: 100vh;
+  bottom: 0;
   width: 390px;
 
-  display: ${({ shouldDisplay }) => (shouldDisplay ? 'block' : 'none')};
+  display: ${({ shouldDisplay }) => (shouldDisplay ? 'flex' : 'none')};
   flex-direction: column;
   flex-shrink: 0;
 
