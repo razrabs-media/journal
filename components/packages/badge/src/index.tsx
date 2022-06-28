@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import Typography from '@razrabs-ui/typography'
-import type { ElementType, FC, ReactNode } from 'react'
 import { CSSProperties, forwardRef } from 'react'
+import type { ElementType, FC, ReactNode } from 'react'
 
 type StyleBadgeProps = {
   wide?: boolean

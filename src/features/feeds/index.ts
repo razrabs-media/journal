@@ -1,2 +1,2 @@
-export { FeedSelector, FeedContainer, FeedVirtualizedCell } from './ui'
+export { FeedSelector, FeedContainer } from './ui'
 export * from './model'

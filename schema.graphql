@@ -184,7 +184,6 @@ input DownloadLabelsDto {
 
 input DownloadPostsDto {
   branchName: String!
-  githubAuthorUid: String!
   projectName: String!
   repoName: String!
 }
@@ -271,9 +270,7 @@ enum FrontPageType {
 }
 
 type GithubAuthor {
-  avatarUrl: String
   createdAt: Date!
-  name: String
   posts: [Post!]
   uid: UID!
   updatedAt: Date!

@@ -4,7 +4,7 @@
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {
-        "url": "https://api.dev.razrabs.ru/gql",
+        "url": "https://raz-backoffice-api-stage.herokuapp.com/gql",
         "headers": {
           "user-agent": "JS GraphQL"
         },
