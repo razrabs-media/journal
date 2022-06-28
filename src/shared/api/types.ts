@@ -57,17 +57,17 @@ export type ChangePasswordInput = {
 };
 
 export type CommentItem = {
-  __typename?: 'CommentItem';
-  author: ProfileItem;
-  authorUid: Scalars['UID'];
-  content: Scalars['String'];
-  createdAt: Scalars['Date'];
-  postUid: Scalars['UID'];
-  replyingToComment?: Maybe<CommentItem>;
-  replyingToCommentUid?: Maybe<Scalars['UID']>;
-  uid: Scalars['UID'];
-  updatedAt: Scalars['Date'];
-};
+  __typename?: 'CommentItem'
+  author: ProfileItem
+  authorUid: Scalars['UID']
+  content: Scalars['String']
+  createdAt: Scalars['Date']
+  postUid: Scalars['UID']
+  replyingToComment?: Maybe<CommentItem>
+  replyingToCommentUid?: Maybe<Scalars['UID']>
+  uid: Scalars['UID']
+  updatedAt: Scalars['Date']
+}
 
 export type CommentPagination = {
   __typename?: 'CommentPagination';

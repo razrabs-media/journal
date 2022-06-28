@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { flushSync } from 'react-dom'
 
 export const useDisplayAnimation = (
   shouldDisplay: boolean,
@@ -20,20 +21,26 @@ export const useDisplayAnimation = (
     // Если false -> true
     // Сначала включаем отображение, потом играем анимацию
     if (shouldDisplay) {
-      setDisplay(true)
       setAnimationIn(true)
+      setDisplay(true)
 
       timeoutCallback = () => {
         setAnimationIn(false)
       }
     }
+
     // Если true -> false
     // Сначала играем анимацию, потом выключаем отображение
     else {
       setAnimationOut(true)
 
       timeoutCallback = () => {
-        setDisplay(false)
+        // Избавляемся от морганий анимации, которые вызваны батчингом
+        // П.С. Если у вас моргают анимации выхода - используйте "animation-fill-mode: forwards;", чтобы зафиксировать последний кадр
+        flushSync(() => {
+          setDisplay(false)
+        })
+
         setAnimationOut(false)
       }
     }

@@ -62,7 +62,7 @@ export const Drawer = styled.div<Props>`
         `
       : animationOut
       ? css`
-          animation: ${SWIPE_OUT} ${transitionTime}ms ease-out;
+          animation: ${SWIPE_OUT} ${transitionTime}ms ease-out forwards;
         `
       : null};
 
