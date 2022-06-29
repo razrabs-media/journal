@@ -30,7 +30,7 @@ input ChangePasswordInput {
 }
 
 type CommentItem {
-  author: ProfileItem
+  author: ProfileItem!
   authorUid: UID!
   content: String!
   createdAt: Date!

@@ -8,6 +8,12 @@ query GetPost($uid: UID!) {
     tags {
       name
     }
+    githubAuthor {
+      uid
+      name
+      usernameUrl
+      avatarUrl
+    }
     createdAt
   }
 }

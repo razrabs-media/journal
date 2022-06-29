@@ -11,6 +11,7 @@ export const PostReader: FC<Props> = (props) => {
   return (
     <StyledReader>
       <FloatedPreview
+        githubAuthor={props.githubAuthor}
         previewUrl={props.previewUrl}
         publicationDate={props.publicationDate}
         shouldDisplay={shouldDisplay}
@@ -21,6 +22,7 @@ export const PostReader: FC<Props> = (props) => {
 
       <PostHeader
         description={props.description}
+        githubAuthor={props.githubAuthor}
         previewUrl={props.previewUrl}
         publicationDate={props.publicationDate}
         ref={postHeaderRef}

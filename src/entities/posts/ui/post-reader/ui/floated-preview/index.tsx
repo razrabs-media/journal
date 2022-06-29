@@ -1,5 +1,6 @@
 import Badge from '@razrabs-ui/badge'
 import Image from '@razrabs-ui/image'
+import PostAuthor from '@razrabs-ui/post-author'
 import { FC, useMemo } from 'react'
 import { parseDate } from 'shared/lib/parse-date'
 import { ShareButton, ShareType } from 'shared/ui'
@@ -20,6 +21,7 @@ export const FloatedPreview: FC<Props> = ({
   shouldDisplay,
   transitionTime,
   previewUrl,
+  githubAuthor,
   title,
   publicationDate,
   tags,
@@ -54,6 +56,8 @@ export const FloatedPreview: FC<Props> = ({
         <Title uppercase size='lg'>
           {title}
         </Title>
+
+        <PostAuthor>хихихих</PostAuthor>
 
         <DateAndShareRow>
           <PublicationDate uppercase color='secondary' size='sm'>

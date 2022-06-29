@@ -7,7 +7,7 @@
     "components/packages/**"
   ],
   "scripts": {
-    "update-schema": "DOTENV_CONFIG_PATH='./.env.development' graphql-codegen -c ./codegen.download.yml --require dotenv/config",
+    "update-schema": "cross-env DOTENV_CONFIG_PATH='./.env.development' graphql-codegen -c ./codegen.download.yml --require dotenv/config",
     "dev-codegen": "graphql-codegen --watch",
     "dev-next": "next dev",
     "dev": "concurrently -k yarn:dev-codegen yarn:dev-next",
@@ -67,6 +67,7 @@
     "@typescript-eslint/parser": "5.19.0",
     "babel-plugin-inline-react-svg": "2.0.1",
     "concurrently": "7.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "8.5.0",
