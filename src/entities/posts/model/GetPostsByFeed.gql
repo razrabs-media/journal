@@ -1,6 +1,5 @@
 query GetPostsByFeed($uid: UID!, $page: Int, $perPage: Int) {
   postsByFeed(uid: $uid, page: $page, perPage: $perPage) {
-    count,
     items {
       uid,
       title,

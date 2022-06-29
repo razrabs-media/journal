@@ -58,7 +58,7 @@ export type ChangePasswordInput = {
 
 export type CommentItem = {
   __typename?: 'CommentItem';
-  author?: Maybe<ProfileItem>;
+  author: ProfileItem;
   authorUid: Scalars['UID'];
   content: Scalars['String'];
   createdAt: Scalars['Date'];
