@@ -55,6 +55,7 @@ const StyleWrapper = styled.div`
   font-weight: 400;
   font-size: 20px;
   line-height: 140%;
+  max-width: 1027px;
 
   a {
     color: ${({ theme }) => theme.colors.brand};
