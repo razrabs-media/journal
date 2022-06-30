@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Typography from '@razrabs-ui/typography'
 
 export const StyledFooter = styled.footer`
   display: grid;
@@ -6,22 +7,67 @@ export const StyledFooter = styled.footer`
   padding: 20px 0 0 0;
   border-top: 1px solid ${({ theme }) => theme.colors.logo};
   overflow: hidden;
+
+  @media screen and (max-width: 671px) {
+    height: 205px;
+  }
+`
+
+export const Content = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 671px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+`
+
+export const Menu = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: calc(100% / 3 * 2);
+
+  @media screen and (max-width: 1319px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media screen and (max-width: 671px) {
+    grid-template-columns: 1fr 1fr;
+    width: 276px;
+  }
+`
+
+export const StyledNav = styled.nav`
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  list-style-type: none;
+
+  @media screen and (max-width: 1319px) {
+    justify-content: end;
+  }
+
+  @media screen and (max-width: 671px) {
+    flex-direction: column;
+  }
+`
+
+export const Share = styled(StyledNav)`
+  justify-content: end;
+`
+
+export const MoreLabel = styled(Typography)`
+  @media screen and (max-width: 671px) {
+    display: none;
+  }
 `
 
 export const Copyright = styled.span`
   text-align: left;
-
   width: 140px;
   height: 24px;
-
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 100%;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-feature-settings: 'salt' on;
-  color: ${({ theme }) => theme.colors.secondary};
 `
 
 export const Logo = styled.span`
@@ -38,7 +84,6 @@ export const Logo = styled.span`
   font-feature-settings: 'salt' on;
   color: ${({ theme }) => theme.colors.primary};
   opacity: 5%;
-
   overflow: hidden;
   user-select: none;
 
