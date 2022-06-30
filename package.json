@@ -7,7 +7,7 @@
     "components/packages/**"
   ],
   "scripts": {
-    "update-schema": "DOTENV_CONFIG_PATH='./.env.development' graphql-codegen -c ./codegen.download.yml --require dotenv/config",
+    "update-schema": "cross-env DOTENV_CONFIG_PATH='./.env.development' graphql-codegen -c ./codegen.download.yml --require dotenv/config",
     "dev-codegen": "graphql-codegen --watch",
     "dev-next": "next dev",
     "dev": "concurrently -k yarn:dev-codegen yarn:dev-next",
