@@ -1,12 +1,12 @@
 input AddPostToFrontPageInput {
-  componentUid: String!
+  componentUid: UID!
   position: PositionInput!
   postUid: String!
 }
 
 input AssignUserGroupInput {
   userGroupsName: [String!]!
-  userUid: String!
+  userUid: UID!
 }
 
 type Category {
@@ -85,8 +85,8 @@ input CreateCategoriesInput {
 
 input CreateCommentInput {
   content: String!
-  postUid: String!
-  replyingToCommentUid: String
+  postUid: UID!
+  replyingToCommentUid: UID
 }
 
 input CreateComponentInput {
@@ -142,7 +142,7 @@ type CurrentUser {
   profile: Profile
   profileUid: UID
   registrationDate: String!
-  uid: String!
+  uid: UID!
 }
 
 type DataSource {
@@ -184,7 +184,7 @@ input DownloadLabelsDto {
 
 input DownloadPostsDto {
   branchName: String!
-  githubAuthorUid: String!
+  githubAuthorUid: UID!
   projectName: String!
   repoName: String!
 }
@@ -232,7 +232,7 @@ enum FeedStatus {
 
 input FilterCommentArgs {
   contains: String
-  postUid: String
+  postUid: UID
 }
 
 input FilterFeedsArgs {
@@ -387,22 +387,22 @@ type PostInteractions {
 
 type PostOnFrontPage {
   component: ComponentItem!
-  componentUid: String!
+  componentUid: UID!
   createdAt: Date!
-  frontPageUid: String!
+  frontPageUid: UID!
   position: Position!
   post: SimplePost!
-  postUid: String!
+  postUid: UID!
   uid: UID!
   updatedAt: Date!
 }
 
 type PostOnFrontPageItem {
-  componentUid: String!
+  componentUid: UID!
   createdAt: Date!
-  frontPageUid: String!
+  frontPageUid: UID!
   position: Position!
-  postUid: String!
+  postUid: UID!
   uid: UID!
   updatedAt: Date!
 }

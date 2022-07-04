@@ -1,10 +1,17 @@
+// noinspection CssInvalidPropertyValue
+
 import styled from '@emotion/styled'
 
 export const Background = styled.div<{ hide: boolean }>`
   position: fixed;
   width: 100vw;
   opacity:  ${({ hide }) => `${hide ? '0' : '1'}`};;
-  height: 100vh;
+  min-height: 100vh;
+  /* mobile fix */
+  min-height: -moz-available;
+  min-height: -webkit-fill-available;
+  min-height: fill-available;
+  /* ---------- */
   background-color: #00000040;
   top: 0;
   left: 0;
