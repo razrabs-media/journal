@@ -24,14 +24,14 @@ export type Scalars = {
 };
 
 export type AddPostToFrontPageInput = {
-  componentUid: Scalars['String'];
+  componentUid: Scalars['UID'];
   position: PositionInput;
   postUid: Scalars['String'];
 };
 
 export type AssignUserGroupInput = {
   userGroupsName: Array<Scalars['String']>;
-  userUid: Scalars['String'];
+  userUid: Scalars['UID'];
 };
 
 export type Category = {
@@ -114,8 +114,8 @@ export type CreateCategoriesInput = {
 
 export type CreateCommentInput = {
   content: Scalars['String'];
-  postUid: Scalars['String'];
-  replyingToCommentUid?: InputMaybe<Scalars['String']>;
+  postUid: Scalars['UID'];
+  replyingToCommentUid?: InputMaybe<Scalars['UID']>;
 };
 
 export type CreateComponentInput = {
@@ -172,7 +172,7 @@ export type CurrentUser = {
   profile?: Maybe<Profile>;
   profileUid?: Maybe<Scalars['UID']>;
   registrationDate: Scalars['String'];
-  uid: Scalars['String'];
+  uid: Scalars['UID'];
 };
 
 export type DataSource = {
@@ -213,6 +213,7 @@ export type DownloadLabelsDto = {
 
 export type DownloadPostsDto = {
   branchName: Scalars['String'];
+  githubAuthorUid: Scalars['UID'];
   projectName: Scalars['String'];
   repoName: Scalars['String'];
 };
@@ -264,7 +265,7 @@ export enum FeedStatus {
 
 export type FilterCommentArgs = {
   contains?: InputMaybe<Scalars['String']>;
-  postUid?: InputMaybe<Scalars['String']>;
+  postUid?: InputMaybe<Scalars['UID']>;
 };
 
 export type FilterFeedsArgs = {
@@ -307,7 +308,9 @@ export enum FrontPageType {
 
 export type GithubAuthor = {
   __typename?: 'GithubAuthor';
+  avatarUrl?: Maybe<Scalars['String']>;
   createdAt: Scalars['Date'];
+  name?: Maybe<Scalars['String']>;
   posts?: Maybe<Array<Post>>;
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
@@ -703,23 +706,23 @@ export type PostInteractions = {
 export type PostOnFrontPage = {
   __typename?: 'PostOnFrontPage';
   component: ComponentItem;
-  componentUid: Scalars['String'];
+  componentUid: Scalars['UID'];
   createdAt: Scalars['Date'];
-  frontPageUid: Scalars['String'];
+  frontPageUid: Scalars['UID'];
   position: Position;
   post: SimplePost;
-  postUid: Scalars['String'];
+  postUid: Scalars['UID'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
 
 export type PostOnFrontPageItem = {
   __typename?: 'PostOnFrontPageItem';
-  componentUid: Scalars['String'];
+  componentUid: Scalars['UID'];
   createdAt: Scalars['Date'];
-  frontPageUid: Scalars['String'];
+  frontPageUid: Scalars['UID'];
   position: Position;
-  postUid: Scalars['String'];
+  postUid: Scalars['UID'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
