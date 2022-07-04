@@ -70,6 +70,12 @@ export const SecondRow = styled.div`
   }
 `
 
+export const ImageDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`
+
 export const TagsAndShare = styled.div`
   display: flex;
   flex-direction: row;

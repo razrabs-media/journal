@@ -18,6 +18,7 @@ const Post: NextPage<GetPost> = ({ post }) => (
 
     <PostReader
       {...post}
+      githubAuthor={post.githubAuthor ?? undefined}
       previewUrl={post.previewUrl || undefined}
       publicationDate={post.createdAt}
       tags={post.tags?.map((tag) => tag.name)}
