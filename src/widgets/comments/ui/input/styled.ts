@@ -40,11 +40,8 @@ Input.defaultProps = {
 }
 
 export const StyledCommentInput = styled.div`
-  position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
-
   padding: 20px 24px;
 
   display: flex;

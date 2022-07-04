@@ -25,7 +25,7 @@ const _App = ({ Component, pageProps }: AppProps) => {
       {/* https://nextjs.org/docs/messages/no-document-viewport-meta */}
       <Head>
         <meta
-          content='width=device-width, initial-scale=1, maximum-scale=1'
+          content='width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0'
           name='viewport'
         />
       </Head>
@@ -49,7 +49,7 @@ const _App = ({ Component, pageProps }: AppProps) => {
                 </MainGrid>
               </GridArea>
 
-              <StickyGridArea area='drawer' style={{ overflowY: 'scroll' }}>
+              <StickyGridArea area='drawer' style={{ overflowY: 'hidden' }}>
                 <CommentsWidget />
               </StickyGridArea>
             </DrawerGrid>

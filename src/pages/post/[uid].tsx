@@ -13,10 +13,9 @@ import { Helmet } from 'shared/lib'
 
 type Props = {
   post: GetPost['post']
-  commentId: string | null
 }
 
-const Post: NextPage<Props> = ({ post, commentId }) => {
+const Post: NextPage<Props> = ({ post }) => {
   const { openHandler, setComments } = useComments()
 
   useEffect(() => {
@@ -59,6 +58,8 @@ export const getServerSideProps: GetServerSideProps<{
     variables: { uid: uid?.toString() ?? '' },
     fetchPolicy: 'no-cache',
   })
+
+  console.log(data.post.comments)
 
   return {
     props: { post: data.post, commentId },

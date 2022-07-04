@@ -1,12 +1,12 @@
 import { useTheme } from '@emotion/react'
 import Image from '@razrabs-ui/image'
 import Typography from '@razrabs-ui/typography'
-import { forwardRef } from 'react'
+import { forwardRef, MouseEvent } from 'react'
 import {
   FirstRow,
   ReplyContent,
+  ReplyRow,
   RowsWrapper,
-  SecondRow,
   StyledComment,
 } from './styled'
 import { CommentProps } from './types'
@@ -35,37 +35,75 @@ const ReplyIcon = () => {
 }
 
 const Comment = forwardRef<HTMLDivElement, CommentProps>(
-  ({ as, className, avatar, author, time, content, replyContent }, ref) => (
-    <StyledComment as={as} className={className} ref={ref}>
-      <Image alt={author} fit='fill' h={40} src={avatar} w={40} />
+  (
+    {
+      as,
+      className,
+      uid,
+      avatar,
+      author,
+      time,
+      content,
+      reply,
+      onReplyClick,
+      onCommentClick,
+    },
+    ref,
+  ) => {
+    const commentClickHandler = () => {
+      if (onCommentClick) {
+        onCommentClick({ uid, content })
+      }
+    }
 
-      <RowsWrapper>
-        <FirstRow>
-          <Typography uppercase letterSpacing={1} size='sm'>
-            {author}
-          </Typography>
+    const replyClickHandler = (e: MouseEvent<HTMLDivElement>) => {
+      e.stopPropagation()
 
-          <Typography uppercase color='secondary' letterSpacing={1} size='sm'>
-            {time}
-          </Typography>
-        </FirstRow>
+      if (reply && onReplyClick) {
+        onReplyClick(reply.uid)
+      }
+    }
 
-        {replyContent && (
-          <SecondRow>
-            <ReplyIcon />
+    return (
+      <StyledComment
+        as={as}
+        className={className}
+        data-comment-uid={uid}
+        ref={ref}
+        onClick={commentClickHandler}
+      >
+        <Image alt={author} fit='fill' h={40} src={avatar} w={40} />
 
-            <ReplyContent as='span' color='secondary' size='md'>
-              {replyContent}
-            </ReplyContent>
-          </SecondRow>
-        )}
+        <RowsWrapper>
+          <FirstRow>
+            <Typography uppercase letterSpacing={1} size='sm'>
+              {author}
+            </Typography>
 
-        <Typography size='md'>{content}</Typography>
-      </RowsWrapper>
-    </StyledComment>
-  ),
+            <Typography uppercase color='secondary' letterSpacing={1} size='sm'>
+              {time}
+            </Typography>
+          </FirstRow>
+
+          {reply && (
+            <ReplyRow onClick={replyClickHandler}>
+              <ReplyIcon />
+
+              <ReplyContent as='span' color='secondary' size='md'>
+                {reply.content}
+              </ReplyContent>
+            </ReplyRow>
+          )}
+
+          <Typography size='md'>{content}</Typography>
+        </RowsWrapper>
+      </StyledComment>
+    )
+  },
 )
 
 Comment.displayName = 'Comment'
 
 export default Comment
+
+export type { ReplyData } from './types'

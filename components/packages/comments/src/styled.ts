@@ -5,6 +5,8 @@ export const StyledComment = styled.div`
   display: flex;
   flex-direction: row;
 
+  cursor: pointer;
+
   gap: 10px;
 
   padding: 20px 24px;
@@ -29,15 +31,22 @@ export const FirstRow = styled.div`
   margin-bottom: 6px;
 `
 
-export const SecondRow = styled.div`
+export const ReplyRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 4px;
   margin-bottom: 4px;
 
+  cursor: pointer;
+
   & svg {
     flex-shrink: 0;
+  }
+
+  &:hover * {
+    stroke: ${({ theme }) => theme.colors.brand};
+    color: ${({ theme }) => theme.colors.brand};
   }
 `
 

@@ -43,15 +43,20 @@ type Props = {
   transitionTime: number
 }
 export const Drawer = styled.div<Props>`
-  position: static;
-  left: 0;
-  top: 0;
-  bottom: 0;
+  position: relative;
   width: 390px;
 
-  display: ${({ shouldDisplay }) => (shouldDisplay ? 'flex' : 'none')};
+  display: ${({ shouldDisplay }) => (shouldDisplay ? 'grid' : 'none')};
   flex-direction: column;
   flex-shrink: 0;
+
+  grid-template-areas:
+    'header'
+    'content'
+    'action';
+
+  overflow: hidden;
+  height: 100%;
 
   background: ${({ theme }) => theme.colors.backgroundSecondary};
 

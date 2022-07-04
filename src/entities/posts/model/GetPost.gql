@@ -23,7 +23,7 @@ query GetPost($uid: UID!) {
         publicName
       }
       replyingToComment {
-        uid,
+        uid
         content
       }
       content
