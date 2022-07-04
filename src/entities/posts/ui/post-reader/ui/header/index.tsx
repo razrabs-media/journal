@@ -1,10 +1,12 @@
 import Badge from '@razrabs-ui/badge'
 import Image from '@razrabs-ui/image'
+import PostAuthor from '@razrabs-ui/post-author'
 import { forwardRef } from 'react'
 import { DateAgo, ShareButton, ShareType } from 'shared/ui'
 import {
   Description,
   FirstRow,
+  ImageDescription,
   ImageWrapper,
   PostTextWrapper,
   SecondRow,
@@ -29,7 +31,14 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => (
           src={props.previewUrl}
           width='100%'
         />
-        <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
+
+        <ImageDescription>
+          <PostAuthor url={props.githubAuthor?.usernameUrl}>
+            {props.githubAuthor?.name}
+          </PostAuthor>
+
+          <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
+        </ImageDescription>
       </ImageWrapper>
 
       <PostTextWrapper>

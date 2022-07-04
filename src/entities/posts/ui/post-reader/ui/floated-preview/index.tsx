@@ -57,7 +57,9 @@ export const FloatedPreview: FC<Props> = ({
           {title}
         </Title>
 
-        <PostAuthor>хихихих</PostAuthor>
+        <PostAuthor margin='20px 0 0' url={githubAuthor?.usernameUrl}>
+          {githubAuthor?.name}
+        </PostAuthor>
 
         <DateAndShareRow>
           <PublicationDate uppercase color='secondary' size='sm'>
