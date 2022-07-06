@@ -1,0 +1,16 @@
+mutation SendComment($data: CreateCommentInput!) {
+  createComment(data: $data) {
+    uid,
+    author {
+      uid
+      avatarUrl
+      publicName
+    }
+    replyingToComment {
+      uid,
+      content
+    }
+    content
+    createdAt
+  }
+}

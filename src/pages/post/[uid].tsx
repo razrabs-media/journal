@@ -16,7 +16,11 @@ type Props = {
 }
 
 const Post: NextPage<Props> = ({ post }) => {
-  const { openHandler, setComments } = useComments()
+  const { openHandler, setPostUid, setComments } = useComments()
+
+  useEffect(() => {
+    setPostUid(post.uid)
+  }, [setPostUid, post.uid])
 
   useEffect(() => {
     setComments(post.comments?.map((comment) => commentAdapter(comment)) ?? [])
@@ -58,8 +62,6 @@ export const getServerSideProps: GetServerSideProps<{
     variables: { uid: uid?.toString() ?? '' },
     fetchPolicy: 'no-cache',
   })
-
-  console.log(data.post.comments)
 
   return {
     props: { post: data.post, commentId },

@@ -52,7 +52,7 @@ const Comment = forwardRef<HTMLDivElement, CommentProps>(
   ) => {
     const commentClickHandler = () => {
       if (onCommentClick) {
-        onCommentClick({ uid, content })
+        onCommentClick(uid)
       }
     }
 
@@ -105,5 +105,3 @@ const Comment = forwardRef<HTMLDivElement, CommentProps>(
 Comment.displayName = 'Comment'
 
 export default Comment
-
-export type { ReplyData } from './types'

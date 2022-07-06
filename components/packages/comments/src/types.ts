@@ -1,10 +1,5 @@
 import { ElementType } from 'react'
 
-export type ReplyData = {
-  uid: string
-  content: string
-}
-
 export type CommentProps = {
   as?: ElementType
   className?: string
@@ -14,8 +9,11 @@ export type CommentProps = {
   time: string
   content: string
 
-  reply?: ReplyData | null
+  reply?: {
+    uid: string
+    content: string
+  } | null
   onReplyClick?: (commentUid: string) => void
 
-  onCommentClick?: (replyData: ReplyData) => void
+  onCommentClick?: (commentUid: string) => void
 }

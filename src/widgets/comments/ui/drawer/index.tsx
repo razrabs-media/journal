@@ -55,6 +55,9 @@ export const Drawer = styled.div<Props>`
     'content'
     'action';
 
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+
   overflow: hidden;
   height: 100%;
 

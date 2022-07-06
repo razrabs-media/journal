@@ -4,6 +4,7 @@ import {
   Dispatch,
   FC,
   ReactNode,
+  SetStateAction,
   useContext,
   useEffect,
   useState,
@@ -13,18 +14,28 @@ import { Comment } from '../model'
 
 export type CommentsContextValue = {
   opened: boolean
-  setComments: Dispatch<Comment[]>
+
+  comments?: Comment[]
+  setComments: Dispatch<SetStateAction<Comment[] | undefined>>
+
+  postUid?: string
+  setPostUid: Dispatch<string>
+
   openHandler: (...args: never[]) => void
   closeHandler: (...args: never[]) => void
-  comments?: Comment[]
 }
 
 export const CommentsContext = createContext<CommentsContextValue>({
   opened: false,
+
+  comments: undefined,
   setComments: () => undefined,
+
+  postUid: undefined,
+  setPostUid: () => undefined,
+
   openHandler: () => undefined,
   closeHandler: () => undefined,
-  comments: undefined,
 })
 
 export const useComments = () => useContext(CommentsContext)
@@ -39,6 +50,17 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
     useCommentsDrawer()
 
   const [comments, setComments] = useState<Comment[] | undefined>(undefined)
+  const [postUid, setPostUid] = useState<string | undefined>(undefined)
+
+  const value = {
+    opened: commentsOpened,
+    comments,
+    setComments,
+    postUid,
+    setPostUid,
+    openHandler: openCommentsHandler,
+    closeHandler: closeCommentsHandler,
+  }
 
   // Закрываем комменты, когда уходим со страницы
   useEffect(() => {
@@ -46,15 +68,7 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
   }, [closeCommentsHandler, router.route])
 
   return (
-    <CommentsContext.Provider
-      value={{
-        opened: commentsOpened,
-        comments,
-        setComments,
-        openHandler: openCommentsHandler,
-        closeHandler: closeCommentsHandler,
-      }}
-    >
+    <CommentsContext.Provider value={{ ...value }}>
       {children}
     </CommentsContext.Provider>
   )

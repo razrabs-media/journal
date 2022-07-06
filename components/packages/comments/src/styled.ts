@@ -8,6 +8,7 @@ export const StyledComment = styled.div`
   cursor: pointer;
 
   gap: 10px;
+  height: fit-content;
 
   padding: 20px 24px;
 

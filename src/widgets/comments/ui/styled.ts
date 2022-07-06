@@ -27,6 +27,11 @@ CommentsAmount.defaultProps = {
 
 export const CommentsContainer = styled(GridArea)`
   overflow-y: scroll;
+  grid-column: 1;
+  grid-auto-flow: row dense;
+  grid-auto-rows: min-content;
+  grid-template-columns: 100%;
+  position: relative;
 `
 
 export const CommentsAction = styled(GridArea)`
