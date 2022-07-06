@@ -1,5 +1,5 @@
 import Image from '@razrabs-ui/image'
-import type { FC, KeyboardEvent } from 'react'
+import type { ChangeEvent, FC, KeyboardEvent } from 'react'
 import { useMemo, useState } from 'react'
 import { ReplyPreview } from 'widgets/comments/ui/reply-preview'
 import { useComments } from 'entities/comments'
@@ -45,6 +45,10 @@ export const CommentInput: FC<Props> = ({
     }
   }
 
+  const handleInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value.substring(0, 255))
+  }
+
   return (
     <>
       {replyComment && (
@@ -58,9 +62,9 @@ export const CommentInput: FC<Props> = ({
         <Image alt='Юзер' fit='fill' h={40} src={avatarUrl} w={40} />
 
         <Input
-          placeholder='Написать...'
+          placeholder='Написать... (макс. 255 символов)'
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={handleInput}
           onKeyDown={keyDownHandler}
         />
       </StyledCommentInput>

@@ -37,6 +37,7 @@ type CommentItem {
   postUid: UID!
   replyingToComment: CommentItem
   replyingToCommentUid: UID
+  status: String!
   uid: UID!
   updatedAt: Date!
 }
@@ -275,6 +276,7 @@ type GithubAuthor {
   createdAt: Date!
   name: String
   posts: [Post!]
+  postsCount: Float!
   uid: UID!
   updatedAt: Date!
   user: User
@@ -304,7 +306,7 @@ type Mutation {
   refreshToken: TokensDto!
   registration(data: CreateUserInput!, password: String!): UserToken!
   removeCategory(uid: UID!): Int!
-  removeComment(uid: UID!): Int!
+  removeComment(uid: UID!): CommentItem!
   removeComponent(uid: UID!): Int!
   removeDataSource(uid: UID!): Int!
   removeDraft(uid: UID!): Int!
@@ -312,7 +314,7 @@ type Mutation {
   removeFrontPage(uid: UID!): Int!
   removeGithubAuthor(uid: UID!): Int!
   removePermission(uid: UID!): Int!
-  removePost(uid: UID!): Int!
+  removePost(uid: UID!): Post!
   removePriority(uid: UID!): Int!
   removeProfile(uid: UID!): Int!
   removeUser(uid: UID!): Int!
@@ -371,6 +373,7 @@ type Post {
   interactions: PostInteractions!
   previewUrl: String
   readingTime: Int
+  status: String!
   tags: [TagItem!]
   title: String!
   uid: UID!
@@ -521,6 +524,7 @@ type SimplePost {
   description: String!
   previewUrl: String
   readingTime: Int
+  status: String!
   title: String!
   uid: UID!
   updatedAt: Date!

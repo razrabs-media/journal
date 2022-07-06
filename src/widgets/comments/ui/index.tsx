@@ -3,11 +3,7 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
 import { useCurrentUserLazyQuery } from 'features/auth'
-import {
-  commentAdapter,
-  Comment as CommentModel,
-  useComments,
-} from 'entities/comments'
+import { commentAdapter, useComments } from 'entities/comments'
 import { useClientSide, useDisplayAnimation } from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
 import { CrossIcon, IconButton, StickyGridArea } from 'shared/ui'
@@ -48,7 +44,7 @@ export const CommentsWidget = () => {
     setReplyUid(newReplyUid)
   }
 
-  const onReplyClick = (commentUid: string) => {
+  const onScrollToComment = (commentUid: string) => {
     const commentElement = document.querySelector(
       `[data-comment-uid="${commentUid}"]`,
     )
@@ -76,8 +72,12 @@ export const CommentsWidget = () => {
       response.data?.createComment !== undefined
     ) {
       const newComment = commentAdapter(response.data.createComment)
-
       setComments((prev) => (prev ? [...prev, newComment] : [newComment]))
+
+      // Надо подождать, пока реакт примаунтит компонент после обновления стейта
+      requestAnimationFrame(() => {
+        onScrollToComment(newComment.uid)
+      })
     }
   }
 
@@ -117,7 +117,7 @@ export const CommentsWidget = () => {
                 time={parseDate(comment.createdAt) ?? ''}
                 uid={comment.uid}
                 onCommentClick={onCommentClick}
-                onReplyClick={onReplyClick}
+                onReplyClick={onScrollToComment}
               />
             )
           })

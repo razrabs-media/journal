@@ -36,12 +36,12 @@ const Post: NextPage<Props> = ({ post }) => {
 
       <PostReader
         {...post}
-        githubAuthor={post.githubAuthor ?? undefined}
         commentsButton={
           <OpenCommentsButton onClick={openHandler}>
             Комменты {post.comments?.length}
           </OpenCommentsButton>
         }
+        githubAuthor={post.githubAuthor ?? undefined}
         previewUrl={post.previewUrl ?? undefined}
         publicationDate={post.createdAt}
         tags={post.tags?.map((tag) => tag.name)}

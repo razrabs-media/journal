@@ -1,6 +1,5 @@
-import { PickedGithubAuthor } from '../types'
-
 import { ReactElement } from 'react'
+import { PickedGithubAuthor } from '../types'
 
 export type Props = {
   uid: string
