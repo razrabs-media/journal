@@ -23,22 +23,6 @@ export const Input = styled.textarea`
   font-family: 'Styrene B LC', sans-serif;
 `
 
-// TODO: very tricky способ. надо делать свой textarea
-Input.defaultProps = {
-  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => {
-    const { target } = e
-
-    if (!target.value.length) {
-      target.style.padding = '9px 0'
-    } else {
-      target.style.padding = '0'
-    }
-
-    target.style.height = '40px'
-    target.style.height = target.scrollHeight + 'px'
-  },
-}
-
 export const StyledCommentInput = styled.div`
   left: 0;
   right: 0;
