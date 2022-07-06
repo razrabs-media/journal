@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 
 export const Body = styled.body`
   min-height: 100vh;
+  height: 100vh;
   width: calc(100vw - 4px);
 
   color: ${({ theme }) => theme.colors.primary};

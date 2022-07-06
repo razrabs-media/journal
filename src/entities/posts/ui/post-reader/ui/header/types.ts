@@ -1,3 +1,4 @@
+import { ReactElement } from 'react'
 import { PickedGithubAuthor } from '../types'
 
 export type Props = {
@@ -8,4 +9,6 @@ export type Props = {
   publicationDate: string
   tags?: string[]
   githubAuthor?: PickedGithubAuthor
+
+  commentsButton?: ReactElement
 }

@@ -65,6 +65,7 @@ export type CommentItem = {
   postUid: Scalars['UID'];
   replyingToComment?: Maybe<CommentItem>;
   replyingToCommentUid?: Maybe<Scalars['UID']>;
+  status: Scalars['String'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
@@ -312,6 +313,7 @@ export type GithubAuthor = {
   createdAt: Scalars['Date'];
   name?: Maybe<Scalars['String']>;
   posts?: Maybe<Array<Post>>;
+  postsCount: Scalars['Float'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
   user?: Maybe<User>;
@@ -342,7 +344,7 @@ export type Mutation = {
   refreshToken: TokensDto;
   registration: UserToken;
   removeCategory: Scalars['Int'];
-  removeComment: Scalars['Int'];
+  removeComment: CommentItem;
   removeComponent: Scalars['Int'];
   removeDataSource: Scalars['Int'];
   removeDraft: Scalars['Int'];
@@ -350,7 +352,7 @@ export type Mutation = {
   removeFrontPage: Scalars['Int'];
   removeGithubAuthor: Scalars['Int'];
   removePermission: Scalars['Int'];
-  removePost: Scalars['Int'];
+  removePost: Post;
   removePriority: Scalars['Int'];
   removeProfile: Scalars['Int'];
   removeUser: Scalars['Int'];
@@ -688,6 +690,7 @@ export type Post = {
   interactions: PostInteractions;
   previewUrl?: Maybe<Scalars['String']>;
   readingTime?: Maybe<Scalars['Int']>;
+  status: Scalars['String'];
   tags?: Maybe<Array<TagItem>>;
   title: Scalars['String'];
   uid: Scalars['UID'];
@@ -951,6 +954,7 @@ export type SimplePost = {
   description: Scalars['String'];
   previewUrl?: Maybe<Scalars['String']>;
   readingTime?: Maybe<Scalars['Int']>;
+  status: Scalars['String'];
   title: Scalars['String'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];

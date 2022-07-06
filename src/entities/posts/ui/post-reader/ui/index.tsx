@@ -21,6 +21,7 @@ export const PostReader: FC<Props> = (props) => {
       />
 
       <PostHeader
+        commentsButton={props.commentsButton}
         description={props.description}
         githubAuthor={props.githubAuthor}
         previewUrl={props.previewUrl}

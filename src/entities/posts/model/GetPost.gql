@@ -15,5 +15,19 @@ query GetPost($uid: UID!) {
       avatarUrl
     }
     createdAt
+    comments {
+      uid
+      author {
+        uid
+        avatarUrl
+        publicName
+      }
+      replyingToComment {
+        uid
+        content
+      }
+      content
+      createdAt
+    }
   }
 }

@@ -5,7 +5,7 @@ import { FC } from 'react'
 import { Body, FONT_FACE, GLOBAL_STYLES } from 'shared/ui'
 
 const Document: FC = () => (
-  <Html>
+  <Html lang='ru'>
     <ThemeProvider theme={themeDark}>
       <Global styles={FONT_FACE} />
       <Global styles={GLOBAL_STYLES} />

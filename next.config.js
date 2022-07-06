@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-/** @type {import("next").NextConfig} */
+/** @type {import('next').NextConfig} */
 
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 

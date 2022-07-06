@@ -22,22 +22,22 @@ export const Footer: FC = () => (
       </Copyright>
       <Menu>
         <StyledNav>
-          <Link href='#'>
+          <Link passHref href='#'>
             <Typography uppercase letterSpacing='1px' size='sm'>
               о нас
             </Typography>
           </Link>
-          <Link href='#'>
+          <Link passHref href='#'>
             <Typography uppercase letterSpacing='1px' size='sm'>
               условия
             </Typography>
           </Link>
-          <Link href='#'>
+          <Link passHref href='#'>
             <Typography uppercase letterSpacing='1px' size='sm'>
               лицензия
             </Typography>
           </Link>
-          <Link href='#'>
+          <Link passHref href='#'>
             <Typography uppercase letterSpacing='1px' size='sm'>
               связаться
             </Typography>
@@ -47,22 +47,22 @@ export const Footer: FC = () => (
           <MoreLabel uppercase color='secondary' letterSpacing='1px' size='sm'>
             еще и тут:
           </MoreLabel>
-          <Link href='#'>
+          <Link passHref href='#'>
             <Typography uppercase letterSpacing='1px' size='sm'>
               github
             </Typography>
           </Link>
-          <Link href='#'>
+          <Link passHref href='#'>
             <Typography uppercase letterSpacing='1px' size='sm'>
               yt
             </Typography>
           </Link>
-          <Link href='#'>
+          <Link passHref href='#'>
             <Typography uppercase letterSpacing='1px' size='sm'>
               tg
             </Typography>
           </Link>
-          <Link href='#'>
+          <Link passHref href='#'>
             <Typography uppercase letterSpacing='1px' size='sm'>
               tw
             </Typography>

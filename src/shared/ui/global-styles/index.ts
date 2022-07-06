@@ -76,6 +76,7 @@ export const GLOBAL_STYLES = css`
     //noinspection CssInvalidPropertyValue
     min-height: --webkit-fill-available;
     min-height: 100vh;
+    height: 100vh;
     display: grid;
   }
 `
