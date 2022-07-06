@@ -1,6 +1,6 @@
 import Image from '@razrabs-ui/image'
 import type { ChangeEvent, FC, KeyboardEvent } from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { ReplyPreview } from 'widgets/comments/ui/reply-preview'
 import { useComments } from 'entities/comments'
 import { Input, StyledCommentInput } from './styled'
@@ -25,6 +25,29 @@ export const CommentInput: FC<Props> = ({
   onSend,
 }) => {
   const [value, setValue] = useState<string>('')
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    const target = textareaRef.current
+
+    if (!target) {
+      return
+    }
+
+    // TODO: very tricky способ. надо делать свой textarea
+    if (!target.value.length) {
+      target.style.padding = '9px 0'
+    } else {
+      target.style.padding = '0'
+    }
+
+    target.style.height = '40px'
+
+    if (target.value.length) {
+      target.style.height = target.scrollHeight + 'px'
+    }
+  }, [value])
 
   const { comments } = useComments()
   const replyComment = useMemo(
@@ -63,6 +86,7 @@ export const CommentInput: FC<Props> = ({
 
         <Input
           placeholder='Написать... (макс. 255 символов)'
+          ref={textareaRef}
           value={value}
           onChange={handleInput}
           onKeyDown={keyDownHandler}
