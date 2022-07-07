@@ -18,16 +18,15 @@ type BackendComment = {
   createdAt: any
 }
 
-export function commentAdapter(comment: BackendComment): Comment {
-  return {
-    uid: comment.uid,
-    author: {
-      uid: comment.author.uid ?? undefined,
-      avatarUrl: comment.author.avatarUrl ?? undefined,
-      name: comment.author.publicName ?? 'Разраб', // name с бэкэнда может быть undefined?,
-    },
-    replyComment: comment.replyingToComment,
-    content: comment.content,
-    createdAt: comment.createdAt,
-  }
-}
+// TODO: удалить
+export const commentAdapter = (comment: BackendComment): Comment => ({
+  uid: comment.uid,
+  author: {
+    uid: comment.author.uid ?? undefined,
+    avatarUrl: comment.author.avatarUrl ?? undefined,
+    name: comment.author.publicName ?? 'Разраб', // name с бэкэнда может быть undefined?,
+  },
+  replyComment: comment.replyingToComment,
+  content: comment.content,
+  createdAt: comment.createdAt,
+})

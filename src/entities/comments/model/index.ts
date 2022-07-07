@@ -14,4 +14,5 @@ export type Comment = {
   createdAt: string
 }
 
-export { CommentsProvider, useComments } from './CommentsProvider'
+export { CommentsProvider, useContextComments } from './CommentsProvider'
+export { useCommentsLazyQuery } from './__generated__/Comments'

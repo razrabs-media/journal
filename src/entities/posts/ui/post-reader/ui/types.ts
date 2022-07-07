@@ -1,5 +1,4 @@
 import { ReactElement } from 'react'
-
 import { GithubAuthor } from 'shared/api'
 
 export type PickedGithubAuthor = Pick<

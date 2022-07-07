@@ -1,5 +1,10 @@
 import { ElementType } from 'react'
 
+export type ReplyData = {
+  uid: string
+  content: string
+}
+
 export type CommentProps = {
   as?: ElementType
   className?: string

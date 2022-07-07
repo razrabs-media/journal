@@ -105,3 +105,5 @@ const Comment = forwardRef<HTMLDivElement, CommentProps>(
 Comment.displayName = 'Comment'
 
 export default Comment
+
+export type { ReplyData } from './types'

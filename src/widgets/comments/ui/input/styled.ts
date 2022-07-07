@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import { ChangeEvent } from 'react'
 
 export const Input = styled.textarea`
   flex-grow: 1;

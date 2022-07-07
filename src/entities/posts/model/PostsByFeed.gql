@@ -1,4 +1,4 @@
-query GetPostsByFeed($uid: UID!, $page: Int, $perPage: Int) {
+query PostsByFeed($uid: UID!, $page: Int, $perPage: Int) {
   postsByFeed(uid: $uid, page: $page, perPage: $perPage) {
     items {
       uid,

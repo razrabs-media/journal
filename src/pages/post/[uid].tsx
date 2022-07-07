@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from 'next'
 import { useEffect } from 'react'
 import { OpenCommentsButton } from 'features/comments'
-import { commentAdapter, useComments } from 'entities/comments'
+import { useContextComments } from 'entities/comments'
 import {
   GetPost,
   GetPostQuery,
@@ -10,21 +10,14 @@ import {
 } from 'entities/posts'
 import { initializeApollo } from 'shared/api'
 import { Helmet } from 'shared/lib'
-
-type Props = {
-  post: GetPost['post']
-}
+import { Props } from './types'
 
 const Post: NextPage<Props> = ({ post }) => {
-  const { openHandler, setPostUid, setComments } = useComments()
+  const { openHandler, setPostUid } = useContextComments()
 
   useEffect(() => {
     setPostUid(post.uid)
   }, [setPostUid, post.uid])
-
-  useEffect(() => {
-    setComments(post.comments?.map((comment) => commentAdapter(comment)) ?? [])
-  }, [post.comments, setComments])
 
   return (
     <>
@@ -38,7 +31,7 @@ const Post: NextPage<Props> = ({ post }) => {
         {...post}
         commentsButton={
           <OpenCommentsButton onClick={openHandler}>
-            Комменты {post.comments?.length}
+            Комменты {post.comments?.length ?? 0}
           </OpenCommentsButton>
         }
         githubAuthor={post.githubAuthor ?? undefined}

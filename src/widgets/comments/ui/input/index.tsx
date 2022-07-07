@@ -2,21 +2,11 @@ import Image from '@razrabs-ui/image'
 import type { ChangeEvent, FC, KeyboardEvent } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ReplyPreview } from 'widgets/comments/ui/reply-preview'
-import { useComments } from 'entities/comments'
+import { useContextComments } from 'entities/comments'
 import { Input, StyledCommentInput } from './styled'
+import { Props } from './types'
 
-export type CommentData = {
-  replyUid?: string
-  content: string
-}
-
-type Props = {
-  replyUid?: string
-  onReplyCancel: () => void
-
-  avatarUrl: string
-  onSend?: (contentData: CommentData) => Promise<void>
-}
+export type { CommentData } from './types'
 
 export const CommentInput: FC<Props> = ({
   replyUid,
@@ -49,7 +39,7 @@ export const CommentInput: FC<Props> = ({
     }
   }, [value])
 
-  const { comments } = useComments()
+  const { comments } = useContextComments()
   const replyComment = useMemo(
     () => comments?.find((comment) => comment.uid === replyUid),
     [replyUid, comments],
