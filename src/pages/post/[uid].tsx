@@ -10,7 +10,11 @@ import {
 } from 'entities/posts'
 import { initializeApollo } from 'shared/api'
 import { Helmet } from 'shared/lib'
-import { Props } from './types'
+
+export type Props = {
+  post: GetPost['post']
+  commentId: string | null
+}
 
 const Post: NextPage<Props> = ({ post }) => {
   const { openHandler, setPostUid } = useContextComments()
