@@ -66,6 +66,7 @@
     "babel-plugin-inline-react-svg": "2.0.1",
     "concurrently": "7.1.0",
     "cross-env": "7.0.3",
+    "eslint": "8.19.0",
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "8.5.0",
     "eslint-import-resolver-typescript": "2.7.1",
