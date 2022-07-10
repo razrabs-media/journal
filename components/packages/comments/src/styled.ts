@@ -20,6 +20,7 @@ export const StyledComment = styled.div`
 
 export const RowsWrapper = styled.div`
   display: flex;
+  word-break: break-word;
   flex-direction: column;
   min-width: 0;
   flex-grow: 1;

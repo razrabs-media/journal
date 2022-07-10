@@ -33,7 +33,7 @@ const _App = ({ Component, pageProps }: AppProps) => {
         <ApolloProvider client={apolloClient}>
           <CommentsProvider>
             <DrawerGrid>
-              <GridArea area='main' style={{ overflowY: 'scroll' }}>
+              <GridArea area='main'>
                 <MainGrid>
                   <StickyGridArea area='header'>
                     <Header />
