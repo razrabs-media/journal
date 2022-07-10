@@ -4,8 +4,11 @@ import { FADE_IN, FADE_OUT, SWIPE_IN, SWIPE_OUT } from './styled'
 import { Props } from './types'
 
 export const Drawer = styled.div<Props>`
-  position: relative;
+  position: sticky;
+  top: 0;
   width: 525px;
+  height: 100vh;
+  grid-area: drawer;
 
   display: ${({ shouldDisplay }) => (shouldDisplay ? 'grid' : 'none')};
   flex-direction: column;
@@ -18,9 +21,6 @@ export const Drawer = styled.div<Props>`
 
   grid-template-rows: auto 1fr auto;
   grid-template-columns: 100%;
-
-  overflow: hidden;
-  height: 100%;
 
   background: ${({ theme }) => theme.colors.backgroundSecondary};
 
@@ -37,14 +37,7 @@ export const Drawer = styled.div<Props>`
 
   // Фулл-скрин
   @media screen and (max-width: 1193px) {
-    position: fixed;
-
     z-index: 1;
-
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 
     ${({ animationIn, animationOut, transitionTime }) =>
       animationIn

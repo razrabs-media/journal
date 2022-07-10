@@ -1,8 +1,6 @@
 import styled from '@emotion/styled'
 
 export const MainGrid = styled.div`
-  overflow-y: scroll;
-
   display: grid;
   row-gap: 24px;
   column-gap: 24px;
@@ -25,8 +23,6 @@ export const MainGrid = styled.div`
 `
 
 export const DrawerGrid = styled.div`
-  overflow-y: hidden;
-
   display: grid;
   grid-template:
     'main drawer' /

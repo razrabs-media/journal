@@ -6,7 +6,7 @@ import { useCurrentUserLazyQuery } from 'features/auth'
 import { commentAdapter, useContextComments } from 'entities/comments'
 import { useClientSide, useDisplayAnimation } from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
-import { CrossIcon, IconButton, StickyGridArea } from 'shared/ui'
+import { CrossIcon, GridArea, IconButton } from 'shared/ui'
 import { CommentsEmpty } from './comments-empty'
 import { Drawer } from './drawer'
 import { CommentData, CommentInput } from './input'
@@ -90,7 +90,7 @@ export const CommentsWidget = () => {
       shouldDisplay={display}
       transitionTime={TRANSITION_TIME}
     >
-      <StickyGridArea area='header'>
+      <GridArea area='header'>
         <Header>
           <CommentsAmount>Комменты: {comments?.length}</CommentsAmount>
 
@@ -98,7 +98,7 @@ export const CommentsWidget = () => {
             <CrossIcon />
           </IconButton>
         </Header>
-      </StickyGridArea>
+      </GridArea>
 
       <CommentsContainer area='content'>
         {comments.map((comment) => (

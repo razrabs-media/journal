@@ -49,9 +49,7 @@ const _App = ({ Component, pageProps }: AppProps) => {
                 </MainGrid>
               </GridArea>
 
-              <StickyGridArea area='drawer' style={{ overflowY: 'hidden' }}>
-                <CommentsWidget />
-              </StickyGridArea>
+              <CommentsWidget />
             </DrawerGrid>
           </CommentsProvider>
         </ApolloProvider>
