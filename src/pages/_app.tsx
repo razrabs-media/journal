@@ -8,17 +8,21 @@ import { CommentsWidget } from 'widgets/comments'
 import { Header } from 'widgets/header'
 import { CommentsProvider } from 'entities/comments'
 import { useApollo } from 'shared/api'
+import { useSyncScroll } from 'shared/lib'
 import { getContextMedia, withMediaProvider } from 'shared/lib/client-hints'
 import {
-  DrawerGrid,
+  FloatGrid,
   Footer,
   GridArea,
   MainGrid,
-  StickyGridArea,
+  ScrollFloatGrid,
 } from 'shared/ui'
+import { Drawer } from '../widgets/drawer'
 
 const _App = ({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo()
+
+  useSyncScroll()
 
   return (
     <>
@@ -32,25 +36,24 @@ const _App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={themeDark}>
         <ApolloProvider client={apolloClient}>
           <CommentsProvider>
-            <DrawerGrid>
-              <GridArea area='main'>
-                <MainGrid>
-                  <StickyGridArea area='header'>
+            <Drawer>
+              <MainGrid>
+                <FloatGrid>
+                  <GridArea area='content'>
                     <Header />
-                  </StickyGridArea>
+                  </GridArea>
+                </FloatGrid>
 
+                <ScrollFloatGrid id='main'>
                   <GridArea area='content'>
                     <Component {...pageProps} />
-                  </GridArea>
 
-                  <GridArea area='footer'>
                     <Footer />
                   </GridArea>
-                </MainGrid>
-              </GridArea>
-
+                </ScrollFloatGrid>
+              </MainGrid>
               <CommentsWidget />
-            </DrawerGrid>
+            </Drawer>
           </CommentsProvider>
         </ApolloProvider>
       </ThemeProvider>

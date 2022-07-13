@@ -16,10 +16,3 @@ export const GridArea = styled.div<GridAreaProps>`
   display: grid;
   grid-area: ${({ area }) => area};
 `
-
-export const StickyGridArea = styled(GridArea)`
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: ${({ theme }) => theme.colors.background};
-`

@@ -4,11 +4,8 @@ import { FADE_IN, FADE_OUT, SWIPE_IN, SWIPE_OUT } from './styled'
 import { Props } from './types'
 
 export const Drawer = styled.div<Props>`
-  position: sticky;
-  top: 0;
-  width: 525px;
-  height: 100vh;
   grid-area: drawer;
+  height: 100vh;
 
   display: ${({ shouldDisplay }) => (shouldDisplay ? 'grid' : 'none')};
   flex-direction: column;

@@ -6,7 +6,6 @@ export const StyledFooter = styled.footer`
   grid-auto-flow: row;
   padding: 20px 0 0 0;
   border-top: 1px solid ${({ theme }) => theme.colors.logo};
-  overflow: hidden;
 
   @media screen and (max-width: 671px) {
     height: 205px;
@@ -71,13 +70,11 @@ export const Copyright = styled.span`
 `
 
 export const Logo = styled.span`
-  --width: min(1848px, calc(100vw - 48px));
-
   margin: 0 0 calc(var(--width) * -0.014) calc(var(--width) * -0.014);
 
   text-transform: uppercase;
   text-align: center;
-  font-size: calc(var(--width) * 0.165);
+  font-size: calc(var(--width) * 0.16);
   font-weight: bold;
   line-height: calc(var(--width) * 0.131);
   letter-spacing: calc(var(--width) * 0.024);
