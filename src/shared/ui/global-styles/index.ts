@@ -1,3 +1,5 @@
+//noinspection CssInvalidPropertyValue
+
 import { css } from '@emotion/react'
 
 export const FONT_FACE = css`
@@ -74,8 +76,11 @@ export const GLOBAL_STYLES = css`
 
   #__next {
     // Fix для мобилок
-    //noinspection CssInvalidPropertyValue
-    min-height: --webkit-fill-available;
+    /* mobile fix */
+    min-height: -moz-available;
+    min-height: -webkit-fill-available;
+    min-height: fill-available;
+    /* ---------- */
     min-height: 100vh;
     display: grid;
   }

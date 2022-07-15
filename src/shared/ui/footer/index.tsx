@@ -1,6 +1,7 @@
 import Typography from '@razrabs-ui/typography'
 import Link from 'next/link'
 import { FC } from 'react'
+import { useResizeWidth } from './hooks'
 import {
   Content,
   Copyright,
@@ -11,7 +12,6 @@ import {
   StyledFooter,
   StyledNav,
 } from './styled'
-import { useResizeWidth } from './useResizeWidth'
 
 export const Footer: FC = () => {
   useResizeWidth()

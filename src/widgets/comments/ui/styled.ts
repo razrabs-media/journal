@@ -4,8 +4,8 @@ import { GridArea, ModalAction } from 'shared/ui'
 
 export const Header = styled.div`
   display: flex;
+  grid-area: header;
   flex-direction: row;
-  position: sticky;
   top: 0;
   justify-content: space-between;
   align-items: baseline;
@@ -26,7 +26,7 @@ CommentsAmount.defaultProps = {
 }
 
 export const CommentsContainer = styled(GridArea)`
-  overflow-y: scroll;
+  overflow-y: auto;
   grid-column: 1;
   grid-auto-flow: row dense;
   grid-auto-rows: min-content;
