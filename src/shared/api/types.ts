@@ -30,7 +30,7 @@ export type AddPostToFrontPageInput = {
 };
 
 export type AssignUserGroupInput = {
-  userGroupsName: Array<Scalars['String']>;
+  userGroupUid: Scalars['UID'];
   userUid: Scalars['UID'];
 };
 
@@ -323,6 +323,7 @@ export type GithubAuthor = {
 export type Mutation = {
   __typename?: 'Mutation';
   assignGroupToUser: UserItem;
+  banUser: User;
   changePassword: UserItem;
   changePermissions: UserGroupItem;
   changePostsOnFrontPage: Array<PostOnFrontPageItem>;
@@ -364,6 +365,7 @@ export type Mutation = {
   signIn: UserToken;
   signOut: ResponseStatus;
   unAssignGroupToUser: UserGroupItem;
+  unbanUser: User;
   updateCategory: Scalars['Int'];
   updateComment: CommentItem;
   updateComponent: Component;
@@ -381,6 +383,11 @@ export type Mutation = {
 
 export type MutationAssignGroupToUserArgs = {
   data: AssignUserGroupInput;
+};
+
+
+export type MutationBanUserArgs = {
+  uid: Scalars['UID'];
 };
 
 
@@ -582,6 +589,11 @@ export type MutationUnAssignGroupToUserArgs = {
 };
 
 
+export type MutationUnbanUserArgs = {
+  uid: Scalars['UID'];
+};
+
+
 export type MutationUpdateCategoryArgs = {
   data: UpdateCategoriesInput;
   uid: Scalars['UID'];
@@ -654,6 +666,14 @@ export type MutationViewArgs = {
   uid: Scalars['UID'];
 };
 
+export type Permission = {
+  __typename?: 'Permission';
+  createdAt: Scalars['Date'];
+  name: PermissionName;
+  uid: Scalars['UID'];
+  updatedAt: Scalars['Date'];
+};
+
 export type PermissionItem = {
   __typename?: 'PermissionItem';
   createdAt: Scalars['Date'];
@@ -663,6 +683,7 @@ export type PermissionItem = {
 };
 
 export enum PermissionName {
+  ActiveUser = 'ActiveUser',
   CreateComment = 'CreateComment',
   CreateFeed = 'CreateFeed',
   SuperAdministrator = 'SuperAdministrator'
@@ -817,7 +838,7 @@ export type Query = {
   sharedFrontPage?: Maybe<FrontPage>;
   tags: Array<TagItem>;
   user: User;
-  userGroups: Array<UserGroupItem>;
+  userGroups: Array<UserGroup>;
   users: Array<User>;
 };
 
@@ -996,6 +1017,7 @@ export type TokenPayloadDto = {
   email: Scalars['String'];
   login: Scalars['String'];
   permissions: Array<Scalars['String']>;
+  status: Scalars['String'];
 };
 
 export type TokensDto = {
@@ -1057,9 +1079,20 @@ export type User = {
   login: Scalars['String'];
   profile?: Maybe<ProfileItem>;
   profileUid?: Maybe<Scalars['UID']>;
+  status: Scalars['String'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
   userGroups: Array<UserGroupItem>;
+};
+
+export type UserGroup = {
+  __typename?: 'UserGroup';
+  createdAt: Scalars['Date'];
+  name: Scalars['String'];
+  permissions: Array<Permission>;
+  uid: Scalars['UID'];
+  updatedAt: Scalars['Date'];
+  users: Array<User>;
 };
 
 export type UserGroupInput = {
@@ -1087,6 +1120,7 @@ export type UserItem = {
   login: Scalars['String'];
   profile?: Maybe<ProfileItem>;
   profileUid?: Maybe<Scalars['UID']>;
+  status: Scalars['String'];
   uid: Scalars['UID'];
   updatedAt: Scalars['Date'];
 };
