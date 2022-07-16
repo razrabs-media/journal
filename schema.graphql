@@ -5,7 +5,7 @@ input AddPostToFrontPageInput {
 }
 
 input AssignUserGroupInput {
-  userGroupsName: [String!]!
+  userGroupUid: UID!
   userUid: UID!
 }
 
@@ -285,6 +285,7 @@ type GithubAuthor {
 
 type Mutation {
   assignGroupToUser(data: AssignUserGroupInput!): UserItem!
+  banUser(uid: UID!): User!
   changePassword(data: ChangePasswordInput!): UserItem!
   changePermissions(data: UserGroupInput!): UserGroupItem!
   changePostsOnFrontPage(data: [AddPostToFrontPageInput!]!, frontPageUid: UID!): [PostOnFrontPageItem!]!
@@ -326,6 +327,7 @@ type Mutation {
   signIn(data: SignInInput!): UserToken!
   signOut: ResponseStatus!
   unAssignGroupToUser(data: AssignUserGroupInput!): UserGroupItem!
+  unbanUser(uid: UID!): User!
   updateCategory(data: UpdateCategoriesInput!, uid: UID!): Int!
   updateComment(data: UpdateCommentDto!, uid: UID!): CommentItem!
   updateComponent(data: UpdateComponentInput!, uid: UID!): Component!
@@ -340,6 +342,13 @@ type Mutation {
   view(uid: UID!): PostInteractions!
 }
 
+type Permission {
+  createdAt: Date!
+  name: PermissionName!
+  uid: UID!
+  updatedAt: Date!
+}
+
 type PermissionItem {
   createdAt: Date!
   name: PermissionName!
@@ -348,6 +357,7 @@ type PermissionItem {
 }
 
 enum PermissionName {
+  ActiveUser
   CreateComment
   CreateFeed
   SuperAdministrator
@@ -491,7 +501,7 @@ type Query {
   sharedFrontPage(uid: UID!): FrontPage
   tags: [TagItem!]!
   user(uid: UID!): User!
-  userGroups: [UserGroupItem!]!
+  userGroups: [UserGroup!]!
   users: [User!]!
 }
 
@@ -564,6 +574,7 @@ type TokenPayloadDto {
   email: String!
   login: String!
   permissions: [String!]!
+  status: String!
 }
 
 type TokensDto {
@@ -629,9 +640,19 @@ type User {
   login: String!
   profile: ProfileItem
   profileUid: UID
+  status: String!
   uid: UID!
   updatedAt: Date!
   userGroups: [UserGroupItem!]!
+}
+
+type UserGroup {
+  createdAt: Date!
+  name: String!
+  permissions: [Permission!]!
+  uid: UID!
+  updatedAt: Date!
+  users: [User!]!
 }
 
 input UserGroupInput {
@@ -657,6 +678,7 @@ type UserItem {
   login: String!
   profile: ProfileItem
   profileUid: UID
+  status: String!
   uid: UID!
   updatedAt: Date!
 }
