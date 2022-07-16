@@ -5,8 +5,9 @@ export const StyledRow = styled.div<SizeProps>`
   display: flex;
   flex-direction: row;
 
-  min-height: ${({ small }) => (small ? '105px' : '140px')};
-  gap: ${({ small }) => (small ? '10px' : '24px')};
+  /* Откуда брались значения на минимальные высоты в 105 и 140 писелей? */
+  /* min-height: ${({ small }) => (small ? '105px' : '140px')}; */
+  gap: ${({ small }) => (small ? '20px' : '24px')};
 
   &:hover {
     .title {
