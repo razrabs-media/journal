@@ -26,7 +26,7 @@ const Typography = styled.p<Partial<TypographyProps>>`
   letter-spacing: ${({ letterSpacing }) =>
     typeof letterSpacing === 'number' ? `${letterSpacing}px` : letterSpacing};
 
-  line-height: ${({ lineHeight }) => (lineHeight ? `${lineHeight}px` : '120%')};
+  line-height: ${({ lineHeight }) => (lineHeight ? `${lineHeight}` : '120%')};
 
   text-align: ${({ align }) => align};
   text-transform: ${({ uppercase = defaultProps.uppercase }) =>

@@ -18,7 +18,9 @@ const handleCopyButton = async (code: string) => {
 }
 
 const COMPONENTS: Components = {
-  p: (props) => <Typography {...props} color='primary' size='lg' />,
+  p: (props) => (
+    <Typography {...props} color='primary' lineHeight='140%' size='lg' />
+  ),
   code: ({ inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || '')
     const codeString = String(children).replace(/\n$/, '')

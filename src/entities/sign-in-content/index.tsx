@@ -7,7 +7,7 @@ export const SignInContent: ReactNode = (
     <Typography uppercase size='xl'>
       Мы логиним через <br /> гитхаб
     </Typography>
-    <Typography lineHeight={28} size='lg'>
+    <Typography lineHeight='28px' size='lg'>
       После логина появится возможность комментировать материалы. А дальше мы
       придумаем, какие возможности появятся у залогированного читателя
     </Typography>
