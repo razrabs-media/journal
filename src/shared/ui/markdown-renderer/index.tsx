@@ -75,6 +75,14 @@ const StyleWrapper = styled.div`
     max-width: 100%;
     display: inline-block;
   }
+
+  ul {
+    padding-left: 20px;
+  }
+
+  ol {
+    padding-left: 22px;
+  }
 `
 
 type MarkdownRendererProps = {
