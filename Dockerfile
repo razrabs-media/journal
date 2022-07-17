@@ -1,4 +1,4 @@
-FROM node:16.15.0-alpine as dependencies
+FROM node:16.16.0-alpine as dependencies
 
 WORKDIR /journal
 COPY package.json yarn.lock ./
@@ -8,14 +8,14 @@ RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs
 
 RUN yarn install --frozen-lockfile
 
-FROM node:16.15.0-alpine as builder
+FROM node:16.16.0-alpine as builder
 WORKDIR /journal
 
 COPY . .
 COPY --from=dependencies /journal/node_modules ./node_modules
 RUN yarn build
 
-FROM node:16.15.0-alpine as runner
+FROM node:16.16.0-alpine as runner
 WORKDIR /journal
 
 # -> from proccess .env.development, env.production
