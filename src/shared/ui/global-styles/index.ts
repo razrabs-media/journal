@@ -55,8 +55,9 @@ export const GLOBAL_STYLES = css`
   body {
     padding: 0;
     margin: 0;
-    // Fix для мобилок
-    //noinspection CssInvalidPropertyValue
+    /* Fix для мобилок
+    ** noinspection CssInvalidPropertyValue
+    */
     min-height: --webkit-fill-available;
     font-family: Styrene B LC, -apple-system, BlinkMacSystemFont, Segoe UI,
       Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
