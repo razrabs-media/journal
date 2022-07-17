@@ -11,7 +11,7 @@ export const ContentWrapper = styled.main`
   grid-gap: 24px;
 
   @media screen and (min-width: 1000px) {
-    margin-top: 64px;
+    margin-top: 50px;
   }
 
   @media screen and (max-width: 999px) {

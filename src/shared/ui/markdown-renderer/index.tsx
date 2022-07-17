@@ -21,6 +21,66 @@ const COMPONENTS: Components = {
   p: (props) => (
     <Typography {...props} color='primary' lineHeight='140%' size='lg' />
   ),
+  h1: (props) => (
+    <Typography
+      {...props}
+      uppercase
+      as='h2'
+      color='primary'
+      size='xl'
+      weight='medium'
+    />
+  ),
+  h2: (props) => (
+    <Typography
+      {...props}
+      uppercase
+      as='h2'
+      color='primary'
+      size='xl'
+      weight='medium'
+    />
+  ),
+  h3: (props) => (
+    <Typography
+      {...props}
+      uppercase
+      as='h2'
+      color='primary'
+      size='xl'
+      weight='medium'
+    />
+  ),
+  h4: (props) => (
+    <Typography
+      {...props}
+      uppercase
+      as='h2'
+      color='primary'
+      size='xl'
+      weight='medium'
+    />
+  ),
+  h5: (props) => (
+    <Typography
+      {...props}
+      uppercase
+      as='h2'
+      color='primary'
+      size='xl'
+      weight='medium'
+    />
+  ),
+  h6: (props) => (
+    <Typography
+      {...props}
+      uppercase
+      as='h2'
+      color='primary'
+      size='xl'
+      weight='medium'
+    />
+  ),
   code: ({ inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || '')
     const codeString = String(children).replace(/\n$/, '')
@@ -69,6 +129,15 @@ const StyleWrapper = styled.div`
 
   p {
     margin: 24px 0;
+  }
+
+  h2 {
+    margin-top: 24px;
+  }
+
+  p + h2,
+  pre + h2 {
+    margin-top: 64px;
   }
 
   //TODO parse image to figcaption
