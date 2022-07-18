@@ -57,7 +57,7 @@ export const StyledSendIcon = styled(SendIcon)`
 `
 
 export const StyledSendButton = styled(IconButton)<{ hide?: boolean }>`
-  width: ${({ hide }) => (hide ? '20px' : '40px')};
+  width: 40px;
   height: 40px;
   margin: 0;
   align-items: center;
