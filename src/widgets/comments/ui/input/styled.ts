@@ -1,35 +1,29 @@
 import styled from '@emotion/styled'
-import { IconButton } from 'shared/ui'
+import { IconButton, SendIcon } from 'shared/ui'
 
 export const Input = styled.textarea`
+  display: block;
   flex-grow: 1;
+  align-items: center;
 
   outline: none;
   background: transparent;
   border: none;
 
+  overflow: hidden;
+
+  height: 40px;
   max-height: 300px;
 
-  resize: none;
+  padding: 9px 0;
 
   line-height: 22px;
   font-size: 16px;
-  height: 40px;
-
-  padding: 9px 0;
-  /* hide scrollbar
-      for test:
-        1. comment out line 26
-        2. enter 255 'f' letters without spaces in textarea
-     If you type a lot of "F" letters that fill the whole line,
-     you will be surprised.
-  */
-  margin-right: 1px;
+  resize: none;
   box-sizing: border-box;
 
-  color: ${({ theme }) => theme.colors.logo};
+  color: #f7f8fc;
   font-family: 'Styrene B LC', sans-serif;
-
   &::-webkit-scrollbar {
     display: none;
   }
@@ -38,7 +32,7 @@ export const Input = styled.textarea`
 export const StyledCommentInput = styled.div`
   left: 0;
   right: 0;
-  padding: 20px 14px 20px 24px;
+  padding: 10px;
 
   display: flex;
   flex-direction: row;
@@ -51,16 +45,32 @@ export const StyledCommentInput = styled.div`
   &:focus-within {
     background: #38393d;
   }
+
+  @media screen and (min-width: ${({ theme }) =>
+      `${parseInt(theme.breakpoints.md) - 1}px`}) {
+    padding: 20px 24px 20px 24px;
+  }
 `
 
-export const StyledSendButton = styled(IconButton)`
-  width: 40px;
+export const StyledSendIcon = styled(SendIcon)`
+  fill: currentColor;
+`
+
+export const StyledSendButton = styled(IconButton)<{ hide?: boolean }>`
+  width: ${({ hide }) => (hide ? '20px' : '40px')};
   height: 40px;
   margin: 0;
   align-items: center;
+  color: ${({ theme }) => theme.colors.brand};
   justify-content: center;
+  transition: 0.2s all cubic-bezier(0.55, 0.06, 0.7, 0.21);
+  opacity: ${({ hide }) => (hide ? '0' : '1')};
 
   &:hover {
     background: none;
+  }
+
+  &:active {
+    color: #b481d4;
   }
 `

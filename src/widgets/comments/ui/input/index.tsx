@@ -3,12 +3,16 @@ import type { ChangeEvent, FC, KeyboardEvent } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ReplyPreview } from 'widgets/comments/ui/reply-preview'
 import { useContextComments } from 'entities/comments'
-import { SendIcon } from 'shared/ui'
-import { Input, StyledCommentInput, StyledSendButton } from './styled'
+import {
+  Input,
+  StyledCommentInput,
+  StyledSendButton,
+  StyledSendIcon,
+} from './styled'
 import { Props } from './types'
 
 export type { CommentData } from './types'
-const INITIAL_TEXTAREA_HEIGHT = 40
+const DEFAULT_TEXTAREA_HEIGHT = 40
 
 export const CommentInput: FC<Props> = ({
   replyUid,
@@ -17,7 +21,6 @@ export const CommentInput: FC<Props> = ({
   onSend,
 }) => {
   const [value, setValue] = useState<string>('')
-
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -26,19 +29,20 @@ export const CommentInput: FC<Props> = ({
     if (!target) {
       return
     }
-    target.style.height = INITIAL_TEXTAREA_HEIGHT + 'px'
-
     // TODO: very tricky способ. надо делать свой textarea
-    if (target.scrollHeight <= INITIAL_TEXTAREA_HEIGHT) {
-      target.style.padding = '9px 0'
-    } else {
-      target.style.padding = '0'
+    target.style.height = DEFAULT_TEXTAREA_HEIGHT + 'px'
+    target.style.padding = '9px 0'
+
+    if (target.scrollHeight > target.clientHeight) {
+      target.style.padding = '0px'
     }
 
-    if (target.value.length && target.scrollHeight > INITIAL_TEXTAREA_HEIGHT) {
+    if (target.scrollHeight) {
       target.style.height = target.scrollHeight + 'px'
+    } else {
+      target.style.height = DEFAULT_TEXTAREA_HEIGHT + 'px'
     }
-  }, [value])
+  })
 
   const { comments } = useContextComments()
   const replyComment = useMemo(
@@ -80,9 +84,9 @@ export const CommentInput: FC<Props> = ({
           onReplyCancel={onReplyCancel}
         />
       )}
+
       <StyledCommentInput>
         <Image alt='Юзер' fit='fill' h={40} src={avatarUrl} w={40} />
-
         <Input
           placeholder='Написать... (макс. 255 символов)'
           ref={textareaRef}
@@ -90,8 +94,9 @@ export const CommentInput: FC<Props> = ({
           onChange={handleInput}
           onKeyDown={keyDownHandler}
         />
-        <StyledSendButton onClick={handleSubmit}>
-          <SendIcon />
+
+        <StyledSendButton hide={!value} onClick={handleSubmit}>
+          <StyledSendIcon />
         </StyledSendButton>
       </StyledCommentInput>
     </>
