@@ -132,11 +132,6 @@ const StyleWrapper = styled.div`
   }
 
   h2 {
-    margin-top: 24px;
-  }
-
-  p + h2,
-  pre + h2 {
     margin-top: 64px;
   }
 
