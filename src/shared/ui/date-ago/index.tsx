@@ -6,10 +6,14 @@ import { Props } from './types'
 export const DateAgo: FC<Props> = ({
   date,
   distance,
+  format,
   className,
   ...restProps
 }) => {
-  const parsedDate = useMemo(() => parseDate(date, distance), [date, distance])
+  const parsedDate = useMemo(
+    () => parseDate(date, { distance, format }),
+    [date, distance, format],
+  )
 
   return (
     <Typography as='span' className={className} {...restProps}>

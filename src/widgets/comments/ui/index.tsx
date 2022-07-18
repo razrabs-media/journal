@@ -108,7 +108,7 @@ export const CommentsWidget = () => {
             avatar={comment.author.avatarUrl}
             content={comment.content}
             reply={comment.replyComment}
-            time={parseDate(comment.createdAt) ?? ''}
+            time={parseDate(comment.createdAt, { format: 'short' }) ?? ''}
             uid={comment.uid}
             onCommentClick={onCommentClick}
             onReplyClick={onScrollToComment}
