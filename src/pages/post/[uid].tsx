@@ -35,7 +35,7 @@ const Post: NextPage<Props> = ({ post }) => {
         {...post}
         commentsButton={
           <OpenCommentsButton onClick={openHandler}>
-            Комменты {post.comments?.length ?? 0}
+            Комменты: {post.comments?.length ?? 0}
           </OpenCommentsButton>
         }
         githubAuthor={post.githubAuthor ?? undefined}
