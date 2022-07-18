@@ -5,12 +5,12 @@ import RightIcon from '../../../../public/images/svg/right.svg'
 import SendIcon from '../../../../public/images/svg/send.svg'
 import { Props } from './types'
 
-export const Icon: FC<Props> = ({ type }) => (
+export const Icon: FC<Props> = ({ type, ...props }) => (
   <>
     {type === 'cross' && <CrossIcon />}
     {type === 'out' && <OutIcon />}
     {type === 'right' && <RightIcon />}
-    {type === 'send' && <SendIcon />}
+    {type === 'send' && <SendIcon {...props} />}
   </>
 )
 
