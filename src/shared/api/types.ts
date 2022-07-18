@@ -815,6 +815,7 @@ export type Query = {
   component: Component;
   components: Array<ComponentItem>;
   currentFrontPage: FrontPage;
+  currentTime: Scalars['Date'];
   currentUser: CurrentUser;
   dataSource: DataSource;
   dataSources: Array<DataSourceItem>;
