@@ -1,13 +1,12 @@
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@emotion/react'
 import { themeDark } from '@razrabs-ui/theme'
-import type { NextPageContext } from 'next'
 import Head from 'next/head'
-import { AppProps } from 'next/app'
+import NextApp, { AppContext, AppProps } from 'next/app'
 import { CommentsWidget } from 'widgets/comments'
 import { Header } from 'widgets/header'
 import { CommentsProvider } from 'entities/comments'
-import { useApollo } from 'shared/api'
+import { initializeApollo, useApollo } from 'shared/api'
 import { getContextMedia, withMediaProvider } from 'shared/lib/client-hints'
 import {
   DrawerGrid,
@@ -16,6 +15,7 @@ import {
   MainGrid,
   StickyGridArea,
 } from 'shared/ui'
+import { CurrentTime, CurrentTimeQuery } from '../entities/clock'
 
 const _App = ({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo()
@@ -36,7 +36,7 @@ const _App = ({ Component, pageProps }: AppProps) => {
               <GridArea area='main' style={{ overflowY: 'scroll' }}>
                 <MainGrid>
                   <StickyGridArea area='header'>
-                    <Header />
+                    <Header currentTime={pageProps.currentTime} />
                   </StickyGridArea>
 
                   <GridArea area='content'>
@@ -64,10 +64,22 @@ const App = withMediaProvider(_App)
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-App.getInitialProps = async ({ ctx }: { ctx: NextPageContext }) => {
-  const contextMedia = getContextMedia(ctx)
+App.getInitialProps = async (appCtx: AppContext) => {
+  const contextMedia = getContextMedia(appCtx.ctx)
+  const appProps = await NextApp.getInitialProps(appCtx)
+  const apolloClient = initializeApollo()
 
-  return { media: contextMedia }
+  const {
+    data: { currentTime },
+  } = await apolloClient.query<CurrentTime>({
+    query: CurrentTimeQuery,
+    fetchPolicy: 'no-cache',
+  })
+
+  return {
+    pageProps: { ...appProps.pageProps, currentTime },
+    media: contextMedia,
+  }
 }
 
 export default App
