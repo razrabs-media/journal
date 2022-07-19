@@ -4,7 +4,7 @@ import { ModalContent } from 'shared/ui'
 
 export const SignInContent: ReactNode = (
   <ModalContent>
-    <Typography uppercase size='xl'>
+    <Typography uppercase size='xl' weight='medium'>
       Мы логиним через <br /> гитхаб
     </Typography>
     <Typography lineHeight='28px' size='lg'>

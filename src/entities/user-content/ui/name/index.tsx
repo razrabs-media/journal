@@ -5,7 +5,7 @@ import { Props } from './types'
 
 export const Name: FC<Props> = ({ name, login }) => (
   <NameWrapper>
-    <Typography uppercase size='xl'>
+    <Typography uppercase size='xl' weight='medium'>
       {name}
     </Typography>
     <Typography uppercase color='secondary' size='sm'>
