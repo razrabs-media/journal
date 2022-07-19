@@ -27,10 +27,10 @@ export const useIsTablet = () => {
 
 export const useIsTabletAndBelow = () => {
   const {
-    breakpoints: { lg },
+    breakpoints: { md },
   } = useTheme()
 
-  return useMediaQuery({ maxWidth: parseInt(lg) - 1 })
+  return useMediaQuery({ maxWidth: parseInt(md) - 1 })
 }
 
 export const useIsMobile = () => {
