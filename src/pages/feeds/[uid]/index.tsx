@@ -59,14 +59,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
   } = await apolloClient.query<PostsByFeed>({
     variables: { uid: currentFeedUid, perPage: 250 },
     query: PostsByFeedQuery,
-    fetchPolicy: 'no-cache',
   })
 
   const {
     data: { feeds },
   } = await apolloClient.query<GetFeeds>({
     query: GetFeedsQuery,
-    fetchPolicy: 'no-cache',
   })
 
   return {

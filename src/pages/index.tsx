@@ -56,14 +56,12 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
     data: { currentFrontPage },
   } = await apolloClient.query<CurrentFrontPage>({
     query: CurrentFrontPageQuery,
-    fetchPolicy: 'no-cache',
   })
 
   const {
     data: { feeds },
   } = await apolloClient.query<GetFeeds>({
     query: GetFeedsQuery,
-    fetchPolicy: 'no-cache',
   })
 
   const frontPage = Object.assign({}, currentFrontPage, {
