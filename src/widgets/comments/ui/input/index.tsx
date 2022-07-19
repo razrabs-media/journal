@@ -42,7 +42,7 @@ export const CommentInput: FC<Props> = ({
     } else {
       target.style.height = DEFAULT_TEXTAREA_HEIGHT + 'px'
     }
-  })
+  }, [value, textareaRef])
 
   const { comments } = useContextComments()
   const replyComment = useMemo(
