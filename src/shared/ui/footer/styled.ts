@@ -71,8 +71,6 @@ export const Copyright = styled.span`
 `
 
 export const Logo = styled.span`
-  --width: min(1848px, calc(100vw - 48px));
-
   margin: 0 0 calc(var(--width) * -0.014) calc(var(--width) * -0.014);
 
   text-transform: uppercase;
