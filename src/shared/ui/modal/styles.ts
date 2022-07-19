@@ -21,6 +21,7 @@ export const Background = styled.div<{ hide: boolean }>`
     '. body' 1fr
     / auto minmax(auto, 525px);
   transition: 0.2s ease-out;
+  z-index: 10;
 }`
 
 export const Box = styled.div`
