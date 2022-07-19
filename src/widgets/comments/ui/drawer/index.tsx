@@ -36,7 +36,7 @@ export const Drawer = styled.div<Props>`
       : null};
 
   // Фулл-скрин
-  @media screen and (max-width: 1193px) {
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
     position: fixed;
 
     z-index: 1;

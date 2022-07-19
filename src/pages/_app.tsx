@@ -49,7 +49,10 @@ const _App = ({ Component, pageProps }: AppProps) => {
                 </MainGrid>
               </GridArea>
 
-              <StickyGridArea area='drawer' style={{ height: '100vh' }}>
+              <StickyGridArea
+                area='drawer'
+                style={{ height: '100vh', zIndex: 26 }}
+              >
                 <CommentsWidget />
               </StickyGridArea>
             </DrawerGrid>
