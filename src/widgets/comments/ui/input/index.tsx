@@ -55,7 +55,11 @@ export const CommentInput: FC<Props> = ({
       return
     }
 
-    const content = textareaRef.current.value
+    const content = textareaRef.current.value.trim()
+
+    if (!content) {
+      return
+    }
 
     onSend &&
       onSend({ content, replyUid }).then(() => {
