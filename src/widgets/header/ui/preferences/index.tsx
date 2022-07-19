@@ -1,4 +1,4 @@
-import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
+import { useIsMobile } from '@razrabs-ui/responsive'
 import { FC } from 'react'
 import { useCurrentUserLazyQuery } from 'features/auth'
 import { useClientSide } from 'shared/lib'
@@ -10,12 +10,12 @@ export const Preferences: FC<Props> = ({ onClick }) => {
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
     errorPolicy: 'all',
   })
-  const tabletAndBelow = useIsTabletAndBelow()
+  const isMobile = useIsMobile()
   useClientSide(currentUserQuery)
 
   const TypeButton = data?.currentUser
     ? AccountBadge
-    : tabletAndBelow
+    : isMobile
     ? IconButton
     : AuthButton
 
@@ -23,7 +23,7 @@ export const Preferences: FC<Props> = ({ onClick }) => {
 
   const title = fullName ? (
     fullName.slice(0, 2)
-  ) : tabletAndBelow ? (
+  ) : isMobile ? (
     <EnterIcon />
   ) : (
     'Акк'
