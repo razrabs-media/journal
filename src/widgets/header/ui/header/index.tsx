@@ -1,4 +1,5 @@
 import Clock from '@razrabs-ui/clock'
+import { useIsTabletAndAbove } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
 import Link from 'next/link'
 import { FC } from 'react'
@@ -18,7 +19,7 @@ export const Header: FC<Props> = ({ currentTime }) => {
 
   return (
     <StyledHeader>
-      <Clock currentTime={currentTime} />
+      {useIsTabletAndAbove() ? <Clock currentTime={currentTime} /> : <div />}
       <LogoBlock>
         <Link passHref href='/'>
           <Typography
