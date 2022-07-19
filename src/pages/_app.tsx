@@ -33,11 +33,11 @@ const _App = ({ Component, pageProps }: AppProps) => {
         <ApolloProvider client={apolloClient}>
           <CommentsProvider>
             <DrawerGrid>
-              <GridArea area='main' style={{ overflowY: 'scroll' }}>
+              <GridArea area='main'>
                 <MainGrid>
-                  <StickyGridArea area='header'>
+                  <GridArea area='header'>
                     <Header currentTime={pageProps.currentTime} />
-                  </StickyGridArea>
+                  </GridArea>
 
                   <GridArea area='content'>
                     <Component {...pageProps} />
@@ -49,7 +49,7 @@ const _App = ({ Component, pageProps }: AppProps) => {
                 </MainGrid>
               </GridArea>
 
-              <StickyGridArea area='drawer' style={{ overflowY: 'hidden' }}>
+              <StickyGridArea area='drawer' style={{ height: '100vh' }}>
                 <CommentsWidget />
               </StickyGridArea>
             </DrawerGrid>
