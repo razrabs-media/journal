@@ -23,7 +23,7 @@ export const Auth = forwardRef<HTMLDivElement, Props>(
     if (data?.currentUser) {
       Action = (
         <ModalAction
-          icon='right'
+          icon='away'
           onClick={() =>
             signOut({
               update: (cache) => {
