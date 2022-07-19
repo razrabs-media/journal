@@ -23,8 +23,8 @@ export const RowsWrapper = styled.div`
   flex-direction: column;
   min-width: 0;
   flex-grow: 1;
-  white-space: pre-line;
   overflow-wrap: break-word;
+  white-space: pre-wrap;
 `
 
 export const FirstRow = styled.div`
