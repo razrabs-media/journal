@@ -24,7 +24,14 @@ export const FirstRow = styled.div`
 export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+
+  & > * {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `
 
 // TODO: это заголовок + описание. над неймингом еще надо подумать
@@ -73,7 +80,14 @@ export const SecondRow = styled.div`
 export const ImageDescription = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+
+  & > * {
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `
 
 export const TagsAndShare = styled.div`
@@ -92,7 +106,14 @@ export const TagsBlock = styled.div`
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  gap: 4px;
+
+  & > * {
+    margin-right: 4px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `
 
 export const ShareBlock = styled.div`
@@ -100,7 +121,13 @@ export const ShareBlock = styled.div`
   flex-direction: row;
   align-items: center;
 
-  gap: 15px;
+  & > button {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 
   @media screen and (max-width: 672px) {
     width: 100%;

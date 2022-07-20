@@ -13,7 +13,13 @@ export const StyledCard = styled.div<SizeProps>`
 
   border: 1px solid ${({ theme }) => theme.colors.logo};
 
-  gap: 16px;
+  & > * {
+    margin-bottom: 16px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
   &:hover {
     .title {

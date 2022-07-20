@@ -27,23 +27,23 @@ export const Footer: FC = () => {
         <Menu>
           <StyledNav>
             <Link passHref href='#'>
-              <Typography uppercase letterSpacing='1px' size='sm'>
-                о нас
+              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+                О нас
               </Typography>
             </Link>
             <Link passHref href='#'>
-              <Typography uppercase letterSpacing='1px' size='sm'>
-                условия
+              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+                Условия
               </Typography>
             </Link>
             <Link passHref href='#'>
-              <Typography uppercase letterSpacing='1px' size='sm'>
-                лицензия
+              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+                Лицензия
               </Typography>
             </Link>
             <Link passHref href='#'>
-              <Typography uppercase letterSpacing='1px' size='sm'>
-                связаться
+              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+                Связаться
               </Typography>
             </Link>
           </StyledNav>
@@ -54,26 +54,26 @@ export const Footer: FC = () => {
               letterSpacing='1px'
               size='sm'
             >
-              еще и тут:
+              Еще и тут:
             </MoreLabel>
             <Link passHref href='#'>
-              <Typography uppercase letterSpacing='1px' size='sm'>
-                github
+              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+                GitHub
               </Typography>
             </Link>
             <Link passHref href='#'>
-              <Typography uppercase letterSpacing='1px' size='sm'>
-                yt
+              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+                YT
               </Typography>
             </Link>
             <Link passHref href='#'>
-              <Typography uppercase letterSpacing='1px' size='sm'>
-                tg
+              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+                TG
               </Typography>
             </Link>
             <Link passHref href='#'>
-              <Typography uppercase letterSpacing='1px' size='sm'>
-                tw
+              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+                TW
               </Typography>
             </Link>
           </Share>

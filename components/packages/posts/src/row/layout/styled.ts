@@ -7,7 +7,13 @@ export const StyledRow = styled.div<SizeProps>`
 
   /* Откуда брались значения на минимальные высоты в 105 и 140 писелей? */
   /* min-height: ${({ small }) => (small ? '105px' : '140px')}; */
-  gap: ${({ small }) => (small ? '20px' : '24px')};
+  & > * {
+    margin-right: ${({ small }) => (small ? '20px' : '24px')};
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 
   &:hover {
     .title {
@@ -20,7 +26,13 @@ export const Content = styled.div<SizeProps>`
   display: flex;
   flex-direction: column;
 
-  gap: ${({ small }) => (small ? '6px' : '10px')};
+  & > * {
+    margin-bottom: ${({ small }) => (small ? '6px' : '10px')};
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `
 
 export const Info = styled.div`

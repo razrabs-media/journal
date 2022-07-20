@@ -20,7 +20,14 @@ export const AvatarArea = styled(GridArea)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 4px;
+
+  & > * {
+    margin-right: 4px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `
 
 export const ReplyContent = styled(Typography)`

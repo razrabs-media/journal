@@ -8,7 +8,13 @@ const StyledTypography = styled(Typography)`
   flex-direction: row;
   align-items: center;
 
-  gap: 5px;
+  & > * {
+    margin-right: 5px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `
 
 const LongReadIcon = () => {

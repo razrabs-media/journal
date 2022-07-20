@@ -7,5 +7,11 @@ export const FeedContainer = styled.div<{ small?: boolean }>`
   margin: auto;
   max-width: 1025px;
 
-  gap: ${({ small }) => (small ? '10px' : '32px')};
+  & > * {
+    margin-bottom: ${({ small }) => (small ? '10px' : '32px')};
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `

@@ -20,7 +20,14 @@ export const Content = styled.div`
   @media screen and (max-width: 671px) {
     flex-direction: column;
     justify-content: flex-start;
-    gap: 20px;
+
+    & > * {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 `
 
@@ -42,8 +49,11 @@ export const Menu = styled.div`
 export const StyledNav = styled.nav`
   display: flex;
   justify-content: center;
-  gap: 16px;
   list-style-type: none;
+
+  & > a {
+    margin-left: 16px;
+  }
 
   @media screen and (max-width: 1319px) {
     justify-content: end;
@@ -51,6 +61,15 @@ export const StyledNav = styled.nav`
 
   @media screen and (max-width: 671px) {
     flex-direction: column;
+
+    & > a {
+      margin-left: 0;
+      margin-bottom: 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 `
 
