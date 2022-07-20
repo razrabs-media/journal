@@ -98,7 +98,7 @@ export const CommentsWidget = () => {
         </IconButton>
       </Header>
 
-      <CommentsContainer area='content'>
+      <CommentsContainer>
         {comments.map((comment) => (
           <Comment
             key={comment.uid}

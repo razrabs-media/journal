@@ -25,12 +25,11 @@ CommentsAmount.defaultProps = {
   letterSpacing: 1,
 }
 
-export const CommentsContainer = styled(GridArea)`
+export const CommentsContainer = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  grid-area: content;
   overflow-y: auto;
-  grid-column: 1;
-  grid-auto-flow: row dense;
-  grid-auto-rows: min-content;
-  grid-template-columns: 100%;
   position: relative;
 `
 
