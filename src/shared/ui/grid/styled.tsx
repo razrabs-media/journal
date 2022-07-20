@@ -1,3 +1,5 @@
+//noinspection CssInvalidPropertyValue
+
 import styled from '@emotion/styled'
 import { GridAreaProps, GridProps } from './types'
 
@@ -15,11 +17,4 @@ export const Grid = styled.div<GridProps>`
 export const GridArea = styled.div<GridAreaProps>`
   display: grid;
   grid-area: ${({ area }) => area};
-`
-
-export const StickyGridArea = styled(GridArea)`
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: ${({ theme }) => theme.colors.background};
 `
