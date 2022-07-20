@@ -1,5 +1,6 @@
 import type { GetServerSideProps } from 'next'
 import HomePage from 'pages'
+import { GetFeeds, GetFeedsQuery } from 'features/feeds'
 import {
   SharedFrontPage,
   SharedFrontPageQuery,
@@ -23,14 +24,21 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     fetchPolicy: 'no-cache',
     variables: { uid: query.uid?.toString() ?? '' },
   })
-  if (!sharedFrontPage) return { props: {} }
+
+  const {
+    data: { feeds },
+  } = await apolloClient.query<GetFeeds>({
+    query: GetFeedsQuery,
+  })
+
+  if (!sharedFrontPage) return { props: { feeds: feeds.slice(0, 10) } }
 
   const frontPage = Object.assign({}, sharedFrontPage, {
     content: sortContent(sharedFrontPage.content),
   })
 
   return {
-    props: { frontPage },
+    props: { frontPage, feeds: feeds.slice(0, 10) },
   }
 }
 
