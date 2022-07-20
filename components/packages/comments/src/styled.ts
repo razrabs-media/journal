@@ -7,10 +7,17 @@ export const StyledComment = styled.div`
 
   cursor: pointer;
 
-  gap: 10px;
   height: fit-content;
 
   padding: 20px 24px;
+
+  & > * {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 
   // TODO: вынести в @razrabs-ui/theme
   &:hover {
@@ -23,7 +30,7 @@ export const RowsWrapper = styled.div`
   flex-direction: column;
   min-width: 0;
   flex-grow: 1;
-  overflow-wrap: break-word;
+  word-break: break-word;
   white-space: pre-wrap;
 `
 
@@ -38,10 +45,17 @@ export const ReplyRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 4px;
   margin-bottom: 4px;
 
   cursor: pointer;
+
+  & > * {
+    margin-right: 4px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 
   & svg {
     flex-shrink: 0;

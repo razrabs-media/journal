@@ -8,7 +8,14 @@ export const FeedsContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
-  gap: 4px;
+  & > a {
+    margin-right: 4px;
+    margin-top: 4px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 
   margin-bottom: 64px;
 

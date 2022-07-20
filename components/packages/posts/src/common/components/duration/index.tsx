@@ -8,7 +8,13 @@ const StyledTypography = styled(Typography)`
   flex-direction: row;
   align-items: center;
 
-  gap: 8px;
+  & > * {
+    margin-right: 8px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `
 
 const DurationIcon = () => {

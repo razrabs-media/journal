@@ -48,5 +48,12 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 16px;
+
+  & > * {
+    margin-bottom: 15px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `

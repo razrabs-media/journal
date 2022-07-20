@@ -99,7 +99,13 @@ export const ShareBlock = styled.div`
   flex-direction: row;
   align-items: center;
 
-  gap: 15px;
+  & > button {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `
 
 export const Line = styled.div`
@@ -114,5 +120,12 @@ export const TagsBlock = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 4px;
+
+  & > * {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 `

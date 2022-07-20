@@ -37,7 +37,14 @@ export const StyledCommentInput = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  gap: 10px;
+
+  & > * {
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 
   transition: background 50ms ease-in-out;
 

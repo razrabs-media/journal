@@ -4,7 +4,13 @@ export const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
 
-  gap: 10px;
+  & > * {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 
   &:hover {
     .title {
@@ -17,7 +23,13 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
 
-  gap: 10px;
+  & > * {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `
 
 export const Info = styled.div`
