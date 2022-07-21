@@ -6,9 +6,9 @@ import { useCurrentUserLazyQuery } from 'features/auth'
 import { commentAdapter, useContextComments } from 'entities/comments'
 import { useClientSide, useDisplayAnimation } from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
-import { CrossIcon, IconButton } from 'shared/ui'
+import { CrossIcon, IconButton, StickyGridArea } from 'shared/ui'
 import { CommentsEmpty } from './comments-empty'
-import { CommentsWrapper } from './comments-wrapper'
+import { Drawer } from './drawer'
 import { CommentData, CommentInput } from './input'
 import {
   CommentsAction,
@@ -84,19 +84,21 @@ export const CommentsWidget = () => {
   }
 
   return (
-    <CommentsWrapper
+    <Drawer
       animationIn={animationIn}
       animationOut={animationOut}
       shouldDisplay={display}
       transitionTime={TRANSITION_TIME}
     >
-      <Header>
-        <CommentsAmount>Комменты: {comments?.length}</CommentsAmount>
+      <StickyGridArea area='header'>
+        <Header>
+          <CommentsAmount>Комменты: {comments?.length}</CommentsAmount>
 
-        <IconButton color='primary' onClick={closeHandler}>
-          <CrossIcon />
-        </IconButton>
-      </Header>
+          <IconButton color='primary' onClick={closeHandler}>
+            <CrossIcon />
+          </IconButton>
+        </Header>
+      </StickyGridArea>
 
       <CommentsContainer>
         {comments.map((comment) => (
@@ -132,6 +134,6 @@ export const CommentsWidget = () => {
           </CommentsLogin>
         )}
       </CommentsAction>
-    </CommentsWrapper>
+    </Drawer>
   )
 }

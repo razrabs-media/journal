@@ -9,7 +9,6 @@ export const StyledHeader = styled.header`
 
   height: 54px;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.background};
 `
 
 export const LogoBlock = styled.div`

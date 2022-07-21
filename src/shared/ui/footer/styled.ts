@@ -94,7 +94,7 @@ export const Logo = styled.span`
 
   text-transform: uppercase;
   text-align: center;
-  font-size: calc(var(--width) * 0.16);
+  font-size: calc(var(--width) * 0.165);
   font-weight: bold;
   line-height: calc(var(--width) * 0.131);
   letter-spacing: calc(var(--width) * 0.024);
