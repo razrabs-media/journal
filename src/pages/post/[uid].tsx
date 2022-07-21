@@ -1,4 +1,3 @@
-import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
 import { GetServerSideProps, NextPage } from 'next'
 import { useEffect } from 'react'
 import { OpenCommentsButton } from 'features/comments'
@@ -11,7 +10,6 @@ import {
 } from 'entities/posts'
 import { initializeApollo } from 'shared/api'
 import { Helmet } from 'shared/lib'
-import { Backdrop } from 'shared/ui'
 
 export type Props = {
   post: GetPost['post']
@@ -19,8 +17,7 @@ export type Props = {
 }
 
 const Post: NextPage<Props> = ({ post }) => {
-  const { openHandler, setPostUid, opened } = useContextComments()
-  const isTabletAndBelow = useIsTabletAndBelow()
+  const { openHandler, setPostUid } = useContextComments()
 
   useEffect(() => {
     setPostUid(post.uid)
@@ -46,7 +43,6 @@ const Post: NextPage<Props> = ({ post }) => {
         publicationDate={post.createdAt}
         tags={post.tags?.map((tag) => tag.name)}
       />
-      {isTabletAndBelow && <Backdrop open={opened} />}
     </>
   )
 }

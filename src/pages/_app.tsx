@@ -4,17 +4,12 @@ import { themeDark } from '@razrabs-ui/theme'
 import Head from 'next/head'
 import NextApp, { AppContext, AppProps } from 'next/app'
 import { CommentsWidget } from 'widgets/comments'
+import { Drawer } from 'widgets/drawer'
 import { Header } from 'widgets/header'
 import { CommentsProvider } from 'entities/comments'
 import { initializeApollo, useApollo } from 'shared/api'
-import { getContextMedia, withMediaProvider } from 'shared/lib/client-hints'
-import {
-  DrawerGrid,
-  Footer,
-  GridArea,
-  MainGrid,
-  StickyGridArea,
-} from 'shared/ui'
+import { getContextMedia, withMediaProvider } from 'shared/lib'
+import { Footer, GridArea, MainGrid } from 'shared/ui'
 import { CurrentTime, CurrentTimeQuery } from '../entities/clock'
 
 const _App = ({ Component, pageProps }: AppProps) => {
@@ -32,30 +27,23 @@ const _App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={themeDark}>
         <ApolloProvider client={apolloClient}>
           <CommentsProvider>
-            <DrawerGrid>
-              <GridArea area='main'>
-                <MainGrid>
-                  <GridArea area='header'>
-                    <Header currentTime={pageProps.currentTime} />
-                  </GridArea>
+            <Drawer>
+              <MainGrid>
+                <GridArea area='header'>
+                  <Header currentTime={pageProps.currentTime} />
+                </GridArea>
 
-                  <GridArea area='content'>
-                    <Component {...pageProps} />
-                  </GridArea>
+                <GridArea area='content'>
+                  <Component {...pageProps} />
+                </GridArea>
 
-                  <GridArea area='footer'>
-                    <Footer />
-                  </GridArea>
-                </MainGrid>
-              </GridArea>
+                <GridArea area='footer'>
+                  <Footer />
+                </GridArea>
+              </MainGrid>
 
-              <StickyGridArea
-                area='drawer'
-                style={{ height: '100vh', zIndex: 26 }}
-              >
-                <CommentsWidget />
-              </StickyGridArea>
-            </DrawerGrid>
+              <CommentsWidget />
+            </Drawer>
           </CommentsProvider>
         </ApolloProvider>
       </ThemeProvider>

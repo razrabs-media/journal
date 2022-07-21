@@ -1,3 +1,5 @@
+//noinspection CssInvalidPropertyValue
+
 import { css } from '@emotion/react'
 
 export const FONT_FACE = css`
@@ -51,14 +53,17 @@ export const FONT_FACE = css`
 `
 
 export const GLOBAL_STYLES = css`
+  html {
+    /* Fix для chrome desktop */
+    height: stretch;
+  }
+  body {
+    min-height: stretch;
+  }
   html,
   body {
     padding: 0;
     margin: 0;
-    /* Fix для мобилок
-    ** noinspection CssInvalidPropertyValue
-    */
-    min-height: --webkit-fill-available;
     font-family: Styrene B LC, -apple-system, BlinkMacSystemFont, Segoe UI,
       Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
       sans-serif;
@@ -73,10 +78,6 @@ export const GLOBAL_STYLES = css`
   }
 
   #__next {
-    // Fix для мобилок
-    //noinspection CssInvalidPropertyValue
-    min-height: --webkit-fill-available;
-    min-height: 100vh;
     display: grid;
   }
 `

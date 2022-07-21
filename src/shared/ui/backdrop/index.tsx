@@ -22,6 +22,7 @@ const StyledBackdrop = styled.div<Props>`
 
 export const Backdrop: FC<Props> = ({ ...props }) => {
   const ref = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     const target = ref.current
 

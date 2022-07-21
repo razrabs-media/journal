@@ -6,6 +6,7 @@ const showDialog = () => {
   body.style.position = 'fixed'
   body.style.top = `-${scrollY}`
 }
+
 const closeDialog = () => {
   const { body } = document
   const scrollY = body.style.top
@@ -13,7 +14,8 @@ const closeDialog = () => {
   body.style.top = ''
   window.scrollTo(0, parseInt(scrollY || '0') * -1)
 }
-const lisener = () => {
+
+const listener = () => {
   document.documentElement.style.setProperty(
     '--scroll-y',
     `${window.scrollY}px`,
@@ -22,13 +24,13 @@ const lisener = () => {
 
 export const useDisableScroll = (hide: boolean) => {
   useEffect(() => {
-    window.addEventListener('scroll', lisener)
+    window.addEventListener('scroll', listener)
 
     if (hide) closeDialog()
     else showDialog()
 
     return () => {
-      window.removeEventListener('scroll', lisener)
+      window.removeEventListener('scroll', listener)
     }
   }, [hide])
 }

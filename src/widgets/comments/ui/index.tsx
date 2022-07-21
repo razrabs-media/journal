@@ -4,11 +4,15 @@ import { useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
 import { useCurrentUserLazyQuery } from 'features/auth'
 import { commentAdapter, useContextComments } from 'entities/comments'
-import { useClientSide, useDisplayAnimation } from 'shared/lib'
+import {
+  useClientSide,
+  useDisableScroll,
+  useDisplayAnimation,
+} from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
-import { CrossIcon, IconButton, StickyGridArea } from 'shared/ui'
+import { CrossIcon, IconButton } from 'shared/ui'
 import { CommentsEmpty } from './comments-empty'
-import { Drawer } from './drawer'
+import { CommentsWrapper } from './comments-wrapper'
 import { CommentData, CommentInput } from './input'
 import {
   CommentsAction,
@@ -24,6 +28,7 @@ export const CommentsWidget = () => {
   const router = useRouter()
 
   const { opened, postUid, comments, closeHandler } = useContextComments()
+  const ref = useDisableScroll(opened)
 
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
     errorPolicy: 'all',
@@ -84,38 +89,40 @@ export const CommentsWidget = () => {
   }
 
   return (
-    <Drawer
+    <CommentsWrapper
       animationIn={animationIn}
       animationOut={animationOut}
+      ref={ref}
       shouldDisplay={display}
       transitionTime={TRANSITION_TIME}
     >
-      <StickyGridArea area='header'>
-        <Header>
-          <CommentsAmount>Комменты: {comments?.length}</CommentsAmount>
+      <Header>
+        <CommentsAmount>Комменты: {comments?.length}</CommentsAmount>
 
-          <IconButton color='primary' onClick={closeHandler}>
-            <CrossIcon />
-          </IconButton>
-        </Header>
-      </StickyGridArea>
+        <IconButton color='primary' onClick={closeHandler}>
+          <CrossIcon />
+        </IconButton>
+      </Header>
 
-      <CommentsContainer>
-        {comments.map((comment) => (
-          <Comment
-            key={comment.uid}
-            author={comment.author.name}
-            avatar={comment.author.avatarUrl}
-            content={comment.content}
-            reply={comment.replyComment}
-            time={parseDate(comment.createdAt, { format: 'short' }) ?? ''}
-            uid={comment.uid}
-            onCommentClick={onCommentClick}
-            onReplyClick={onScrollToComment}
-          />
-        ))}
-        {!comments?.length && <CommentsEmpty />}
-      </CommentsContainer>
+      {comments.length ? (
+        <CommentsContainer>
+          {comments.map((comment) => (
+            <Comment
+              key={comment.uid}
+              author={comment.author.name}
+              avatar={comment.author.avatarUrl}
+              content={comment.content}
+              reply={comment.replyComment}
+              time={parseDate(comment.createdAt, { format: 'short' }) ?? ''}
+              uid={comment.uid}
+              onCommentClick={onCommentClick}
+              onReplyClick={onScrollToComment}
+            />
+          ))}
+        </CommentsContainer>
+      ) : (
+        <CommentsEmpty />
+      )}
 
       <CommentsAction area='action'>
         {data?.currentUser ? (
@@ -134,6 +141,6 @@ export const CommentsWidget = () => {
           </CommentsLogin>
         )}
       </CommentsAction>
-    </Drawer>
+    </CommentsWrapper>
   )
 }
