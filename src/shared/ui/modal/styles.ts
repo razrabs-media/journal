@@ -4,6 +4,7 @@ import styled from '@emotion/styled'
 
 export const Background = styled.div<{ hide: boolean }>`
   position: fixed;
+  z-index: 1;
   width: 100vw;
   opacity:  ${({ hide }) => `${hide ? '0' : '1'}`};;
   min-height: 100vh;
@@ -14,7 +15,7 @@ export const Background = styled.div<{ hide: boolean }>`
   /* ---------- */
   background-color: #00000040;
   top: 0;
-  left: 0;
+  right: 0;
   display: grid;
   pointer-events:  ${({ hide }) => (hide ? 'none' : 'auto')};;
   grid-template:
