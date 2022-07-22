@@ -683,7 +683,6 @@ export type PermissionItem = {
 };
 
 export enum PermissionName {
-  ActiveUser = 'ActiveUser',
   CreateComment = 'CreateComment',
   CreateFeed = 'CreateFeed',
   SuperAdministrator = 'SuperAdministrator'

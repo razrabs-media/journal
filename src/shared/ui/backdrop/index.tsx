@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { FC, useEffect } from 'react'
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { FC, useEffect, useRef } from 'react'
 import type { Props } from './types'
 
 const StyledBackdrop = styled.div<Props>`
@@ -20,13 +21,21 @@ const StyledBackdrop = styled.div<Props>`
 `
 
 export const Backdrop: FC<Props> = ({ ...props }) => {
+  const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
+    const target = ref.current
+
     if (props.open) {
-      document.body.style.overflow = 'hidden'
+      target && disableBodyScroll(target)
       return
     }
-    document.body.style.removeProperty('overflow')
+    target && enableBodyScroll(target)
+
+    // eslint-disable-next-line consistent-return
+    return () => {
+      target && enableBodyScroll(target)
+    }
   }, [props.open])
 
-  return <StyledBackdrop {...props} />
+  return <StyledBackdrop ref={ref} {...props} />
 }

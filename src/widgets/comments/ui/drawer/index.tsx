@@ -1,9 +1,15 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import {
+  clearAllBodyScrollLocks,
+  disableBodyScroll,
+  enableBodyScroll,
+} from 'body-scroll-lock'
+import { PropsWithChildren, useEffect, useRef } from 'react'
 import { FADE_IN, FADE_OUT, SWIPE_IN, SWIPE_OUT } from './styled'
 import { Props } from './types'
 
-export const Drawer = styled.div<Props>`
+const StyledDrawer = styled.div<Props>`
   position: relative;
   width: 525px;
 
@@ -58,3 +64,55 @@ export const Drawer = styled.div<Props>`
         : null};
   }
 `
+
+export const Drawer = ({ ...props }: PropsWithChildren<Props>) => {
+  const ref = useRef<HTMLDivElement>(null)
+
+  const onHide = () => {
+    const target = ref.current
+    target && enableBodyScroll(target)
+  }
+
+  const onShow = (e: TouchEvent | Event) => {
+    const target = ref.current
+    e.stopImmediatePropagation()
+    e.stopPropagation()
+    target && disableBodyScroll(target)
+  }
+
+  const attachEvents = () => {
+    if (ref.current) {
+      document.body.addEventListener('touchmove', onHide, { passive: true })
+      document.body.addEventListener('scroll', onHide, { passive: true })
+
+      ref.current.addEventListener('touchmove', onShow, { passive: true })
+      ref.current.addEventListener('scroll', onShow, { passive: true })
+    }
+  }
+
+  const detachEvents = () => {
+    if (ref.current) {
+      document.body.removeEventListener('touchmove', onHide)
+      document.body.removeEventListener('scroll', onHide)
+
+      ref.current.removeEventListener('touchmove', onShow)
+      ref.current.removeEventListener('scroll', onShow)
+    }
+  }
+
+  useEffect(() => {
+    attachEvents()
+
+    if (!props.shouldDisplay) {
+      detachEvents()
+    }
+
+    // eslint-disable-next-line consistent-return
+    return () => {
+      detachEvents()
+      clearAllBodyScrollLocks()
+    }
+  })
+
+  return <StyledDrawer ref={ref} {...props} />
+}

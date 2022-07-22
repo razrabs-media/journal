@@ -357,7 +357,6 @@ type PermissionItem {
 }
 
 enum PermissionName {
-  ActiveUser
   CreateComment
   CreateFeed
   SuperAdministrator
