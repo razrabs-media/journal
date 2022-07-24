@@ -4,6 +4,7 @@ export const Body = styled.body`
   display: grid;
   grid-template-rows: 1fr repeat(10, 0px);
   width: 100vw;
+  overflow: overlay;
   overflow-x: hidden;
   color: ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.background};
