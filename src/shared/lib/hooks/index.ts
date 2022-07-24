@@ -1,5 +1,6 @@
 export * from './useBoolean'
 export * from './useClientSide'
+export * from './useDisableScroll'
 export * from './useEscape'
 export * from './useLocaleStorage'
 export * from './useQueryParamsStore'

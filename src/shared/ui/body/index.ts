@@ -1,10 +1,10 @@
 import styled from '@emotion/styled'
 
 export const Body = styled.body`
-  min-height: 100vh;
-  height: 100vh;
-  width: calc(100vw - 4px);
-
+  display: grid;
+  grid-template-rows: 1fr repeat(10, 0px);
+  width: 100vw;
+  overflow-x: hidden;
   color: ${({ theme }) => theme.colors.primary};
   background-color: ${({ theme }) => theme.colors.background};
 
@@ -61,7 +61,7 @@ export const Body = styled.body`
   }
 
   *::-webkit-scrollbar-track {
-    background: ${({ theme }) => theme.colors.background};
+    background: transparent;
   }
 
   *::-webkit-scrollbar-corner {

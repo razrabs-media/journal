@@ -11,6 +11,7 @@ export { Content as ModalContent } from './styles'
 export const Modal = forwardRef<HTMLDivElement, Props>(
   ({ title, hide, action, content, onClose }, ref) => {
     useDisableScroll(hide)
+
     return (
       <Background hide={hide}>
         <Box ref={ref}>
