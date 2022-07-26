@@ -10,7 +10,7 @@ export const Input = styled.textarea`
   background: transparent;
   border: none;
 
-  overflow: hidden;
+  overflow: auto;
 
   height: 40px;
   max-height: 300px;
