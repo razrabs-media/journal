@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react'
 import Image from '@razrabs-ui/image'
 import Typography from '@razrabs-ui/typography'
-import { forwardRef, MouseEvent } from 'react'
+import { forwardRef, MouseEvent, useCallback } from 'react'
 import {
   FirstRow,
   ReplyContent,
@@ -50,19 +50,22 @@ const Comment = forwardRef<HTMLDivElement, CommentProps>(
     },
     ref,
   ) => {
-    const commentClickHandler = () => {
+    const commentClickHandler = useCallback(() => {
       if (onCommentClick) {
         onCommentClick(uid)
       }
-    }
+    }, [uid, onCommentClick])
 
-    const replyClickHandler = (e: MouseEvent<HTMLDivElement>) => {
-      e.stopPropagation()
+    const replyClickHandler = useCallback(
+      (e: MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation()
 
-      if (reply && onReplyClick) {
-        onReplyClick(reply.uid)
-      }
-    }
+        if (reply && onReplyClick) {
+          onReplyClick(reply.uid)
+        }
+      },
+      [reply, onReplyClick],
+    )
 
     return (
       <StyledComment
