@@ -4,13 +4,13 @@ import { themeDark } from '@razrabs-ui/theme'
 import Head from 'next/head'
 import NextApp, { AppContext, AppProps } from 'next/app'
 import { CommentsWidget } from 'widgets/comments'
-import { Drawer } from 'widgets/drawer'
 import { Header } from 'widgets/header'
 import { CommentsProvider } from 'entities/comments'
 import { initializeApollo, useApollo } from 'shared/api'
 import { getContextMedia, withMediaProvider } from 'shared/lib'
-import { Footer, GridArea, MainGrid } from 'shared/ui'
+import { Footer } from 'shared/ui'
 import { CurrentTime, CurrentTimeQuery } from '../entities/clock'
+import { Layout } from '../entities/layout'
 
 const _App = ({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo()
@@ -27,23 +27,13 @@ const _App = ({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={themeDark}>
         <ApolloProvider client={apolloClient}>
           <CommentsProvider>
-            <Drawer>
-              <MainGrid>
-                <GridArea area='header'>
-                  <Header currentTime={pageProps.currentTime} />
-                </GridArea>
+            <Layout drawerContent={<CommentsWidget />}>
+              <Header currentTime={pageProps.currentTime} />
 
-                <GridArea area='content'>
-                  <Component {...pageProps} />
-                </GridArea>
+              <Component {...pageProps} />
 
-                <GridArea area='footer'>
-                  <Footer />
-                </GridArea>
-              </MainGrid>
-
-              <CommentsWidget />
-            </Drawer>
+              <Footer />
+            </Layout>
           </CommentsProvider>
         </ApolloProvider>
       </ThemeProvider>

@@ -16,3 +16,14 @@ export const GridArea = styled.div<GridAreaProps>`
   display: grid;
   grid-area: ${({ area }) => area};
 `
+
+export const MainGrid = styled.div`
+  display: grid;
+  grid-area: main;
+  grid-template-rows: 54px 1fr auto;
+  row-gap: 24px;
+
+  @media screen and (max-width: 671px) {
+    row-gap: 10px;
+  }
+`

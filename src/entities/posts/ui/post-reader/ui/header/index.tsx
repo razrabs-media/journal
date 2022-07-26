@@ -48,14 +48,13 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
       text: props.description,
       url: `${window.location.href}`,
     }
-
     navigator.share(shareData)
   }
 
   return (
     <StyledHeader>
-      <FirstRow ref={ref}>
-        <ImageWrapper>
+      <FirstRow open={props.open} ref={ref}>
+        <ImageWrapper open={props.open}>
           <Image
             align='center'
             alt={props.title}
@@ -85,7 +84,7 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
         </PostTextWrapper>
       </FirstRow>
 
-      <SecondRow>
+      <SecondRow open={props.open}>
         <TagsAndShare>
           <TagsBlock>
             {props.tags?.map((tag) => (

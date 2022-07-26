@@ -7,6 +7,7 @@ export type Props = {
   description: string
   previewUrl?: string
   publicationDate: string
+  open: boolean
   tags?: string[]
   githubAuthor?: PickedGithubAuthor
   commentsButton?: ReactElement

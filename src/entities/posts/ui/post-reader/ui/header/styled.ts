@@ -8,11 +8,16 @@ export const StyledHeader = styled.header`
 `
 
 // Первая строка - картинка, текст, описание
-export const FirstRow = styled.div`
+export const FirstRow = styled.div<{ open: boolean }>`
   display: grid;
 
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   grid-gap: 24px;
+
+  @media screen and (max-width: 1920px) {
+    grid-template-columns: ${({ open }) =>
+      open ? '1fr' : 'minmax(0, 1fr) minmax(0, 2fr)'};
+  }
 
   @media screen and (max-width: 999px) {
     grid-template-columns: minmax(0, 1fr);
@@ -21,7 +26,7 @@ export const FirstRow = styled.div`
   }
 `
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.div<{ open: boolean }>`
   display: flex;
   flex-direction: column;
 
@@ -32,6 +37,10 @@ export const ImageWrapper = styled.div`
       margin-bottom: 0;
     }
   }
+
+  @media screen and (max-width: 1920px) {
+    display: ${({ open }) => (open ? 'none' : 'flex')};
+  }
 `
 
 // TODO: это заголовок + описание. над неймингом еще надо подумать
@@ -41,7 +50,6 @@ export const PostTextWrapper = styled.div`
 `
 
 export const Title = styled(Typography)`
-  max-width: 1027px;
   font-size: 32px;
   letter-spacing: inherit;
 
@@ -51,7 +59,6 @@ export const Title = styled(Typography)`
 `
 
 export const Description = styled(Typography)`
-  max-width: 1027px;
   margin-top: 16px;
   letter-spacing: inherit;
 
@@ -60,7 +67,7 @@ export const Description = styled(Typography)`
   }
 `
 
-export const SecondRow = styled.div`
+export const SecondRow = styled.div<{ open: boolean }>`
   display: grid;
   margin-top: 14px;
   height: 22px;
@@ -69,6 +76,13 @@ export const SecondRow = styled.div`
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   grid-template-areas: '. tags-and-share';
   grid-gap: 24px;
+
+  @media screen and (max-width: 1920px) {
+    grid-template-columns: ${({ open }) =>
+      open ? '1fr' : 'minmax(0, 1fr) minmax(0, 2fr)'};
+    grid-template-areas: '${({ open }) =>
+      open ? 'tags-and-share' : '. tags-and-share'}';
+  }
 
   @media screen and (max-width: 999px) {
     grid-template-columns: minmax(0, 1fr);
