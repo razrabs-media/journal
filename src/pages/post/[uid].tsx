@@ -57,7 +57,6 @@ export const getServerSideProps: GetServerSideProps<{
   const { data } = await apolloClient.query<GetPost, GetPostVariables>({
     query: GetPostQuery,
     variables: { uid: uid?.toString() ?? '' },
-    fetchPolicy: 'no-cache',
   })
 
   return {
