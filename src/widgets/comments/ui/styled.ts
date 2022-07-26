@@ -31,6 +31,7 @@ export const CommentsContainer = styled.div`
   grid-area: content;
   overflow-y: auto;
   position: relative;
+  --webkit-overflow-scrolling: touch;
 `
 
 export const CommentsAction = styled(GridArea)`

@@ -17,7 +17,7 @@ export const useDisableScroll = (opened: boolean) => {
     const target = ref.current
     e.stopImmediatePropagation()
     e.stopPropagation()
-    target && disableBodyScroll(target)
+    target && disableBodyScroll(target, { allowTouchMove: () => true })
   }
 
   const attachEvents = () => {
@@ -49,7 +49,8 @@ export const useDisableScroll = (opened: boolean) => {
   }
   useEffect(() => {
     if (opened) {
-      ref.current && disableBodyScroll(ref.current)
+      ref.current &&
+        disableBodyScroll(ref.current, { allowTouchMove: () => true })
       attachEvents()
     }
 
