@@ -45,11 +45,8 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
   const [postUid, setPostUid] = useState<string | undefined>(undefined)
   const [opened, { trusty: openHandler, falsy: closeHandler }] = useBoolean()
   const comments = useMemo(
-    () =>
-      (opened &&
-        data?.comments.items.map((comment) => commentAdapter(comment))) ||
-      [],
-    [data?.comments.items, opened],
+    () => data?.comments.items.map((comment) => commentAdapter(comment)) || [],
+    [data?.comments.items],
   )
 
   const value: CommentsContextValue = {
@@ -83,7 +80,7 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
   }, [opened, startPolling, stopPolling])
 
   return (
-    <CommentsContext.Provider value={{ ...value }}>
+    <CommentsContext.Provider value={value}>
       {children}
     </CommentsContext.Provider>
   )

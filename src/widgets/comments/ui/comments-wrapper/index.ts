@@ -3,7 +3,8 @@ import { Props } from './types'
 
 export const CommentsWrapper = styled.div<Props>`
   //noinspection CssInvalidPropertyValue
-  height: stretch;
+  min-height: stretch;
+  height: 100%;
   grid-area: drawer;
   position: fixed;
   top: 0;
