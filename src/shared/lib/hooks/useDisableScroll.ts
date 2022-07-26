@@ -22,29 +22,39 @@ export const useDisableScroll = (opened: boolean) => {
 
   const attachEvents = () => {
     if (ref.current) {
+      document.body.addEventListener('touchstart', onHide, { passive: true })
       document.body.addEventListener('touchmove', onHide, { passive: true })
+      document.body.addEventListener('mouseover', onHide, { passive: true })
       document.body.addEventListener('wheel', onHide, { passive: true })
 
+      ref.current.addEventListener('touchstart', onShow, { passive: true })
       ref.current.addEventListener('touchmove', onShow, { passive: true })
+      ref.current.addEventListener('mouseover', onShow, { passive: true })
       ref.current.addEventListener('wheel', onShow, { passive: true })
     }
   }
 
   const detachEvents = () => {
     if (ref.current) {
+      document.body.removeEventListener('touchstart', onHide)
       document.body.removeEventListener('touchmove', onHide)
+      document.body.removeEventListener('mouseover', onHide)
       document.body.removeEventListener('wheel', onHide)
 
+      ref.current.removeEventListener('touchstart', onShow)
       ref.current.removeEventListener('touchmove', onShow)
+      ref.current.removeEventListener('mouseover', onShow)
       ref.current.removeEventListener('wheel', onShow)
     }
   }
   useEffect(() => {
-    if (opened) attachEvents()
+    if (opened) {
+      ref.current && disableBodyScroll(ref.current)
+      attachEvents()
+    }
 
     return () => {
-      if (opened) detachEvents()
-
+      detachEvents()
       clearAllBodyScrollLocks()
     }
   })
