@@ -1,9 +1,12 @@
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import { FloatedPreview } from 'entities/posts/ui/post-reader/ui/floated-preview'
 import { useFloatedBlock } from '../lib'
 import { PostHeader } from './header'
 import { ContentWrapper, StyledReader, StyledRenderer } from './styled'
 import { Props } from './types'
+
+const MemoizedMarkdownRenderer = memo(StyledRenderer)
+MemoizedMarkdownRenderer.displayName = 'MemoizedMarkdownRenderer'
 
 export const PostReader: FC<Props> = (props) => {
   const { postHeaderRef, shouldDisplay } = useFloatedBlock()
@@ -33,7 +36,7 @@ export const PostReader: FC<Props> = (props) => {
       />
 
       <ContentWrapper>
-        <StyledRenderer>{props.content}</StyledRenderer>
+        <MemoizedMarkdownRenderer>{props.content}</MemoizedMarkdownRenderer>
       </ContentWrapper>
     </StyledReader>
   )
