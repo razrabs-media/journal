@@ -1,6 +1,6 @@
 import Comment from '@razrabs-ui/comments'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
 import { useCurrentUserLazyQuery } from 'features/auth'
 import { commentAdapter, useContextComments } from 'entities/comments'
@@ -44,49 +44,55 @@ export const CommentsWidget = () => {
     TRANSITION_TIME,
   )
 
-  const onCommentClick = (newReplyUid: string) => {
-    setReplyUid(newReplyUid)
-  }
+  const onCommentClick = useCallback(
+    (newReplyUid: string) => {
+      setReplyUid(newReplyUid)
+    },
+    [setReplyUid],
+  )
 
-  const onScrollToComment = (commentUid: string) => {
+  const onScrollToComment = useCallback((commentUid: string) => {
     const commentElement = document.querySelector(
       `[data-comment-uid="${commentUid}"]`,
     )
 
     commentElement?.scrollIntoView()
-  }
+  }, [])
 
-  const onCommentSend = async (commentData: CommentData) => {
-    if (!postUid) {
-      return
-    }
+  const onCommentSend = useCallback(
+    async (commentData: CommentData) => {
+      if (!postUid) {
+        return
+      }
 
-    const response = await sendComment({
-      variables: {
-        data: {
-          postUid,
-          replyingToCommentUid: commentData.replyUid,
-          content: commentData.content,
+      const response = await sendComment({
+        variables: {
+          data: {
+            postUid,
+            replyingToCommentUid: commentData.replyUid,
+            content: commentData.content,
+          },
         },
-      },
-    })
-
-    if (
-      response.data?.createComment !== null &&
-      response.data?.createComment !== undefined
-    ) {
-      const newComment = commentAdapter(response.data.createComment)
-
-      // Надо подождать, пока реакт примаунтит компонент после обновления стейта
-      requestAnimationFrame(() => {
-        onScrollToComment(newComment.uid)
       })
-    }
-  }
 
-  const onReplyCancel = () => {
+      if (
+        response.data?.createComment !== null &&
+        response.data?.createComment !== undefined
+      ) {
+        const newComment = commentAdapter(response.data.createComment)
+
+        // Надо подождать, пока реакт примаунтит компонент после обновления стейта
+        requestAnimationFrame(() => {
+          onScrollToComment(newComment.uid)
+        })
+      }
+    },
+    [postUid, onScrollToComment, sendComment],
+  )
+
+  const onReplyCancel = useCallback(() => {
     setReplyUid(undefined)
-  }
+  }, [setReplyUid])
 
   return (
     <CommentsWrapper
@@ -137,7 +143,7 @@ export const CommentsWidget = () => {
             icon='right'
             onClick={() => router.push('/auth/github')}
           >
-            Залогиниться через GitHub
+            Залогиниться через Github
           </CommentsLogin>
         )}
       </CommentsAction>
