@@ -55,10 +55,13 @@ export const FONT_FACE = css`
 export const GLOBAL_STYLES = css`
   html {
     /* Fix для chrome desktop */
-    height: stretch;
+    height: 100%;
+    max-height: stretch;
   }
   body {
     min-height: stretch;
+    height: 100%;
+    max-height: stretch;
   }
   html,
   body {

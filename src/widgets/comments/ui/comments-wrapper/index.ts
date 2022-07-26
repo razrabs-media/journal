@@ -5,6 +5,7 @@ export const CommentsWrapper = styled.div<Props>`
   //noinspection CssInvalidPropertyValue
   min-height: stretch;
   height: 100%;
+  max-height: stretch;
   grid-area: drawer;
   position: fixed;
   top: 0;
