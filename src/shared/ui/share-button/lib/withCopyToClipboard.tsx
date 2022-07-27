@@ -18,7 +18,15 @@ export const withShareUrl = (Component: FC<ComponentProps<'button'>>) => {
 
     return (
       <Component onClick={onClick} {...props}>
-        {shared ? <SharedIcon /> : <ShareUrlIcon />}
+        {shared ? (
+          <>
+            <SharedIcon /> Скопировано
+          </>
+        ) : (
+          <>
+            <ShareUrlIcon /> Ссылка
+          </>
+        )}
       </Component>
     )
   }

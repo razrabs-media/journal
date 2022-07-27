@@ -1,6 +1,9 @@
+import styled from '@emotion/styled'
 import Badge from '@razrabs-ui/badge'
 import Image from '@razrabs-ui/image'
 import PostAuthor from '@razrabs-ui/post-author'
+import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
+import Typography from '@razrabs-ui/typography'
 import { forwardRef } from 'react'
 import { DateAgo, ShareButton, ShareType } from 'shared/ui'
 import {
@@ -18,57 +21,96 @@ import {
 } from './styled'
 import type { Props } from './types'
 
+export const DefaultShareButton = styled(Typography)`
+  cursor: pointer;
+  background: none;
+  border: none;
+`
+DefaultShareButton.defaultProps = {
+  as: 'button',
+  size: 'sm',
+  color: 'secondary',
+  uppercase: true,
+  letterSpacing: 1,
+}
+
 // Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
-export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => (
-  <StyledHeader>
-    <FirstRow ref={ref}>
-      <ImageWrapper>
-        <Image
-          align='center'
-          alt={props.title}
-          fit='cover'
-          maxH={505}
-          src={props.previewUrl}
-          width='100%'
-        />
+export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
+  const isTabletAndBelow = useIsTabletAndBelow()
 
-        <ImageDescription>
-          <PostAuthor url={props.githubAuthor?.usernameUrl}>
-            {props.githubAuthor?.name}
-          </PostAuthor>
+  const onDefaultShareClick = () => {
+    if (typeof window === undefined || !navigator.canShare()) {
+      return
+    }
 
-          <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
-        </ImageDescription>
-      </ImageWrapper>
+    const shareData = {
+      title: props.title,
+      text: props.description,
+      url: `${window.location.href}`,
+    }
 
-      <PostTextWrapper>
-        <Title uppercase as='h1' weight='medium'>
-          {props.title}
-        </Title>
+    navigator.share(shareData)
+  }
 
-        <Description color='secondary' size='xl'>
-          {props.description}
-        </Description>
-      </PostTextWrapper>
-    </FirstRow>
+  return (
+    <StyledHeader>
+      <FirstRow ref={ref}>
+        <ImageWrapper>
+          <Image
+            align='center'
+            alt={props.title}
+            fit='cover'
+            maxH={505}
+            src={props.previewUrl}
+            width='100%'
+          />
 
-    <SecondRow>
-      <TagsAndShare>
-        <TagsBlock>
-          {props.tags?.map((tag) => (
-            <Badge key={tag}>{tag}</Badge>
-          ))}
-        </TagsBlock>
+          <ImageDescription>
+            <PostAuthor url={props.githubAuthor?.usernameUrl}>
+              {props.githubAuthor?.name}
+            </PostAuthor>
 
-        <ShareBlock>
-          {props.commentsButton}
+            <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
+          </ImageDescription>
+        </ImageWrapper>
 
-          <ShareButton shareType={ShareType.Twitter} />
-          <ShareButton shareType={ShareType.Url} />
-        </ShareBlock>
-      </TagsAndShare>
-    </SecondRow>
-  </StyledHeader>
-))
+        <PostTextWrapper>
+          <Title uppercase as='h1' weight='medium'>
+            {props.title}
+          </Title>
+
+          <Description color='secondary' size='xl'>
+            {props.description}
+          </Description>
+        </PostTextWrapper>
+      </FirstRow>
+
+      <SecondRow>
+        <TagsAndShare>
+          <TagsBlock>
+            {props.tags?.map((tag) => (
+              <Badge key={tag}>{tag}</Badge>
+            ))}
+          </TagsBlock>
+
+          <ShareBlock>
+            {props.commentsButton}
+
+            {isTabletAndBelow && navigator.canShare() ? (
+              <DefaultShareButton onClick={onDefaultShareClick}>
+                Поделиться
+              </DefaultShareButton>
+            ) : (
+              <>
+                <ShareButton shareType={ShareType.Twitter} />
+                <ShareButton shareType={ShareType.Url} />
+              </>
+            )}
+          </ShareBlock>
+        </TagsAndShare>
+      </SecondRow>
+    </StyledHeader>
+  )
+})
 
 PostHeader.displayName = 'PostHeader'
