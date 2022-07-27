@@ -149,6 +149,16 @@ const StyleWrapper = styled.div`
   ol {
     padding-left: 22px;
   }
+
+  code {
+    font-family: 'JetBrainsMono';
+    font-size: 14px;
+    word-break: break-word;
+    white-space: pre-line;
+    background: rgb(45, 45, 45);
+    padding: 0.2em 0.4em;
+    border-radius: 6px;
+  }
 `
 
 type MarkdownRendererProps = {
