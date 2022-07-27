@@ -5,7 +5,7 @@ import CopySvg from './copy.svg'
 
 const CopyButtonWrapper = styled.button<{ disabled: boolean }>`
   position: absolute;
-  top: 4px;
+  top: 10px;
   right: 4px;
   background-color: inherit;
 
