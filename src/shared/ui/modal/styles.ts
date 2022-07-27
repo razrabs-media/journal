@@ -2,7 +2,9 @@ import styled from '@emotion/styled'
 
 export const Background = styled.div<{ hide: boolean }>`
   //noinspection CssInvalidPropertyValue
-  height: stretch;
+  min-height: stretch;
+  height: 100%;
+  max-height: stretch;
   position: fixed;
   width: 100vw;
   opacity: ${({ hide }) => `${hide ? '0' : '1'}`};;
@@ -16,7 +18,7 @@ export const Background = styled.div<{ hide: boolean }>`
     '. body' 1fr
     / auto minmax(auto, 525px);
   transition: 0.2s ease-out;
-  z-index: 10;
+  z-index: 120;
 }`
 
 export const Box = styled.div`
