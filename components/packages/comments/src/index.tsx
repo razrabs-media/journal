@@ -2,6 +2,7 @@ import { useTheme } from '@emotion/react'
 import Image from '@razrabs-ui/image'
 import Typography from '@razrabs-ui/typography'
 import { forwardRef, MouseEvent, useCallback } from 'react'
+import { isValidURL } from './is-valid-url'
 import {
   FirstRow,
   ReplyContent,
@@ -10,6 +11,31 @@ import {
   StyledComment,
 } from './styled'
 import { CommentProps } from './types'
+
+const CommentText = ({ children }: { children: string }) => {
+  const tokens = children.split(/\s/)
+
+  const content = tokens.map((token, i) => {
+    const hasSpace = i !== tokens.length - 1
+    const space = hasSpace ? ' ' : ''
+
+    if (isValidURL(token)) {
+      return (
+        <a href={token} rel='noreferrer' target='_blank'>
+          {token}
+          {space}
+        </a>
+      )
+    }
+    return `${token + space}`
+  })
+
+  return (
+    <Typography lineHeight='140%' size='md'>
+      {content}
+    </Typography>
+  )
+}
 
 const ReplyIcon = () => {
   const {
@@ -98,7 +124,7 @@ const Comment = forwardRef<HTMLDivElement, CommentProps>(
             </ReplyRow>
           )}
 
-          <Typography size='md'>{content}</Typography>
+          <CommentText>{content}</CommentText>
         </RowsWrapper>
       </StyledComment>
     )
