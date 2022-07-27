@@ -21,7 +21,7 @@ const CommentText = ({ children }: { children: string }) => {
 
     if (isValidURL(token)) {
       return (
-        <a href={token} rel='noreferrer' target='_blank'>
+        <a key={token} href={token} rel='noreferrer' target='_blank'>
           {token}
           {space}
         </a>

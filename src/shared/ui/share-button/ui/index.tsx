@@ -10,9 +10,23 @@ export const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   height: 12px;
-  background: transparent;
-  cursor: pointer;
   border: none;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: ${({ theme }) => theme.colors.secondary};
+  font-family: Styrene B LC, serif;
+  font-feature-settings: 'salt' on;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 100%;
+  text-transform: uppercase;
+
+  & svg {
+    margin-right: 4px;
+  }
 `
 
 export { SharedIcon, ShareTwitterIcon, ShareUrlIcon }
