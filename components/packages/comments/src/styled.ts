@@ -23,6 +23,13 @@ export const StyledComment = styled.div`
   &:hover {
     background: #38393d;
   }
+  & a {
+    color: ${({ theme }) => theme.colors.brand};
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `
 
 export const RowsWrapper = styled.div`
