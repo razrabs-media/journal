@@ -30,6 +30,7 @@ export const CommentsContainer = styled.div`
   flex-direction: column-reverse;
   grid-area: content;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   --webkit-overflow-scrolling: touch;
 `
