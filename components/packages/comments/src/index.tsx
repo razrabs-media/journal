@@ -3,7 +3,6 @@ import Image from '@razrabs-ui/image'
 import Typography from '@razrabs-ui/typography'
 import Linkify from 'linkify-react'
 import { forwardRef, MouseEvent, useCallback } from 'react'
-import { isValidURL } from './is-valid-url'
 import {
   FirstRow,
   ReplyContent,
