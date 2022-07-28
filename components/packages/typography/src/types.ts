@@ -15,4 +15,5 @@ export type TypographyProps = {
   letterSpacing: CSSProperties['letterSpacing']
   lineHeight: CSSProperties['lineHeight']
   uppercase: boolean
+  disableHover: boolean
 }
