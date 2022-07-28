@@ -1,6 +1,7 @@
 //noinspection CssInvalidPropertyValue
 
 import { css } from '@emotion/react'
+import { themeDark } from '@razrabs-ui/theme'
 
 export const FONT_FACE = css`
   @font-face {
@@ -77,6 +78,7 @@ export const GLOBAL_STYLES = css`
 
     &:hover {
       text-decoration: none;
+      color: ${themeDark.colors.brand};
     }
   }
 
