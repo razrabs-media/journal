@@ -9,7 +9,12 @@ export const StyledComment = styled.div`
 
   height: fit-content;
 
-  padding: 20px 24px;
+  padding: 15px 10px;
+
+  @media screen and (min-width: ${({ theme }) =>
+      `${parseInt(theme.breakpoints.sm)}px`}) {
+    padding: 20px 24px;
+  }
 
   & > * {
     margin-right: 10px;

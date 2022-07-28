@@ -54,7 +54,7 @@ export const StyledCommentInput = styled.div`
   }
 
   @media screen and (min-width: ${({ theme }) =>
-      `${parseInt(theme.breakpoints.md) - 1}px`}) {
+      `${parseInt(theme.breakpoints.sm)}px`}) {
     padding: 20px 24px 20px 24px;
   }
 `
