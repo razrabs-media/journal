@@ -8,7 +8,7 @@ export const StyledRow = styled.div<SizeProps>`
   /* Откуда брались значения на минимальные высоты в 105 и 140 писелей? */
   /* min-height: ${({ small }) => (small ? '105px' : '140px')}; */
   & > * {
-    margin-right: ${({ small }) => (small ? '20px' : '24px')};
+    margin-right: ${({ small }) => (small ? '10px' : '24px')};
 
     &:last-child {
       margin-right: 0;
