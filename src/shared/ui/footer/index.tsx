@@ -56,22 +56,52 @@ export const Footer: FC = () => {
             >
               Еще и тут:
             </MoreLabel>
-            <Link passHref href='#'>
-              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
-                GitHub
+            <Link passHref href='https://github.com/razrabs-media'>
+              <Typography
+                uppercase
+                as='a'
+                letterSpacing='1px'
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                rel='noreferrer'
+                size='sm'
+                target='_blank'
+              >
+                Github
               </Typography>
             </Link>
-            <Link passHref href='#'>
-              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+            <Link
+              passHref
+              href='https://www.youtube.com/channel/UC-h5nFU9Qzo72dFW-fC_lkQ'
+            >
+              <Typography
+                uppercase
+                as='a'
+                letterSpacing='1px'
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                rel='noreferrer'
+                size='sm'
+                target='_blank'
+              >
                 YT
               </Typography>
             </Link>
-            <Link passHref href='#'>
-              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+            <Link passHref href='https://t.me/rzrbs'>
+              <Typography
+                uppercase
+                as='a'
+                letterSpacing='1px'
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                rel='noreferrer'
+                size='sm'
+                target='_blank'
+              >
                 TG
               </Typography>
             </Link>
-            <Link passHref href='#'>
+            <Link passHref href='https://twitter.com/razraby'>
               <Typography uppercase as='a' letterSpacing='1px' size='sm'>
                 TW
               </Typography>
