@@ -1,6 +1,6 @@
 import Comment from '@razrabs-ui/comments'
 import { useRouter } from 'next/router'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
 import { useCurrentUserLazyQuery } from 'features/auth'
 import { commentAdapter, useContextComments } from 'entities/comments'
@@ -26,7 +26,7 @@ const TRANSITION_TIME = 150
 
 export const CommentsWidget = () => {
   const router = useRouter()
-
+  const refContainer = useRef<HTMLDivElement>(null)
   const { opened, postUid, comments, closeHandler } = useContextComments()
   const ref = useDisableScroll(opened)
 
@@ -94,6 +94,10 @@ export const CommentsWidget = () => {
     setReplyUid(undefined)
   }, [setReplyUid])
 
+  useEffect(() => {
+    if (opened) refContainer.current?.focus()
+  }, [opened])
+
   return (
     <CommentsWrapper
       animationIn={animationIn}
@@ -111,7 +115,7 @@ export const CommentsWidget = () => {
       </Header>
 
       {comments.length ? (
-        <CommentsContainer>
+        <CommentsContainer ref={refContainer}>
           {comments.map((comment) => (
             <Comment
               key={comment.uid}

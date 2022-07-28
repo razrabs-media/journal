@@ -1,3 +1,4 @@
+import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import type { TypographyProps } from './types'
@@ -8,6 +9,7 @@ const defaultProps: Omit<TypographyProps, 'letterSpacing' | 'lineHeight'> = {
   align: 'left',
   weight: 'normal',
   uppercase: false,
+  disableHover: false,
 }
 
 const Typography = styled.p<Partial<TypographyProps>>`
@@ -31,6 +33,15 @@ const Typography = styled.p<Partial<TypographyProps>>`
   text-align: ${({ align }) => align};
   text-transform: ${({ uppercase = defaultProps.uppercase }) =>
     uppercase ? 'uppercase' : 'none'};
+
+  ${({ disableHover, theme, color = defaultProps.color }) =>
+    disableHover
+      ? css`
+          &:hover {
+            color: ${theme.colors[color]};
+          }
+        `
+      : ''}
 `
 
 Typography.defaultProps = defaultProps

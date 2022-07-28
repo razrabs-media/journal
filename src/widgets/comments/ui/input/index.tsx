@@ -24,10 +24,6 @@ export const CommentInput: FC<Props> = ({
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
-    textareaRef.current && textareaRef.current?.focus()
-  })
-
-  useEffect(() => {
     const target = textareaRef.current
 
     if (!target) {

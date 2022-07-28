@@ -23,6 +23,7 @@ export const Header: FC<Props> = ({ currentTime }) => {
       <LogoBlock>
         <Link passHref href='/'>
           <Typography
+            disableHover
             uppercase
             as='a'
             color='logo'
