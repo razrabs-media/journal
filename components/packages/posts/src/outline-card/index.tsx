@@ -16,7 +16,7 @@ export const PostOutlineCard = forwardRef<HTMLDivElement, PostProps>(
           as='span'
           color='secondary'
           letterSpacing={1}
-          size={small ? 'xs' : 'sm'}
+          size='sm'
         >
           {date}
         </Typography>

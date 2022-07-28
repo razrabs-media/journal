@@ -34,7 +34,7 @@ export const PostCard = forwardRef<HTMLDivElement, PostProps>((props, ref) => {
           as='span'
           color='secondary'
           letterSpacing={1}
-          size='sm'
+          size={small ? 'xs' : 'sm'}
         >
           {date}
         </Typography>

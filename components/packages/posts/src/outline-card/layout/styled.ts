@@ -14,16 +14,26 @@ export const StyledCard = styled.div<SizeProps>`
   border: 1px solid ${({ theme }) => theme.colors.logo};
 
   & > * {
-    margin-bottom: 16px;
+    margin-bottom: 20px !important;
 
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: 0 !important;
     }
   }
 
   &:hover {
     .title {
       color: ${({ theme }) => theme.colors.brand};
+    }
+  }
+
+  @media screen and (max-width: 671px) {
+    & > * {
+      margin-bottom: 10px !important;
+
+      &:last-child {
+        margin-bottom: 0 !important;
+      }
     }
   }
 `

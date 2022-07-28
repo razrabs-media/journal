@@ -30,6 +30,15 @@ export const Content = styled.div`
       margin-bottom: 0;
     }
   }
+  @media screen and (max-width: 671px) {
+    & > * {
+      margin-bottom: 6px !important;
+
+      &:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+  }
 `
 
 export const Info = styled.div`
