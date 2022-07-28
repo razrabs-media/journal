@@ -7,9 +7,11 @@ export const StyledFooter = styled.footer`
   padding: 20px 0 0 0;
   border-top: 1px solid ${({ theme }) => theme.colors.logo};
   overflow: hidden;
+  margin-top: 96px;
 
   @media screen and (max-width: 671px) {
     height: 205px;
+    margin-top: 70px;
   }
 `
 
