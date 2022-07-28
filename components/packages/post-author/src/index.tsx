@@ -36,7 +36,14 @@ type BadgeProps = {
 } & StyleBadgeProps
 const PostAuthor: FC<BadgeProps> = forwardRef<any, BadgeProps>(
   ({ as = 'span', children, url, ...props }, ref) => (
-    <StyledTypography uppercase as={as} ref={ref} size='sm' {...props}>
+    <StyledTypography
+      uppercase
+      as={as}
+      margin='0 0 8px 0'
+      ref={ref}
+      size='sm'
+      {...props}
+    >
       Автор статьи:
       <StyledLink href={url ?? undefined} target='_blank'>
         {children}
