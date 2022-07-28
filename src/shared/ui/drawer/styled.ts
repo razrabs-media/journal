@@ -16,7 +16,6 @@ export const DrawerBlock = styled.div<Props>`
   z-index: 100;
   display: ${({ open }) => (open ? 'flex' : 'none')};
 
-  // Фулл-скрин
   @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}) {
     width: 100% !important;
   }

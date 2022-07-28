@@ -13,6 +13,10 @@ const CodeWrapper = styled.div`
   position: relative;
   // TODO: в базовом гриде *fr'ы, что не могут ограничить ширину, в будущем не помешает избавиться
   max-width: calc(100vw - 48px);
+
+  @media screen and (max-width: 671px) {
+    max-width: calc(100vw - 20px);
+  }
 `
 
 const handleCopyButton = async (code: string) => {
