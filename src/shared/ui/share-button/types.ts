@@ -1,3 +1,4 @@
+import type { ElementType } from 'react'
 import { ComponentProps } from 'react'
 
 export enum ShareType {
@@ -7,4 +8,6 @@ export enum ShareType {
 
 export type Props = {
   shareType: ShareType
+  as?: ElementType<any>
+  href?: string
 } & ComponentProps<'button'>

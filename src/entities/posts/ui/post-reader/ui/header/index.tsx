@@ -4,7 +4,7 @@ import Image from '@razrabs-ui/image'
 import PostAuthor from '@razrabs-ui/post-author'
 import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
-import { forwardRef } from 'react'
+import { forwardRef, useEffect, useState } from 'react'
 import { DateAgo, ShareButton, ShareType } from 'shared/ui'
 import {
   Description,
@@ -37,17 +37,23 @@ DefaultShareButton.defaultProps = {
 // Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
 export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
   const isTabletAndBelow = useIsTabletAndBelow()
+  const [href, setHref] = useState('')
 
-  const onDefaultShareClick = () => {
+  useEffect(() => {
     if (typeof window === undefined) {
       return
     }
 
+    setHref(window.location.href)
+  }, [])
+
+  const onDefaultShareClick = () => {
     const shareData = {
       title: props.title,
       text: props.description,
-      url: `${window.location.href}`,
+      url: href,
     }
+
     navigator.share(shareData)
   }
 
@@ -101,7 +107,11 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
               </DefaultShareButton>
             ) : (
               <>
-                <ShareButton shareType={ShareType.Twitter} />
+                <ShareButton
+                  as='a'
+                  href={`https://twitter.com/intent/tweet?url=${href}`}
+                  shareType={ShareType.Twitter}
+                />
                 <ShareButton shareType={ShareType.Url} />
               </>
             )}

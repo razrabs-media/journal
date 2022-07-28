@@ -135,7 +135,8 @@ export const ShareBlock = styled.div`
   flex-direction: row;
   align-items: center;
 
-  & > button {
+  & > button,
+  a {
     margin-right: 15px;
 
     &:last-child {
