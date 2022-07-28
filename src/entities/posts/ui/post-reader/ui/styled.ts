@@ -30,7 +30,7 @@ export const ContentWrapper = styled.main<{ open: boolean }>`
 
 export const StyledRenderer = styled(MarkdownRenderer)`
   grid-area: content;
-  & :nth-child(1) {
+  & :first-of-type {
     margin-top: 0;
   }
 
