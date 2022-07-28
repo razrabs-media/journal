@@ -30,7 +30,9 @@ export const ContentWrapper = styled.main<{ open: boolean }>`
 
 export const StyledRenderer = styled(MarkdownRenderer)`
   grid-area: content;
-  & :first-of-type {
+  /* See https://github.com/emotion-js/emotion/issues/1178 */
+  & > :first-of-type:not(style):not(:first-of-type ~ *),
+  & > style + * {
     margin-top: 0;
   }
 
