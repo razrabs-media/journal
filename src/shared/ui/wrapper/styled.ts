@@ -16,4 +16,12 @@ export const Wrapper = styled.div<Props>`
       ${({ open }) => `1fr `.repeat(open ? 2 : 3)}
       minmax(24px, auto) ${({ open }) => (open ? '1fr' : 0)};
   }
+
+  @media screen and (max-width: 671px) {
+    grid-template:
+      '. . ${({ open }) => `main `.repeat(open ? 2 : 3)} . drawer' 1fr /
+      minmax(0, calc((100% - 1920px) / 2)) 10px
+      ${({ open }) => `1fr `.repeat(open ? 2 : 3)}
+      minmax(10px, auto) ${({ open }) => (open ? '1fr' : 0)};
+  }
 `
