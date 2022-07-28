@@ -49,12 +49,10 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
   const onDefaultShareClick = () => {
     const shareData = {
-      title: props.title,
-      text: props.description,
       url: href,
     }
 
-    navigator.share(shareData)
+    navigator.share && navigator.share(shareData)
   }
 
   return (
