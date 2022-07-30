@@ -1,4 +1,5 @@
 import Comment from '@razrabs-ui/comments'
+import { disableBodyScroll } from 'body-scroll-lock'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
@@ -22,7 +23,7 @@ import {
   Header,
 } from './styled'
 
-const TRANSITION_TIME = 150
+const TRANSITION_TIME = 0
 
 export const CommentsWidget = () => {
   const router = useRouter()
@@ -56,7 +57,7 @@ export const CommentsWidget = () => {
       `[data-comment-uid="${commentUid}"]`,
     )
 
-    commentElement?.scrollIntoView()
+    // commentElement?.scrollIntoView()
   }, [])
 
   const onCommentSend = useCallback(
@@ -82,9 +83,9 @@ export const CommentsWidget = () => {
         const newComment = commentAdapter(response.data.createComment)
 
         // Надо подождать, пока реакт примаунтит компонент после обновления стейта
-        requestAnimationFrame(() => {
-          onScrollToComment(newComment.uid)
-        })
+        // requestAnimationFrame(() => {
+        //   onScrollToComment(newComment.uid)
+        // })
       }
     },
     [postUid, onScrollToComment, sendComment],
@@ -95,14 +96,16 @@ export const CommentsWidget = () => {
   }, [setReplyUid])
 
   useEffect(() => {
+    const test = document.getElementById('test')
+    test && disableBodyScroll(test)
     if (opened) refContainer.current?.focus()
   }, [opened])
 
   return (
     <CommentsWrapper
-      animationIn={animationIn}
-      animationOut={animationOut}
-      ref={ref}
+      animationIn={false}
+      animationOut={false}
+      // ref={ref}
       shouldDisplay={display}
       transitionTime={TRANSITION_TIME}
     >
@@ -115,7 +118,7 @@ export const CommentsWidget = () => {
       </Header>
 
       {comments.length ? (
-        <CommentsContainer ref={refContainer}>
+        <CommentsContainer id='test' ref={ref}>
           {comments.map((comment) => (
             <Comment
               key={comment.uid}

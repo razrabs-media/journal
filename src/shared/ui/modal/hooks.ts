@@ -12,7 +12,7 @@ const closeDialog = () => {
   const scrollY = body.style.top
   body.style.position = ''
   body.style.top = ''
-  window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  // window.scrollTo(0, parseInt(scrollY || '0') * -1)
 }
 
 const listener = () => {

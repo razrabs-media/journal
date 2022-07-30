@@ -1,3 +1,4 @@
+import { useIsMobile } from '@razrabs-ui/responsive'
 import {
   clearAllBodyScrollLocks,
   disableBodyScroll,
@@ -7,9 +8,13 @@ import { useEffect, useRef } from 'react'
 
 export const useDisableScroll = (opened: boolean) => {
   const ref = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile()
 
-  const onHide = () => {
+  const onHide = (e: TouchEvent | Event) => {
     const target = ref.current
+    if (isMobile) e.preventDefault()
+    e.stopImmediatePropagation()
+    e.stopPropagation()
     target && enableBodyScroll(target)
   }
 
@@ -22,10 +27,25 @@ export const useDisableScroll = (opened: boolean) => {
 
   const attachEvents = () => {
     if (ref.current) {
-      document.body.addEventListener('touchstart', onHide, { passive: true })
-      document.body.addEventListener('touchmove', onHide, { passive: true })
-      document.body.addEventListener('mouseover', onHide, { passive: true })
-      document.body.addEventListener('wheel', onHide, { passive: true })
+      if (isMobile) {
+        document.body.addEventListener('touchstart', onHide, {
+          passive: false,
+        })
+        document.body.addEventListener('touchmove', onHide, {
+          passive: false,
+        })
+      } else {
+        document.body.addEventListener('touchstart', onHide, {
+          passive: true,
+        })
+        document.body.addEventListener('touchmove', onHide, {
+          passive: true,
+        })
+        document.body.addEventListener('mouseover', onHide, {
+          passive: true,
+        })
+        document.body.addEventListener('wheel', onHide, { passive: true })
+      }
 
       ref.current.addEventListener('touchstart', onShow, { passive: true })
       ref.current.addEventListener('touchmove', onShow, { passive: true })

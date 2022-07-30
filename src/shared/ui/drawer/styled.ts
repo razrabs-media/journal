@@ -11,7 +11,8 @@ export const DrawerBlock = styled.div<Props>`
   height: 100%;
   max-height: stretch;
   position: fixed;
-  top: 0;
+  top: -70px;
+  transform: translateY(70px);
   right: 0;
   z-index: 100;
   display: ${({ open }) => (open ? 'flex' : 'none')};
