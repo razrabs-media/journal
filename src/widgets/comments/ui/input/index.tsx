@@ -61,11 +61,19 @@ export const CommentInput: FC<Props> = ({
       return
     }
 
-    onSend &&
-      onSend({ content, replyUid }).then(() => {
-        setValue('')
-        onReplyCancel()
-      })
+    textareaRef.current.setAttribute('readonly', 'readonly')
+    textareaRef.current.setAttribute('disabled', 'true')
+
+    setTimeout(() => {
+      textareaRef.current?.blur()
+      textareaRef.current?.removeAttribute('readonly')
+      textareaRef.current?.removeAttribute('disabled')
+    }, 100)
+
+    onSend?.({ content, replyUid }).then(() => {
+      setValue('')
+      onReplyCancel()
+    })
   }
 
   const keyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
