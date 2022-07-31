@@ -37,8 +37,12 @@ module.exports = {
   },
   serverRuntimeConfig: {
     HOST: process.env.NEXT_PUBLIC_HOST,
+    YM_ENABLE: process.env.NEXT_PUBLIC_YANDEX_METRICS_ENABLED,
+    YM_CODE: process.env.NEXT_PUBLIC_YANDEX_METRICS_CODE,
   },
   publicRuntimeConfig: {
     HOST: process.env.NEXT_PUBLIC_HOST,
+    YM_ENABLE: process.env.NEXT_PUBLIC_YANDEX_METRICS_ENABLED,
+    YM_CODE: process.env.NEXT_PUBLIC_YANDEX_METRICS_CODE,
   },
 }
