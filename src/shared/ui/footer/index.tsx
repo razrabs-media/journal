@@ -21,7 +21,7 @@ export const Footer: FC = () => {
       <Content>
         <Copyright>
           <Typography uppercase color='secondary' letterSpacing='1px' size='sm'>
-            In code we trust since 2022
+            Если смысл ни в чем, то в чем?
           </Typography>
         </Copyright>
         <Menu>
