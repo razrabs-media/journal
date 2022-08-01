@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 
 import type { TypographyProps } from './types'
@@ -34,14 +33,10 @@ const Typography = styled.p<Partial<TypographyProps>>`
   text-transform: ${({ uppercase = defaultProps.uppercase }) =>
     uppercase ? 'uppercase' : 'none'};
 
-  ${({ disableHover, theme, color = defaultProps.color }) =>
-    disableHover
-      ? css`
-          &:hover {
-            color: ${theme.colors[color]};
-          }
-        `
-      : ''}
+  &:hover {
+    ${({ disableHover, theme, color = defaultProps.color }) =>
+      disableHover ? `color: ${theme.colors[color]};` : ''}
+  }
 `
 
 Typography.defaultProps = defaultProps
