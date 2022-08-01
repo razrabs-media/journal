@@ -1,0 +1,22 @@
+name: Release Deployment
+
+on:
+  workflow_dispatch:
+
+env:
+   CR_REGISTRY_HOST: ${{ secrets.CR_REGISTRY_HOST }}
+   CR_REGISTRY: ${{ secrets.CR_REGISTRY }}
+   CR_REPOSITORY: journal
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Connect to docker registry
+        uses: yc-actions/yc-cr-login@v0.1-alpha
+        with:
+          yc-sa-json-credentials: ${{ secrets.CR_REGISTRY_CREDENTIALS }}
+      - name: Build & Push
+        run: |
+          docker build -t $CR_REGISTRY_HOST/$CR_REGISTRY/releases/$CR_REPOSITORY:$GITHUB_SHA .
+          docker push $CR_REGISTRY_HOST/$CR_REGISTRY/releases/$CR_REPOSITORY:$GITHUB_SHA
