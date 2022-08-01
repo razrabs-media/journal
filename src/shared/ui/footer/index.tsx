@@ -31,12 +31,12 @@ export const Footer: FC = () => {
                 О нас
               </Typography>
             </Link>
-            <Link passHref href='post/9711f7aa-4aa9-46dd-9d61-72c38b272148'>
+            <Link passHref href='#'>
               <Typography uppercase as='a' letterSpacing='1px' size='sm'>
                 Условия
               </Typography>
             </Link>
-            <Link passHref href='post/d2b1cb8a-1487-42f5-b496-4747dd4a0ab7'>
+            <Link passHref href='#'>
               <Typography uppercase as='a' letterSpacing='1px' size='sm'>
                 Лицензия
               </Typography>
