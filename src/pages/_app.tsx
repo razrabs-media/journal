@@ -1,7 +1,13 @@
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@emotion/react'
 import { themeDark } from '@razrabs-ui/theme'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import withYM from 'next-ym'
+import getConfig from 'next/config'
 import Head from 'next/head'
+import Router from 'next/router'
+import { memo } from 'react'
 import NextApp, { AppContext, AppProps } from 'next/app'
 import { CommentsWidget } from 'widgets/comments'
 import { Header } from 'widgets/header'
@@ -12,7 +18,9 @@ import { Footer } from 'shared/ui'
 import { CurrentTime, CurrentTimeQuery } from '../entities/clock'
 import { Layout } from '../entities/layout'
 
-const _App = ({ Component, pageProps }: AppProps) => {
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
+
+const _App = memo(({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo()
 
   return (
@@ -39,9 +47,18 @@ const _App = ({ Component, pageProps }: AppProps) => {
       </ThemeProvider>
     </>
   )
-}
+})
 
-const App = withMediaProvider(_App)
+_App.displayName = 'App'
+
+const isServerSide = typeof window === 'undefined'
+const { YM_CODE, YM_ENABLE } = isServerSide
+  ? serverRuntimeConfig
+  : publicRuntimeConfig
+
+const AppYM = YM_ENABLE ? withYM(YM_CODE, Router)(_App) : _App
+
+const App = withMediaProvider(AppYM)
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
