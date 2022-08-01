@@ -22,13 +22,13 @@ export const UserInfo: FC<Props> = ({ date, postsCount, commentsCount }) => {
     locale: ru,
   })
   const duration = formatDistanceToNow(new Date(date), { locale: ru })
-  const postsFormatter = countFormatter(['материал', 'материала', 'материалов'])
-  const commentsFormatter = countFormatter(['коммент', 'коммента', 'комментов'])
+  const postsFormatter = countFormatter(['материал открыт', 'материала открыто', 'материалов открыто'])
+  const commentsFormatter = countFormatter(['коммент написан', 'коммента написано', 'комментов написано'])
 
   return (
     <Flex direction='column' gap={8}>
-      <Typography size='lg'>{postsCount} {postsFormatter(postsCount)} открыто</Typography>
-      <Typography size='lg'>{commentsCount} {commentsFormatter(commentsCount)} написано</Typography>
+      <Typography size='lg'>{postsCount} {postsFormatter(postsCount)}</Typography>
+      <Typography size='lg'>{commentsCount} {commentsFormatter(commentsCount)}</Typography>
 
       <Flex gap={16}>
         <Typography size='lg'>С Разрабами с {formattedDate}</Typography>
