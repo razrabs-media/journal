@@ -11,8 +11,8 @@ export const UserInfo: FC<Props> = ({ date, postsCount, commentsCount }) => {
     locale: ru,
   })
   const duration = formatDistanceToNow(new Date(date), { locale: ru })
-  const formattedPosts = pluralize(['материал открыт', 'материала открыто', 'материалов открыто'], postsCount)
-  const formattedComments = pluralize(['коммент написан', 'коммента написано', 'комментов написано'], commentsCount)
+  const formattedPosts = pluralize({ zero: 'материал открыт', one: 'материала открыто', few: 'материалов открыто' }, postsCount)
+  const formattedComments = pluralize({ zero: 'коммент написан', one: 'коммента написано', few: 'комментов написано' }, commentsCount)
 
   return (
     <Flex direction='column' gap={8}>
