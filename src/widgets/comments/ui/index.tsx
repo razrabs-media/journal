@@ -33,6 +33,7 @@ export const CommentsWidget = () => {
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
     errorPolicy: 'all',
   })
+
   useClientSide(currentUserQuery)
 
   const [sendComment] = useSendComment()

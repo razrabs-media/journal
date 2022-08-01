@@ -20,6 +20,7 @@ export const GridArea = styled.div<GridAreaProps>`
 export const MainGrid = styled.div`
   display: grid;
   grid-area: main;
+  grid-template-columns: 100%;
   grid-template-rows: 54px 1fr auto;
   row-gap: 24px;
 

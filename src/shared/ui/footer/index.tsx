@@ -31,7 +31,6 @@ export const Footer: FC = () => {
                 О нас
               </Typography>
             </Link>
-
             <Link passHref href='mailto:razrabschannel@razrabs.ru'>
               <Typography uppercase as='a' letterSpacing='1px' size='sm'>
                 Связаться

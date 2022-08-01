@@ -7,13 +7,13 @@ export const ContentWrapper = styled.main<{ open: boolean }>`
   margin-top: 76px;
   display: grid;
 
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  grid-template-columns: calc((100% - 24px) / 3) calc((100% - 24px) * 2 / 3);
   grid-template-areas: '. content';
   grid-gap: 24px;
 
   @media screen and (max-width: 1920px) {
     grid-template-columns: ${({ open }) =>
-      open ? '1fr' : 'minmax(0, 1fr) minmax(0, 2fr)'};
+      open ? '100%' : 'calc((100% - 24px) / 3) calc((100% - 24px) * 2 / 3)'};
     grid-template-areas: '${({ open }) => (open ? 'content' : '. content')}';
   }
 
