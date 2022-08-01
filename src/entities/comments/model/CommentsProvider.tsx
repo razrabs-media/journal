@@ -74,7 +74,7 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (opened) {
-      startPolling(3_000)
+      startPolling(1_000)
     }
     return () => stopPolling()
   }, [opened, startPolling, stopPolling])
