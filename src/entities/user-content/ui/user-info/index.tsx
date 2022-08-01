@@ -5,16 +5,30 @@ import { FC } from 'react'
 import { Flex } from 'shared/ui'
 import { Props } from './types'
 
+const countFormatter = (titles: string[]) => {
+  return (number: number): string => {
+    const cases = [2, 0, 1, 1, 1, 2]
+
+    return titles[
+      number % 100 > 4 && number % 100 < 20
+        ? 2
+        : cases[number % 10 < 5 ? number % 10 : 5]
+      ]
+  }
+}
+
 export const UserInfo: FC<Props> = ({ date, postsCount, commentsCount }) => {
   const formattedDate = format(new Date(date), 'dd MMMM yyyy', {
     locale: ru,
   })
   const duration = formatDistanceToNow(new Date(date), { locale: ru })
+  const postsFormatter = countFormatter(['материал', 'материала', 'материалов'])
+  const commentsFormatter = countFormatter(['коммент', 'коммента', 'комментов'])
 
   return (
     <Flex direction='column' gap={8}>
-      <Typography size='lg'>{postsCount} материалов открыто</Typography>
-      <Typography size='lg'>{commentsCount} комментов написано</Typography>
+      <Typography size='lg'>{postsCount} {postsFormatter(postsCount)} открыто</Typography>
+      <Typography size='lg'>{commentsCount} {commentsFormatter(commentsCount)} написано</Typography>
 
       <Flex gap={16}>
         <Typography size='lg'>С Разрабами с {formattedDate}</Typography>
