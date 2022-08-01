@@ -26,22 +26,22 @@ export const Footer: FC = () => {
         </Copyright>
         <Menu>
           <StyledNav>
-            <Link passHref href='#'>
+            <Link passHref href='post/2a39623f-c5b9-4c97-b692-159e8c78348e'>
               <Typography uppercase as='a' letterSpacing='1px' size='sm'>
                 О нас
               </Typography>
             </Link>
-            <Link passHref href='#'>
+            <Link passHref href='post/9711f7aa-4aa9-46dd-9d61-72c38b272148'>
               <Typography uppercase as='a' letterSpacing='1px' size='sm'>
                 Условия
               </Typography>
             </Link>
-            <Link passHref href='#'>
+            <Link passHref href='post/d2b1cb8a-1487-42f5-b496-4747dd4a0ab7'>
               <Typography uppercase as='a' letterSpacing='1px' size='sm'>
                 Лицензия
               </Typography>
             </Link>
-            <Link passHref href='#'>
+            <Link passHref href='mailto:razrabschannel@razrabs.ru'>
               <Typography uppercase as='a' letterSpacing='1px' size='sm'>
                 Связаться
               </Typography>
