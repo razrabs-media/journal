@@ -21,24 +21,14 @@ export const Footer: FC = () => {
       <Content>
         <Copyright>
           <Typography uppercase color='secondary' letterSpacing='1px' size='sm'>
-            In code we trust since 2022
+            Если смысл ни в чем, то в чем?
           </Typography>
         </Copyright>
         <Menu>
           <StyledNav>
-            <Link passHref href='post/2a39623f-c5b9-4c97-b692-159e8c78348e'>
+            <Link passHref href='/post/3c6bcea4-c34a-4650-907a-bca8dd72a310'>
               <Typography uppercase as='a' letterSpacing='1px' size='sm'>
                 О нас
-              </Typography>
-            </Link>
-            <Link passHref href='#'>
-              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
-                Условия
-              </Typography>
-            </Link>
-            <Link passHref href='#'>
-              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
-                Лицензия
               </Typography>
             </Link>
             <Link passHref href='mailto:razrabschannel@razrabs.ru'>

@@ -63,6 +63,7 @@ export const StyledNav = styled.nav`
 
   @media screen and (max-width: 671px) {
     flex-direction: column;
+    justify-content: flex-start;
 
     & > a {
       margin-left: 0;
