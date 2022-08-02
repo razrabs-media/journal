@@ -4,8 +4,8 @@ import { useRouter } from 'next/router'
 import { HelmetProps } from './types'
 
 export const Helmet = ({ title, description, image }: HelmetProps) => {
-  const router = useRouter()
-  const currentPage = router.route
+  const { asPath: path } = useRouter()
+  const canonicalUrl = process.env.NEXT_PUBLIC_HOST + path
 
   const theme = useTheme()
 
@@ -22,7 +22,7 @@ export const Helmet = ({ title, description, image }: HelmetProps) => {
       <meta content={title} name='twitter:title' />
       <meta content={description} property='twitter:description' />
       <meta content={image} property='twitter:image' />
-      <meta content={currentPage} property='twitter:url' />
+      <meta content='@razraby' property='twitter:site' />
 
       {/* Open Graph */}
       <meta content='Разрабы' property='og:site_name' />
@@ -30,7 +30,7 @@ export const Helmet = ({ title, description, image }: HelmetProps) => {
       <meta content={description} property='og:description' />
       <meta content={image} property='og:image' />
       <meta content='400' property='og:image:width' />
-      <meta content={currentPage} property='og:url' />
+      <meta content={canonicalUrl} property='og:url' />
     </Head>
   )
 }
