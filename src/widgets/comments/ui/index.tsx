@@ -146,6 +146,7 @@ export const CommentsWidget = () => {
         ) : (
           <CommentsLogin
             icon='right'
+            open={opened}
             onClick={() => router.push('/auth/github')}
           >
             Залогиниться через Github

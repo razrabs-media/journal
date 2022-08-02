@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import Badge from '@razrabs-ui/badge'
 
-export const FeedsContainer = styled.div`
+export const FeedsContainer = styled.nav`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

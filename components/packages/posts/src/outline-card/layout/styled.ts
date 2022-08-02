@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { SizeProps } from '../../types'
 
-export const StyledCard = styled.div<SizeProps>`
+export const StyledCard = styled.article<SizeProps>`
   display: flex;
 
   flex-direction: column;
