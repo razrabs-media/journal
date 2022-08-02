@@ -1,6 +1,7 @@
 import Comment from '@razrabs-ui/comments'
+import { useIsMobile } from '@razrabs-ui/responsive'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
 import { useCurrentUserLazyQuery } from 'features/auth'
 import { commentAdapter, useContextComments } from 'entities/comments'
@@ -20,15 +21,19 @@ import {
   CommentsContainer,
   CommentsLogin,
   Header,
+  HeaderTexts,
+  PostTitle,
 } from './styled'
+import { Props } from './types'
 
 const TRANSITION_TIME = 150
 
-export const CommentsWidget = () => {
+export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   const router = useRouter()
   const refContainer = useRef<HTMLDivElement>(null)
   const { opened, postUid, comments, closeHandler } = useContextComments()
   const ref = useDisableScroll(opened)
+  const isMobile = useIsMobile()
 
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
     errorPolicy: 'all',
@@ -108,7 +113,11 @@ export const CommentsWidget = () => {
       transitionTime={TRANSITION_TIME}
     >
       <Header>
-        <CommentsAmount>Комменты: {comments?.length}</CommentsAmount>
+        <HeaderTexts>
+          <CommentsAmount>Комменты: {comments?.length}</CommentsAmount>
+
+          {postTitle && isMobile && <PostTitle>{postTitle}</PostTitle>}
+        </HeaderTexts>
 
         <IconButton color='primary' onClick={closeHandler}>
           <CrossIcon />
