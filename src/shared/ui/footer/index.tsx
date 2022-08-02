@@ -13,6 +13,25 @@ import {
   StyledNav,
 } from './styled'
 
+const networkLinks = [
+  {
+    href: 'https://github.com/razrabs-media',
+    label: 'Github',
+  },
+  {
+    href: 'https://www.youtube.com/channel/UC-h5nFU9Qzo72dFW-fC_lkQ',
+    label: 'YT',
+  },
+  {
+    href: 'https://t.me/rzrbs',
+    label: 'TG',
+  },
+  {
+    href: 'https://twitter.com/razraby',
+    label: 'TW',
+  },
+]
+
 export const Footer: FC = () => {
   useResizeWidth()
 
@@ -31,11 +50,15 @@ export const Footer: FC = () => {
                 О нас
               </Typography>
             </Link>
-            <Link passHref href='mailto:razrabschannel@razrabs.ru'>
-              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
-                Связаться
-              </Typography>
-            </Link>
+            <Typography
+              uppercase
+              as='a'
+              href='mailto:razrabschannel@razrabs.ru'
+              letterSpacing='1px'
+              size='sm'
+            >
+              Связаться
+            </Typography>
           </StyledNav>
           <Share>
             <MoreLabel
@@ -46,56 +69,20 @@ export const Footer: FC = () => {
             >
               Еще и тут:
             </MoreLabel>
-            <Link passHref href='https://github.com/razrabs-media'>
+            {networkLinks.map(({ href, label }) => (
               <Typography
+                key={label}
                 uppercase
                 as='a'
+                href={href}
                 letterSpacing='1px'
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
                 rel='noreferrer'
                 size='sm'
                 target='_blank'
               >
-                Github
+                {label}
               </Typography>
-            </Link>
-            <Link
-              passHref
-              href='https://www.youtube.com/channel/UC-h5nFU9Qzo72dFW-fC_lkQ'
-            >
-              <Typography
-                uppercase
-                as='a'
-                letterSpacing='1px'
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                rel='noreferrer'
-                size='sm'
-                target='_blank'
-              >
-                YT
-              </Typography>
-            </Link>
-            <Link passHref href='https://t.me/rzrbs'>
-              <Typography
-                uppercase
-                as='a'
-                letterSpacing='1px'
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                rel='noreferrer'
-                size='sm'
-                target='_blank'
-              >
-                TG
-              </Typography>
-            </Link>
-            <Link passHref href='https://twitter.com/razraby'>
-              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
-                TW
-              </Typography>
-            </Link>
+            ))}
           </Share>
         </Menu>
       </Content>
