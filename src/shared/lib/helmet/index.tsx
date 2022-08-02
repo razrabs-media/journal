@@ -5,7 +5,7 @@ import { HelmetProps } from './types'
 
 export const Helmet = ({ title, description, image }: HelmetProps) => {
   const router = useRouter()
-  const currentPage = router.route
+  const currentPage = `${process.env.NEXT_PUBLIC_HOST}${router.asPath}`
 
   const theme = useTheme()
 
@@ -22,7 +22,7 @@ export const Helmet = ({ title, description, image }: HelmetProps) => {
       <meta content={title} name='twitter:title' />
       <meta content={description} property='twitter:description' />
       <meta content={image} property='twitter:image' />
-      <meta content={currentPage} property='twitter:url' />
+      <meta content='@name_of_your_twitter_account' property='twitter:site' />
 
       {/* Open Graph */}
       <meta content='Разрабы' property='og:site_name' />
