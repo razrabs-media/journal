@@ -2,7 +2,15 @@ import { useTheme } from '@emotion/react'
 import Image from '@razrabs-ui/image'
 import Typography from '@razrabs-ui/typography'
 import Linkify from 'linkify-react'
-import { forwardRef, MouseEvent, useCallback } from 'react'
+import {
+  forwardRef,
+  MouseEvent,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from 'react'
 import {
   FirstRow,
   ReplyContent,
@@ -11,6 +19,8 @@ import {
   StyledComment,
 } from './styled'
 import { CommentProps } from './types'
+
+const HIGHLIGHT_DELAY = 1000
 
 const ReplyIcon = () => {
   const {
@@ -35,7 +45,9 @@ const ReplyIcon = () => {
   )
 }
 
-const Comment = forwardRef<HTMLDivElement, CommentProps>(
+export type CommentForwardedRef = { highlight: () => void } & HTMLDivElement
+
+const Comment = forwardRef<CommentForwardedRef, CommentProps>(
   (
     {
       as,
@@ -51,6 +63,29 @@ const Comment = forwardRef<HTMLDivElement, CommentProps>(
     },
     ref,
   ) => {
+    const internalRef = useRef<HTMLDivElement>(null)
+    const [isHighlighted, setIsHighlighted] = useState(false)
+
+    useImperativeHandle<HTMLDivElement | null, CommentForwardedRef | null>(
+      ref,
+      () =>
+        internalRef.current
+          ? Object.assign(internalRef.current, {
+              highlight: () => {
+                setIsHighlighted(true)
+              },
+            })
+          : null,
+    )
+
+    useEffect(() => {
+      if (isHighlighted) {
+        setTimeout(() => {
+          setIsHighlighted(false)
+        }, HIGHLIGHT_DELAY)
+      }
+    }, [isHighlighted])
+
     const commentClickHandler = useCallback(() => {
       if (onCommentClick) {
         onCommentClick(uid)
@@ -73,7 +108,8 @@ const Comment = forwardRef<HTMLDivElement, CommentProps>(
         as={as}
         className={className}
         data-comment-uid={uid}
-        ref={ref}
+        isHighlighted={isHighlighted}
+        ref={internalRef}
         onClick={commentClickHandler}
       >
         <Image alt={author} fit='fill' h={40} src={avatar} w={40} />

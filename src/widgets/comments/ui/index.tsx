@@ -1,4 +1,4 @@
-import Comment from '@razrabs-ui/comments'
+import Comment, { CommentForwardedRef } from '@razrabs-ui/comments'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
@@ -29,6 +29,7 @@ export const CommentsWidget = () => {
   const refContainer = useRef<HTMLDivElement>(null)
   const { opened, postUid, comments, closeHandler } = useContextComments()
   const ref = useDisableScroll(opened)
+  const commentsRefs = useRef<Record<string, CommentForwardedRef | null>>({})
 
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
     errorPolicy: 'all',
@@ -53,11 +54,11 @@ export const CommentsWidget = () => {
   )
 
   const onScrollToComment = useCallback((commentUid: string) => {
-    const commentElement = document.querySelector(
-      `[data-comment-uid="${commentUid}"]`,
-    )
-
-    commentElement?.scrollIntoView()
+    commentsRefs.current[commentUid]?.highlight()
+    commentsRefs.current[commentUid]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    })
   }, [])
 
   const onCommentSend = useCallback(
@@ -123,6 +124,7 @@ export const CommentsWidget = () => {
               author={comment.author.name}
               avatar={comment.author.avatarUrl}
               content={comment.content}
+              ref={(el) => (commentsRefs.current[comment.uid] = el)}
               reply={comment.replyComment}
               time={parseDate(comment.createdAt, { format: 'short' }) ?? ''}
               uid={comment.uid}
