@@ -1,5 +1,5 @@
 import Comment from '@razrabs-ui/comments'
-import { useIsMobile } from '@razrabs-ui/responsive'
+import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
 import { useRouter } from 'next/router'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
@@ -33,7 +33,7 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   const refContainer = useRef<HTMLDivElement>(null)
   const { opened, postUid, comments, closeHandler } = useContextComments()
   const ref = useDisableScroll(opened)
-  const isMobile = useIsMobile()
+  const isTabletAndBelow = useIsTabletAndBelow()
 
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
     errorPolicy: 'all',
@@ -116,7 +116,7 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
         <HeaderTexts>
           <CommentsAmount>Комменты: {comments?.length}</CommentsAmount>
 
-          {postTitle && isMobile && <PostTitle>{postTitle}</PostTitle>}
+          {postTitle && isTabletAndBelow && <PostTitle>{postTitle}</PostTitle>}
         </HeaderTexts>
 
         <IconButton color='primary' onClick={closeHandler}>
