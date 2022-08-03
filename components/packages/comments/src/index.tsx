@@ -45,7 +45,7 @@ const ReplyIcon = () => {
   )
 }
 
-export type CommentForwardedRef = { highlight: () => void } & HTMLDivElement
+export type CommentForwardedRef = HTMLDivElement & { highlight: () => void }
 
 const Comment = forwardRef<CommentForwardedRef, CommentProps>(
   (
