@@ -22,7 +22,10 @@ export const Preferences: FC<Props> = ({ onClick }) => {
   const fullName = data?.currentUser?.profile?.fullName
 
   const title = fullName ? (
-    fullName.slice(0, 2)
+    fullName
+      .split(' ')
+      .map((word) => word[0])
+      .join('')
   ) : isMobile ? (
     <EnterIcon />
   ) : (

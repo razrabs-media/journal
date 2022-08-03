@@ -24,7 +24,7 @@ const Post: NextPage<Props> = ({ post }) => {
   }, [setPostUid, post.uid])
 
   return (
-    <>
+    <article itemScope itemType='https://schema.org/Article'>
       <Helmet
         description={post.description}
         image={post.previewUrl ?? undefined}
@@ -35,7 +35,8 @@ const Post: NextPage<Props> = ({ post }) => {
         {...post}
         commentsButton={
           <OpenCommentsButton onClick={openHandler}>
-            Комменты: {post.comments?.length ?? 0}
+            Комменты:{' '}
+            <span itemProp='commentCount'>{post.comments?.length ?? 0}</span>
           </OpenCommentsButton>
         }
         githubAuthor={post.githubAuthor ?? undefined}
@@ -43,7 +44,7 @@ const Post: NextPage<Props> = ({ post }) => {
         publicationDate={post.createdAt}
         tags={post.tags?.map((tag) => tag.name)}
       />
-    </>
+    </article>
   )
 }
 
