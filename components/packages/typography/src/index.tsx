@@ -36,6 +36,8 @@ const Typography = styled.p<Partial<TypographyProps>>`
   text-transform: ${({ uppercase = defaultProps.uppercase }) =>
     uppercase ? 'uppercase' : 'none'};
 
+  text-size-adjust: 100%;
+
   &:hover {
     ${({ disableHover, theme, color = defaultProps.color }) =>
       disableHover ? `color: ${theme.colors[color]};` : ''}
