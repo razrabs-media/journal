@@ -1,11 +1,28 @@
 import { useRouter } from 'next/router'
-import { forwardRef, ReactNode } from 'react'
+import { forwardRef, ReactNode, useState } from 'react'
 import { SignInContent } from 'entities/sign-in-content'
 import { User } from 'entities/user-content'
 import { useClientSide } from 'shared/lib'
 import { Modal, ModalAction } from 'shared/ui'
 import { CurrentUserQuery, useCurrentUserLazyQuery, useSignOut } from '../model'
 import type { Props } from './types'
+
+const NewArticleForm = () => {
+  const [slug, setSlug] = useState('')
+
+  return (
+    <form action='https://github.com/razrabs-media/editorial/new/main'>
+      <input
+        placeholder='slug статьи'
+        type='text'
+        value={slug}
+        onChange={(e) => setSlug(e.currentTarget.value)}
+      />
+      <input hidden name='filename' type='text' value={`${slug}/${slug}.md`} />
+      <button>Добавить</button>
+    </form>
+  )
+}
 
 export const Auth = forwardRef<HTMLDivElement, Props>(
   ({ open, onClose }, ref) => {
@@ -60,7 +77,12 @@ export const Auth = forwardRef<HTMLDivElement, Props>(
     return (
       <Modal
         action={Action}
-        content={Content}
+        content={
+          <>
+            {Content}
+            <NewArticleForm />
+          </>
+        }
         hide={!open}
         ref={ref}
         title='АКК'
