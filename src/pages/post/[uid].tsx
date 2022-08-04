@@ -35,7 +35,7 @@ const Post: NextPage<Props> = ({ post }) => {
         {...post}
         commentsButton={
           <OpenCommentsButton onClick={openHandler}>
-            Комменты:{' '}
+            {'Комменты: '}
             <span itemProp='commentCount'>{post.comments?.length ?? 0}</span>
           </OpenCommentsButton>
         }
