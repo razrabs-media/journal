@@ -6,6 +6,7 @@ import {
   parseISO,
   subDays,
 } from 'date-fns'
+import { zonedTimeToUtc } from 'date-fns-tz'
 import { ru } from 'date-fns/locale'
 
 type Options = {
@@ -14,7 +15,8 @@ type Options = {
 }
 
 export function parseDate(date: string, options?: Options): string | undefined {
-  const fromIso = parseISO(date)
+  const fromIso = zonedTimeToUtc(parseISO(date), 'Europe/Moscow')
+
   const isShortFormat = options?.format === 'short'
 
   const greaterThanWeek = isBefore(

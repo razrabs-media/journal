@@ -35,7 +35,11 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
       <ThemeProvider theme={themeDark}>
         <ApolloProvider client={apolloClient}>
           <CommentsProvider>
-            <Layout drawerContent={<CommentsWidget />}>
+            <Layout
+              drawerContent={
+                <CommentsWidget postTitle={pageProps.post?.title} />
+              }
+            >
               <Header currentTime={pageProps.currentTime} />
 
               <Component {...pageProps} />
