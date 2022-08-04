@@ -93,7 +93,7 @@ export const Copyright = styled.span`
 `
 
 export const Logo = styled.span`
-  margin: 0 0 calc(var(--width) * -0.014) calc(var(--width) * -0.014);
+  margin: 0 calc(var(--width) * -0.014) 0 calc(var(--width) * -0.014);
 
   text-transform: uppercase;
   text-align: center;
