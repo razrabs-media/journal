@@ -18,4 +18,7 @@ export type TypographyProps = {
   disableHover: boolean
   itemProp?: string
   dateTime?: string
+  href: string
+  rel: HTMLAnchorElement['rel']
+  target: HTMLAnchorElement['target']
 }
