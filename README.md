@@ -2,9 +2,19 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+The project uses [nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+To work on the project, you need to have the version specified in ```package.json```.
+If you have ```nvm``` installed, you must install that version and it will be used for the project automatically.
+
+To develop a project, create a copy of ```.env.development``` and name it ```.env.development.local```, then uncomment the environment variables.
+
+The project uses [yarn](https://yarnpkg.com/getting-started/install), work with dependencies using ```yarn```.
+
 First, run the development server:
 
 ```bash
+yarn install
+
 npm run dev
 # or
 yarn dev

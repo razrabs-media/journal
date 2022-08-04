@@ -16,7 +16,7 @@ export const DateAgo: FC<Props> = ({
   )
 
   return (
-    <Typography as='span' className={className} {...restProps}>
+    <Typography as='time' className={className} {...restProps} dateTime={date}>
       {parsedDate}
     </Typography>
   )
@@ -25,4 +25,5 @@ export const DateAgo: FC<Props> = ({
 DateAgo.defaultProps = {
   uppercase: true,
   color: 'secondary',
+  itemProp: 'datePublished',
 }

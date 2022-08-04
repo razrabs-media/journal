@@ -2,7 +2,10 @@ import styled from '@emotion/styled'
 
 import type { TypographyProps } from './types'
 
-const defaultProps: Omit<TypographyProps, 'letterSpacing' | 'lineHeight'> = {
+const defaultProps: Omit<
+  TypographyProps,
+  'letterSpacing' | 'lineHeight' | 'href' | 'rel' | 'target'
+> = {
   size: 'lg',
   color: 'primary',
   align: 'left',
