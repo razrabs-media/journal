@@ -22,3 +22,5 @@ export type CommentProps = {
 
   onCommentClick?: (commentUid: string) => void
 }
+
+export type CommentForwardedRef = HTMLDivElement & { highlight: VoidFunction }

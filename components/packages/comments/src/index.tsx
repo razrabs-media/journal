@@ -18,7 +18,7 @@ import {
   RowsWrapper,
   StyledComment,
 } from './styled'
-import { CommentProps } from './types'
+import { CommentForwardedRef, CommentProps } from './types'
 
 const HIGHLIGHT_DELAY = 1000
 
@@ -44,8 +44,6 @@ const ReplyIcon = () => {
     </svg>
   )
 }
-
-export type CommentForwardedRef = HTMLDivElement & { highlight: () => void }
 
 const Comment = forwardRef<CommentForwardedRef, CommentProps>(
   (
@@ -148,4 +146,4 @@ Comment.displayName = 'Comment'
 
 export default Comment
 
-export type { ReplyData } from './types'
+export type { ReplyData, CommentForwardedRef } from './types'
