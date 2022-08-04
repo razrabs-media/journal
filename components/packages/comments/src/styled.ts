@@ -1,9 +1,7 @@
 import styled from '@emotion/styled'
 import Typography from '@razrabs-ui/typography'
+import { StyledCommentProps } from './types'
 
-type StyledCommentProps = {
-  isHighlighted?: boolean
-}
 export const StyledComment = styled.div<StyledCommentProps>`
   display: flex;
   flex-direction: row;

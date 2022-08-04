@@ -2,15 +2,8 @@ import { useTheme } from '@emotion/react'
 import Image from '@razrabs-ui/image'
 import Typography from '@razrabs-ui/typography'
 import Linkify from 'linkify-react'
-import {
-  forwardRef,
-  MouseEvent,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react'
+import { forwardRef, MouseEvent, useCallback } from 'react'
+import { useHighlighting } from './hooks'
 import {
   FirstRow,
   ReplyContent,
@@ -19,8 +12,6 @@ import {
   StyledComment,
 } from './styled'
 import { CommentForwardedRef, CommentProps } from './types'
-
-const HIGHLIGHT_DELAY = 1000
 
 const ReplyIcon = () => {
   const {
@@ -61,28 +52,7 @@ const Comment = forwardRef<CommentForwardedRef, CommentProps>(
     },
     ref,
   ) => {
-    const internalRef = useRef<HTMLDivElement>(null)
-    const [isHighlighted, setIsHighlighted] = useState(false)
-
-    useImperativeHandle<HTMLDivElement | null, CommentForwardedRef | null>(
-      ref,
-      () =>
-        internalRef.current
-          ? Object.assign(internalRef.current, {
-              highlight: () => {
-                setIsHighlighted(true)
-              },
-            })
-          : null,
-    )
-
-    useEffect(() => {
-      if (isHighlighted) {
-        setTimeout(() => {
-          setIsHighlighted(false)
-        }, HIGHLIGHT_DELAY)
-      }
-    }, [isHighlighted])
+    const [internalRef, isHighlighted] = useHighlighting<HTMLDivElement>(ref)
 
     const commentClickHandler = useCallback(() => {
       if (onCommentClick) {

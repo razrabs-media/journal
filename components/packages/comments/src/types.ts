@@ -24,3 +24,7 @@ export type CommentProps = {
 }
 
 export type CommentForwardedRef = HTMLDivElement & { highlight: VoidFunction }
+
+export type StyledCommentProps = {
+  isHighlighted?: boolean
+}
