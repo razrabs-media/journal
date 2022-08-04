@@ -16,4 +16,6 @@ export type TypographyProps = {
   lineHeight: CSSProperties['lineHeight']
   uppercase: boolean
   disableHover: boolean
+  itemProp?: string
+  dateTime?: string
 }
