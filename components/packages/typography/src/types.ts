@@ -16,4 +16,7 @@ export type TypographyProps = {
   lineHeight: CSSProperties['lineHeight']
   uppercase: boolean
   disableHover: boolean
+  href: string
+  rel: HTMLAnchorElement['rel']
+  target: HTMLAnchorElement['target']
 }
