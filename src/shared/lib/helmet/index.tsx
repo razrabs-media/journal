@@ -12,16 +12,17 @@ export const Helmet = ({
   const { asPath: path } = useRouter()
   const host = process.env.NEXT_PUBLIC_HOST
   const canonicalUrl = host + path
+  const brandedTitle = path.length > 1 ? `${title} / Разрабы` : title
 
   const theme = useTheme()
 
   return (
     <Head>
-      <title>{title}</title>
+      <title>{brandedTitle}</title>
 
       {/* Basic */}
       <link href={canonicalUrl} rel='canonical' />
-      <meta content={title} name='title' />
+      <meta content={brandedTitle} name='title' />
       <meta content={description} name='description' />
       <meta content={keywords} name='keywords' />
 
@@ -64,7 +65,7 @@ export const Helmet = ({
 
       {/* Twitter */}
       <meta content='summary' name='twitter:card' />
-      <meta content={title} name='twitter:title' />
+      <meta content={brandedTitle} name='twitter:title' />
       <meta content={description} property='twitter:description' />
       <meta content={image} property='twitter:image' />
       <meta content='@razraby' property='twitter:site' />
@@ -72,7 +73,7 @@ export const Helmet = ({
       {/* Open Graph */}
       <meta content='Разрабы' property='og:site_name' />
       <meta content='ru-RU' property='og:locale' />
-      <meta content={title} property='og:title' />
+      <meta content={brandedTitle} property='og:title' />
       <meta content={description} property='og:description' />
       <meta content={image} property='og:image' />
       <meta content='400' property='og:image:width' />
@@ -82,7 +83,7 @@ export const Helmet = ({
       <meta content='ru-RU' name='DC.language' />
       <meta content={host} name='DC.publisher.url' />
       <meta content={canonicalUrl} name='DC.identifier' />
-      <meta content={title} name='DC.title' />
+      <meta content={brandedTitle} name='DC.title' />
       <meta content={description} name='DC.description' />
       <meta content={keywords} name='DC.subject' />
       <meta content='text' name='DC.type' />
