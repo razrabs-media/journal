@@ -37,16 +37,21 @@ type BadgeProps = {
 const PostAuthor: FC<BadgeProps> = forwardRef<any, BadgeProps>(
   ({ as = 'span', children, url, ...props }, ref) => (
     <StyledTypography
+      itemScope
       uppercase
       as={as}
+      itemProp='author'
+      itemType='https://schema.org/Person'
       margin='0 0 8px 0'
       ref={ref}
       size='sm'
       {...props}
     >
       Автор статьи:
-      <StyledLink href={url ?? undefined} itemProp='author' target='_blank'>
-        {children}
+      <StyledLink href={url ?? undefined} itemProp='url' target='_blank'>
+        <StyledLink as='span' itemProp='name'>
+          {children}
+        </StyledLink>
       </StyledLink>
     </StyledTypography>
   ),
