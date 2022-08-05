@@ -124,6 +124,7 @@ export const TagsBlock = styled.div`
     &:last-child {
       margin-right: 0;
     }
+  }
 `
 
 export const ShareBlock = styled.div`
