@@ -10,7 +10,8 @@ export const Helmet = ({
   keywords,
 }: HelmetProps) => {
   const { asPath: path } = useRouter()
-  const host = process.env.NEXT_PUBLIC_HOST
+  const isServerSide = typeof window === 'undefined'
+  const host = (isServerSide ? serverRuntimeConfig : publicRuntimeConfig).HOST
   const canonicalUrl = host + path
   const brandedTitle = path.length > 1 ? `${title} / Разрабы` : title
 
