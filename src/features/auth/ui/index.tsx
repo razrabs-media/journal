@@ -24,6 +24,7 @@ export const Auth = forwardRef<HTMLDivElement, Props>(
       Action = (
         <ModalAction
           icon='away'
+          open={open}
           onClick={() =>
             signOut({
               update: (cache) => {
@@ -51,7 +52,11 @@ export const Auth = forwardRef<HTMLDivElement, Props>(
       )
     } else {
       Action = (
-        <ModalAction icon='right' onClick={() => router.push('/auth/github')}>
+        <ModalAction
+          icon='right'
+          open={open}
+          onClick={() => router.push('/auth/github')}
+        >
           Залогиниться через github
         </ModalAction>
       )

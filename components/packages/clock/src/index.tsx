@@ -38,7 +38,7 @@ const StyledTypography = styled(Typography)`
 
 const Clock: FC<ClockProps> = forwardRef<any, ClockProps>(
   ({ currentTime }, ref) => (
-    <StyledTypography ref={ref}>
+    <StyledTypography as='time' ref={ref}>
       {format(new Date(currentTime), 'd MMMM, H:mm', {
         locale: ru,
       })}

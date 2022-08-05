@@ -15,7 +15,7 @@ export const Layout: FC<PropsWithChildren<Props>> = ({
     <Wrapper open={opened}>
       <MainGrid>{children}</MainGrid>
 
-      <Drawer open={opened}>{drawerContent}</Drawer>
+      {opened && <Drawer open={opened}>{drawerContent}</Drawer>}
     </Wrapper>
   )
 }
