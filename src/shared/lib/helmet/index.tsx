@@ -3,19 +3,64 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { HelmetProps } from './types'
 
-export const Helmet = ({ title, description, image }: HelmetProps) => {
+export const Helmet = ({
+  title,
+  description,
+  image,
+  keywords,
+}: HelmetProps) => {
   const { asPath: path } = useRouter()
-  const canonicalUrl = process.env.NEXT_PUBLIC_HOST + path
+  const host = process.env.NEXT_PUBLIC_HOST
+  const canonicalUrl = host + path
 
   const theme = useTheme()
 
   return (
     <Head>
       <title>{title}</title>
-      <meta content={description} name='description' />
 
+      {/* Basic */}
+      <link href={canonicalUrl} rel='canonical' />
+      <meta content={title} name='title' />
+      <meta content={description} name='description' />
+      <meta content={keywords} name='keywords' />
+
+      {/* Icons */}
       <link href='/favicon.svg' rel='shortcut icon' />
-      <meta content={theme.colors.background} name='theme-color' />
+      <link
+        href='/images/logo/apple-touch-icon.png'
+        rel='apple-touch-icon'
+        sizes='180x180'
+      />
+      <link
+        href='/images/logo/favicon-32x32.png'
+        rel='icon'
+        sizes='32x32'
+        type='image/png'
+      />
+      <link
+        href='/images/logo/favicon-194x194.png'
+        rel='icon'
+        sizes='194x194'
+        type='image/png'
+      />
+      <link
+        href='/images/logo/android-chrome-192x192.png'
+        rel='icon'
+        sizes='192x192'
+        type='image/png'
+      />
+      <link
+        href='/images/logo/favicon-16x16.png'
+        rel='icon'
+        sizes='16x16'
+        type='image/png'
+      />
+      <link
+        color={theme.colors.background}
+        href='/images/logo/safari-pinned-tab.svg'
+        rel='mask-icon'
+      />
 
       {/* Twitter */}
       <meta content='summary' name='twitter:card' />
@@ -26,11 +71,29 @@ export const Helmet = ({ title, description, image }: HelmetProps) => {
 
       {/* Open Graph */}
       <meta content='Разрабы' property='og:site_name' />
+      <meta content='ru-RU' property='og:locale' />
       <meta content={title} property='og:title' />
       <meta content={description} property='og:description' />
       <meta content={image} property='og:image' />
       <meta content='400' property='og:image:width' />
       <meta content={canonicalUrl} property='og:url' />
+
+      {/* Dublin Core */}
+      <meta content='ru-RU' name='DC.language' />
+      <meta content={host} name='DC.publisher.url' />
+      <meta content={canonicalUrl} name='DC.identifier' />
+      <meta content={title} name='DC.title' />
+      <meta content={description} name='DC.description' />
+      <meta content={keywords} name='DC.subject' />
+      <meta content='text' name='DC.type' />
+      <meta content='text/html' name='DC.format' />
+
+      {/* Web App */}
+      <meta content='Разрабы' name='apple-mobile-web-app-title' />
+      <meta content='Разрабы' name='application-name' />
+      <meta content={theme.colors.background} name='theme-color' />
+      <meta content={theme.colors.background} name='msapplication-TileColor' />
+      <link href='/images/logo/site.webmanifest' rel='manifest' />
     </Head>
   )
 }
@@ -38,5 +101,7 @@ export const Helmet = ({ title, description, image }: HelmetProps) => {
 Helmet.defaultProps = {
   title: 'Разрабы',
   description: 'Медиа для разработчиков',
-  previewUrl: '/public/images/logo/avatar.png',
+  image: '/public/images/logo/avatar.png',
+  keywords:
+    'разрабы, медиа, для разработчиков, для программистов, разработка, программирование',
 }

@@ -19,6 +19,8 @@ export type Props = {
 const Post: NextPage<Props> = ({ post }) => {
   const { openHandler, setPostUid } = useContextComments()
 
+  const tagNames = post.tags?.map((tag) => tag.name)
+
   useEffect(() => {
     setPostUid(post.uid)
   }, [setPostUid, post.uid])
@@ -28,6 +30,7 @@ const Post: NextPage<Props> = ({ post }) => {
       <Helmet
         description={post.description}
         image={post.previewUrl ?? undefined}
+        keywords={tagNames?.join(',')}
         title={post.title}
       />
 
@@ -42,7 +45,7 @@ const Post: NextPage<Props> = ({ post }) => {
         githubAuthor={post.githubAuthor ?? undefined}
         previewUrl={post.previewUrl ?? undefined}
         publicationDate={post.createdAt}
-        tags={post.tags?.map((tag) => tag.name)}
+        tags={tagNames}
       />
     </article>
   )
