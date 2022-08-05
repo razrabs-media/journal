@@ -70,7 +70,6 @@ export const Description = styled(Typography)`
 export const SecondRow = styled.div<{ open: boolean }>`
   display: grid;
   margin-top: 14px;
-  height: 22px;
   align-items: center;
 
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
@@ -122,12 +121,9 @@ export const TagsBlock = styled.div`
   flex-wrap: wrap;
 
   & > * {
-    margin-right: 4px;
-
     &:last-child {
       margin-right: 0;
     }
-  }
 `
 
 export const ShareBlock = styled.div`

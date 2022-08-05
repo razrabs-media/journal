@@ -92,7 +92,9 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
         <TagsAndShare>
           <TagsBlock>
             {props.tags?.map((tag) => (
-              <Badge key={tag}>{tag}</Badge>
+              <Badge key={tag} margin='2px 4px 0 0'>
+                {tag}
+              </Badge>
             ))}
           </TagsBlock>
 

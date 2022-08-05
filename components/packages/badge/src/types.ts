@@ -5,6 +5,7 @@ export type StyleBadgeProps = {
   wide?: boolean
   letterSpacing?: CSSProperties['letterSpacing']
   color?: 'primary' | 'secondary' | 'brand'
+  margin?: CSSProperties['margin']
 }
 
 export type BadgeProps = {
