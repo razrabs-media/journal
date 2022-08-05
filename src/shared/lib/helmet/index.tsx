@@ -1,7 +1,10 @@
 import { useTheme } from '@emotion/react'
+import getConfig from 'next/config'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { HelmetProps } from './types'
+
+const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 
 export const Helmet = ({
   title,
