@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
 import Typography from '@razrabs-ui/typography'
+import { StyledCommentProps } from './types'
 
-export const StyledComment = styled.div`
+export const StyledComment = styled.div<StyledCommentProps>`
   display: flex;
   flex-direction: row;
 
@@ -11,8 +12,13 @@ export const StyledComment = styled.div`
 
   padding: 15px 10px;
 
+  transition: background-color 150ms ease-in-out;
+
+  // TODO: вынести в @razrabs-ui/theme
+  ${({ isHighlighted }) => isHighlighted && 'background-color: #38393d;'}
+
   @media screen and (min-width: ${({ theme }) =>
-      `${parseInt(theme.breakpoints.sm)}px`}) {
+    `${parseInt(theme.breakpoints.sm)}px`}) {
     padding: 20px 24px;
   }
 

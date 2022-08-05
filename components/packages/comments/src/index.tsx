@@ -3,6 +3,7 @@ import Image from '@razrabs-ui/image'
 import Typography from '@razrabs-ui/typography'
 import Linkify from 'linkify-react'
 import { forwardRef, MouseEvent, useCallback } from 'react'
+import { useHighlighting } from './hooks'
 import {
   FirstRow,
   ReplyContent,
@@ -10,7 +11,7 @@ import {
   RowsWrapper,
   StyledComment,
 } from './styled'
-import { CommentProps } from './types'
+import { CommentForwardedRef, CommentProps } from './types'
 
 const ReplyIcon = () => {
   const {
@@ -35,7 +36,7 @@ const ReplyIcon = () => {
   )
 }
 
-const Comment = forwardRef<HTMLDivElement, CommentProps>(
+const Comment = forwardRef<CommentForwardedRef, CommentProps>(
   (
     {
       as,
@@ -51,6 +52,8 @@ const Comment = forwardRef<HTMLDivElement, CommentProps>(
     },
     ref,
   ) => {
+    const [internalRef, isHighlighted] = useHighlighting<HTMLDivElement>(ref)
+
     const commentClickHandler = useCallback(() => {
       if (onCommentClick) {
         onCommentClick(uid)
@@ -73,7 +76,8 @@ const Comment = forwardRef<HTMLDivElement, CommentProps>(
         as={as}
         className={className}
         data-comment-uid={uid}
-        ref={ref}
+        isHighlighted={isHighlighted}
+        ref={internalRef}
         onClick={commentClickHandler}
       >
         <Image alt={author} fit='fill' h={40} src={avatar} w={40} />
@@ -112,4 +116,4 @@ Comment.displayName = 'Comment'
 
 export default Comment
 
-export type { ReplyData } from './types'
+export type { ReplyData, CommentForwardedRef } from './types'

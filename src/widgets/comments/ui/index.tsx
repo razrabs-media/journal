@@ -1,4 +1,4 @@
-import Comment from '@razrabs-ui/comments'
+import Comment, { CommentForwardedRef } from '@razrabs-ui/comments'
 import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
 import { useRouter } from 'next/router'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
@@ -33,6 +33,7 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   const refContainer = useRef<HTMLDivElement>(null)
   const { opened, postUid, comments, closeHandler } = useContextComments()
   const ref = useDisableScroll(opened)
+  const commentsRefs = useRef<Record<string, CommentForwardedRef | null>>({})
   const isTabletAndBelow = useIsTabletAndBelow()
 
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
@@ -58,11 +59,11 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   )
 
   const onScrollToComment = useCallback((commentUid: string) => {
-    const commentElement = document.querySelector(
-      `[data-comment-uid="${commentUid}"]`,
-    )
-
-    commentElement?.scrollIntoView()
+    commentsRefs.current[commentUid]?.highlight()
+    commentsRefs.current[commentUid]?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+    })
   }, [])
 
   const onCommentSend = useCallback(
@@ -132,6 +133,7 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
               author={comment.author.name}
               avatar={comment.author.avatarUrl}
               content={comment.content}
+              ref={(el) => (commentsRefs.current[comment.uid] = el)}
               reply={comment.replyComment}
               time={parseDate(comment.createdAt, { format: 'short' }) ?? ''}
               uid={comment.uid}
