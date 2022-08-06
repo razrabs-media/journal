@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Badge from '@razrabs-ui/badge'
 import Typography from '@razrabs-ui/typography'
 
 export const StyledHeader = styled.header`
@@ -109,6 +110,7 @@ export const TagsAndShare = styled.div`
   flex-direction: row;
   justify-content: space-between;
   grid-area: tags-and-share;
+  align-items: baseline;
 
   @media screen and (max-width: 672px) {
     flex-direction: column;
@@ -134,6 +136,7 @@ export const ShareBlock = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  white-space: nowrap;
 
   & > button,
   a {
@@ -157,4 +160,8 @@ export const ShareBlock = styled.div`
       height: 100%;
     }
   }
+`
+
+export const StyledBadge = styled(Badge)`
+  margin: 0 4px 4px 0;
 `
