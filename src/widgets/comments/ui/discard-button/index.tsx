@@ -5,12 +5,14 @@ import { StyledDiscardCommentButton } from './styled'
 type Props = {
   className?: string
   children: string
+  open: boolean
   onSuccess?: () => void
   onDiscard?: () => unknown
 }
 export const DiscardCommentButton: FC<Props> = ({
   className,
   children,
+  open,
   onSuccess,
   onDiscard,
 }) => {
@@ -40,6 +42,7 @@ export const DiscardCommentButton: FC<Props> = ({
     <StyledDiscardCommentButton
       className={className}
       icon='right'
+      open={open}
       onClick={onClick}
     >
       {children}
