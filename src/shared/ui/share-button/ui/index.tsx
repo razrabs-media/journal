@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
   padding: 0;
   margin: 0;
   color: ${({ theme }) => theme.colors.secondary};
-  font-family: Styrene B LC, serif;
+  font-family: Styrene B LC, sans-serif;
   font-feature-settings: 'salt' on;
   font-size: 12px;
   font-weight: 400;

@@ -15,7 +15,7 @@ const CopyButtonWrapper = styled.button<{ disabled: boolean }>`
   cursor: ${({ disabled }) => (disabled ? 'unset' : 'pointer')};
   outline: inherit;
 
-  font-family: 'JetBrainsMono', serif;
+  font-family: 'JetBrainsMono', sans-serif;
   font-size: 14px;
 
   color: ${({ theme }) => theme.colors.secondary};
