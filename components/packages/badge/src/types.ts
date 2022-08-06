@@ -11,4 +11,5 @@ export type BadgeProps = {
   as?: ElementType
   className?: string
   children?: ReactNode
+  itemProp?: string
 } & StyleBadgeProps
