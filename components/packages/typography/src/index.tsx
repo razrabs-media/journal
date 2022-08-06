@@ -20,7 +20,7 @@ const Typography = styled.p<Partial<TypographyProps>>`
 
   color: ${({ theme, color = defaultProps.color }) => theme.colors[color]};
 
-  font-family: Styrene B LC, serif;
+  font-family: Styrene B LC, sans-serif;
   font-feature-settings: 'salt' on;
 
   font-size: ${({ theme, size = defaultProps.size }) => theme.fontSizes[size]};
