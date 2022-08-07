@@ -150,9 +150,9 @@ export const ShareBlock = styled.div`
     height: 52px;
     margin-top: 20px;
 
-    background-color: ${({ theme }) => theme.colors.contrastSecondary};
-
     button {
+      margin-right: 20px;
+      background-color: ${({ theme }) => theme.colors.contrastSecondary};
       flex-grow: 1;
       height: 100%;
     }
