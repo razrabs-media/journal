@@ -22,10 +22,17 @@ export const Helmet = ({
 
   return (
     <Head>
+      <meta charSet='utf-8' />
       <title>{brandedTitle}</title>
 
       {/* Basic */}
       <link href={canonicalUrl} rel='canonical' />
+      <link
+        href='/sitemap.xml'
+        rel='sitemap'
+        title='Sitemap'
+        type='application/xml'
+      />
       <meta content={brandedTitle} name='title' />
       <meta content={description} name='description' />
       <meta content={keywords} name='keywords' />
