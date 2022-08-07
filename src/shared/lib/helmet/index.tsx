@@ -1,10 +1,8 @@
 import { useTheme } from '@emotion/react'
-import getConfig from 'next/config'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { getHost } from 'shared/lib'
 import { HelmetProps } from './types'
-
-const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 
 export const Helmet = ({
   title,
@@ -13,8 +11,7 @@ export const Helmet = ({
   keywords,
 }: HelmetProps) => {
   const { asPath: path } = useRouter()
-  const isServerSide = typeof window === 'undefined'
-  const host = (isServerSide ? serverRuntimeConfig : publicRuntimeConfig).HOST
+  const host = getHost()
   const canonicalUrl = host + path
   const brandedTitle = path.length > 1 ? `${title} / Разрабы` : title
 

@@ -1,14 +1,11 @@
 import { GetServerSideProps } from 'next'
 import { getServerSideSitemapIndex } from 'next-sitemap'
-import getConfig from 'next/config'
 import { GetFeeds, GetFeedsQuery } from 'features/feeds'
 import { initializeApollo } from 'shared/api'
-
-const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
+import { getHost } from 'shared/lib'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const isServerSide = typeof window === 'undefined'
-  const host = (isServerSide ? serverRuntimeConfig : publicRuntimeConfig).HOST
+  const host = getHost()
   const apolloClient = initializeApollo()
   const {
     data: { feeds },
@@ -19,9 +16,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const feedUIDs = feeds.map(({ uid }) => uid)
 
   return getServerSideSitemapIndex(ctx, [
-    ...feedUIDs.map((uid) => `${host}/feeds/${uid}`),
+    ...feedUIDs.map((uid) => `${host}/feeds/${uid}/sitemap.xml`),
   ])
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-export default function Sitemap() {}
+export default function FeedsSitemap() {}
