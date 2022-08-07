@@ -29,6 +29,10 @@ COPY --from=builder /journal/public ./public
 COPY --from=builder /journal/package.json ./package.json
 COPY --from=builder /journal/.next ./.next
 COPY --from=builder /journal/node_modules ./node_modules
+COPY --from=builder /journal/dev_robots.txt ./
+
+ARG no_robots
+RUN if [ "${no_robots}" = "true" ] ; then mv ./dev_robots.txt ./public/robots.txt ; else echo robots.txt allowed ; fi
 
 ENV PORT 3000
 
