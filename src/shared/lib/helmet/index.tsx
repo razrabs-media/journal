@@ -19,7 +19,6 @@ export const Helmet = ({
 
   return (
     <Head>
-      <meta charSet='utf-8' />
       <title>{brandedTitle}</title>
 
       {/* Basic */}

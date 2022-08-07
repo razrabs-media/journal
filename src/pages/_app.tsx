@@ -31,6 +31,7 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
           content='width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0'
           name='viewport'
         />
+        <meta charSet='utf-8' />
       </Head>
       <ThemeProvider theme={themeDark}>
         <ApolloProvider client={apolloClient}>
