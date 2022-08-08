@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Media } from '@razrabs-ui/responsive'
 import { GridAreaProps, GridProps } from './types'
 
 export const Grid = styled.div<GridProps>`
@@ -24,7 +25,7 @@ export const MainGrid = styled.div`
   grid-template-rows: 54px 1fr auto;
   row-gap: 24px;
 
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     row-gap: 10px;
   }
 `

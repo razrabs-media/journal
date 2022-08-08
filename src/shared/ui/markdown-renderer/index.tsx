@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Media } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
 import { FC } from 'react'
 import ReactMarkdown, { Components } from 'react-markdown'
@@ -14,7 +15,7 @@ const CodeWrapper = styled.div`
   // TODO: в базовом гриде *fr'ы, что не могут ограничить ширину, в будущем не помешает избавиться
   max-width: calc(100vw - 48px);
 
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     max-width: calc(100vw - 20px);
   }
 `

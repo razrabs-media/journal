@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Media } from '@razrabs-ui/responsive'
 import { MarkdownRenderer } from 'shared/ui'
 
 export const StyledReader = styled.div``
@@ -11,17 +12,17 @@ export const ContentWrapper = styled.main<{ open: boolean }>`
   grid-template-areas: '. content';
   grid-gap: 24px;
 
-  @media screen and (max-width: 1920px) {
+  ${Media.largeDesktopAndBelow} {
     grid-template-columns: ${({ open }) =>
       open ? '100%' : 'calc((100% - 24px) / 3) calc((100% - 24px) * 2 / 3)'};
     grid-template-areas: '${({ open }) => (open ? 'content' : '. content')}';
   }
 
-  @media screen and (min-width: 672px) {
+  ${Media.tabletAndAbove} {
     margin-top: 74px;
   }
 
-  @media screen and (max-width: 999px) {
+  ${Media.tabletAndBelow} {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-template-areas: 'content';
