@@ -4,7 +4,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "start": "cross-env start-storybook -p 3002",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 3002",
     "build": "build-storybook"
   },
   "devDependencies": {
