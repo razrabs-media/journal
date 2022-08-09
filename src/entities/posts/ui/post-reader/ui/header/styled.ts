@@ -108,6 +108,7 @@ export const TagsAndShare = styled.div`
   flex-direction: row;
   justify-content: space-between;
   grid-area: tags-and-share;
+  align-items: baseline;
 
   @media screen and (max-width: 672px) {
     flex-direction: column;
@@ -131,6 +132,7 @@ export const ShareBlock = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  white-space: nowrap;
 
   & > button,
   a {
