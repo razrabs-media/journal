@@ -1,5 +1,4 @@
 import styled from '@emotion/styled'
-import Badge from '@razrabs-ui/badge'
 import Typography from '@razrabs-ui/typography'
 
 export const StyledHeader = styled.header`
@@ -157,8 +156,4 @@ export const ShareBlock = styled.div`
       height: 100%;
     }
   }
-`
-
-export const StyledBadge = styled(Badge)`
-  margin: 0 4px 4px 0;
 `
