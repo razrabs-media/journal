@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Media } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
 
 export const StyledFooter = styled.footer`
@@ -9,7 +10,7 @@ export const StyledFooter = styled.footer`
   overflow: hidden;
   margin-top: 96px;
 
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     height: 205px;
     margin-top: 70px;
   }
@@ -19,7 +20,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: space-between;
 
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     flex-direction: column;
     justify-content: flex-start;
 
@@ -38,11 +39,11 @@ export const Menu = styled.div`
   grid-template-columns: 1fr 1fr;
   width: calc(100% / 3 * 2);
 
-  @media screen and (max-width: 1319px) {
+  ${Media.desktopAndBelow} {
     grid-template-columns: 1fr;
   }
 
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     grid-template-columns: 1fr 1fr;
     width: 276px;
   }
@@ -57,11 +58,11 @@ export const StyledNav = styled.nav`
     margin-left: 16px;
   }
 
-  @media screen and (max-width: 1319px) {
+  ${Media.desktopAndBelow} {
     justify-content: end;
   }
 
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     flex-direction: column;
     justify-content: flex-start;
 
@@ -81,7 +82,7 @@ export const Share = styled(StyledNav)`
 `
 
 export const MoreLabel = styled(Typography)`
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     display: none;
   }
 `
@@ -107,7 +108,7 @@ export const Logo = styled.span`
   overflow: hidden;
   user-select: none;
 
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     display: none;
   }
 `

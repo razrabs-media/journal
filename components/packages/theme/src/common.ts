@@ -3,6 +3,7 @@ export const common = {
     sm: '672px',
     md: '1000px',
     lg: '1320px',
+    xl: '1920px',
   },
   fontSizes: {
     xs: '10px',

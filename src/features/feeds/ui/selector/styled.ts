@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import Badge from '@razrabs-ui/badge'
+import { Media } from '@razrabs-ui/responsive'
 
 export const FeedsContainer = styled.nav`
   display: flex;
@@ -20,8 +21,7 @@ export const FeedsContainer = styled.nav`
   margin-bottom: 64px;
 
   // Для мобильных сетка 1 колонка
-  @media screen and (max-width: ${({ theme }) =>
-      `${parseInt(theme.breakpoints.sm) - 1}px`}) {
+  ${Media.mobile} {
     margin-bottom: 20px;
   }
 `
