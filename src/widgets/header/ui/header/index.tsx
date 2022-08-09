@@ -11,9 +11,10 @@ import { LogoBlock, StyledHeader } from './styled'
 
 type Props = {
   currentTime: CurrentTime['currentTime']
+  toggleTheme: VoidFunction
 }
 
-export const Header: FC<Props> = ({ currentTime }) => {
+export const Header: FC<Props> = ({ currentTime, toggleTheme }) => {
   const [open, { trusty, falsy }] = useBoolean()
   const ref = useEscape<HTMLDivElement>(falsy)
 
@@ -36,7 +37,7 @@ export const Header: FC<Props> = ({ currentTime }) => {
         </Link>
       </LogoBlock>
 
-      <Preferences onClick={trusty} />
+      <Preferences toggleTheme={toggleTheme} onClick={trusty} />
       <Auth open={open} ref={ref} onClose={falsy} />
     </StyledHeader>
   )

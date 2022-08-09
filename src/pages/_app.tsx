@@ -1,6 +1,6 @@
 import { ApolloProvider } from '@apollo/client'
-import { ThemeProvider } from '@emotion/react'
-import { themeDark } from '@razrabs-ui/theme'
+import { Global, ThemeProvider } from '@emotion/react'
+import { getCookie } from 'cookies-next'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import withYM from 'next-ym'
@@ -11,10 +11,11 @@ import { memo } from 'react'
 import NextApp, { AppContext, AppProps } from 'next/app'
 import { CommentsWidget } from 'widgets/comments'
 import { Header } from 'widgets/header'
+import { useTheme } from 'widgets/header/ui/themeToggler/handler'
 import { CommentsProvider } from 'entities/comments'
 import { initializeApollo, useApollo } from 'shared/api'
 import { getContextMedia, withMediaProvider } from 'shared/lib'
-import { Footer } from 'shared/ui'
+import { body, Footer } from 'shared/ui'
 import { CurrentTime, CurrentTimeQuery } from '../entities/clock'
 import { Layout } from '../entities/layout'
 
@@ -22,6 +23,7 @@ const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 
 const _App = memo(({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo()
+  const [theme, toggleTheme] = useTheme(pageProps.theme)
 
   return (
     <>
@@ -33,7 +35,8 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
         />
         <meta charSet='utf-8' />
       </Head>
-      <ThemeProvider theme={themeDark}>
+      <ThemeProvider theme={theme}>
+        <Global styles={body(theme)} />
         <ApolloProvider client={apolloClient}>
           <CommentsProvider>
             <Layout
@@ -41,7 +44,10 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
                 <CommentsWidget postTitle={pageProps.post?.title} />
               }
             >
-              <Header currentTime={pageProps.currentTime} />
+              <Header
+                currentTime={pageProps.currentTime}
+                toggleTheme={toggleTheme}
+              />
 
               <Component {...pageProps} />
 
@@ -71,6 +77,7 @@ App.getInitialProps = async (appCtx: AppContext) => {
   const contextMedia = getContextMedia(appCtx.ctx)
   const appProps = await NextApp.getInitialProps(appCtx)
   const apolloClient = initializeApollo()
+  const theme = getCookie('theme', { req: appCtx.ctx.req })
 
   const {
     data: { currentTime },
@@ -80,7 +87,7 @@ App.getInitialProps = async (appCtx: AppContext) => {
   })
 
   return {
-    pageProps: { ...appProps.pageProps, currentTime },
+    pageProps: { ...appProps.pageProps, currentTime, theme },
     media: contextMedia,
   }
 }
