@@ -8,6 +8,7 @@ export const IconButton = styled.button`
   display: inline-flex;
   padding: 8px;
   margin: -8px;
+  stroke: ${({ theme }) => theme.colors.primary};
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.backgroundSecondary};

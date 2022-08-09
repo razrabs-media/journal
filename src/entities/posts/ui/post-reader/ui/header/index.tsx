@@ -97,7 +97,7 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
             itemType='https://schema.org/Thing'
           >
             {props.tags?.map((tag) => (
-              <Badge key={tag} itemProp='name'>
+              <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
                 {tag}
               </Badge>
             ))}

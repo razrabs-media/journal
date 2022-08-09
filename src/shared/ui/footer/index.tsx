@@ -76,7 +76,7 @@ export const Footer: FC = () => {
                 as='a'
                 href={href}
                 letterSpacing='1px'
-                rel='noreferrer'
+                rel='noopener noreferrer nofollow'
                 size='sm'
                 target='_blank'
               >

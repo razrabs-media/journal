@@ -1,0 +1,1 @@
+export { getHost } from './getHost'
