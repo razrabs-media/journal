@@ -1,6 +1,17 @@
 import Typography from '@razrabs-ui/typography'
 
-import { Desktop, Mobile, Tablet, TabletAndAbove, TabletAndBelow } from '../src'
+import {
+  LargeDesktopAndAbove,
+  LargeDesktop,
+  LargeDesktopAndBelow,
+  DesktopAndAbove,
+  Desktop,
+  DesktopAndBelow,
+  Mobile,
+  Tablet,
+  TabletAndAbove,
+  TabletAndBelow,
+} from '../src'
 
 export default {
   title: '@razrabs-ui/Утилиты/Responsive',
@@ -13,33 +24,65 @@ const colorStyles = (color: string) => ({
 
 export const Example = () => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-    <Desktop>
+    <LargeDesktopAndAbove>
       <Typography style={colorStyles('red')}>
-        Видно только на компьютре
+        LargeDesktopAndAbove. Видно только более, чем большом мониторе
+        (ultrawide мониторы, например)
+      </Typography>
+    </LargeDesktopAndAbove>
+
+    <LargeDesktop>
+      <Typography style={colorStyles('orange')}>
+        LargeDesktop. Видно только на большом мониторе
+      </Typography>
+    </LargeDesktop>
+
+    <LargeDesktopAndBelow>
+      <Typography style={colorStyles('yellow')}>
+        LargeDesktopAndBelow. Видно на мобильном, планшете, обычном мониторе и
+        большом мониторе
+      </Typography>
+    </LargeDesktopAndBelow>
+
+    <DesktopAndAbove>
+      <Typography style={colorStyles('green')}>
+        DesktopAndAbove. Видно на обычном мониторе и большом мониторе
+      </Typography>
+    </DesktopAndAbove>
+
+    <Desktop>
+      <Typography style={colorStyles('deepskyblue')}>
+        Desktop. Видно только на обычном мониторе
       </Typography>
     </Desktop>
 
+    <DesktopAndBelow>
+      <Typography style={colorStyles('blue')}>
+        DesktopAndBelow. Видно на мобильном, планшете, обычном мониторе
+      </Typography>
+    </DesktopAndBelow>
+
     <TabletAndAbove>
       <Typography style={colorStyles('purple')}>
-        Видно на планшете и компьютере
+        TabletAndAbove. Видно на планшете, обычном мониторе и большом мониторе
       </Typography>
     </TabletAndAbove>
 
     <Tablet>
-      <Typography style={colorStyles('blue')}>
-        Видно только на планшете
+      <Typography style={colorStyles('maroon')}>
+        Tablet. Видно только на планшете
       </Typography>
     </Tablet>
 
     <TabletAndBelow>
-      <Typography style={colorStyles('turquoise')}>
-        Видно на планшете и мобильном
+      <Typography style={colorStyles('aqua')}>
+        TabletAndBelow. Видно на планшете и мобильном
       </Typography>
     </TabletAndBelow>
 
     <Mobile>
-      <Typography style={colorStyles('green')}>
-        Видно только на мобильном
+      <Typography style={colorStyles('fuchsia')}>
+        Mobile. Видно только на мобильном
       </Typography>
     </Mobile>
   </div>

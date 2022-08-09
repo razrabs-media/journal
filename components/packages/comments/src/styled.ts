@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Media } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
 import { StyledCommentProps } from './types'
 
@@ -17,8 +18,7 @@ export const StyledComment = styled.div<StyledCommentProps>`
   // TODO: вынести в @razrabs-ui/theme
   ${({ isHighlighted }) => isHighlighted && 'background-color: #38393d;'}
 
-  @media screen and (min-width: ${({ theme }) =>
-    `${parseInt(theme.breakpoints.sm)}px`}) {
+  ${Media.tabletAndAbove} {
     padding: 20px 24px;
   }
 

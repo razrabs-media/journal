@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Media } from '@razrabs-ui/responsive'
 
 export const StyledCard = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ export const Content = styled.div`
       margin-bottom: 0;
     }
   }
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     & > * {
       margin-bottom: 6px !important;
 

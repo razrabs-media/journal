@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { Media } from '@razrabs-ui/responsive'
 import { SizeProps } from '../../types'
 
 export const StyledCard = styled.article<SizeProps>`
@@ -27,7 +28,7 @@ export const StyledCard = styled.article<SizeProps>`
     }
   }
 
-  @media screen and (max-width: 671px) {
+  ${Media.mobile} {
     & > * {
       margin-bottom: 10px !important;
 
