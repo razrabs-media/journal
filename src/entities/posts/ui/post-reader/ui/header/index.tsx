@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Badge from '@razrabs-ui/badge'
 import Image from '@razrabs-ui/image'
 import PostAuthor from '@razrabs-ui/post-author'
 import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
@@ -13,7 +14,6 @@ import {
   PostTextWrapper,
   SecondRow,
   ShareBlock,
-  StyledBadge,
   StyledHeader,
   TagsAndShare,
   TagsBlock,
@@ -97,9 +97,9 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
             itemType='https://schema.org/Thing'
           >
             {props.tags?.map((tag) => (
-              <StyledBadge key={tag} itemProp='name'>
+              <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
                 {tag}
-              </StyledBadge>
+              </Badge>
             ))}
           </TagsBlock>
 

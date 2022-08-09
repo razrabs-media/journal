@@ -5,7 +5,7 @@ import { forwardRef } from 'react'
 import { BadgeProps, StyleBadgeProps } from './types'
 
 const StyledBadge = styled(Typography)<StyleBadgeProps>(
-  ({ theme, wide, color }) => {
+  ({ theme, wide, color, margin }) => {
     const geometryCss = {
       display: 'flex',
       alignItems: 'center',
@@ -14,6 +14,7 @@ const StyledBadge = styled(Typography)<StyleBadgeProps>(
       width: 'fit-content',
       height: '24px',
       padding: wide ? '6px 12px' : '6px 8px',
+      margin: margin ? margin : '0',
       boxSizing: 'border-box' as const,
     }
 

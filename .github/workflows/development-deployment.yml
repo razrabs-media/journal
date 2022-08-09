@@ -18,5 +18,5 @@ jobs:
           yc-sa-json-credentials: ${{ secrets.CR_REGISTRY_CREDENTIALS }}
       - name: Build & Push
         run: |
-          docker build -t $CR_REGISTRY_HOST/$CR_REGISTRY/dev/$CR_REPOSITORY:$GITHUB_SHA .
+          docker build -t $CR_REGISTRY_HOST/$CR_REGISTRY/dev/$CR_REPOSITORY:$GITHUB_SHA . --build-arg no_robots=true
           docker push $CR_REGISTRY_HOST/$CR_REGISTRY/dev/$CR_REPOSITORY:$GITHUB_SHA

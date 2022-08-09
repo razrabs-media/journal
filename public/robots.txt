@@ -1,2 +1,4 @@
-User-agent: *
 Host: https://razrabs.ru
+Sitemap: https://razrabs.ru/sitemap.xml
+User-agent: *
+Allow: /
