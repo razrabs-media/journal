@@ -1,3 +1,4 @@
+import { useIsMobile } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
 import { format, formatDistanceToNow } from 'date-fns'
 import { zonedTimeToUtc } from 'date-fns-tz'
@@ -14,6 +15,7 @@ export const UserInfo: FC<Props> = ({ date, postsCount, commentsCount }) => {
     locale: ru,
   })
   const duration = formatDistanceToNow(zonedDate, { locale: ru })
+  const isMobile = useIsMobile()
 
   const formattedPosts = pluralize(
     {
@@ -41,7 +43,7 @@ export const UserInfo: FC<Props> = ({ date, postsCount, commentsCount }) => {
         {commentsCount} {formattedComments}
       </Typography>
 
-      <Flex gap={16}>
+      <Flex direction={isMobile ? 'column' : 'row'} gap={16}>
         <Typography size='lg'>С Разрабами с {formattedDate}</Typography>
         <Typography color='secondary' size='lg'>
           {duration}
