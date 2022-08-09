@@ -17,14 +17,20 @@ type Props = {
   postsByFeed: Pick<Post, 'uid' | 'title' | 'previewUrl' | 'createdAt'>[]
   currentFeedUid: string
   feeds: Pick<FeedItem, 'uid' | 'name'>[]
+  currentFeedName?: string
 }
 
-const FeedPage: NextPage<Props> = ({ postsByFeed, currentFeedUid, feeds }) => {
+const FeedPage: NextPage<Props> = ({
+  postsByFeed,
+  currentFeedUid,
+  currentFeedName,
+  feeds,
+}) => {
   const smallRow = useIsMobile()
 
   return (
     <>
-      <Helmet />
+      <Helmet title={currentFeedName} />
 
       <FeedSelector activeFeedUid={currentFeedUid} feeds={feeds} />
 
@@ -67,11 +73,14 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
     query: GetFeedsQuery,
   })
 
+  const [currentFeed] = feeds.filter(({ uid }) => uid === currentFeedUid)
+
   return {
     props: {
       postsByFeed,
       feeds: feeds.slice(0, 10),
       currentFeedUid,
+      currentFeedName: currentFeed?.name,
     },
   }
 }

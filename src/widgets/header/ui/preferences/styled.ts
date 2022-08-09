@@ -18,4 +18,7 @@ export const AuthButton = styled(Tag)`
     background: none;
     color: ${({ theme }) => theme.colors.primary};
   }
+  &:focus {
+    color: ${({ theme }) => theme.colors.brand};
+  }
 `

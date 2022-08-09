@@ -1,0 +1,3 @@
+Host: https://razrabs.ru
+User-agent: *
+Allow: /

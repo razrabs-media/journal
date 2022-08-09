@@ -63,6 +63,7 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
             align='center'
             alt={props.title}
             fit='cover'
+            itemProp='image'
             maxH={505}
             src={props.previewUrl}
             width='100%'
@@ -78,7 +79,7 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
         </ImageWrapper>
 
         <PostTextWrapper>
-          <Title uppercase as='h1' itemProp='headline' weight='medium'>
+          <Title uppercase as='h1' itemProp='headline name' weight='medium'>
             {props.title}
           </Title>
 
@@ -90,9 +91,13 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
       <SecondRow open={props.open}>
         <TagsAndShare>
-          <TagsBlock>
+          <TagsBlock
+            itemScope
+            itemProp='about'
+            itemType='https://schema.org/Thing'
+          >
             {props.tags?.map((tag) => (
-              <Badge key={tag} margin='2px 4px 0 0'>
+              <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
                 {tag}
               </Badge>
             ))}

@@ -18,7 +18,7 @@ export const Modal = forwardRef<HTMLDivElement, Props>(
           <Body>
             <Header>
               <Typography size='sm'>{title}</Typography>
-              <IconButton onClick={onClose}>
+              <IconButton tabIndex={hide ? -1 : 0} onClick={onClose}>
                 <CrossIcon />
               </IconButton>
             </Header>

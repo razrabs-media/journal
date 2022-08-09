@@ -1,6 +1,6 @@
 import { FC, memo } from 'react'
 // eslint-disable-next-line
-import {useContextComments} from 'entities/comments'
+import { useContextComments } from 'entities/comments'
 import { PostHeader } from './header'
 import { ContentWrapper, StyledReader, StyledRenderer } from './styled'
 import { Props } from './types'
@@ -25,7 +25,7 @@ export const PostReader: FC<Props> = (props) => {
         uid={props.uid}
       />
 
-      <ContentWrapper open={opened}>
+      <ContentWrapper itemProp='articleBody' open={opened}>
         <MemoizedMarkdownRenderer>{props.content}</MemoizedMarkdownRenderer>
       </ContentWrapper>
     </StyledReader>

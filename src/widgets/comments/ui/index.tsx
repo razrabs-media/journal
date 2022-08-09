@@ -45,6 +45,7 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   const [sendComment] = useSendComment()
 
   const [replyUid, setReplyUid] = useState<string | undefined>(undefined)
+  const [newCommentUid, setNewCommentUid] = useState<string | null>(null)
 
   const { display, animationIn, animationOut } = useDisplayAnimation(
     opened,
@@ -59,11 +60,13 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   )
 
   const onScrollToComment = useCallback((commentUid: string) => {
-    commentsRefs.current[commentUid]?.highlight()
-    commentsRefs.current[commentUid]?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-    })
+    if (commentsRefs.current[commentUid]) {
+      commentsRefs.current[commentUid]?.highlight()
+      commentsRefs.current[commentUid]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      })
+    }
   }, [])
 
   const onCommentSend = useCallback(
@@ -88,13 +91,10 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
       ) {
         const newComment = commentAdapter(response.data.createComment)
 
-        // Надо подождать, пока реакт примаунтит компонент после обновления стейта
-        requestAnimationFrame(() => {
-          onScrollToComment(newComment.uid)
-        })
+        setNewCommentUid(newComment.uid)
       }
     },
-    [postUid, onScrollToComment, sendComment],
+    [postUid, sendComment],
   )
 
   const onReplyCancel = useCallback(() => {
@@ -104,6 +104,14 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   useEffect(() => {
     if (opened) refContainer.current?.focus()
   }, [opened])
+
+  useEffect(() => {
+    if (newCommentUid && commentsRefs.current[newCommentUid]) {
+      onScrollToComment(newCommentUid)
+
+      setNewCommentUid(null)
+    }
+  }, [newCommentUid, comments, onScrollToComment])
 
   return (
     <CommentsWrapper
@@ -133,7 +141,11 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
               author={comment.author.name}
               avatar={comment.author.avatarUrl}
               content={comment.content}
-              ref={(el) => (commentsRefs.current[comment.uid] = el)}
+              ref={(el) => {
+                if (!commentsRefs.current[comment.uid]) {
+                  commentsRefs.current[comment.uid] = el
+                }
+              }}
               reply={comment.replyComment}
               time={parseDate(comment.createdAt, { format: 'short' }) ?? ''}
               uid={comment.uid}
@@ -157,6 +169,7 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
         ) : (
           <CommentsLogin
             icon='right'
+            open={opened}
             onClick={() => router.push('/auth/github')}
           >
             Залогиниться через Github
