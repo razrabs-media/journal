@@ -12,7 +12,7 @@
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
     "@react-theming/storybook-addon": "1.1.7",
-    "@storybook/addon-actions": "6.3.12",
+    "@storybook/addon-actions": "6.5.10",
     "@storybook/addon-controls": "6.5.10",
     "@storybook/addon-docs": "6.5.10",
     "@storybook/addon-essentials": "6.3.12",
