@@ -10,8 +10,8 @@ export const StyledReplyPreview = styled.div`
   align-items: center;
   gap: 10px;
 
-  background: #38393d;
-  border-bottom: 1px solid #2d2e33;
+  background: ${({ theme }) => theme.colors.contrastBackgroundSecondary};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.backgroundSecondary};
 
   padding: 10px 24px;
 `

@@ -1,6 +1,12 @@
 import styled from '@emotion/styled'
+import { themeDark, themeLight } from '@razrabs-ui/theme'
 import Typography from '@razrabs-ui/typography'
 import { GridArea, ModalAction } from 'shared/ui'
+
+export const commentsWidgetBackgroundByTheme: Record<string, string> = {
+  [themeLight.name]: themeLight.colors.background,
+  [themeDark.name]: themeDark.colors.backgroundSecondary,
+}
 
 export const Header = styled.div`
   display: flex;
@@ -12,7 +18,7 @@ export const Header = styled.div`
 
   padding: 18px 22px 18px 24px;
 
-  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  background: ${({ theme }) => commentsWidgetBackgroundByTheme[theme.name]};
 `
 
 export const HeaderTexts = styled.div`
@@ -56,7 +62,7 @@ export const CommentsContainer = styled.div`
 `
 
 export const CommentsAction = styled(GridArea)`
-  background-color: #38393d;
+  background-color: ${({ theme }) => theme.colors.contrastBackgroundSecondary};
 `
 
 export const CommentsLogin = styled(ModalAction)`

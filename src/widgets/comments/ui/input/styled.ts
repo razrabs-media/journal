@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import { Media } from '@razrabs-ui/responsive'
 import { IconButton, SendIcon } from 'shared/ui'
+import { invertedThemeByCurrentThemeName } from './utils'
 
 export const Input = styled.textarea`
   display: block;
@@ -23,7 +24,8 @@ export const Input = styled.textarea`
   resize: none;
   box-sizing: border-box;
 
-  color: #f7f8fc;
+  color: ${({ theme }) =>
+    invertedThemeByCurrentThemeName[theme.name].colors.background};
   font-family: 'Styrene B LC', sans-serif;
   &::-webkit-scrollbar {
     display: none;
@@ -49,9 +51,8 @@ export const StyledCommentInput = styled.div`
 
   transition: background 50ms ease-in-out;
 
-  // TODO: вынести в @razrabs-ui/theme
   &:focus-within {
-    background: #38393d;
+    background: ${({ theme }) => theme.colors.contrastBackgroundSecondary};
   }
 
   ${Media.tabletAndAbove} {
