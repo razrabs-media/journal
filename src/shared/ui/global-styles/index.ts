@@ -1,7 +1,6 @@
 //noinspection CssInvalidPropertyValue
 
-import { css } from '@emotion/react'
-import { themeDark } from '@razrabs-ui/theme'
+import { css, Theme } from '@emotion/react'
 
 export const FONT_FACE = css`
   @font-face {
@@ -53,7 +52,7 @@ export const FONT_FACE = css`
   }
 `
 
-export const GLOBAL_STYLES = css`
+export const globalStyles = (theme: Theme) => css`
   html {
     /* Fix для chrome desktop */
     height: 100%;
@@ -78,7 +77,7 @@ export const GLOBAL_STYLES = css`
 
     &:hover {
       text-decoration: none;
-      color: ${themeDark.colors.brand};
+      color: ${theme.colors.brand};
     }
   }
 
