@@ -25,4 +25,5 @@ export const ThemeButton = styled.button`
 export const Separator = styled.span`
   color: ${({ theme }) => theme.colors.secondary};
   margin: 0 6px 0 6px;
+  cursor: default;
 `
