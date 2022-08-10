@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { commentsWidgetBackgroundByTheme } from '../styled'
 import { Props } from './types'
 
 export const CommentsWrapper = styled.div<Props>`
@@ -12,5 +13,5 @@ export const CommentsWrapper = styled.div<Props>`
 
   width: 100%;
 
-  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  background: ${({ theme }) => commentsWidgetBackgroundByTheme[theme.name]};
 `

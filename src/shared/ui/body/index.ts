@@ -1,5 +1,10 @@
 import { css, Theme } from '@emotion/react'
+import { themeDark, themeLight } from '@razrabs-ui/theme'
 
+const selectionTextColorByThemeName: Record<string, string> = {
+  [themeDark.name]: themeDark.colors.contrastPrimary,
+  [themeLight.name]: themeLight.colors.primary,
+}
 export const body = (theme: Theme) => css`
   body {
     display: grid;
@@ -12,7 +17,7 @@ export const body = (theme: Theme) => css`
     background-color: ${theme.colors.background};
 
     &::selection {
-      color: ${theme.colors.contrastPrimary};
+      color: ${selectionTextColorByThemeName[theme.name]};
       background-color: ${theme.colors.brand};
     }
 
@@ -42,7 +47,7 @@ export const body = (theme: Theme) => css`
     }
 
     *::selection {
-      color: ${theme.colors.contrastPrimary};
+      color: ${selectionTextColorByThemeName[theme.name]};
       background-color: ${theme.colors.brand};
     }
 

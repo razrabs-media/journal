@@ -15,8 +15,9 @@ export const StyledComment = styled.div<StyledCommentProps>`
 
   transition: background-color 150ms ease-in-out;
 
-  // TODO: вынести в @razrabs-ui/theme
-  ${({ isHighlighted }) => isHighlighted && 'background-color: #38393d;'}
+  ${({ isHighlighted, theme }) =>
+    isHighlighted &&
+    `background-color: ${theme.colors.contrastBackgroundSecondary};`}
 
   ${Media.tabletAndAbove} {
     padding: 20px 24px;
@@ -30,9 +31,8 @@ export const StyledComment = styled.div<StyledCommentProps>`
     }
   }
 
-  // TODO: вынести в @razrabs-ui/theme
   &:hover {
-    background: #38393d;
+    background: ${({ theme }) => theme.colors.contrastBackgroundSecondary};
   }
   & a {
     color: ${({ theme }) => theme.colors.brand};

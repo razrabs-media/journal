@@ -17,7 +17,9 @@ export const themeDark: Theme = {
 
     brand: '#C799E3',
     background: '#1F2025',
+
     backgroundSecondary: '#2D2E33',
+    contrastBackgroundSecondary: '#38393D',
   },
   components: {
     FallbackSquare,

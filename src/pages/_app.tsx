@@ -15,7 +15,7 @@ import { useTheme } from 'widgets/header/ui/themeToggler/handler'
 import { CommentsProvider } from 'entities/comments'
 import { initializeApollo, useApollo } from 'shared/api'
 import { getContextMedia, withMediaProvider } from 'shared/lib'
-import { body, Footer } from 'shared/ui'
+import { body, FONT_FACE, Footer, globalStyles } from 'shared/ui'
 import { CurrentTime, CurrentTimeQuery } from '../entities/clock'
 import { Layout } from '../entities/layout'
 
@@ -37,6 +37,8 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider theme={theme}>
         <Global styles={body(theme)} />
+        <Global styles={FONT_FACE} />
+        <Global styles={globalStyles(theme)} />
         <ApolloProvider client={apolloClient}>
           <CommentsProvider>
             <Layout

@@ -26,7 +26,9 @@ export const themeLight: Theme = {
 
     brand: '#FF9B25',
     background: '#F7F8FC',
+
     backgroundSecondary: '#ECEDF1',
+    contrastBackgroundSecondary: '#ECEDF1',
   },
   components: {
     FallbackSquare,

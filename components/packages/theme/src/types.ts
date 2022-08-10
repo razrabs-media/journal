@@ -13,7 +13,9 @@ declare module '@emotion/react' {
 
       brand: string
       background: string
+
       backgroundSecondary: string
+      contrastBackgroundSecondary: string
     }
     breakpoints: {
       sm: string
