@@ -6,15 +6,25 @@ export const Flex = styled.div<Props>`
   display: flex;
   flex-direction: ${({ direction }) => direction || 'row'};
 
-  ${({ direction, gap }) => css`
-    & > * {
-      ${direction === 'column'
-        ? `margin-bottom: ${gap ?? 0}px;`
-        : `margin-right: ${gap ?? 0}px;`}
+  & > * {
+    ${({ direction, gap }) =>
+      direction === 'column'
+        ? css`
+            margin-bottom: ${gap ?? 0}px;
+          `
+        : css`
+            margin-right: ${gap ?? 0}px;
+          `}
 
-      &:last-child {
-        ${direction === 'column' ? 'margin-bottom: 0;' : 'margin-right: 0;'}
-      }
+    &:last-child {
+      ${({ direction }) =>
+        direction === 'column'
+          ? css`
+              margin-bottom: 0;
+            `
+          : css`
+              margin-right: 0;
+            `}
     }
-  `}
+  }
 `
