@@ -43,7 +43,7 @@ export const UserInfo: FC<Props> = ({ date, postsCount, commentsCount }) => {
         {commentsCount} {formattedComments}
       </Typography>
 
-      <Flex direction={isMobile ? 'column' : 'row'} gap={16}>
+      <Flex direction={isMobile ? 'column' : 'row'} gap={isMobile ? 8 : 16}>
         <Typography size='lg'>С Разрабами с {formattedDate}</Typography>
         <Typography color='secondary' size='lg'>
           {duration}

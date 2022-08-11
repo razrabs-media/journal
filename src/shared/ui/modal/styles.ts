@@ -32,6 +32,9 @@ export const Box = styled.div`
 export const Body = styled.div`
   height: 100%;
   margin: 22px 24px 48px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 export const Header = styled.div`
@@ -41,10 +44,8 @@ export const Header = styled.div`
 `
 
 export const Content = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
 
   & > * {
     margin-bottom: 15px;
