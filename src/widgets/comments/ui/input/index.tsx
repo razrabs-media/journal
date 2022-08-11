@@ -106,7 +106,11 @@ export const CommentInput: FC<Props> = ({
           onKeyDown={keyDownHandler}
         />
 
-        <StyledSendButton hide={!value} onClick={handleSubmit}>
+        <StyledSendButton
+          disabled={isSendingComment}
+          hide={!value}
+          onClick={handleSubmit}
+        >
           <StyledSendIcon />
         </StyledSendButton>
       </StyledCommentInput>
