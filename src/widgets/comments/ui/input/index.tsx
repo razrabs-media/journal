@@ -62,7 +62,16 @@ export const CommentInput: FC<Props> = ({
       return
     }
 
-    if (onSend && !isSendingComment) {
+    textareaRef.current.setAttribute('readonly', 'readonly')
+    textareaRef.current.setAttribute('disabled', 'true')
+
+    setTimeout(() => {
+      textareaRef.current?.blur()
+      textareaRef.current?.removeAttribute('readonly')
+      textareaRef.current?.removeAttribute('disabled')
+    }, 100)
+
+   if (onSend && !isSendingComment) {
       setIsSendingComment(true)
       onSend({ content, replyUid })
         .then(() => {
