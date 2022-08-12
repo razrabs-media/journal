@@ -64,7 +64,10 @@ export const StyledSendIcon = styled(SendIcon)`
   fill: currentColor;
 `
 
-export const StyledSendButton = styled(IconButton)<{ hide?: boolean }>`
+export const StyledSendButton = styled(IconButton)<{
+  hide?: boolean
+  disabled?: boolean
+}>`
   width: 40px;
   height: 40px;
   margin: 0;
@@ -73,6 +76,8 @@ export const StyledSendButton = styled(IconButton)<{ hide?: boolean }>`
   justify-content: center;
   transition: 0.2s all cubic-bezier(0.55, 0.06, 0.7, 0.21);
   opacity: ${({ hide }) => (hide ? '0' : '1')};
+
+  ${({ disabled, theme }) => disabled && `stroke: ${theme.colors.secondary};`}
 
   &:hover {
     background: none;

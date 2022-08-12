@@ -21,6 +21,7 @@ export const CommentInput: FC<Props> = ({
   onSend,
 }) => {
   const [value, setValue] = useState<string>('')
+  const [isSendingComment, setIsSendingComment] = useState(false)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
@@ -70,10 +71,17 @@ export const CommentInput: FC<Props> = ({
       textareaRef.current?.removeAttribute('disabled')
     }, 100)
 
-    onSend?.({ content, replyUid }).then(() => {
-      setValue('')
-      onReplyCancel()
-    })
+    if (onSend && !isSendingComment) {
+      setIsSendingComment(true)
+      onSend({ content, replyUid })
+        .then(() => {
+          setValue('')
+          onReplyCancel()
+        })
+        .finally(() => {
+          setIsSendingComment(false)
+        })
+    }
   }
 
   const keyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -107,7 +115,11 @@ export const CommentInput: FC<Props> = ({
           onKeyDown={keyDownHandler}
         />
 
-        <StyledSendButton hide={!value} onClick={handleSubmit}>
+        <StyledSendButton
+          disabled={isSendingComment}
+          hide={!value}
+          onClick={handleSubmit}
+        >
           <StyledSendIcon />
         </StyledSendButton>
       </StyledCommentInput>
