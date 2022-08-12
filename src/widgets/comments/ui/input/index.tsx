@@ -71,7 +71,7 @@ export const CommentInput: FC<Props> = ({
       textareaRef.current?.removeAttribute('disabled')
     }, 100)
 
-   if (onSend && !isSendingComment) {
+    if (onSend && !isSendingComment) {
       setIsSendingComment(true)
       onSend({ content, replyUid })
         .then(() => {
