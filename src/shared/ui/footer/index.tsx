@@ -46,7 +46,13 @@ export const Footer: FC = () => {
         <Menu>
           <StyledNav>
             <Link passHref href='/post/3c6bcea4-c34a-4650-907a-bca8dd72a310'>
-              <Typography uppercase as='a' letterSpacing='1px' size='sm'>
+              <Typography
+                uppercase
+                as='a'
+                letterSpacing='1px'
+                size='sm'
+                weight='medium'
+              >
                 О нас
               </Typography>
             </Link>
@@ -56,6 +62,7 @@ export const Footer: FC = () => {
               href='mailto:razrabschannel@razrabs.ru'
               letterSpacing='1px'
               size='sm'
+              weight='medium'
             >
               Связаться
             </Typography>
@@ -79,6 +86,7 @@ export const Footer: FC = () => {
                 rel='noopener noreferrer nofollow'
                 size='sm'
                 target='_blank'
+                weight='medium'
               >
                 {label}
               </Typography>
