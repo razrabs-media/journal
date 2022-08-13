@@ -14,6 +14,8 @@ export const AccountBadge = styled(Tag)`
 export const AuthButton = styled(Tag)`
   background: none;
   color: ${({ theme }) => theme.colors.primary};
+  font-weight: 500;
+
   &:active {
     background: none;
     color: ${({ theme }) => theme.colors.primary};
