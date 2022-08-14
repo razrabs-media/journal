@@ -4,11 +4,11 @@ import Typography from '@razrabs-ui/typography'
 import { FC } from 'react'
 import ReactMarkdown, { Components } from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrow } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import remarkGemoji from 'remark-gemoji'
 import remarkGfm from 'remark-gfm'
 import { CopyButton } from 'shared/ui'
 import a11yEmoji from './remark-emoji'
+import { codeTheme } from './theme'
 
 const CodeWrapper = styled.div`
   position: relative;
@@ -102,7 +102,7 @@ const COMPONENTS: Components = {
             },
           }}
           language={match[1]}
-          style={tomorrow}
+          style={codeTheme}
           {...props}
         >
           {codeString}
@@ -156,13 +156,16 @@ const StyleWrapper = styled.div`
     padding-left: 22px;
   }
 
+  pre {
+    background: ${({ theme }) => theme.colors.backgroundSecondary};
+  }
+
   code {
-    font-family: 'JetBrainsMono';
-    font-size: 14px;
     word-break: break-word;
     white-space: pre-line;
     background: rgb(45, 45, 45);
     padding: 0.2em 0.4em;
+    background: ${({ theme }) => theme.colors.backgroundSecondary};
     border-radius: 6px;
   }
 `
