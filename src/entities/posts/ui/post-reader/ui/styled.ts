@@ -9,8 +9,6 @@ export const StyledReader = styled.div<{ open: boolean }>`
   grid-gap: 24px;
 
   ${Media.largeDesktopAndBelow} {
-    grid-template-columns: ${({ open }) =>
-      open ? '100%' : 'calc((100% - 24px) / 3) calc((100% - 24px) * 2 / 3)'};
     grid-template-areas: '${({ open }) => (open ? 'content' : '. content')}';
   }
 
