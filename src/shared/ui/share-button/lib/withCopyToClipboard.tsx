@@ -1,8 +1,17 @@
-import { ComponentProps, FC, MouseEvent, useState } from 'react'
+import { FC, MouseEvent, useState } from 'react'
 import { SharedIcon, ShareUrlIcon } from '../ui'
 
-export const withShareUrl = (Component: FC<ComponentProps<'button'>>) => {
-  const UrlShareButton = (props: ComponentProps<'button'>) => {
+export interface ButtonProps
+  extends React.DetailedHTMLProps<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >,
+    React.AriaAttributes {
+  isShorten?: boolean
+}
+
+export const withShareUrl = (Component: FC<ButtonProps>) => {
+  const UrlShareButton = (props: ButtonProps) => {
     const [shared, setShared] = useState(false)
 
     const onClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -20,11 +29,11 @@ export const withShareUrl = (Component: FC<ComponentProps<'button'>>) => {
       <Component onClick={onClick} {...props}>
         {shared ? (
           <>
-            <SharedIcon /> Скопировано
+            <SharedIcon /> {!props.isShorten && 'Скопировано'}
           </>
         ) : (
           <>
-            <ShareUrlIcon /> Ссылка
+            <ShareUrlIcon /> {!props.isShorten && 'Ссылка'}
           </>
         )}
       </Component>
