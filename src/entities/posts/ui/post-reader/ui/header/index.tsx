@@ -29,7 +29,7 @@ DefaultShareButton.defaultProps = {
 }
 
 // Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
-export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const PostHeader = forwardRef<HTMLDivElement, Props>((props) => {
   const isTabletAndBelow = useIsTabletAndBelow()
   const [href, setHref] = useState('')
 
