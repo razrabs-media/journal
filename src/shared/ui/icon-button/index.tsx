@@ -9,6 +9,7 @@ export const IconButton = styled.button`
   padding: 8px;
   margin: -8px;
   stroke: ${({ theme }) => theme.colors.primary};
+  font-weight: 500;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.backgroundSecondary};

@@ -27,6 +27,8 @@ export const FeedsContainer = styled.nav`
 `
 
 export const FeedBadge = styled(Badge)<{ active?: boolean }>`
+  font-weight: 500;
+
   ${({ theme, active }) => {
     if (active) {
       return css`
