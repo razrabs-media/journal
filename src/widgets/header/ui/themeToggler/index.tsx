@@ -11,7 +11,7 @@ export const ThemeToggler: FC<Props> = ({ toggleTheme }) => {
   return (
     <Container>
       {isMobile ? (
-        <IconButton onClick={toggleTheme}>
+        <IconButton aria-label='Переключатель темы' onClick={toggleTheme}>
           <ThemeIcon />
         </IconButton>
       ) : (

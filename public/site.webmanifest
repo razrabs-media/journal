@@ -1,0 +1,47 @@
+{
+  "lang":"ru-RU",
+  "name":"Разрабы",
+  "short_name":"Разрабы",
+  "description": "Медиа для разрабов",
+  "categories":[
+    "social",
+    "news",
+    "magazines"
+  ],
+  "icons":[
+    {
+      "src":"/images/logo/android-chrome-192x192.png",
+      "sizes":"192x192",
+      "type":"image/png"
+    },
+    {
+      "src":"/images/logo/android-chrome-512x512.png",
+      "sizes":"512x512",
+      "type":"image/png"
+    }
+  ],
+  "shortcuts":[
+    {
+      "name":"Все подряд",
+      "url":"/feeds/aa557187-bf7c-4d0b-bd17-63cb13809fc1"
+    },
+    {
+      "name":"От редакции",
+      "url":"/feeds/aa697e4b-2eae-4da3-94a6-c7d7bf8c8384"
+    },
+    {
+      "name":"Мнения",
+      "url":"/feeds/8d6502b0-fa2a-444e-a8a9-fe2a16fe3516"
+    },
+    {
+      "name":"О нас",
+      "url":"/post/3c6bcea4-c34a-4650-907a-bca8dd72a310"
+    }
+  ],
+  "theme_color":"#1f2025",
+  "background_color":"#1f2025",
+  "start_url":"/",
+  "scope":"/",
+  "display":"standalone",
+  "orientation": "portrait"
+}
