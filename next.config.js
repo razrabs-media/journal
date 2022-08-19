@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
