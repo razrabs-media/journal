@@ -12199,7 +12199,7 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.1.tgz#26c8a3cee6cc05fbcf1e333cd2fc3e003326c0b5"
   integrity sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==
 
-next-pwa@^5.5.5:
+next-pwa@5.5.5:
   version "5.5.5"
   resolved "https://registry.yarnpkg.com/next-pwa/-/next-pwa-5.5.5.tgz#502165880fb52639b7b4ce7eca41e7797445f06a"
   integrity sha512-EdheDzxr3V7piAeW2qAeH0uJW5iouSt7s/Fzz6xuvkmRPgbyqQeRY/3ZOWbhfgbPBuzGjdbBWzVurWJPH8bY5w==
@@ -12211,10 +12211,10 @@ next-pwa@^5.5.5:
     workbox-webpack-plugin "^6.5.4"
     workbox-window "^6.5.4"
 
-next-sitemap@3.1.16:
-  version "3.1.16"
-  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-3.1.16.tgz#3227ab842a14ebf2b9e2435d98850538e49f53a6"
-  integrity sha512-kczTKLB1ifqi44mMImv/sLRsqxy/O4DXJ4mx/1l23vyx6QFWqeuHxS0duEL/EsChcVJUMWV4FNg2pIiX31xxmg==
+next-sitemap@3.1.19:
+  version "3.1.19"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-3.1.19.tgz#8803056fa5854d8063d274a776e414ff7cc30f07"
+  integrity sha512-3lopCfjARWrguqrM3cun6SaMBysgkuhDZJlLa9ftr/rPcna8N+C3MsLcwAE6zUM8Wr4g21aE1vZBxAd+ALq5jw==
   dependencies:
     "@corex/deepmerge" "^4.0.29"
     minimist "^1.2.6"
