@@ -6,6 +6,7 @@ import { EnterIcon, IconButton } from 'shared/ui'
 import { ThemeToggler } from '../themeToggler'
 import { AccountBadge, AuthButton, PreferencesBox } from './styled'
 import { Props } from './types'
+import { getFormattedNameForAccountBadge } from './utils'
 
 export const Preferences: FC<Props> = ({ onClick, toggleTheme }) => {
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
@@ -20,13 +21,10 @@ export const Preferences: FC<Props> = ({ onClick, toggleTheme }) => {
     ? IconButton
     : AuthButton
 
-  const fullName = data?.currentUser?.profile?.fullName
+  const fullName = 'georgy kopylov 1'
 
   const title = fullName ? (
-    fullName
-      .split(' ')
-      .map((word) => word[0])
-      .join('')
+    getFormattedNameForAccountBadge(fullName)
   ) : isMobile ? (
     <EnterIcon />
   ) : (
