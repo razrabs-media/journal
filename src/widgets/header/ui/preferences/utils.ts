@@ -6,15 +6,14 @@ export const accountBadgeColorByTheme: Record<string, string> = {
 }
 
 export const getFormattedNameForAccountBadge = (fullName: string): string => {
-  const separatedFullName = fullName.split(' ')
+  const separatedFullName = fullName.trim().split(' ')
 
-  if (!separatedFullName.length) {
-    return ''
+  if (separatedFullName.length === 1) {
+    return separatedFullName[0].slice(0, 2)
   }
 
-  return (
-    separatedFullName.length === 1
-      ? separatedFullName[0].slice(0, 2)
-      : separatedFullName.map((word) => word[0]).join('')
-  ).slice(0, 2)
+  return separatedFullName
+    .map((word) => word[0])
+    .join('')
+    .slice(0, 2)
 }
