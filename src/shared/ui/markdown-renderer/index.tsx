@@ -91,6 +91,7 @@ const COMPONENTS: Components = {
   code: ({ inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || '')
     const codeString = String(children).replace(/\n$/, '')
+    const propsWithoutNode = { ...props, node: undefined }
     return !inline && match ? (
       <CodeWrapper>
         <SyntaxHighlighter
@@ -101,9 +102,10 @@ const COMPONENTS: Components = {
               fontSize: 14,
             },
           }}
+          data-lang={match[1]}
           language={match[1]}
           style={codeTheme}
-          {...props}
+          {...propsWithoutNode}
         >
           {codeString}
         </SyntaxHighlighter>
