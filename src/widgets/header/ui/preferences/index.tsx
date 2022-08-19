@@ -21,7 +21,7 @@ export const Preferences: FC<Props> = ({ onClick, toggleTheme }) => {
     ? IconButton
     : AuthButton
 
-  const fullName = 'georgy kopylov 1'
+  const fullName = data?.currentUser?.profile?.fullName
 
   const title = fullName ? (
     getFormattedNameForAccountBadge(fullName)
