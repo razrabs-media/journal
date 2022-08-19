@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { getHost } from 'shared/lib'
+import { getHost, getUrl } from 'shared/lib'
 import { HelmetProps } from './types'
 
 export const Helmet = ({
@@ -10,9 +10,10 @@ export const Helmet = ({
   image,
   keywords,
 }: HelmetProps) => {
-  const { asPath: path } = useRouter()
+  const router = useRouter()
+  const { asPath: path } = router
   const host = getHost()
-  const canonicalUrl = host + path
+  const canonicalUrl = getUrl(router)
   const brandedTitle = path.length > 1 ? `${title} / Разрабы` : title
   const isArticle = path.includes('post')
 

@@ -41,7 +41,6 @@
   "theme_color":"#1f2025",
   "background_color":"#1f2025",
   "start_url":"/",
-  "scope":"/",
   "display":"standalone",
   "orientation": "portrait"
 }
