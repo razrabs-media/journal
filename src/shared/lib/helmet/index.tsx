@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { getHost } from 'shared/lib'
+import { getHost, getUrl } from 'shared/lib'
 import { HelmetProps } from './types'
 
 export const Helmet = ({
@@ -10,16 +10,39 @@ export const Helmet = ({
   image,
   keywords,
 }: HelmetProps) => {
-  const { asPath: path } = useRouter()
+  const router = useRouter()
+  const { asPath: path } = router
   const host = getHost()
-  const canonicalUrl = host + path
+  const canonicalUrl = getUrl(router)
   const brandedTitle = path.length > 1 ? `${title} / Разрабы` : title
+  const isArticle = path.includes('post')
 
   const theme = useTheme()
+
+  const organisationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'DTF',
+    url: 'https://razrabs.ru/',
+    logo: 'https://razrabs.ru/images/logo/avatar.png',
+    sameAs: [
+      'https://facebook.com/razrabs',
+      'https://vk.com/rzrbs',
+      'https://twitter.com/razraby',
+      'https://t.me/razrabsjobs',
+      'https://www.youtube.com/channel/UC-h5nFU9Qzo72dFW-fC_lkQ',
+    ],
+  }
 
   return (
     <Head>
       <title>{brandedTitle}</title>
+
+      {/* Prefetch */}
+      <link href='//github.com' rel='preconnect' />
+      <link href='//github.com' rel='dns-prefetch' />
+      <link href='//raw.githubusercontent.com' rel='preconnect' />
+      <link href='//raw.githubusercontent.com' rel='dns-prefetch' />
 
       {/* Basic */}
       <link href={canonicalUrl} rel='canonical' />
@@ -75,9 +98,11 @@ export const Helmet = ({
       <meta content={brandedTitle} name='twitter:title' />
       <meta content={description} property='twitter:description' />
       <meta content={image} property='twitter:image' />
+      <meta content={title} property='twitter:image:alt' />
       <meta content='@razraby' property='twitter:site' />
 
       {/* Open Graph */}
+      <meta content={isArticle ? 'article' : 'website'} property='og:type' />
       <meta content='Разрабы' property='og:site_name' />
       <meta content='ru-RU' property='og:locale' />
       <meta content={brandedTitle} property='og:title' />
@@ -98,10 +123,21 @@ export const Helmet = ({
 
       {/* Web App */}
       <meta content='Разрабы' name='apple-mobile-web-app-title' />
+      <meta content='default' name='apple-mobile-web-app-status-bar-style' />
       <meta content='Разрабы' name='application-name' />
       <meta content={theme.colors.background} name='theme-color' />
       <meta content={theme.colors.background} name='msapplication-TileColor' />
-      <link href='/images/logo/site.webmanifest' rel='manifest' />
+      <link
+        crossOrigin='use-credentials'
+        href='/site.webmanifest'
+        rel='manifest'
+      />
+
+      {/* Organization Schema*/}
+      <script
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }}
+        type='application/ld+json'
+      />
     </Head>
   )
 }

@@ -1,10 +1,17 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
-
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
 
-module.exports = {
+module.exports = withPWA({
   reactStrictMode: true,
+  pwa: {
+    disable: process.env.NODE_ENV === 'development',
+    register: true,
+    dest: 'public',
+    runtimeCaching,
+  },
   ignoreDevErrors: false,
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
@@ -31,4 +38,4 @@ module.exports = {
     YM_ENABLE: process.env.NEXT_PUBLIC_YANDEX_METRICS_ENABLED,
     YM_CODE: process.env.NEXT_PUBLIC_YANDEX_METRICS_CODE,
   },
-}
+})

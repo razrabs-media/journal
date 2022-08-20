@@ -36,7 +36,12 @@ export const Preferences: FC<Props> = ({ onClick, toggleTheme }) => {
   return (
     <PreferencesBox>
       <ThemeToggler toggleTheme={toggleTheme} />
-      <TypeButton as='button' role='button' onClick={onClick}>
+      <TypeButton
+        aria-label='Личный кабинет'
+        as='button'
+        role='button'
+        onClick={onClick}
+      >
         {title}
       </TypeButton>
     </PreferencesBox>

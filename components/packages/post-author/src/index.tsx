@@ -48,7 +48,12 @@ const PostAuthor: FC<BadgeProps> = forwardRef<any, BadgeProps>(
       {...props}
     >
       Автор статьи:
-      <StyledLink href={url ?? undefined} itemProp='url' target='_blank'>
+      <StyledLink
+        href={url ?? undefined}
+        itemProp='url'
+        rel='ugc'
+        target='_blank'
+      >
         <StyledLink as='span' itemProp='name'>
           {children}
         </StyledLink>
