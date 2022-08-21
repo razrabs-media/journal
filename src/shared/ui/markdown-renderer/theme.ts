@@ -1,4 +1,4 @@
-enum ColorsLight {
+enum Colors {
   silver = '#1D1D21',
   black = '#2D2D2D',
   lightGray = '#999999',
@@ -12,30 +12,24 @@ enum ColorsLight {
   green = '#00FF00',
 }
 
-enum ColorsDark {
-  silver = '#CCCCCC',
-  black = '#2D2D2D',
-  lightGray = '#999999',
-  purple = '#E2777A',
-  dullBlue = '#6196CC',
-  orange = '#F08D49',
-  yellow = '#F8C555',
-  pink = '#CC99CD',
-  lightGreen = '#7EC699',
-  aquamarine = '#67CDCC',
-  green = '#00FF00',
+enum CodeColorsLight {
+  code = Colors.black,
+}
+
+enum CodeColorsDark {
+  code = Colors.silver,
 }
 
 const codeColorsTheme = {
-  light: ColorsLight,
-  dark: ColorsDark,
-} as Record<string, Record<string, string>>
+  light: CodeColorsLight,
+  dark: CodeColorsDark,
+} as Record<string, Record<string, Colors[keyof Colors]>>
 
 export const codeTheme = (themeName: string) => {
   const colorTheme = codeColorsTheme[themeName]
   return {
     'code[class*="language-"]': {
-      color: colorTheme.silver,
+      color: colorTheme.code,
       background: 'none',
       fontFamily: "JetBrainsMono', monospace",
       fontSize: '14px',
@@ -54,7 +48,7 @@ export const codeTheme = (themeName: string) => {
       hyphens: 'none',
     },
     'pre[class*="language-"]': {
-      color: colorTheme.silver,
+      color: colorTheme.code,
       fontFamily: "'JetBrainsMono', monospace",
       fontSize: '1em',
       textAlign: 'left',
@@ -75,105 +69,105 @@ export const codeTheme = (themeName: string) => {
       overflow: 'auto',
     },
     ':not(pre) > code[class*="language-"]': {
-      background: colorTheme.black,
+      background: Colors.black,
       padding: '.1em',
       borderRadius: '.3em',
       whiteSpace: 'normal',
     },
     comment: {
-      color: colorTheme.lightGray,
+      color: Colors.lightGray,
     },
     'block-comment': {
-      color: colorTheme.lightGray,
+      color: Colors.lightGray,
     },
     prolog: {
-      color: colorTheme.lightGray,
+      color: Colors.lightGray,
     },
     doctype: {
-      color: colorTheme.lightGray,
+      color: Colors.lightGray,
     },
     cdata: {
-      color: colorTheme.lightGray,
+      color: Colors.lightGray,
     },
     punctuation: {
-      color: colorTheme.silver,
+      color: colorTheme.code,
     },
     tag: {
-      color: colorTheme.purple,
+      color: Colors.purple,
     },
     'attr-name': {
-      color: colorTheme.purple,
+      color: Colors.purple,
     },
     namespace: {
-      color: colorTheme.purple,
+      color: Colors.purple,
     },
     deleted: {
-      color: colorTheme.purple,
+      color: Colors.purple,
     },
     'function-name': {
-      color: colorTheme.dullBlue,
+      color: Colors.dullBlue,
     },
     boolean: {
-      color: colorTheme.orange,
+      color: Colors.orange,
     },
     number: {
-      color: colorTheme.orange,
+      color: Colors.orange,
     },
     function: {
-      color: colorTheme.orange,
+      color: Colors.orange,
     },
     property: {
-      color: colorTheme.yellow,
+      color: Colors.yellow,
     },
     'class-name': {
-      color: colorTheme.yellow,
+      color: Colors.yellow,
     },
     constant: {
-      color: colorTheme.yellow,
+      color: Colors.yellow,
     },
     symbol: {
-      color: colorTheme.yellow,
+      color: Colors.yellow,
     },
     selector: {
-      color: colorTheme.pink,
+      color: Colors.pink,
     },
     important: {
-      color: colorTheme.pink,
+      color: Colors.pink,
       fontWeight: 'bold',
     },
     atrule: {
-      color: colorTheme.pink,
+      color: Colors.pink,
     },
     keyword: {
-      color: colorTheme.pink,
+      color: Colors.pink,
     },
     builtin: {
-      color: colorTheme.pink,
+      color: Colors.pink,
     },
     string: {
-      color: colorTheme.lightGreen,
+      color: Colors.lightGreen,
     },
     char: {
-      color: colorTheme.lightGreen,
+      color: Colors.lightGreen,
     },
     'attr-value': {
-      color: colorTheme.lightGreen,
+      color: Colors.lightGreen,
     },
     regex: {
-      color: colorTheme.lightGreen,
+      color: Colors.lightGreen,
     },
     variable: {
-      color: colorTheme.lightGreen,
+      color: Colors.lightGreen,
     },
     operator: {
-      color: colorTheme.aquamarine,
+      color: Colors.aquamarine,
     },
     entity: {
-      color: colorTheme.aquamarine,
+      color: Colors.aquamarine,
       cursor: 'help',
     },
     url: {
-      color: colorTheme.aquamarine,
+      color: Colors.aquamarine,
     },
     bold: {
       fontWeight: 'bold',
@@ -182,7 +176,7 @@ export const codeTheme = (themeName: string) => {
       fontStyle: 'italic',
     },
     inserted: {
-      color: colorTheme.green,
+      color: Colors.green,
     },
   }
 }
