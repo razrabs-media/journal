@@ -1,23 +1,27 @@
 enum Colors {
-  silver = '#1D1D21',
+  white = '#E2E2E8',
   black = '#2D2D2D',
-  lightGray = '#999999',
+  darkBlack = '#1D1D21',
+  lightGray = '#93949A',
+  darkGray = '#636369',
   purple = '#E2777A',
   dullBlue = '#6196CC',
-  orange = '#F08D49',
+  orange = '#EF8203',
   yellow = '#F8C555',
-  pink = '#CC99CD',
+  pink = '#C799E3',
   lightGreen = '#7EC699',
   aquamarine = '#67CDCC',
   green = '#00FF00',
 }
 
 enum CodeColorsLight {
-  code = Colors.black,
+  code = Colors.darkBlack,
+  comment = Colors.darkGray,
 }
 
 enum CodeColorsDark {
-  code = Colors.silver,
+  code = Colors.white,
+  comment = Colors.lightGray,
 }
 
 const codeColorsTheme = {
@@ -75,19 +79,19 @@ export const codeTheme = (themeName: string) => {
       whiteSpace: 'normal',
     },
     comment: {
-      color: Colors.lightGray,
+      color: colorTheme.comment,
     },
     'block-comment': {
-      color: Colors.lightGray,
+      color: colorTheme.comment,
     },
     prolog: {
-      color: Colors.lightGray,
+      color: colorTheme.comment,
     },
     doctype: {
-      color: Colors.lightGray,
+      color: colorTheme.comment,
     },
     cdata: {
-      color: Colors.lightGray,
+      color: colorTheme.comment,
     },
     punctuation: {
       color: colorTheme.code,
