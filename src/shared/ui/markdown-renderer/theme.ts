@@ -16,18 +16,18 @@ enum Colors {
 
 enum CodeColorsLight {
   code = Colors.darkBlack,
-  comment = Colors.darkGray,
+  description = Colors.darkGray,
 }
 
 enum CodeColorsDark {
   code = Colors.white,
-  comment = Colors.lightGray,
+  description = Colors.lightGray,
 }
 
 const codeColorsTheme = {
   light: CodeColorsLight,
   dark: CodeColorsDark,
-} as Record<string, Record<string, Colors[keyof Colors]>>
+} as Record<string, Record<keyof typeof CodeColorsLight, Colors[keyof Colors]>>
 
 export const codeTheme = (themeName: string) => {
   const colorTheme = codeColorsTheme[themeName]
@@ -79,19 +79,19 @@ export const codeTheme = (themeName: string) => {
       whiteSpace: 'normal',
     },
     comment: {
-      color: colorTheme.comment,
+      color: colorTheme.description,
     },
     'block-comment': {
-      color: colorTheme.comment,
+      color: colorTheme.description,
     },
     prolog: {
-      color: colorTheme.comment,
+      color: colorTheme.description,
     },
     doctype: {
-      color: colorTheme.comment,
+      color: colorTheme.description,
     },
     cdata: {
-      color: colorTheme.comment,
+      color: colorTheme.description,
     },
     punctuation: {
       color: colorTheme.code,
