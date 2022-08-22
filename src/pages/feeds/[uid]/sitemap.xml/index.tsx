@@ -2,11 +2,11 @@ import { GetServerSideProps } from 'next'
 import { getServerSideSitemap } from 'next-sitemap'
 import { PostsByFeed, PostsByFeedQuery } from 'entities/posts'
 import { initializeApollo } from 'shared/api'
-import { getHost } from 'shared/lib'
+import { getRuntime } from 'shared/lib'
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const currentFeedUid: string = ctx.query.uid?.toString() ?? ''
-  const host = getHost()
+  const host = getRuntime('HOST')
   const apolloClient = initializeApollo()
 
   const {

@@ -4,15 +4,15 @@ import { NextResponse } from 'next/server'
 const rewrites = [
   {
     source: '/api',
-    destination: `${process.env.NEXT_PUBLIC_API_GATEWAY}/gql`,
+    destination: `${process.env.API_GATEWAY}/gql`,
   },
   {
     source: '/auth/github/callback',
-    destination: `${process.env.NEXT_PUBLIC_API_GATEWAY}/auth/github/callback`,
+    destination: `${process.env.API_GATEWAY}/auth/github/callback`,
   },
   {
     source: '/auth/github',
-    destination: `${process.env.NEXT_PUBLIC_API_GATEWAY}/auth/github`,
+    destination: `${process.env.API_GATEWAY}/auth/github`,
   },
 ] as const
 
@@ -29,5 +29,5 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(new URL(rewrite.destination, request.url))
   }
 
-  return undefined
+  return NextResponse.next()
 }
