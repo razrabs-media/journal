@@ -4,12 +4,12 @@ import PostAuthor from '@razrabs-ui/post-author'
 import { FC, useEffect, useState } from 'react'
 import { DateAgo, ShareButton, ShareType } from 'shared/ui'
 import {
+  DateAndShareBlock,
   DefaultShareButton,
   ImageDescription,
   ImageWrapper,
   ShareBlock,
   StyledHeader,
-  TagsAndDateBlock,
   TagsBlock,
   Title,
 } from './styled'
@@ -58,7 +58,7 @@ export const Aside: FC<Props> = (props) => {
 
       {props.isShowDataAside ? (
         <>
-          <TagsAndDateBlock>
+          <DateAndShareBlock>
             <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
 
             <ShareBlock>
@@ -69,7 +69,7 @@ export const Aside: FC<Props> = (props) => {
               />
               <ShareButton isShorten shareType={ShareType.Url} />
             </ShareBlock>
-          </TagsAndDateBlock>
+          </DateAndShareBlock>
 
           <TagsBlock
             itemScope
@@ -77,7 +77,7 @@ export const Aside: FC<Props> = (props) => {
             itemType='https://schema.org/Thing'
           >
             {props.tags?.map((tag) => (
-              <Badge key={tag} itemProp='name'>
+              <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
                 {tag}
               </Badge>
             ))}

@@ -82,7 +82,7 @@ export const ShareBlock = styled.div`
   }
 `
 
-export const TagsAndDateBlock = styled.div`
+export const DateAndShareBlock = styled.div`
   display: flex;
   justify-content: space-between;
 `
@@ -94,7 +94,7 @@ export const TagsBlock = styled.div`
   flex-wrap: wrap;
   border-top: 1px solid ${({ theme }) => theme.colors.primary};
   margin-top: 14px;
-  padding-top: 14px;
+  padding-top: 12px;
 
   & > * {
     margin-right: 4px;
