@@ -10,7 +10,7 @@
   "devDependencies": {
     "@babel/core": "7.18.13",
     "@emotion/react": "11.10.0",
-    "@emotion/styled": "11.8.1",
+    "@emotion/styled": "11.10.0",
     "@react-theming/storybook-addon": "1.1.7",
     "@storybook/addon-actions": "6.5.10",
     "@storybook/addon-controls": "6.5.10",
