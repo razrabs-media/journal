@@ -23,7 +23,7 @@ export const StyledReader = styled.div<{ open: boolean }>`
   }
 `
 
-export const ContentWrapper = styled.main<{ open: boolean }>`
+export const ContentWrapper = styled.main`
   margin-top: 76px;
 `
 

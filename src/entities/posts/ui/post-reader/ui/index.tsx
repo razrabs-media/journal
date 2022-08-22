@@ -1,8 +1,9 @@
-import { FC, memo, MutableRefObject, useEffect, useRef, useState } from 'react'
+import { FC, memo } from 'react'
 // eslint-disable-next-line
 import { useContextComments } from 'entities/comments'
 import { Aside } from './aside'
 import { PostHeader } from './header'
+import { useBlockVisible } from './hooks'
 import {
   ContentWrapper,
   SecondRow,
@@ -17,21 +18,7 @@ MemoizedMarkdownRenderer.displayName = 'MemoizedMarkdownRenderer'
 
 export const PostReader: FC<Props> = (props) => {
   const { opened } = useContextComments()
-  const headerVisibilityRef = useRef()
-  const [isShowDataAside, setIsShowDataAside] = useState(false)
-
-  useEffect(() => {
-    const intersectionObserver = new IntersectionObserver((entries) => {
-      setIsShowDataAside(entries[0].intersectionRatio <= 0)
-    })
-    intersectionObserver.observe(
-      (headerVisibilityRef as MutableRefObject<any>).current,
-    )
-
-    return () => {
-      intersectionObserver.disconnect()
-    }
-  }, [isShowDataAside, setIsShowDataAside])
+  const [headerVisibilityRef, isShowDataAside] = useBlockVisible()
 
   return (
     <StyledReader open={opened}>
@@ -63,7 +50,7 @@ export const PostReader: FC<Props> = (props) => {
             uid={props.uid}
           />
 
-          <ContentWrapper itemProp='articleBody' open={opened}>
+          <ContentWrapper itemProp='articleBody'>
             <MemoizedMarkdownRenderer>{props.content}</MemoizedMarkdownRenderer>
           </ContentWrapper>
         </SecondWrapper>

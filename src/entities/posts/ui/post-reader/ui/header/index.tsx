@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import Badge from '@razrabs-ui/badge'
 import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
-import { forwardRef, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { ShareButton, ShareType } from 'shared/ui'
 import {
   Description,
@@ -29,7 +29,7 @@ DefaultShareButton.defaultProps = {
 }
 
 // Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
-export const PostHeader = forwardRef<HTMLDivElement, Props>((props) => {
+export const PostHeader: FC<Props> = (props) => {
   const isTabletAndBelow = useIsTabletAndBelow()
   const [href, setHref] = useState('')
 
@@ -94,6 +94,6 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props) => {
       </TagsAndShare>
     </StyledHeader>
   )
-})
+}
 
 PostHeader.displayName = 'PostHeader'

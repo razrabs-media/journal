@@ -1,14 +1,6 @@
 import { FC, MouseEvent, useState } from 'react'
 import { SharedIcon, ShareUrlIcon } from '../ui'
-
-export interface ButtonProps
-  extends React.DetailedHTMLProps<
-      React.ButtonHTMLAttributes<HTMLButtonElement>,
-      HTMLButtonElement
-    >,
-    React.AriaAttributes {
-  isShorten?: boolean
-}
+import { ButtonProps } from './types'
 
 export const withShareUrl = (Component: FC<ButtonProps>) => {
   const UrlShareButton = (props: ButtonProps) => {

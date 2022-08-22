@@ -1,11 +1,10 @@
-import styled from '@emotion/styled'
 import Badge from '@razrabs-ui/badge'
 import Image from '@razrabs-ui/image'
 import PostAuthor from '@razrabs-ui/post-author'
-import Typography from '@razrabs-ui/typography'
-import { forwardRef, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { DateAgo, ShareButton, ShareType } from 'shared/ui'
 import {
+  DefaultShareButton,
   ImageDescription,
   ImageWrapper,
   ShareBlock,
@@ -16,11 +15,6 @@ import {
 } from './styled'
 import type { Props } from './types'
 
-export const DefaultShareButton = styled(Typography)`
-  cursor: pointer;
-  background: none;
-  border: none;
-`
 DefaultShareButton.defaultProps = {
   as: 'button',
   size: 'sm',
@@ -29,7 +23,7 @@ DefaultShareButton.defaultProps = {
   letterSpacing: 1,
 }
 
-export const Aside = forwardRef<HTMLDivElement, Props>((props) => {
+export const Aside: FC<Props> = (props) => {
   const [href, setHref] = useState('')
 
   useEffect(() => {
@@ -100,6 +94,6 @@ export const Aside = forwardRef<HTMLDivElement, Props>((props) => {
       )}
     </StyledHeader>
   )
-})
+}
 
 Aside.displayName = 'Aside'
