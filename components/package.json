@@ -8,7 +8,7 @@
     "build": "build-storybook"
   },
   "devDependencies": {
-    "@babel/core": "7.18.10",
+    "@babel/core": "7.18.13",
     "@emotion/react": "11.10.0",
     "@emotion/styled": "11.8.1",
     "@react-theming/storybook-addon": "1.1.7",
