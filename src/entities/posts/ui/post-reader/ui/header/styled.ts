@@ -2,47 +2,7 @@ import styled from '@emotion/styled'
 import { Media } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
 
-export const StyledHeader = styled.header`
-  ${Media.desktopAndAbove} {
-    margin-top: 40px;
-  }
-`
-
-// Первая строка - картинка, текст, описание
-export const FirstRow = styled.div<{ open: boolean }>`
-  display: grid;
-
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  grid-gap: 24px;
-
-  ${Media.largeDesktopAndBelow} {
-    grid-template-columns: ${({ open }) =>
-      open ? '1fr' : 'minmax(0, 1fr) minmax(0, 2fr)'};
-  }
-
-  ${Media.tabletAndBelow} {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto;
-    grid-gap: calc(16px);
-  }
-`
-
-export const ImageWrapper = styled.div<{ open: boolean }>`
-  display: flex;
-  flex-direction: column;
-
-  & > * {
-    margin-bottom: 20px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  ${Media.largeDesktopAndBelow} {
-    display: ${({ open }) => (open ? 'none' : 'flex')};
-  }
-`
+export const StyledHeader = styled.header``
 
 // TODO: это заголовок + описание. над неймингом еще надо подумать
 export const PostTextWrapper = styled.div`
@@ -68,48 +28,13 @@ export const Description = styled(Typography)`
   }
 `
 
-export const SecondRow = styled.div<{ open: boolean }>`
-  display: grid;
-  margin-top: 14px;
-  align-items: center;
-
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  grid-template-areas: '. tags-and-share';
-  grid-gap: 24px;
-
-  ${Media.largeDesktopAndBelow} {
-    grid-template-columns: ${({ open }) =>
-      open ? '1fr' : 'minmax(0, 1fr) minmax(0, 2fr)'};
-    grid-template-areas: '${({ open }) =>
-      open ? 'tags-and-share' : '. tags-and-share'}';
-  }
-
-  ${Media.tabletAndBelow} {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: 'tags-and-share';
-    height: auto;
-  }
-`
-
-export const ImageDescription = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  & > * {
-    margin-bottom: 8px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-`
-
 export const TagsAndShare = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   grid-area: tags-and-share;
   align-items: baseline;
+  margin-top: 14px;
 
   ${Media.mobile} {
     flex-direction: column;

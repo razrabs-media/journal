@@ -10,4 +10,5 @@ export type Props = {
   shareType: ShareType
   as?: ElementType<any>
   href?: string
+  isShorten?: boolean
 } & ComponentProps<'button'>

@@ -1,18 +1,12 @@
 import styled from '@emotion/styled'
 import Badge from '@razrabs-ui/badge'
-import Image from '@razrabs-ui/image'
-import PostAuthor from '@razrabs-ui/post-author'
 import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
-import { forwardRef, useEffect, useState } from 'react'
-import { DateAgo, ShareButton, ShareType } from 'shared/ui'
+import { FC, useEffect, useState } from 'react'
+import { ShareButton, ShareType } from 'shared/ui'
 import {
   Description,
-  FirstRow,
-  ImageDescription,
-  ImageWrapper,
   PostTextWrapper,
-  SecondRow,
   ShareBlock,
   StyledHeader,
   TagsAndShare,
@@ -35,7 +29,7 @@ DefaultShareButton.defaultProps = {
 }
 
 // Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
-export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
+export const PostHeader: FC<Props> = (props) => {
   const isTabletAndBelow = useIsTabletAndBelow()
   const [href, setHref] = useState('')
   const [canShare, setCanShare] = useState(false)
@@ -58,75 +52,50 @@ export const PostHeader = forwardRef<HTMLDivElement, Props>((props, ref) => {
   }
 
   return (
-    <StyledHeader>
-      <FirstRow open={props.open} ref={ref}>
-        <ImageWrapper open={props.open}>
-          <Image
-            align='center'
-            alt={props.title}
-            fit='cover'
-            itemProp='image'
-            maxH={505}
-            src={props.previewUrl}
-            width='100%'
-          />
+    <StyledHeader ref={props.headerVisibilityRef}>
+      <PostTextWrapper>
+        <Title uppercase as='h1' itemProp='headline name' weight='medium'>
+          {props.title}
+        </Title>
+        <Description color='secondary' itemProp='description' size='xl'>
+          {props.description}
+        </Description>
+      </PostTextWrapper>
 
-          <ImageDescription>
-            <PostAuthor url={props.githubAuthor?.usernameUrl}>
-              {props.githubAuthor?.name}
-            </PostAuthor>
+      <TagsAndShare>
+        <TagsBlock
+          itemScope
+          itemProp='about'
+          itemType='https://schema.org/Thing'
+        >
+          {props.tags?.map((tag) => (
+            <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
+              {tag}
+            </Badge>
+          ))}
+        </TagsBlock>
 
-            <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
-          </ImageDescription>
-        </ImageWrapper>
+        <ShareBlock>
+          {props.commentsButton}
 
-        <PostTextWrapper>
-          <Title uppercase as='h1' itemProp='headline name' weight='medium'>
-            {props.title}
-          </Title>
-
-          <Description color='secondary' itemProp='description' size='xl'>
-            {props.description}
-          </Description>
-        </PostTextWrapper>
-      </FirstRow>
-
-      <SecondRow open={props.open}>
-        <TagsAndShare>
-          <TagsBlock
-            itemScope
-            itemProp='about'
-            itemType='https://schema.org/Thing'
-          >
-            {props.tags?.map((tag) => (
-              <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
-                {tag}
-              </Badge>
-            ))}
-          </TagsBlock>
-
-          <ShareBlock>
-            {props.commentsButton}
-
-            {isTabletAndBelow && canShare ? (
-              <DefaultShareButton onClick={onDefaultShareClick}>
-                Поделиться
-              </DefaultShareButton>
-            ) : (
-              <>
-                <ShareButton
-                  as='a'
-                  href={`https://twitter.com/intent/tweet?url=${href}`}
-                  shareType={ShareType.Twitter}
-                />
-                <ShareButton shareType={ShareType.Url} />
-              </>
-            )}
-          </ShareBlock>
-        </TagsAndShare>
-      </SecondRow>
+          {isTabletAndBelow && canShare ? (
+            <DefaultShareButton onClick={onDefaultShareClick}>
+              Поделиться
+            </DefaultShareButton>
+          ) : (
+            <>
+              <ShareButton
+                as='a'
+                href={`https://twitter.com/intent/tweet?url=${href}`}
+                shareType={ShareType.Twitter}
+              />
+              <ShareButton shareType={ShareType.Url} />
+            </>
+          )}
+        </ShareBlock>
+      </TagsAndShare>
     </StyledHeader>
   )
-})
+}
 
 PostHeader.displayName = 'PostHeader'

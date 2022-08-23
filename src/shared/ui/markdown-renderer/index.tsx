@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Media } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
@@ -24,7 +25,7 @@ const handleCopyButton = async (code: string) => {
   await navigator.clipboard.writeText(code)
 }
 
-const COMPONENTS: Components = {
+const COMPONENTS = (themeName: string): Components => ({
   p: (props) => (
     <Typography {...props} color='primary' lineHeight='140%' size='lg' />
   ),
@@ -104,7 +105,7 @@ const COMPONENTS: Components = {
           }}
           data-lang={match[1]}
           language={match[1]}
-          style={codeTheme}
+          style={codeTheme(themeName)}
           {...propsWithoutNode}
         >
           {codeString}
@@ -117,7 +118,7 @@ const COMPONENTS: Components = {
       </code>
     )
   },
-}
+})
 
 const PLUGINS = [remarkGfm, remarkGemoji, a11yEmoji]
 
@@ -179,10 +180,16 @@ type MarkdownRendererProps = {
 export const MarkdownRenderer: FC<MarkdownRendererProps> = ({
   children,
   className,
-}) => (
-  <StyleWrapper className={className}>
-    <ReactMarkdown components={COMPONENTS} remarkPlugins={PLUGINS}>
-      {children}
-    </ReactMarkdown>
-  </StyleWrapper>
-)
+}) => {
+  const theme = useTheme()
+  return (
+    <StyleWrapper className={className}>
+      <ReactMarkdown
+        components={COMPONENTS(theme.name)}
+        remarkPlugins={PLUGINS}
+      >
+        {children}
+      </ReactMarkdown>
+    </StyleWrapper>
+  )
+}
