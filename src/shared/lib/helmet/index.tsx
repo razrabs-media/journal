@@ -22,14 +22,14 @@ export const Helmet = ({
   const organisationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'DTF',
+    name: 'Разрабы',
     url: 'https://razrabs.ru/',
     logo: 'https://razrabs.ru/images/logo/avatar.png',
     sameAs: [
       'https://facebook.com/razrabs',
       'https://vk.com/rzrbs',
       'https://twitter.com/razraby',
-      'https://t.me/razrabsjobs',
+      'https://t.me/rzrbs',
       'https://www.youtube.com/channel/UC-h5nFU9Qzo72dFW-fC_lkQ',
     ],
   }
