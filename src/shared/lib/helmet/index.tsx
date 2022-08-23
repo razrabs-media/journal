@@ -29,7 +29,7 @@ export const Helmet = ({
       'https://facebook.com/razrabs',
       'https://vk.com/rzrbs',
       'https://twitter.com/razraby',
-      'https://t.me/razrabsjobs',
+      'https://t.me/rzrbs',
       'https://www.youtube.com/channel/UC-h5nFU9Qzo72dFW-fC_lkQ',
     ],
   }
