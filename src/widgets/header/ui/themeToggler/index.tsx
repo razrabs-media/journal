@@ -1,5 +1,6 @@
 import { useTheme } from '@emotion/react'
 import { useIsMobile } from '@razrabs-ui/responsive'
+import { ThemeName } from '@razrabs-ui/theme'
 import { FC } from 'react'
 import { IconButton, ThemeIcon } from 'shared/ui'
 import { Container, Separator, ThemeButton } from './styled'
@@ -16,11 +17,17 @@ export const ThemeToggler: FC<Props> = ({ toggleTheme }) => {
         </IconButton>
       ) : (
         <>
-          <ThemeButton disabled={theme.name === 'light'} onClick={toggleTheme}>
+          <ThemeButton
+            disabled={theme.name === ThemeName.Light}
+            onClick={toggleTheme}
+          >
             День
           </ThemeButton>
           <Separator>/</Separator>
-          <ThemeButton disabled={theme.name === 'dark'} onClick={toggleTheme}>
+          <ThemeButton
+            disabled={theme.name === ThemeName.Dark}
+            onClick={toggleTheme}
+          >
             Ночь
           </ThemeButton>
         </>

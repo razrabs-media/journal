@@ -1,7 +1,12 @@
 // TODO: Разделить объявление темы на несколько типов: Breakpoints, Colors и т.д
+export enum ThemeName {
+  Light = 'light',
+  Dark = 'dark',
+}
+
 declare module '@emotion/react' {
   export interface Theme extends Record<string, unknown> {
-    name: string
+    name: ThemeName
     colors: {
       logo: string
 

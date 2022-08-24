@@ -1,6 +1,7 @@
 import { useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 import { Media } from '@razrabs-ui/responsive'
+import { ThemeName } from '@razrabs-ui/theme'
 import Typography from '@razrabs-ui/typography'
 import { FC } from 'react'
 import ReactMarkdown, { Components } from 'react-markdown'
@@ -25,7 +26,7 @@ const handleCopyButton = async (code: string) => {
   await navigator.clipboard.writeText(code)
 }
 
-const COMPONENTS = (themeName: string): Components => ({
+const COMPONENTS = (themeName: ThemeName): Components => ({
   p: (props) => (
     <Typography {...props} color='primary' lineHeight='140%' size='lg' />
   ),
