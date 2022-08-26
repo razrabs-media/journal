@@ -50,7 +50,7 @@ declare module '@emotion/react' {
 
 export enum ThemeName {
   Light = 'light',
-  Dark = 'darl',
+  Dark = 'dark',
 }
 
 export {}
