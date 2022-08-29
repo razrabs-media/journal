@@ -1,5 +1,5 @@
 import { themeDark } from './dark'
 import { themeLight } from './light'
-import { ThemeName } from './types'
 
-export { themeLight, themeDark, ThemeName }
+export { themeLight, themeDark }
+export type { ThemeName } from './types'

@@ -1,5 +1,4 @@
 import type { Theme } from '@emotion/react'
-import { ThemeName } from '@razrabs-ui/theme'
 
 import { common } from '../common'
 import { FallbackSquare } from './components/FallbackSquare'
@@ -15,7 +14,7 @@ import { FallbackX } from './components/FallbackX'
 //
 // result = { color: { ...someColor }, component: { FallbackSquare: { color: '#1D1D21' } } }
 export const themeLight: Theme = {
-  name: ThemeName.Light,
+  name: 'light',
   colors: {
     logo: '#000',
 

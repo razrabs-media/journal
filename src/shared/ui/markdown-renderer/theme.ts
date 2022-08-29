@@ -27,9 +27,12 @@ enum CodeColorsDark {
 }
 
 const codeColorsTheme = {
-  [ThemeName.Light]: CodeColorsLight,
-  [ThemeName.Dark]: CodeColorsDark,
-} as Record<string, Record<keyof typeof CodeColorsLight, Colors[keyof Colors]>>
+  light: CodeColorsLight,
+  dark: CodeColorsDark,
+} as Record<
+  ThemeName,
+  Record<keyof typeof CodeColorsLight | CodeColorsDark, Colors[keyof Colors]>
+>
 
 export const codeTheme = (themeName: ThemeName) => {
   const colorTheme = codeColorsTheme[themeName]

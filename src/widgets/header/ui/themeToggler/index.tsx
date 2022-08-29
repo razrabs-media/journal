@@ -17,17 +17,11 @@ export const ThemeToggler: FC<Props> = ({ toggleTheme }) => {
         </IconButton>
       ) : (
         <>
-          <ThemeButton
-            disabled={theme.name === ThemeName.Light}
-            onClick={toggleTheme}
-          >
+          <ThemeButton disabled={theme.name === 'light'} onClick={toggleTheme}>
             День
           </ThemeButton>
           <Separator>/</Separator>
-          <ThemeButton
-            disabled={theme.name === ThemeName.Dark}
-            onClick={toggleTheme}
-          >
+          <ThemeButton disabled={theme.name === 'dark'} onClick={toggleTheme}>
             Ночь
           </ThemeButton>
         </>
