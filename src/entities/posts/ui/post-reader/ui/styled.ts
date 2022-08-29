@@ -10,6 +10,9 @@ export const StyledReader = styled.div<{ open: boolean }>`
 
   ${Media.largeDesktopAndBelow} {
     grid-template-areas: '${({ open }) => (open ? 'content' : '. content')}';
+    grid-template-columns: ${({ open }) =>
+      open ? '1fr' : 'minmax(0, 1fr) minmax(0, 2fr)'};
+    grid-gap: ${({ open }) => (open ? 0 : '24px')};
   }
 
   ${Media.tabletAndAbove} {

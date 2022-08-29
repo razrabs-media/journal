@@ -2,18 +2,25 @@ import styled from '@emotion/styled'
 import { Media } from '@razrabs-ui/responsive'
 import Typography from '@razrabs-ui/typography'
 
-export const StyledHeader = styled.aside<{ isShowDataAside: boolean }>`
+export const StyledAside = styled.aside<{
+  isShowDataAside: boolean
+  open: boolean
+}>`
   position: sticky;
   top: 32px;
   transition: opacity 0.5s;
   opacity: ${({ isShowDataAside }) => (isShowDataAside ? '0.3' : '1')};
+
+  ${Media.largeDesktopAndBelow} {
+    display: ${({ open }) => (open ? 'none' : 'block')};
+  }
 
   &:hover {
     opacity: 1;
   }
 `
 
-export const ImageWrapper = styled.div<{ open: boolean }>`
+export const ImageWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -26,7 +33,7 @@ export const ImageWrapper = styled.div<{ open: boolean }>`
   }
 
   ${Media.largeDesktopAndBelow} {
-    display: ${({ open }) => (open ? 'none' : 'flex')};
+    display: flex;
   }
 `
 

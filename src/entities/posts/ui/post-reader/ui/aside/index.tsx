@@ -9,7 +9,7 @@ import {
   ImageDescription,
   ImageWrapper,
   ShareBlock,
-  StyledHeader,
+  StyledAside,
   TagsBlock,
   Title,
 } from './styled'
@@ -35,8 +35,8 @@ export const Aside: FC<Props> = (props) => {
   }, [])
 
   return (
-    <StyledHeader isShowDataAside={props.isShowDataAside}>
-      <ImageWrapper open={props.open}>
+    <StyledAside isShowDataAside={props.isShowDataAside} open={props.open}>
+      <ImageWrapper>
         <Image
           align='center'
           alt={props.title}
@@ -71,17 +71,19 @@ export const Aside: FC<Props> = (props) => {
             </ShareBlock>
           </DateAndShareBlock>
 
-          <TagsBlock
-            itemScope
-            itemProp='about'
-            itemType='https://schema.org/Thing'
-          >
-            {props.tags?.map((tag) => (
-              <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
-                {tag}
-              </Badge>
-            ))}
-          </TagsBlock>
+          {!!props.tags?.length && (
+            <TagsBlock
+              itemScope
+              itemProp='about'
+              itemType='https://schema.org/Thing'
+            >
+              {props.tags?.map((tag) => (
+                <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
+                  {tag}
+                </Badge>
+              ))}
+            </TagsBlock>
+          )}
         </>
       ) : (
         <>
@@ -92,7 +94,7 @@ export const Aside: FC<Props> = (props) => {
           <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
         </>
       )}
-    </StyledHeader>
+    </StyledAside>
   )
 }
 
