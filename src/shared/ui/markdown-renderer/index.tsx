@@ -33,9 +33,9 @@ const COMPONENTS = (themeName: string): Components => ({
     <Typography
       {...props}
       uppercase
-      as='h2'
+      as='h1'
       color='primary'
-      size='xl'
+      size='2xl'
       weight='medium'
     />
   ),
@@ -53,9 +53,9 @@ const COMPONENTS = (themeName: string): Components => ({
     <Typography
       {...props}
       uppercase
-      as='h2'
+      as='h3'
       color='primary'
-      size='xl'
+      size='lg'
       weight='medium'
     />
   ),
@@ -63,9 +63,9 @@ const COMPONENTS = (themeName: string): Components => ({
     <Typography
       {...props}
       uppercase
-      as='h2'
+      as='h4'
       color='primary'
-      size='xl'
+      size='md'
       weight='medium'
     />
   ),
@@ -73,9 +73,9 @@ const COMPONENTS = (themeName: string): Components => ({
     <Typography
       {...props}
       uppercase
-      as='h2'
+      as='h5'
       color='primary'
-      size='xl'
+      size='sm'
       weight='medium'
     />
   ),
@@ -83,9 +83,9 @@ const COMPONENTS = (themeName: string): Components => ({
     <Typography
       {...props}
       uppercase
-      as='h2'
+      as='h6'
       color='primary'
-      size='xl'
+      size='xs'
       weight='medium'
     />
   ),
@@ -140,8 +140,28 @@ const StyleWrapper = styled.div`
     margin: 24px 0;
   }
 
+  h1 {
+    margin-top: 64px;
+  }
+
   h2 {
     margin-top: 64px;
+  }
+
+  h3 {
+    margin-top: 48px;
+  }
+
+  h4 {
+    margin-top: 32px;
+  }
+
+  h5 {
+    margin-top: 24px;
+  }
+
+  h6 {
+    margin-top: 12px;
   }
 
   //TODO parse image to figcaption
