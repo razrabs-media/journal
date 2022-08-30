@@ -25,7 +25,6 @@ const Post: NextPage<Props> = ({ post }) => {
     setPostUid(post.uid)
   }, [setPostUid, post.uid])
 
-  console.log(tagNames)
   return (
     <article itemScope itemType='https://schema.org/Article'>
       <Helmet
