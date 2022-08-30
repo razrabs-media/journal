@@ -11,9 +11,9 @@ export const useTheme = (
   )
 
   const toggleTheme = () => {
-    const choosenTheme = theme.name === 'light' ? themeDark : themeLight
-    setCookies('theme', choosenTheme.name)
-    setTheme(choosenTheme)
+    const chosenTheme = theme.name === 'light' ? themeDark : themeLight
+    setCookies('theme', chosenTheme.name)
+    setTheme(chosenTheme)
   }
 
   return [theme, toggleTheme]

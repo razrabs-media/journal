@@ -12,7 +12,6 @@ module.exports = withPWA({
     dest: 'public',
     runtimeCaching,
   },
-  ignoreDevErrors: false,
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {
       config.plugins.push(new ForkTsCheckerWebpackPlugin())

@@ -13,10 +13,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     query: GetFeedsQuery,
   })
 
-  const feedUIDs = feeds.map(({ uid }) => uid)
+  const feedUIDs = feeds.map(({ uid }: { uid: string }) => uid)
 
   return getServerSideSitemapIndex(ctx, [
-    ...feedUIDs.map((uid) => `${host}/feeds/${uid}/sitemap.xml`),
+    ...feedUIDs.map((uid: string) => `${host}/feeds/${uid}/sitemap.xml`),
   ])
 }
 
