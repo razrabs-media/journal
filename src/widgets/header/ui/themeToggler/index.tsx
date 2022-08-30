@@ -1,6 +1,5 @@
 import { useTheme } from '@emotion/react'
 import { useIsMobile } from '@razrabs-ui/responsive'
-import { ThemeName } from '@razrabs-ui/theme'
 import { FC } from 'react'
 import { IconButton, ThemeIcon } from 'shared/ui'
 import { Container, Separator, ThemeButton } from './styled'
