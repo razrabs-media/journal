@@ -1,4 +1,4 @@
-schema: ${NEXT_PUBLIC_API_GATEWAY}/gql
+schema: ${API_GATEWAY}/gql
 generates:
   ./schema.graphql:
     plugins:

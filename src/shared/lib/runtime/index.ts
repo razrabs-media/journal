@@ -1,0 +1,1 @@
+export { getRuntime } from './getRuntime'

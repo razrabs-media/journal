@@ -4,7 +4,6 @@ import { getCookie } from 'cookies-next'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import withYM from 'next-ym'
-import getConfig from 'next/config'
 import Head from 'next/head'
 import Router from 'next/router'
 import { memo } from 'react'
@@ -14,12 +13,10 @@ import { Header } from 'widgets/header'
 import { useTheme } from 'widgets/header/ui/themeToggler/handler'
 import { CommentsProvider } from 'entities/comments'
 import { initializeApollo, useApollo } from 'shared/api'
-import { getContextMedia, withMediaProvider } from 'shared/lib'
+import { getContextMedia, getRuntime, withMediaProvider } from 'shared/lib'
 import { body, FONT_FACE, Footer, globalStyles } from 'shared/ui'
 import { CurrentTime, CurrentTimeQuery } from '../entities/clock'
 import { Layout } from '../entities/layout'
-
-const { publicRuntimeConfig, serverRuntimeConfig } = getConfig()
 
 const _App = memo(({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo()
@@ -64,10 +61,8 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
 
 _App.displayName = 'App'
 
-const isServerSide = typeof window === 'undefined'
-const { YM_CODE, YM_ENABLE } = isServerSide
-  ? serverRuntimeConfig
-  : publicRuntimeConfig
+const YM_CODE = getRuntime('YM_CODE')
+const YM_ENABLE = getRuntime('YM_ENABLE')
 
 const AppYM = YM_ENABLE ? withYM(YM_CODE, Router)(_App) : _App
 
