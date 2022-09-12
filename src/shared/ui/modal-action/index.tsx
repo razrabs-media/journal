@@ -11,12 +11,7 @@ export const ModalAction: FC<Props> = ({
   children,
   className,
 }) => (
-  <Action
-    as='a'
-    className={className}
-    tabIndex={open ? 0 : -1}
-    onClick={onClick}
-  >
+  <Action className={className} tabIndex={open ? 0 : -1} onClick={onClick}>
     <Typography uppercase size='sm'>
       {children}
     </Typography>
