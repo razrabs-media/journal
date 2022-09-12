@@ -9,6 +9,7 @@ export const Helmet = ({
   description,
   image,
   keywords,
+  children,
 }: HelmetProps) => {
   const router = useRouter()
   const { asPath: path } = router
@@ -138,6 +139,9 @@ export const Helmet = ({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organisationSchema) }}
         type='application/ld+json'
       />
+
+      {/* Custom tags in head */}
+      {children}
     </Head>
   )
 }
@@ -145,7 +149,7 @@ export const Helmet = ({
 Helmet.defaultProps = {
   title: 'Разрабы',
   description: 'Медиа для разработчиков',
-  image: '/public/images/logo/avatar.png',
+  image: '/images/logo/avatar.png',
   keywords:
     'разрабы, медиа, для разработчиков, для программистов, разработка, программирование',
 }

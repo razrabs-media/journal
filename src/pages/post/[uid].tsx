@@ -32,7 +32,13 @@ const Post: NextPage<Props> = ({ post }) => {
         image={post.previewUrl ?? undefined}
         keywords={tagNames?.join(',')}
         title={post.title}
-      />
+      >
+        <meta
+          content={post.githubAuthor?.name || 'Сообщество'}
+          property='og:article:author:username'
+        />
+        <meta content={post.createdAt} property='og:article:published_time' />
+      </Helmet>
 
       <PostReader
         {...post}
@@ -58,13 +64,15 @@ export const getServerSideProps: GetServerSideProps<{
 
   const apolloClient = initializeApollo()
 
-  const { data } = await apolloClient.query<GetPost, GetPostVariables>({
+  const {
+    data: { post },
+  } = await apolloClient.query<GetPost, GetPostVariables>({
     query: GetPostQuery,
     variables: { uid: uid?.toString() ?? '' },
   })
 
   return {
-    props: { post: data.post, commentId },
+    props: { post, commentId },
   }
 }
 

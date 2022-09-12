@@ -141,7 +141,7 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
               author={comment.author.name}
               avatar={comment.author.avatarUrl}
               content={comment.content}
-              ref={(el) => {
+              ref={(el: CommentForwardedRef) => {
                 if (!commentsRefs.current[comment.uid]) {
                   commentsRefs.current[comment.uid] = el
                 }

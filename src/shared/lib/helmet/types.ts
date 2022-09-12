@@ -3,4 +3,5 @@ export type HelmetProps = Partial<{
   description?: string
   image?: string
   keywords?: string
+  children?: JSX.Element | JSX.Element[] | null
 }>
