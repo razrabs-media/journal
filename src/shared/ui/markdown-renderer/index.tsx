@@ -5,12 +5,16 @@ import { ThemeName } from '@razrabs-ui/theme'
 import Typography from '@razrabs-ui/typography'
 import { FC } from 'react'
 import ReactMarkdown, { Components } from 'react-markdown'
+import ReactPlayer from 'react-player/lazy'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import remarkGemoji from 'remark-gemoji'
 import remarkGfm from 'remark-gfm'
 import { CopyButton } from 'shared/ui'
 import a11yEmoji from './remark-emoji'
 import { codeTheme } from './theme'
+
+const MATCH_URL_YOUTUBE =
+  /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\/|watch\?v=|watch\?.+&v=|shorts\/))((\w|-){11})|youtube\.com\/playlist\?list=|youtube\.com\/user\//
 
 const CodeWrapper = styled.div`
   position: relative;
@@ -90,6 +94,20 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
       weight='medium'
     />
   ),
+  a: (props) => {
+    const propsWithoutNode = { ...props, node: undefined }
+    if (props.children[0] === 'oembed') {
+      if (MATCH_URL_YOUTUBE.test(props.href || ''))
+        return <ReactPlayer controls light pip url={props.href} />
+    }
+    return (
+      <a
+        {...propsWithoutNode}
+        rel='noopener noreferrer nofollow'
+        target='_blank'
+      />
+    )
+  },
   code: ({ inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || '')
     const codeString = String(children).replace(/\n$/, '')
