@@ -32,6 +32,7 @@ DefaultShareButton.defaultProps = {
 export const PostHeader: FC<Props> = (props) => {
   const isTabletAndBelow = useIsTabletAndBelow()
   const [href, setHref] = useState('')
+  const [canShare, setCanShare] = useState(false)
 
   useEffect(() => {
     if (typeof window === undefined) {
@@ -39,6 +40,7 @@ export const PostHeader: FC<Props> = (props) => {
     }
 
     setHref(window.location.href)
+    setCanShare(!!navigator.canShare)
   }, [])
 
   const onDefaultShareClick = () => {
@@ -76,7 +78,7 @@ export const PostHeader: FC<Props> = (props) => {
         <ShareBlock>
           {props.commentsButton}
 
-          {isTabletAndBelow ? (
+          {isTabletAndBelow && canShare ? (
             <DefaultShareButton onClick={onDefaultShareClick}>
               Поделиться
             </DefaultShareButton>
