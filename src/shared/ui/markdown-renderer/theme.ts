@@ -1,3 +1,5 @@
+import { ThemeName } from '@razrabs-ui/theme'
+
 enum Colors {
   white = '#E2E2E8',
   black = '#2D2D2D',
@@ -27,9 +29,12 @@ enum CodeColorsDark {
 const codeColorsTheme = {
   light: CodeColorsLight,
   dark: CodeColorsDark,
-} as Record<string, Record<keyof typeof CodeColorsLight, Colors[keyof Colors]>>
+} as Record<
+  ThemeName,
+  Record<keyof typeof CodeColorsLight | CodeColorsDark, Colors[keyof Colors]>
+>
 
-export const codeTheme = (themeName: string) => {
+export const codeTheme = (themeName: ThemeName) => {
   const colorTheme = codeColorsTheme[themeName]
   return {
     'code[class*="language-"]': {
