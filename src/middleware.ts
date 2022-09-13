@@ -16,9 +16,6 @@ const rewrites = [
   },
 ] as const
 
-export const config = {
-  matcher: rewrites.map(({ source }) => source),
-}
 
 export function middleware(request: NextRequest) {
   const rewrite = rewrites.find(({ source }) =>
