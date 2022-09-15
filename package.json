@@ -67,7 +67,7 @@
     "@graphql-codegen/typescript-react-apollo": "3.3.3",
     "@types/body-scroll-lock": "3.1.0",
     "@types/node": "18.7.16",
-    "@types/react": "18.0.17",
+    "@types/react": "18.0.20",
     "@types/react-syntax-highlighter": "13.5.2",
     "@types/ua-parser-js": "0.7.36",
     "@typescript-eslint/eslint-plugin": "5.32.0",
