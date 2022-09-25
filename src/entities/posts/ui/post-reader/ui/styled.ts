@@ -8,6 +8,12 @@ export const StyledReader = styled.div<{ open: boolean }>`
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   grid-gap: 24px;
 
+  a {
+    display: inline-block;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
   ${Media.largeDesktopAndBelow} {
     grid-template-areas: '${({ open }) => (open ? 'content' : '. content')}';
   }
@@ -20,6 +26,10 @@ export const StyledReader = styled.div<{ open: boolean }>`
     grid-template-columns: 1fr;
     grid-template-rows: auto;
     grid-template-areas: 'content';
+
+    a {
+      max-width: 90vw;
+    }
   }
 `
 
