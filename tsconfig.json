@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
+    "useDefineForClassFields": true,
     "target": "es5",
     "lib": [
       "dom",
@@ -25,13 +26,11 @@
   },
   "include": [
     "next-env.d.ts",
+    "emotion.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.d.ts"
   ],
-  "references": [{
-    "path": "packages/**"
-  }],
   "exclude": [
     "node_modules"
   ]

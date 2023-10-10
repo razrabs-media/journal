@@ -5,10 +5,22 @@ export const Tag = styled.span<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Styrene B LC, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:
+    Styrene B LC,
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
   padding: 6px 8px;
-  height: 24px;
+  /* height: 24px; */
+  max-height: 24px;
   border: 0;
   outline: none;
   cursor: ${({ onClick, disabled }) => {

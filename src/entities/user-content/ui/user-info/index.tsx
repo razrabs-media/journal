@@ -1,11 +1,11 @@
-import { useIsMobile } from '@razrabs-ui/responsive'
-import Typography from '@razrabs-ui/typography'
 import { format, formatDistanceToNow } from 'date-fns'
-import { zonedTimeToUtc } from 'date-fns-tz'
 import { ru } from 'date-fns/locale'
+import { zonedTimeToUtc } from 'date-fns-tz'
 import { FC } from 'react'
 import { pluralize } from 'shared/lib'
+import { Typography } from 'shared/ui'
 import { Flex } from 'shared/ui'
+import { useIsMobile } from 'shared/ui/theme/responsive'
 import { Props } from './types'
 
 export const UserInfo: FC<Props> = ({ date, postsCount, commentsCount }) => {

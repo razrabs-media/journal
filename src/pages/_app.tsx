@@ -1,11 +1,12 @@
 import { ApolloProvider } from '@apollo/client'
 import { Global, ThemeProvider } from '@emotion/react'
+import { createTheme, ThemeProvider as MUIThemeProvider } from '@mui/system'
 import { getCookie } from 'cookies-next'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import withYM from 'next-ym'
 import Head from 'next/head'
 import Router from 'next/router'
+import withYM from 'next-ym'
 import { memo } from 'react'
 import NextApp, { AppContext, AppProps } from 'next/app'
 import { CommentsWidget } from 'widgets/comments'
@@ -18,16 +19,85 @@ import { body, FONT_FACE, Footer, globalStyles } from 'shared/ui'
 import { CurrentTime, CurrentTimeQuery } from '../entities/clock'
 import { Layout } from '../entities/layout'
 
+const breakpoints = {
+  xs: '0',
+  sm: '672px',
+  md: '1000px',
+  lg: '1320px',
+  xl: '1920px',
+  values: {
+    xs: 0,
+    sm: 672,
+    md: 1000,
+    lg: 1320,
+    xl: 1920,
+  } as const,
+}
+
+const typography = {
+  htmlFontSize: 16,
+  fontWeightRegular: 400,
+  fontWeightMedium: 500,
+  fontWeightBold: 700,
+  h2: {
+    fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
+    fontSize: '32px',
+    fontWeight: 500,
+    lineHeight: 1.2,
+  },
+  h3: {
+    fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
+    fontSize: '24px',
+    fontWeight: 500,
+    lineHeight: 1.2,
+  },
+  h5: {
+    fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
+    fontSize: '16px',
+    fontWeight: 500,
+    lineHeight: 1.2,
+  },
+  subtitle1: {
+    fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
+    fontSize: '24px',
+    fontWeight: 400,
+    lineHeight: 1.2,
+  },
+  body2: {
+    fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
+    fontSize: '16px',
+    fontWeight: 400,
+    lineHeight: 1.2,
+  },
+  caption1: {
+    fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
+    fontSize: '12px',
+    fontWeight: 400,
+    lineHeight: 1.2,
+  },
+  caption2: {
+    fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
+    fontSize: '10px',
+    fontWeight: 400,
+    lineHeight: 1.2,
+  },
+}
+
 const _App = memo(({ Component, pageProps }: AppProps) => {
   const apolloClient = useApollo()
   const [theme, toggleTheme] = useTheme(pageProps.theme)
+  const muiSystemThemeForGrid = createTheme({
+    breakpoints,
+    components: theme.components,
+    typography,
+  })
 
   return (
     <>
       {/* https://nextjs.org/docs/messages/no-document-viewport-meta */}
       <Head>
         <meta
-          content='width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0'
+          content='width=device-width, height=device-height, initial-scale=1'
           name='viewport'
         />
         <meta charSet='utf-8' />
@@ -36,24 +106,26 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
         <Global styles={body(theme)} />
         <Global styles={FONT_FACE} />
         <Global styles={globalStyles(theme)} />
-        <ApolloProvider client={apolloClient}>
-          <CommentsProvider>
-            <Layout
-              drawerContent={
-                <CommentsWidget postTitle={pageProps.post?.title} />
-              }
-            >
-              <Header
-                currentTime={pageProps.currentTime}
-                toggleTheme={toggleTheme}
-              />
+        <MUIThemeProvider theme={muiSystemThemeForGrid}>
+          <ApolloProvider client={apolloClient}>
+            <CommentsProvider>
+              <Layout
+                drawerContent={
+                  <CommentsWidget postTitle={pageProps.post?.title} />
+                }
+              >
+                <Header
+                  currentTime={pageProps.currentTime}
+                  toggleTheme={toggleTheme}
+                />
 
-              <Component {...pageProps} />
+                <Component {...pageProps} />
 
-              <Footer />
-            </Layout>
-          </CommentsProvider>
-        </ApolloProvider>
+                <Footer />
+              </Layout>
+            </CommentsProvider>
+          </ApolloProvider>
+        </MUIThemeProvider>
       </ThemeProvider>
     </>
   )

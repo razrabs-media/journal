@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import Typography from '@razrabs-ui/typography'
+import { Typography } from 'shared/ui'
 import { GridArea, IconButton } from 'shared/ui'
 
 export const StyledReplyPreview = styled.div`

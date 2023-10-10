@@ -5,6 +5,7 @@ module.exports = {
       jsx: true,
     },
   },
+  plugins: ["@emotion"],
   settings: {
     react: {
       version: 'detect',

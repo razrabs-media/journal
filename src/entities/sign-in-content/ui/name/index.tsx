@@ -1,5 +1,5 @@
-import Typography from '@razrabs-ui/typography'
 import { FC } from 'react'
+import { Typography } from 'shared/ui'
 import { NameWrapper } from './styles'
 import { Props } from './types'
 

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
-import { Media } from '@razrabs-ui/responsive'
-import Typography from '@razrabs-ui/typography'
+import { Typography } from 'shared/ui'
+import { MediaScreen } from 'shared/ui/theme/responsive'
 
 export const StyledHeader = styled.aside<{ isShowDataAside: boolean }>`
   position: sticky;
@@ -25,7 +25,7 @@ export const ImageWrapper = styled.div<{ open: boolean }>`
     }
   }
 
-  ${Media.largeDesktopAndBelow} {
+  ${MediaScreen.largeDesktopAndBelow} {
     display: ${({ open }) => (open ? 'none' : 'flex')};
   }
 `
@@ -35,7 +35,7 @@ export const Title = styled(Typography)`
   letter-spacing: inherit;
   padding-bottom: 12px;
 
-  ${Media.mobile} {
+  ${MediaScreen.mobile} {
     font-size: 24px;
   }
 `
@@ -67,7 +67,7 @@ export const ShareBlock = styled.div`
     }
   }
 
-  ${Media.mobile} {
+  ${MediaScreen.mobile} {
     width: 100%;
     justify-content: space-evenly;
     height: 52px;

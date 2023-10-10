@@ -374,11 +374,13 @@ input PositionInput {
 
 type Post {
   comments: [CommentItem!]
+  commentsCount: Float
   content: String!
   createdAt: Date!
   description: String!
   frontPages: [FrontPageItem!]!
   githubAuthor: GithubAuthor
+  githubFilename: String
   interactions: PostInteractions!
   previewUrl: String
   readingTime: Int
@@ -498,6 +500,7 @@ type Query {
   priority(uid: UID!): Priority!
   profile(uid: UID!): Profile!
   profiles: [ProfileItem!]!
+  recommendation(count: Float, type: String!, uid: UID!): [Post!]!
   sharedFrontPage(uid: UID!): FrontPage
   tags: [TagItem!]!
   user(uid: UID!): User!
@@ -529,9 +532,11 @@ input SignInInput {
 }
 
 type SimplePost {
+  commentsCount: Float
   content: String!
   createdAt: Date!
   description: String!
+  githubFilename: String
   previewUrl: String
   readingTime: Int
   status: String!
@@ -621,6 +626,7 @@ input UpdateFrontPageInput {
 input UpdatePostInput {
   content: String
   description: String
+  githubAuthorUid: String
   previewUrl: String
   tagUids: [UID!]
   title: String

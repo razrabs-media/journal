@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import { getServerSideSitemapIndex } from 'next-sitemap'
+import { getServerSideSitemapIndexLegacy } from 'next-sitemap'
 import { GetFeeds, GetFeedsQuery } from 'features/feeds'
 import { initializeApollo } from 'shared/api'
 import { getRuntime } from 'shared/lib'
@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const feedUIDs = feeds.map(({ uid }: { uid: string }) => uid)
 
-  return getServerSideSitemapIndex(ctx, [
+  return getServerSideSitemapIndexLegacy(ctx, [
     ...feedUIDs.map((uid: string) => `${host}/feeds/${uid}/sitemap.xml`),
   ])
 }

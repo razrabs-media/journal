@@ -8,6 +8,7 @@ export const StyledHeader = styled.header`
   border-bottom: 1px solid ${({ theme }) => theme.colors.logo};
 
   height: 54px;
+  overflow-wrap: initial;
   box-sizing: border-box;
 `
 

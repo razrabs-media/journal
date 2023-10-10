@@ -1,5 +1,4 @@
 import type { GetServerSideProps, NextPage } from 'next'
-import Link from 'next/link'
 import { FeedSelector, GetFeeds, GetFeedsQuery } from 'features/feeds'
 import {
   CurrentFrontPage,
@@ -33,16 +32,15 @@ const HomePage: NextPage<Props> = ({ frontPage, feeds }) => (
           },
           post,
         }) => (
-          <Link key={uid} passHref href={`/post/${post.uid}`}>
-            <FrontPageItem
-              h={h}
-              postProps={post}
-              variant={name}
-              w={w}
-              x={x}
-              y={y}
-            />
-          </Link>
+          <FrontPageItem
+            key={post.uid}
+            h={h}
+            postProps={post}
+            variant={name}
+            w={w}
+            x={x}
+            y={y}
+          />
         ),
       )}
     </FrontPageGrid>

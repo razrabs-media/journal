@@ -1,6 +1,6 @@
-import Typography from '@razrabs-ui/typography'
 import Link from 'next/link'
 import { FC } from 'react'
+import { Typography } from 'shared/ui'
 import { useResizeWidth } from './hooks'
 import {
   Content,
@@ -45,17 +45,16 @@ export const Footer: FC = () => {
         </Copyright>
         <Menu>
           <StyledNav>
-            <Link passHref href='/post/3c6bcea4-c34a-4650-907a-bca8dd72a310'>
-              <Typography
-                uppercase
-                as='a'
-                letterSpacing='1px'
-                size='sm'
-                weight='medium'
-              >
-                О нас
-              </Typography>
-            </Link>
+            <Typography
+              uppercase
+              as={Link}
+              href='/post/3c6bcea4-c34a-4650-907a-bca8dd72a310'
+              letterSpacing='1px'
+              size='sm'
+              weight='medium'
+            >
+              О нас
+            </Typography>
             <Typography
               uppercase
               as='a'

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled'
-import Badge from '@razrabs-ui/badge'
-import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
-import Typography from '@razrabs-ui/typography'
 import { FC, useEffect, useState } from 'react'
+import { Badge } from 'shared/ui'
+import { Typography } from 'shared/ui'
 import { ShareButton, ShareType } from 'shared/ui'
+import { useIsTabletAndBelow } from 'shared/ui/theme/responsive'
 import {
   Description,
   PostTextWrapper,
@@ -35,7 +35,7 @@ export const PostHeader: FC<Props> = (props) => {
   const [canShare, setCanShare] = useState(false)
 
   useEffect(() => {
-    if (typeof window === undefined) {
+    if (typeof window === 'undefined') {
       return
     }
 

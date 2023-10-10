@@ -1,4 +1,4 @@
-import { themeDark, themeLight } from '@razrabs-ui/theme'
+import { themeDark, themeLight } from 'shared/ui/theme'
 
 export const accountBadgeColorByTheme: Record<string, string> = {
   [themeDark.name]: themeDark.colors.contrastPrimary,

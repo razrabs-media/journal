@@ -4,8 +4,11 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
 
-module.exports = withPWA({
+module.exports = {
   reactStrictMode: true,
+  images: {
+    domains: ['raw.githubusercontent.com', 'github.com'],
+  },
   pwa: {
     disable: process.env.NODE_ENV === 'development',
     register: true,
@@ -37,4 +40,4 @@ module.exports = withPWA({
     YM_ENABLE: process.env.NEXT_PUBLIC_YANDEX_METRICS_ENABLED,
     YM_CODE: process.env.NEXT_PUBLIC_YANDEX_METRICS_CODE,
   },
-})
+}

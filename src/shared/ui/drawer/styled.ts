@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Media } from '@razrabs-ui/responsive'
+import { MediaScreen } from 'shared/ui/theme/responsive'
 import { Props } from './types'
 
 export const DrawerArea = styled.div`
@@ -17,7 +17,7 @@ export const DrawerBlock = styled.div<Props>`
   z-index: 100;
   display: ${({ open }) => (open ? 'flex' : 'none')};
 
-  ${Media.tabletAndBelow} {
+  ${MediaScreen.tabletAndBelow} {
     width: 100% !important;
   }
 `

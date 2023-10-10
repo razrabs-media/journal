@@ -17,7 +17,7 @@ const rewrites = [
 ] as const
 
 export const config = {
-  matcher: rewrites.map(({ source }) => source),
+  matcher: ['/api', '/auth/github/callback', '/auth/github'],
 }
 
 export function middleware(request: NextRequest) {

@@ -1,0 +1,7 @@
+query PostsByRecommendation($uid: UID!, $type: String!, $count: Float) {
+  recommendation(uid: $uid, type: $type, count: $count) {
+    previewUrl
+    title
+    uid
+  }
+}

@@ -6,8 +6,8 @@ import {
   parseISO,
   subDays,
 } from 'date-fns'
-import { zonedTimeToUtc } from 'date-fns-tz'
 import { ru } from 'date-fns/locale'
+import { zonedTimeToUtc } from 'date-fns-tz'
 
 type Options = {
   distance?: number

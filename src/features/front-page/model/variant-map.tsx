@@ -1,6 +1,5 @@
-import { PostCard, PostOutlineCard, PostRow } from '@razrabs-ui/posts'
-import { PostProps } from '@razrabs-ui/posts/src/types'
 import { FC } from 'react'
+import { PostCard, PostOutlineCard, PostProps, PostRow } from 'entities/posts'
 
 export enum CardVariant {
   Point = 'point',

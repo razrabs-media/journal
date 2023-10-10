@@ -1,5 +1,5 @@
 import { GetServerSideProps } from 'next'
-import { getServerSideSitemap } from 'next-sitemap'
+import { getServerSideSitemapLegacy } from 'next-sitemap'
 import { PostsByFeed, PostsByFeedQuery } from 'entities/posts'
 import { initializeApollo } from 'shared/api'
 import { getRuntime } from 'shared/lib'
@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     query: PostsByFeedQuery,
   })
 
-  return getServerSideSitemap(ctx, [
+  return getServerSideSitemapLegacy(ctx, [
     { loc: `${host}/feeds/${currentFeedUid}` },
     ...allPosts.map(({ uid }) => ({ loc: `${host}/post/${uid}` })),
   ])

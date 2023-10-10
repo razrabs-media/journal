@@ -1,4 +1,4 @@
-import { PostProps, PostType } from '@razrabs-ui/posts'
+import { PostProps, PostType } from 'entities/posts'
 import { PostOnFrontPage } from 'shared/api'
 import { parseDate } from 'shared/lib/parse-date'
 
