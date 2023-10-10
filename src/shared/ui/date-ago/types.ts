@@ -1,4 +1,4 @@
-import { TypographyProps } from '@razrabs-ui/typography'
+import { TypographyProps } from 'shared/ui/typography'
 
 export type Props = {
   date: string

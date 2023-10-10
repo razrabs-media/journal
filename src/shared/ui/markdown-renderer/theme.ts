@@ -1,4 +1,4 @@
-import { ThemeName } from '@razrabs-ui/theme'
+import { ThemeName } from 'shared/ui/theme'
 
 enum Colors {
   white = '#E2E2E8',
@@ -187,5 +187,5 @@ export const codeTheme = (themeName: ThemeName) => {
     inserted: {
       color: Colors.green,
     },
-  }
+  } as const
 }

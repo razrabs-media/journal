@@ -1,5 +1,3 @@
-import Comment, { CommentForwardedRef } from '@razrabs-ui/comments'
-import { useIsTabletAndBelow } from '@razrabs-ui/responsive'
 import { useRouter } from 'next/router'
 import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
@@ -12,6 +10,8 @@ import {
 } from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
 import { CrossIcon, IconButton } from 'shared/ui'
+import { useIsTabletAndBelow } from 'shared/ui/theme/responsive'
+import Comment, { CommentForwardedRef } from './comment'
 import { CommentsEmpty } from './comments-empty'
 import { CommentsWrapper } from './comments-wrapper'
 import { CommentData, CommentInput } from './input'
@@ -113,6 +113,7 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
     }
   }, [newCommentUid, comments, onScrollToComment])
 
+  console.log(comments)
   return (
     <CommentsWrapper
       animationIn={animationIn}

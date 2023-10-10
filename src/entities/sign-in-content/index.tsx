@@ -1,5 +1,5 @@
-import Typography from '@razrabs-ui/typography'
 import { ReactNode } from 'react'
+import { Typography } from 'shared/ui'
 import { ModalContent } from 'shared/ui'
 
 export const SignInContent: ReactNode = (

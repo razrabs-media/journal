@@ -1,8 +1,8 @@
-import Image from '@razrabs-ui/image'
 import type { ChangeEvent, FC, KeyboardEvent } from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { ReplyPreview } from 'widgets/comments/ui/reply-preview'
 import { useContextComments } from 'entities/comments'
+import { Image } from 'shared/ui'
 import {
   Input,
   StyledCommentInput,
@@ -106,7 +106,14 @@ export const CommentInput: FC<Props> = ({
       )}
 
       <StyledCommentInput>
-        <Image alt='Юзер' fit='fill' h={40} src={avatarUrl} w={40} />
+        <Image
+          alt='Юзер'
+          fit='fill'
+          h={40}
+          loadingSize='micro'
+          src={avatarUrl}
+          w={40}
+        />
         <Input
           placeholder='Написать... (макс. 255 символов)'
           ref={textareaRef}

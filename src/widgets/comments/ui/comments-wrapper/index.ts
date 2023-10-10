@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Media } from '@razrabs-ui/responsive'
+import { MediaScreen } from 'shared/ui/theme/responsive'
 import { commentsWidgetBackgroundByTheme } from '../styled'
 import { Props } from './types'
 
@@ -16,7 +16,7 @@ export const CommentsWrapper = styled.div<Props>`
 
   background: ${({ theme }) => commentsWidgetBackgroundByTheme[theme.name]};
 
-  ${Media.desktopAndAbove} {
+  ${MediaScreen.desktopAndAbove} {
     border-left: 1px solid ${({ theme }) => theme.colors.contrastPrimary};
   }
 `

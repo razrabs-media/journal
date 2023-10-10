@@ -17,3 +17,9 @@ declare module '*.gql' {
 
   export default content
 }
+
+declare module 'next-ym' {
+  const withYM: any
+
+  export default withYM
+}

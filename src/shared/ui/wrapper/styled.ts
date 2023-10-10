@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Media } from '@razrabs-ui/responsive'
+import { MediaScreen } from 'shared/ui/theme/responsive'
 import { Props } from './types'
 
 export const Wrapper = styled.div<Props>`
@@ -10,7 +10,7 @@ export const Wrapper = styled.div<Props>`
     minmax(auto, 624px) minmax(auto, 624px) minmax(auto, 624px)
     minmax(24px, auto) ${({ open }) => (open ? 'minmax(auto, 624px)' : 0)};
 
-  ${Media.largeDesktopAndBelow} {
+  ${MediaScreen.largeDesktopAndBelow} {
     grid-template:
       '. main . drawer' 1fr /
       24px
@@ -19,7 +19,7 @@ export const Wrapper = styled.div<Props>`
       calc((100% - 48px) * ${({ open }) => (open ? 1 / 3.0 : 0)});
   }
 
-  ${Media.mobile} {
+  ${MediaScreen.mobile} {
     grid-template:
       '. . ${({ open }) => `main `.repeat(open ? 2 : 3)} . drawer' 1fr /
       minmax(0, calc((100% - 1920px) / 2)) 10px

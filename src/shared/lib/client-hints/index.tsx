@@ -1,4 +1,4 @@
-import { getCookie, setCookies } from 'cookies-next'
+import { getCookie, setCookie } from 'cookies-next'
 import { NextPageContext } from 'next'
 import { useEffect, useState } from 'react'
 import { Context as ResponsiveContext } from 'react-responsive'
@@ -56,7 +56,7 @@ export function withMediaProvider(App: (props: _AppProps) => JSX.Element) {
         width: window.screen.width,
       }
 
-      setCookies(COOKIE_NAME_MEDIA_INFO, JSON.stringify(mediaInfo))
+      setCookie(COOKIE_NAME_MEDIA_INFO, JSON.stringify(mediaInfo))
     }, [])
 
     return hydrated ? (

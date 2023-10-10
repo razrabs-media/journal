@@ -1,4 +1,4 @@
-import Typography from '@razrabs-ui/typography'
+import { Typography } from 'shared/ui'
 import { StyledEmptyComments } from './styled'
 
 export const CommentsEmpty = () => (

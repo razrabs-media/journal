@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
-import Badge from '@razrabs-ui/badge'
-import { Media } from '@razrabs-ui/responsive'
+import { Badge } from 'shared/ui'
+import { MediaScreen } from 'shared/ui/theme/responsive'
 
 export const FeedsContainer = styled.nav`
   display: flex;
@@ -18,22 +18,29 @@ export const FeedsContainer = styled.nav`
     }
   }
 
-  margin-bottom: 64px;
+  margin-bottom: 46px;
 
   // Для мобильных сетка 1 колонка
-  ${Media.mobile} {
-    margin-bottom: 20px;
+  ${MediaScreen.mobile} {
+    margin-bottom: 0;
   }
 `
 
-export const FeedBadge = styled(Badge)<{ active?: boolean }>`
-  font-weight: 500;
+export const FeedBadge = styled(Badge, {
+  shouldForwardProp: (prop) => prop !== 'active',
+})<{ active?: boolean }>`
+  font-weight: 400;
 
   ${({ theme, active }) => {
     if (active) {
       return css`
-        color: ${theme.colors.contrastPrimary};
-        background-color: ${theme.colors.primary};
+        font-weight: 500;
+        color: ${theme.colors.primary};
+        background-color: ${theme.colors.backgroundSecondary};
+        &:hover {
+          color: ${theme.colors.primary};
+          background-color: ${theme.colors.backgroundSecondary};
+        }
       `
     }
 

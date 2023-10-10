@@ -14,7 +14,7 @@ const getData = (code?: number) => {
     case 500:
     default:
       output = {
-        title: 'Даже Фил не знает, что случилось.',
+        title: 'Никто не знает, что случилось.',
         linkText: 'Обновить страницу',
         linkUrl: '',
       }

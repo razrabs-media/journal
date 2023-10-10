@@ -1,21 +1,19 @@
-FROM node:16.16.0-alpine as dependencies
+FROM node:18.18.0-alpine as dependencies
 
 WORKDIR /journal
-COPY package.json yarn.lock ./
 
-COPY components components
-RUN find packages \! -name "package.json" -mindepth 2 -maxdepth 2 -print | xargs rm -rf
+COPY .yarn ./.yarn
+COPY .pnp.cjs .yarnrc.yml package.json yarn.lock* ./
+RUN yarn install --immutable
 
-RUN yarn install --frozen-lockfile
-
-FROM node:16.16.0-alpine as builder
+FROM node:18.18.0-alpine as builder
 WORKDIR /journal
 
 COPY . .
 COPY --from=dependencies /journal/node_modules ./node_modules
 RUN yarn build
 
-FROM node:16.16.0-alpine as runner
+FROM node:18.18.0-alpine as runner
 WORKDIR /journal
 
 # -> from proccess .env.development, env.production
@@ -27,7 +25,6 @@ RUN adduser -S nextjs -u 1001
 COPY --from=builder /journal/next.config.js ./
 COPY --from=builder /journal/public ./public
 COPY --from=builder /journal/package.json ./package.json
-COPY --from=builder /journal/.next ./.next
 COPY --from=builder /journal/node_modules ./node_modules
 COPY --from=builder /journal/dev_robots.txt ./
 

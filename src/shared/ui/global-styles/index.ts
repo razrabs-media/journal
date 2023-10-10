@@ -8,9 +8,7 @@ export const FONT_FACE = css`
     font-weight: 400;
     font-style: normal;
 
-    src: url('/fonts/styrene/styrene-regular.ttf') format('truetype'),
-      url('/fonts/styrene/styrene-regular.woff') format('truetype'),
-      url('/fonts/styrene/styrene-regular.woff2') format('truetype');
+    src: url('/fonts/styrene/styrene-regular.woff2') format('truetype');
   }
 
   @font-face {
@@ -18,9 +16,7 @@ export const FONT_FACE = css`
     font-weight: 500;
     font-style: normal;
 
-    src: url('/fonts/styrene/styrene-medium.ttf') format('truetype'),
-      url('/fonts/styrene/styrene-medium.woff') format('truetype'),
-      url('/fonts/styrene/styrene-medium.woff2') format('truetype');
+    src: url('/fonts/styrene/styrene-medium.woff2') format('truetype');
   }
 
   @font-face {
@@ -28,8 +24,7 @@ export const FONT_FACE = css`
     font-weight: 400;
     font-style: normal;
 
-    src: url('/fonts/jetbrains/JetBrainsMono-Regular.ttf') format('truetype'),
-      url('/fonts/jetbrains/JetBrainsMono-Regular.woff2') format('truetype');
+    src: url('/fonts/jetbrains/JetBrainsMono-Regular.woff2') format('truetype');
   }
 
   @font-face {
@@ -37,8 +32,7 @@ export const FONT_FACE = css`
     font-weight: bold;
     font-style: normal;
 
-    src: url('/fonts/jetbrains/JetBrainsMono-Bold.ttf') format('truetype'),
-      url('/fonts/jetbrains/JetBrainsMono-Bold.woff2') format('truetype');
+    src: url('/fonts/jetbrains/JetBrainsMono-Bold.woff2') format('truetype');
   }
 
   @font-face {
@@ -46,9 +40,7 @@ export const FONT_FACE = css`
     font-weight: bold;
     font-style: normal;
 
-    src: url('/fonts/styrene/styrene-bold.ttf') format('truetype'),
-      url('/fonts/styrene/styrene-bold.woff') format('truetype'),
-      url('/fonts/styrene/styrene-bold.woff2') format('truetype');
+    src: url('/fonts/styrene/styrene-bold.woff2') format('truetype');
   }
 `
 
@@ -62,20 +54,45 @@ export const globalStyles = (theme: Theme) => css`
     min-height: stretch;
     height: 100%;
     max-height: stretch;
+    overflow-wrap: anywhere;
   }
   html,
   body {
     padding: 0;
     margin: 0;
-    font-family: Styrene B LC, -apple-system, BlinkMacSystemFont, Segoe UI,
-      Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    font-family:
+      Styrene B LC,
+      -apple-system,
+      BlinkMacSystemFont,
+      Segoe UI,
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      Fira Sans,
+      Droid Sans,
+      Helvetica Neue,
       sans-serif;
   }
 
   a {
     text-decoration: none;
 
+    &:link {
+      text-decoration: none;
+      color: ${theme.colors.primary};
+    }
+
+    &:visited {
+      text-decoration: none;
+    }
+
     &:hover {
+      text-decoration: none;
+      color: ${theme.colors.brand};
+    }
+
+    &:active {
       text-decoration: none;
       color: ${theme.colors.brand};
     }
@@ -83,5 +100,13 @@ export const globalStyles = (theme: Theme) => css`
 
   #__next {
     display: grid;
+  }
+
+  .hoverable {
+    &:hover {
+      .hoverable-link {
+        color: ${theme.colors.brand};
+      }
+    }
   }
 `

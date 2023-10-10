@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { Media } from '@razrabs-ui/responsive'
+import { MediaScreen } from 'shared/ui/theme/responsive'
 
 export const FrontPageGrid = styled.div`
   display: grid;
@@ -8,13 +8,13 @@ export const FrontPageGrid = styled.div`
 
   // Если экран планшета - расставить контент точно не выйдет, так как колонок теперь 2
   // Отдаем это дело в руки grid-auto-flow, с доверием к тому, что контент уже отсортирован
-  ${Media.desktopAndBelow} {
+  ${MediaScreen.desktopAndBelow} {
     grid-auto-flow: row dense;
     grid-template-columns: repeat(2, minmax(300px, 1fr));
   }
 
   // Если экран мобильного, просто фигачим строчками
-  ${Media.mobile} {
+  ${MediaScreen.mobile} {
     grid-auto-flow: row dense;
     grid-template-columns: 1fr;
     gap: 20px;

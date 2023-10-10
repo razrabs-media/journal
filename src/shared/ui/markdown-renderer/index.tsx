@@ -1,15 +1,14 @@
 import { useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
-import { Media } from '@razrabs-ui/responsive'
-import { ThemeName } from '@razrabs-ui/theme'
-import Typography from '@razrabs-ui/typography'
 import { FC } from 'react'
 import ReactMarkdown, { Components } from 'react-markdown'
 import ReactPlayer from 'react-player/lazy'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import remarkGemoji from 'remark-gemoji'
 import remarkGfm from 'remark-gfm'
-import { CopyButton } from 'shared/ui'
+import { CopyButton, Image, Typography } from 'shared/ui'
+import { ThemeName } from 'shared/ui/theme'
+import { MediaScreen } from 'shared/ui/theme/responsive'
 import a11yEmoji from './remark-emoji'
 import { codeTheme } from './theme'
 
@@ -21,8 +20,24 @@ const CodeWrapper = styled.div`
   // TODO: в базовом гриде *fr'ы, что не могут ограничить ширину, в будущем не помешает избавиться
   max-width: calc(100vw - 48px);
 
-  ${Media.mobile} {
+  ${MediaScreen.mobile} {
     max-width: calc(100vw - 20px);
+  }
+`
+
+const Remark = styled.blockquote`
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  margin: 8px 0;
+  padding: 24px 28px;
+  position: relative;
+
+  p {
+    margin: 0;
+    display: inline;
+    font-size: 16px;
+    font-family: JetBrainsMono, 'Helvetica', 'Arial', sans-serif;
+    letter-spacing: initial;
+    line-height: initial;
   }
 `
 
@@ -31,10 +46,17 @@ const handleCopyButton = async (code: string) => {
 }
 
 const COMPONENTS = (themeName: ThemeName): Components => ({
-  p: (props) => (
-    <Typography {...props} color='primary' lineHeight='140%' size='lg' />
+  p: ({ node, ...props }) => (
+    <Typography
+      {...props}
+      as='div'
+      className='paragraph'
+      color='primary'
+      lineHeight='140%'
+      size='lg'
+    />
   ),
-  h1: (props) => (
+  h1: ({ node, ...props }) => (
     <Typography
       {...props}
       uppercase
@@ -44,7 +66,7 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
       weight='medium'
     />
   ),
-  h2: (props) => (
+  h2: ({ node, ...props }) => (
     <Typography
       {...props}
       uppercase
@@ -54,7 +76,7 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
       weight='medium'
     />
   ),
-  h3: (props) => (
+  h3: ({ node, ...props }) => (
     <Typography
       {...props}
       uppercase
@@ -64,7 +86,7 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
       weight='medium'
     />
   ),
-  h4: (props) => (
+  h4: ({ node, ...props }) => (
     <Typography
       {...props}
       uppercase
@@ -74,7 +96,7 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
       weight='medium'
     />
   ),
-  h5: (props) => (
+  h5: ({ node, ...props }) => (
     <Typography
       {...props}
       uppercase
@@ -84,7 +106,7 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
       weight='medium'
     />
   ),
-  h6: (props) => (
+  h6: ({ node, ...props }) => (
     <Typography
       {...props}
       uppercase
@@ -94,11 +116,21 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
       weight='medium'
     />
   ),
-  a: (props) => {
+  img: ({ node, ...props }) => (
+    <Image
+      alt='article image'
+      {...props}
+      as='span'
+      fit='contain'
+      loadingSize='sm'
+    />
+  ),
+  blockquote: ({ node, ...props }) => <Remark {...props} />,
+  a: ({ node, ...props }) => {
     const propsWithoutNode = { ...props, node: undefined }
     if (props.children[0] === 'oembed') {
       if (MATCH_URL_YOUTUBE.test(props.href || ''))
-        return <ReactPlayer controls light pip url={props.href} />
+        return <ReactPlayer controls light pip url={props.href} width='auto' />
     }
     return (
       <a
@@ -124,7 +156,7 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
           }}
           data-lang={match[1]}
           language={match[1]}
-          style={codeTheme(themeName)}
+          style={codeTheme(themeName) as any}
           {...propsWithoutNode}
         >
           {codeString}
@@ -156,6 +188,10 @@ const StyleWrapper = styled.div`
   }
 
   p {
+    margin: 24px 0;
+  }
+
+  .paragraph {
     margin: 24px 0;
   }
 

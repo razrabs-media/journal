@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import Typography from '@razrabs-ui/typography'
+import { Typography } from 'shared/ui'
 
 export const OpenCommentsButton = styled(Typography)`
   cursor: pointer;

@@ -1,5 +1,5 @@
-import Typography from '@razrabs-ui/typography'
 import { forwardRef } from 'react'
+import { Typography } from 'shared/ui/typography'
 import { CrossIcon } from '..'
 import { IconButton } from '../icon-button'
 import { useDisableScroll } from './hooks'

@@ -2,7 +2,7 @@
 
 import emojiRegex from 'emoji-regex'
 import { gemoji } from 'gemoji'
-import type { Content, Root } from 'mdast'
+import type { Root, RootContent } from 'mdast'
 import { findAndReplace, Replace } from 'mdast-util-find-and-replace'
 
 const skintoneMap: Record<string, string> = {
@@ -66,8 +66,8 @@ function a11yEmoji() {
     }
   }
 
-  function transform(markdownAST: Content | Root) {
-    findAndReplace(markdownAST, emojiRegex() as RegExp, replace as Replace)
+  function transform(markdownAST: RootContent | Root) {
+    findAndReplace(markdownAST, [emojiRegex(), replace as Replace])
     return markdownAST
   }
 

@@ -1,8 +1,7 @@
-import Badge from '@razrabs-ui/badge'
-import Image from '@razrabs-ui/image'
-import PostAuthor from '@razrabs-ui/post-author'
 import { FC, useEffect, useState } from 'react'
+import { Badge, Image } from 'shared/ui'
 import { DateAgo, ShareButton, ShareType } from 'shared/ui'
+import PostAuthor from '../post-author'
 import {
   DateAndShareBlock,
   DefaultShareButton,
@@ -27,7 +26,7 @@ export const Aside: FC<Props> = (props) => {
   const [href, setHref] = useState('')
 
   useEffect(() => {
-    if (typeof window === undefined) {
+    if (typeof window === 'undefined') {
       return
     }
 
@@ -38,10 +37,12 @@ export const Aside: FC<Props> = (props) => {
     <StyledHeader isShowDataAside={props.isShowDataAside}>
       <ImageWrapper open={props.open}>
         <Image
+          priority
           align='center'
           alt={props.title}
           fit='cover'
           itemProp='image'
+          loadingSize='sm'
           maxH={505}
           src={props.previewUrl}
           width='100%'

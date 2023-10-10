@@ -1,7 +1,6 @@
 import { useTheme } from '@emotion/react'
-import Image from '@razrabs-ui/image'
 import { FC } from 'react'
-import { GridArea } from 'shared/ui'
+import { GridArea, Image } from 'shared/ui'
 
 import {
   AvatarArea,
@@ -58,7 +57,13 @@ export const ReplyPreview: FC<Props> = ({
   <StyledReplyPreview>
     <AvatarArea area='avatar'>
       <ReplyArrow />
-      <Image alt={"Reply user's avatar"} h={20} src={avatarUrl} w={20} />
+      <Image
+        alt={"Reply user's avatar"}
+        h={20}
+        loadingSize='micro'
+        src={avatarUrl}
+        w={20}
+      />
     </AvatarArea>
 
     <GridArea area='comment'>

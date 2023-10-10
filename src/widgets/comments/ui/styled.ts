@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
-import { themeDark, themeLight } from '@razrabs-ui/theme'
-import Typography from '@razrabs-ui/typography'
+import { Typography } from 'shared/ui'
 import { GridArea, ModalAction } from 'shared/ui'
+import { themeDark, themeLight } from 'shared/ui/theme'
 
 export const commentsWidgetBackgroundByTheme: Record<string, string> = {
   [themeLight.name]: themeLight.colors.background,

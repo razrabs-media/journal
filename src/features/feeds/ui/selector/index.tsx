@@ -9,10 +9,8 @@ export const FeedSelector: FC<FeedsSelectorProps> = ({
 }) => (
   <FeedsContainer>
     {feeds.map(({ uid, name }) => (
-      <Link key={uid} passHref href={`/feeds/${uid}`}>
-        <FeedBadge active={activeFeedUid === uid} as='a'>
-          {name}
-        </FeedBadge>
+      <Link key={uid} href={`/feeds/${uid}`}>
+        <FeedBadge active={activeFeedUid === uid}>{name}</FeedBadge>
       </Link>
     ))}
   </FeedsContainer>

@@ -1,5 +1,5 @@
 import { css, Theme } from '@emotion/react'
-import { themeDark, themeLight } from '@razrabs-ui/theme'
+import { themeDark, themeLight } from 'shared/ui/theme'
 
 const selectionTextColorByThemeName: Record<string, string> = {
   [themeDark.name]: themeDark.colors.contrastPrimary,

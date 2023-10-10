@@ -1,6 +1,6 @@
-import Typography from '@razrabs-ui/typography'
 import { FC, useMemo } from 'react'
 import { parseDate } from 'shared/lib/parse-date'
+import { Typography } from 'shared/ui'
 import { Props } from './types'
 
 export const DateAgo: FC<Props> = ({

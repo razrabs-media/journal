@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
-import { Media } from '@razrabs-ui/responsive'
 import { IconButton, SendIcon } from 'shared/ui'
+import { MediaScreen } from 'shared/ui/theme/responsive'
 import { invertedThemeByCurrentThemeName } from './utils'
 
 export const Input = styled.textarea`
@@ -55,7 +55,7 @@ export const StyledCommentInput = styled.div`
     background: ${({ theme }) => theme.colors.contrastBackgroundSecondary};
   }
 
-  ${Media.tabletAndAbove} {
+  ${MediaScreen.tabletAndAbove} {
     padding: 20px 24px 20px 24px;
   }
 `
