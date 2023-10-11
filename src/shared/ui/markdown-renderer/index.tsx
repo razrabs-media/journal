@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useTheme } from '@emotion/react'
 import styled from '@emotion/styled'
 import { FC } from 'react'

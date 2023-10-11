@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import { default as NextImage } from 'next/image'
@@ -151,6 +152,7 @@ const Image: FC<ImageProps> = (props) => {
     }
     return (
       <FallbackWrapper>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img alt={props.alt} src='' />
       </FallbackWrapper>
     )
