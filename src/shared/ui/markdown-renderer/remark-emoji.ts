@@ -1,8 +1,7 @@
-// noinspection NonAsciiCharacters
-
+/* eslint-disable */
+import type { Root, RootContent } from 'mdast'
 import emojiRegex from 'emoji-regex'
 import { gemoji } from 'gemoji'
-import type { Root, RootContent } from 'mdast'
 import { findAndReplace, Replace } from 'mdast-util-find-and-replace'
 
 const skintoneMap: Record<string, string> = {
@@ -74,5 +73,4 @@ function a11yEmoji() {
   return transform
 }
 
-// eslint-disable-next-line import/no-default-export
 export default a11yEmoji

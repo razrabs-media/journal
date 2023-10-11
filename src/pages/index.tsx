@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { GetServerSideProps, NextPage } from 'next'
 import { FeedSelector, GetFeeds, GetFeedsQuery } from 'features/feeds'
 import {

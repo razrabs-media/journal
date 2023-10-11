@@ -48,4 +48,4 @@ yarn-error.log*
 # vercel
 .vercel
 
-**/__generated__
+# **/__generated__

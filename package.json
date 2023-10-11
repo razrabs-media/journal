@@ -8,8 +8,8 @@
     "dev-next": "next dev",
     "dev": "cross-env concurrently -k yarn:dev-codegen yarn:dev-next",
     "prebuild": "graphql-codegen",
-    "build": "./node_modules/.bin/next build",
-    "start": " ./node_modules/.bin/next start",
+    "build": "next build",
+    "start": "next start",
     "not-work-lint": "next lint",
     "lint": "eslint --ext .ts,.tsx .",
     "pre-commit": "yarn lint-staged",
@@ -79,8 +79,9 @@
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-boundaries": "3.4.0",
     "eslint-plugin-import": "2.28.1",
-    "eslint-plugin-prettier": "latest",
+    "eslint-plugin-prettier": "5.0.1",
     "fork-ts-checker-webpack-plugin": "8.0.0",
+    "graphql-tag": "2.12.6",
     "husky": "8.0.3",
     "lint-staged": "14.0.1",
     "prettier": "3.0.3",
@@ -88,6 +89,7 @@
     "webpack": "5.88.2"
   },
   "engines": {
-    "node": "> 16.16.0"
-  }
+    "node": "18.18.0"
+  },
+  "packageManager": "yarn@3.6.4"
 }
