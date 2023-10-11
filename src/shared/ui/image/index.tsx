@@ -86,6 +86,7 @@ const ImageWrapper = styled.div<StyledImageProps>((props) => ({
   maxWidth: props.maxW,
   width: props.width || 'auto',
   height: props.height || 'auto',
+  flexShrink: 0,
 }))
 
 const StyledImage = styled(NextImage, {
@@ -163,7 +164,11 @@ const Image: FC<ImageProps> = (props) => {
       if (!src) {
         return false
       }
-      const ALLOWED_HOST = ['raw.githubusercontent.com', 'github.com']
+      const ALLOWED_HOST = [
+        'raw.githubusercontent.com',
+        'github.com',
+        'avatars.githubusercontent.com',
+      ]
       const srcUrl = new URL(src)
 
       return ALLOWED_HOST.some((host) => host === srcUrl.hostname)
