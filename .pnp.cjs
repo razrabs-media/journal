@@ -66,7 +66,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-boundaries", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:3.4.0"],\
             ["eslint-plugin-import", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:2.28.1"],\
             ["eslint-plugin-prettier", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:5.0.1"],\
-            ["fork-ts-checker-webpack-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:8.0.0"],\
+            ["fork-ts-checker-webpack-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:9.0.0"],\
             ["gemoji", "npm:8.1.0"],\
             ["graphql", "npm:16.8.1"],\
             ["graphql-tag", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:2.12.6"],\
@@ -9853,17 +9853,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["fork-ts-checker-webpack-plugin", [\
-        ["npm:8.0.0", {\
-          "packageLocation": "./.yarn/cache/fork-ts-checker-webpack-plugin-npm-8.0.0-3888b57a08-aad4cbc5b8.zip/node_modules/fork-ts-checker-webpack-plugin/",\
+        ["npm:9.0.0", {\
+          "packageLocation": "./.yarn/cache/fork-ts-checker-webpack-plugin-npm-9.0.0-5fd62b7576-268494ac57.zip/node_modules/fork-ts-checker-webpack-plugin/",\
           "packageDependencies": [\
-            ["fork-ts-checker-webpack-plugin", "npm:8.0.0"]\
+            ["fork-ts-checker-webpack-plugin", "npm:9.0.0"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:8.0.0", {\
-          "packageLocation": "./.yarn/__virtual__/fork-ts-checker-webpack-plugin-virtual-c8eadb3694/0/cache/fork-ts-checker-webpack-plugin-npm-8.0.0-3888b57a08-aad4cbc5b8.zip/node_modules/fork-ts-checker-webpack-plugin/",\
+        ["virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:9.0.0", {\
+          "packageLocation": "./.yarn/__virtual__/fork-ts-checker-webpack-plugin-virtual-c9cd5e29c8/0/cache/fork-ts-checker-webpack-plugin-npm-9.0.0-5fd62b7576-268494ac57.zip/node_modules/fork-ts-checker-webpack-plugin/",\
           "packageDependencies": [\
-            ["fork-ts-checker-webpack-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:8.0.0"],\
+            ["fork-ts-checker-webpack-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:9.0.0"],\
             ["@babel/code-frame", "npm:7.18.6"],\
             ["@types/typescript", null],\
             ["@types/webpack", null],\
@@ -14321,7 +14321,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-boundaries", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:3.4.0"],\
             ["eslint-plugin-import", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:2.28.1"],\
             ["eslint-plugin-prettier", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:5.0.1"],\
-            ["fork-ts-checker-webpack-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:8.0.0"],\
+            ["fork-ts-checker-webpack-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:9.0.0"],\
             ["gemoji", "npm:8.1.0"],\
             ["graphql", "npm:16.8.1"],\
             ["graphql-tag", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:2.12.6"],\
