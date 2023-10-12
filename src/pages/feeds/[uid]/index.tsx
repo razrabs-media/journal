@@ -43,11 +43,12 @@ const FeedPage: NextPage<Props> = ({
   recommendation,
 }) => {
   const largeDesktopAndAbove = useIsLargeDesktopAndAbove()
-  const mainFeedRecommendation = !largeDesktopAndAbove && {
-    beforeElementIndex: 2,
-    divider: true,
-    render: () => <Recommendation posts={recommendation} />,
-  }
+  const mainFeedRecommendation = !largeDesktopAndAbove &&
+    recommendation.length > 0 && {
+      beforeElementIndex: 2,
+      divider: true,
+      render: () => <Recommendation posts={recommendation} />,
+    }
 
   return (
     <>
@@ -63,7 +64,7 @@ const FeedPage: NextPage<Props> = ({
             title={currentFeedName}
           />
         </Grid>
-        {largeDesktopAndAbove && (
+        {largeDesktopAndAbove && recommendation.length > 0 && (
           <Grid xs={3}>
             <FeedContainer
               items={recommendation}
