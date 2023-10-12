@@ -11,7 +11,7 @@ module.exports = {
       'github.com',
     ],
   },
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config, { dev, isServer, defaultLoaders }) => {
     if (dev && !isServer) {
       config.plugins.push(new ForkTsCheckerWebpackPlugin())
     }
@@ -19,6 +19,17 @@ module.exports = {
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
       loader: 'graphql-tag/loader',
+    })
+
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        defaultLoaders.babel,
+        {
+          loader: '@svgr/webpack',
+          options: { babel: false },
+        },
+      ],
     })
 
     return config
