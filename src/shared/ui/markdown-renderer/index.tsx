@@ -13,6 +13,8 @@ import { MediaScreen } from 'shared/ui/theme/responsive'
 import a11yEmoji from './remark-emoji'
 import { codeTheme } from './theme'
 
+// https://github.com/remarkjs/remark-gfm/issues/57
+
 const MATCH_URL_YOUTUBE =
   /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\/|watch\?v=|watch\?.+&v=|shorts\/))((\w|-){11})|youtube\.com\/playlist\?list=|youtube\.com\/user\//
 
