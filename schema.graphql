@@ -303,6 +303,7 @@ type Mutation {
   createUserGroup(data: UserGroupInput!): UserGroupItem!
   downloadLabels(data: DownloadLabelsDto!): [TagItem!]!
   downloadPosts(data: DownloadPostsDto!): [ResponseStatus!]!
+  makeUnIndexedPost(uid: UID!): Post!
   publishFrontPage(uid: UID!): FrontPage!
   refreshToken: TokensDto!
   registration(data: CreateUserInput!, password: String!): UserToken!

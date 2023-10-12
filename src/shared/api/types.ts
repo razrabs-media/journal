@@ -343,6 +343,7 @@ export type Mutation = {
   createUserGroup: UserGroupItem;
   downloadLabels: Array<TagItem>;
   downloadPosts: Array<ResponseStatus>;
+  makeUnIndexedPost: Post;
   publishFrontPage: FrontPage;
   refreshToken: TokensDto;
   registration: UserToken;
@@ -477,6 +478,11 @@ export type MutationDownloadLabelsArgs = {
 
 export type MutationDownloadPostsArgs = {
   data: DownloadPostsDto;
+};
+
+
+export type MutationMakeUnIndexedPostArgs = {
+  uid: Scalars['UID']['input'];
 };
 
 
