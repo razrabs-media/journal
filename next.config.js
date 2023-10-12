@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 module.exports = {
   reactStrictMode: true,
@@ -11,10 +10,7 @@ module.exports = {
       'github.com',
     ],
   },
-  webpack: (config, { dev, isServer, defaultLoaders }) => {
-    if (dev && !isServer) {
-      config.plugins.push(new ForkTsCheckerWebpackPlugin())
-    }
+  webpack: (config, { defaultLoaders }) => {
     config.module.rules.push({
       test: /\.(graphql|gql)$/,
       exclude: /node_modules/,
