@@ -1,19 +1,15 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /** @type {import('next').NextConfig} */
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const withPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
 
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['raw.githubusercontent.com', 'github.com'],
-  },
-  pwa: {
-    disable: process.env.NODE_ENV === 'development',
-    register: true,
-    dest: 'public',
-    runtimeCaching,
+    domains: [
+      'avatars.githubusercontent.com',
+      'raw.githubusercontent.com',
+      'github.com',
+    ],
   },
   webpack: (config, { dev, isServer }) => {
     if (dev && !isServer) {

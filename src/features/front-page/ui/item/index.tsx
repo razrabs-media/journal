@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import styled from '@emotion/styled'
 import Link from 'next/link'
-import { forwardRef, useMemo } from 'react'
+import { useMemo } from 'react'
 import { PostCard } from 'entities/posts'
 import { MediaScreen, Mobile, TabletAndAbove } from 'shared/ui/theme/responsive'
 import { propsAdapter } from '../../lib/props-adapter'
@@ -29,27 +29,27 @@ export const FrontPageItemWrapper = styled(Link)<Position>`
   }
 `
 
-export const FrontPageItem = forwardRef<HTMLDivElement, Props>(
-  ({ variant, postProps, as, ...position }) => {
-    const PostComponent = useMemo(
-      () => CARD_BY_VARIANT[variant as CardVariant] || PostCard,
-      [variant],
-    )
+export const FrontPageItem = ({
+  variant,
+  postProps,
+  as,
+  ...position
+}: Props) => {
+  const PostComponent = useMemo(
+    () => CARD_BY_VARIANT[variant as CardVariant] || PostCard,
+    [variant],
+  )
+  const props = useMemo(() => propsAdapter(postProps), [postProps])
 
-    const props = useMemo(() => propsAdapter(postProps), [postProps])
+  return (
+    <FrontPageItemWrapper href={`post/${postProps.uid}`} {...position}>
+      <TabletAndAbove>
+        <PostComponent {...props} />
+      </TabletAndAbove>
 
-    return (
-      <FrontPageItemWrapper href={`post/${postProps.uid}`} {...position}>
-        <TabletAndAbove>
-          <PostComponent {...props} />
-        </TabletAndAbove>
-
-        <Mobile>
-          <PostComponent {...props} small />
-        </Mobile>
-      </FrontPageItemWrapper>
-    )
-  },
-)
-
-FrontPageItem.displayName = 'FrontPageItem'
+      <Mobile>
+        <PostComponent {...props} small />
+      </Mobile>
+    </FrontPageItemWrapper>
+  )
+}

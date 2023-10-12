@@ -103,10 +103,10 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
         <meta charSet='utf-8' />
       </Head>
       <ThemeProvider theme={theme}>
-        <Global styles={body(theme)} />
-        <Global styles={FONT_FACE} />
-        <Global styles={globalStyles(theme)} />
         <MUIThemeProvider theme={muiSystemThemeForGrid}>
+          <Global styles={body(theme)} />
+          <Global styles={FONT_FACE} />
+          <Global styles={globalStyles(theme)} />
           <ApolloProvider client={apolloClient}>
             <CommentsProvider>
               <Layout
