@@ -3,7 +3,7 @@ import { FC, memo } from 'react'
 import { useContextComments } from 'entities/comments'
 import { Aside } from './aside'
 import { PostHeader } from './header'
-import { useBlockVisible } from './hooks'
+// import { useBlockVisible } from './hooks'
 import {
   ContentWrapper,
   SecondRow,
@@ -18,22 +18,20 @@ MemoizedMarkdownRenderer.displayName = 'MemoizedMarkdownRenderer'
 
 export const PostReader: FC<Props> = (props) => {
   const { opened } = useContextComments()
-  const [headerVisibilityRef, isShowDataAside] = useBlockVisible()
+  // const [headerVisibilityRef, isShowDataAside] = useBlockVisible()
 
   return (
     <StyledReader open={opened}>
-      <div>
-        <Aside
-          githubAuthor={props.githubAuthor}
-          isShowDataAside={isShowDataAside}
-          open={opened}
-          previewUrl={props.previewUrl}
-          publicationDate={props.publicationDate}
-          tags={props.tags}
-          title={props.title}
-          uid={props.uid}
-        />
-      </div>
+      <Aside
+        githubAuthor={props.githubAuthor}
+        isShowDataAside={false}
+        open={opened}
+        previewUrl={props.previewUrl}
+        publicationDate={props.publicationDate}
+        tags={props.tags}
+        title={props.title}
+        uid={props.uid}
+      />
 
       <SecondRow>
         <SecondWrapper>
@@ -41,7 +39,7 @@ export const PostReader: FC<Props> = (props) => {
             commentsButton={props.commentsButton}
             description={props.description}
             githubAuthor={props.githubAuthor}
-            headerVisibilityRef={headerVisibilityRef}
+            headerVisibilityRef={undefined}
             open={opened}
             previewUrl={props.previewUrl}
             publicationDate={props.publicationDate}
