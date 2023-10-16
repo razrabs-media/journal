@@ -3063,15 +3063,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:13.5.3":
-  version: 13.5.3
-  resolution: "@next/eslint-plugin-next@npm:13.5.3"
-  dependencies:
-    glob: 7.1.7
-  checksum: a496a194154b84c7178832ed5ecd51f7727cc9967bab91c8898310e422c27ec1774a21cc60399f72a1e7a23241b4eb5f0fe4b6357071d91c9c820790188504ba
-  languageName: node
-  linkType: hard
-
 "@next/eslint-plugin-next@npm:13.5.4":
   version: 13.5.4
   resolution: "@next/eslint-plugin-next@npm:13.5.4"
@@ -9652,7 +9643,7 @@ __metadata:
     "@graphql-codegen/typescript-operations": ^4.0.1
     "@graphql-codegen/typescript-react-apollo": ^4.0.0
     "@mui/system": 5.14.10
-    "@next/eslint-plugin-next": 13.5.3
+    "@next/eslint-plugin-next": 13.5.4
     "@parcel/watcher": ^2.3.0
     "@svgr/webpack": ^8.1.0
     "@swc/plugin-emotion": ^2.5.87
