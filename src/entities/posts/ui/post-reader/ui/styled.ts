@@ -5,7 +5,8 @@ import { MediaScreen } from 'shared/ui/theme/responsive'
 export const StyledReader = styled.div<{ open: boolean }>`
   display: grid;
 
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  grid-template-columns: ${({ open }) =>
+    open ? '1fr' : 'minmax(0, 1fr) minmax(0, 2fr)'};
   grid-gap: 24px;
 
   ${MediaScreen.largeDesktopAndBelow} {

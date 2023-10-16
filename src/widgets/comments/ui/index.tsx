@@ -113,7 +113,6 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
     }
   }, [newCommentUid, comments, onScrollToComment])
 
-  console.log(comments)
   return (
     <CommentsWrapper
       animationIn={animationIn}

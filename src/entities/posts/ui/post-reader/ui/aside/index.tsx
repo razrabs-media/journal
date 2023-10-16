@@ -37,6 +37,7 @@ export const Aside: FC<Props> = (props) => {
     <StyledHeader isShowDataAside={props.isShowDataAside}>
       <ImageWrapper open={props.open}>
         <Image
+          key={props.uid}
           priority
           align='center'
           alt={props.title}

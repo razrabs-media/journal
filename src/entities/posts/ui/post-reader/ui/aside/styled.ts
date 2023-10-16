@@ -3,10 +3,10 @@ import { Typography } from 'shared/ui'
 import { MediaScreen } from 'shared/ui/theme/responsive'
 
 export const StyledHeader = styled.aside<{ isShowDataAside: boolean }>`
-  position: sticky;
-  top: 32px;
-  transition: opacity 0.5s;
-  opacity: ${({ isShowDataAside }) => (isShowDataAside ? '0.3' : '1')};
+  position: relative;
+  /* top: 32px; */
+  /* transition: opacity 0.5s; */
+  /* opacity: ${({ isShowDataAside }) => (isShowDataAside ? '0.3' : '1')}; */
 
   &:hover {
     opacity: 1;
