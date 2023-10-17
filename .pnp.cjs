@@ -43,7 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-codegen/typescript-operations", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:4.0.1"],\
             ["@graphql-codegen/typescript-react-apollo", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:4.0.0"],\
             ["@mui/system", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:5.14.10"],\
-            ["@next/eslint-plugin-next", "npm:13.5.3"],\
+            ["@next/eslint-plugin-next", "npm:13.5.5"],\
             ["@parcel/watcher", "npm:2.3.0"],\
             ["@svgr/webpack", "npm:8.1.0"],\
             ["@swc/plugin-emotion", "npm:2.5.87"],\
@@ -5395,18 +5395,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@next/eslint-plugin-next", [\
-        ["npm:13.5.3", {\
-          "packageLocation": "./.yarn/cache/@next-eslint-plugin-next-npm-13.5.3-debf0329e9-a496a19415.zip/node_modules/@next/eslint-plugin-next/",\
-          "packageDependencies": [\
-            ["@next/eslint-plugin-next", "npm:13.5.3"],\
-            ["glob", "npm:7.1.7"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:13.5.4", {\
           "packageLocation": "./.yarn/cache/@next-eslint-plugin-next-npm-13.5.4-b8b6f250fe-17a502cec9.zip/node_modules/@next/eslint-plugin-next/",\
           "packageDependencies": [\
             ["@next/eslint-plugin-next", "npm:13.5.4"],\
+            ["glob", "npm:7.1.7"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:13.5.5", {\
+          "packageLocation": "./.yarn/cache/@next-eslint-plugin-next-npm-13.5.5-0f55a50f4a-7607473438.zip/node_modules/@next/eslint-plugin-next/",\
+          "packageDependencies": [\
+            ["@next/eslint-plugin-next", "npm:13.5.5"],\
             ["glob", "npm:7.1.7"]\
           ],\
           "linkType": "HARD"\
@@ -13300,7 +13300,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@graphql-codegen/typescript-operations", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:4.0.1"],\
             ["@graphql-codegen/typescript-react-apollo", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:4.0.0"],\
             ["@mui/system", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:5.14.10"],\
-            ["@next/eslint-plugin-next", "npm:13.5.3"],\
+            ["@next/eslint-plugin-next", "npm:13.5.5"],\
             ["@parcel/watcher", "npm:2.3.0"],\
             ["@svgr/webpack", "npm:8.1.0"],\
             ["@swc/plugin-emotion", "npm:2.5.87"],\

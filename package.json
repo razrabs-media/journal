@@ -59,7 +59,7 @@
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-operations": "^4.0.1",
     "@graphql-codegen/typescript-react-apollo": "^4.0.0",
-    "@next/eslint-plugin-next": "13.5.3",
+    "@next/eslint-plugin-next": "13.5.5",
     "@parcel/watcher": "^2.3.0",
     "@svgr/webpack": "^8.1.0",
     "@swc/plugin-emotion": "^2.5.87",
