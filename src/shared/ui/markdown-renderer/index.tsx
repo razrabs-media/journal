@@ -7,9 +7,10 @@ import ReactPlayer from 'react-player/lazy'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import remarkGemoji from 'remark-gemoji'
 import remarkGfm from 'remark-gfm'
-import { CopyButton, Image, Typography } from 'shared/ui'
+import { CopyButton, Image } from 'shared/ui'
 import { ThemeName } from 'shared/ui/theme'
 import { MediaScreen } from 'shared/ui/theme/responsive'
+import { UnstableTypography as Typography } from 'shared/ui/typography'
 import a11yEmoji from './remark-emoji'
 import { codeTheme } from './theme'
 
@@ -19,28 +20,45 @@ const MATCH_URL_YOUTUBE =
   /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\/|watch\?v=|watch\?.+&v=|shorts\/))((\w|-){11})|youtube\.com\/playlist\?list=|youtube\.com\/user\//
 
 const CodeWrapper = styled.div`
-  position: relative;
+  /* position: relative;
   // TODO: в базовом гриде *fr'ы, что не могут ограничить ширину, в будущем не помешает избавиться
   max-width: calc(100vw - 48px);
 
   ${MediaScreen.mobile} {
     max-width: calc(100vw - 20px);
-  }
+  } */
 `
 
-const Remark = styled.blockquote`
-  background: ${({ theme }) => theme.colors.backgroundSecondary};
-  margin: 8px 0;
-  padding: 24px 28px;
-  position: relative;
+const GeneralH = ({ node, ...props }: any) => (
+  <Typography
+    {...props}
+    uppercase
+    as='h2'
+    color='primary'
+    sx={{ typography: { xs: 'h3', md: 'h2' } }}
+  />
+)
 
-  p {
+const Blockquote = styled.blockquote`
+  margin: 20px 0;
+  position: relative;
+  border-left: 1px solid;
+  padding-left: 1rem;
+  box-sizing: border-box;
+  color: ${({ theme }) => theme.colors.secondary};
+
+  & :last-child {
     margin: 0;
-    display: inline;
-    font-size: 16px;
-    font-family: JetBrainsMono, 'Helvetica', 'Arial', sans-serif;
-    letter-spacing: initial;
-    line-height: initial;
+  }
+
+  p,
+  .paragraph {
+    margin: 0;
+    font-size: 22px;
+    color: ${({ theme }) => theme.colors.blockquote};
+    ${MediaScreen.mobile} {
+      font-size: 18px;
+    }
   }
 `
 
@@ -52,73 +70,19 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
   p: ({ node, ...props }) => (
     <Typography
       {...props}
-      as='div'
       className='paragraph'
       color='primary'
       lineHeight='140%'
-      size='lg'
+      sx={{ typography: { xs: 'body1', md: 'subtitle1' } }}
+      weight='normal'
     />
   ),
-  h1: ({ node, ...props }) => (
-    <Typography
-      {...props}
-      uppercase
-      as='h2'
-      color='primary'
-      size='xl'
-      weight='medium'
-    />
-  ),
-  h2: ({ node, ...props }) => (
-    <Typography
-      {...props}
-      uppercase
-      as='h2'
-      color='primary'
-      size='xl'
-      weight='medium'
-    />
-  ),
-  h3: ({ node, ...props }) => (
-    <Typography
-      {...props}
-      uppercase
-      as='h2'
-      color='primary'
-      size='xl'
-      weight='medium'
-    />
-  ),
-  h4: ({ node, ...props }) => (
-    <Typography
-      {...props}
-      uppercase
-      as='h2'
-      color='primary'
-      size='xl'
-      weight='medium'
-    />
-  ),
-  h5: ({ node, ...props }) => (
-    <Typography
-      {...props}
-      uppercase
-      as='h2'
-      color='primary'
-      size='xl'
-      weight='medium'
-    />
-  ),
-  h6: ({ node, ...props }) => (
-    <Typography
-      {...props}
-      uppercase
-      as='h2'
-      color='primary'
-      size='xl'
-      weight='medium'
-    />
-  ),
+  h1: GeneralH,
+  h2: GeneralH,
+  h3: GeneralH,
+  h4: GeneralH,
+  h5: GeneralH,
+  h6: GeneralH,
   img: ({ node, ...props }) => (
     <Image
       alt='article image'
@@ -128,7 +92,7 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
       loadingSize='sm'
     />
   ),
-  blockquote: ({ node, ...props }) => <Remark {...props} />,
+  blockquote: ({ node, ...props }) => <Blockquote {...props} />,
   a: ({ node, ...props }) => {
     const propsWithoutNode = { ...props, node: undefined }
     if (props.children[0] === 'oembed') {
@@ -154,7 +118,7 @@ const COMPONENTS = (themeName: ThemeName): Components => ({
           codeTagProps={{
             style: {
               fontFamily: 'JetBrainsMono',
-              fontSize: 14,
+              fontSize: 16,
             },
           }}
           data-lang={match[1]}
@@ -179,8 +143,12 @@ const PLUGINS = [remarkGfm, remarkGemoji, a11yEmoji]
 const StyleWrapper = styled.div`
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 140%;
+
+  ${MediaScreen.mobile} {
+    font-size: 20px;
+  }
 
   a {
     color: ${({ theme }) => theme.colors.brand};
@@ -210,11 +178,11 @@ const StyleWrapper = styled.div`
   }
 
   ul {
-    padding-left: 20px;
+    padding-left: 1.8rem;
   }
 
   ol {
-    padding-left: 22px;
+    padding-left: 1.8rem;
   }
 
   pre {

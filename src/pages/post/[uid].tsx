@@ -1,4 +1,3 @@
-import { Stack } from '@mui/system'
 import { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import { useEffect } from 'react'
@@ -16,7 +15,7 @@ import {
 } from 'entities/posts'
 import { initializeApollo } from 'shared/api'
 import { Helmet } from 'shared/lib'
-import { Divider } from 'shared/ui'
+import { Divider, Stack } from 'shared/ui'
 import { Mobile, TabletAndAbove } from 'shared/ui/theme/responsive'
 import { default as Typography } from 'shared/ui/typography/unstable_typography'
 import { Grid } from 'shared/ui/unstable_grid'
@@ -28,7 +27,7 @@ export type Props = {
 }
 
 const Post: NextPage<Props> = ({ post, recommendation }) => {
-  const { openHandler, setPostUid } = useContextComments()
+  const { opened, openHandler, setPostUid } = useContextComments()
 
   const tagNames = post.tags?.map((tag) => tag.name)
 
@@ -68,50 +67,51 @@ const Post: NextPage<Props> = ({ post, recommendation }) => {
       </article>
 
       {recommendation && (
-        <Grid
-          container
-          columnSpacing={{ xs: 0, sm: 3 }}
-          columns={{ xs: 1, sm: 2, lg: 4 }}
-          direction={{ xs: 'row', sm: 'row' }}
-          rowSpacing={{ xs: 2.5, sm: 4 }}
-        >
-          <Grid lg={4} sm={2} xs={1}>
-            <Divider />
-          </Grid>
-          <Grid lg={4} sm={2} xs={1}>
-            <Typography
-              uppercase
-              color='primary'
-              sx={{
-                typography: { xs: 'h3', md: 'h2' },
-              }}
+        <Stack spacing={{ xs: 2.5, sm: 4 }}>
+          <Divider />
+
+          <Typography
+            uppercase
+            color='primary'
+            sx={{
+              typography: { xs: 'h3', md: 'h2' },
+            }}
+          >
+            А вот еще
+          </Typography>
+          <div>
+            <Grid
+              container
+              columnSpacing={{ xs: 0, sm: 3 }}
+              columns={{ xs: 1, sm: 2, lg: opened ? 2 : 4 }}
+              direction={{ xs: 'column', sm: 'row' }}
+              rowSpacing={{ xs: 2.5, sm: 4 }}
             >
-              А вот еще
-            </Typography>
-          </Grid>
-          {recommendation.map((recommendationPost) => (
-            <Grid key={recommendationPost.uid} xs={1}>
-              <Link href={`/post/${recommendationPost.uid}`}>
-                <TabletAndAbove>
-                  <PostCard
-                    {...recommendationPost}
-                    noDisplayDate
-                    preview={recommendationPost.previewUrl ?? ''}
-                    type={PostType.Article}
-                  />
-                </TabletAndAbove>
-                <Mobile>
-                  <PostRow
-                    {...recommendationPost}
-                    small
-                    preview={recommendationPost.previewUrl || ''}
-                    type={PostType.Article}
-                  />
-                </Mobile>
-              </Link>
+              {recommendation.map((recommendationPost) => (
+                <Grid key={recommendationPost.uid} xs={1}>
+                  <Link href={`/post/${recommendationPost.uid}`}>
+                    <TabletAndAbove>
+                      <PostCard
+                        {...recommendationPost}
+                        noDisplayDate
+                        preview={recommendationPost.previewUrl ?? ''}
+                        type={PostType.Article}
+                      />
+                    </TabletAndAbove>
+                    <Mobile>
+                      <PostRow
+                        {...recommendationPost}
+                        small
+                        preview={recommendationPost.previewUrl || ''}
+                        type={PostType.Article}
+                      />
+                    </Mobile>
+                  </Link>
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
+          </div>
+        </Stack>
       )}
     </Stack>
   )

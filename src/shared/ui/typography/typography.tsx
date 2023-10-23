@@ -54,4 +54,4 @@ export const Typography = styled('p', {
   }
 `
 
-// export default Typography
+export default Typography

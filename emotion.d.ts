@@ -5,6 +5,7 @@ declare module '@emotion/react' {
     name: 'light' | 'dark'
     colors: {
       logo: string
+      blockquote: string
 
       primary: strings
       contrastPrimary: string

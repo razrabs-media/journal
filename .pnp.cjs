@@ -29,9 +29,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@apollo/client", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:3.8.4"],\
-            ["@emotion/css", "npm:11.11.2"],\
             ["@emotion/eslint-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
-            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.1"],\
+            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@emotion/styled", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@feature-sliced/eslint-config", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:0.1.0-beta.6"],\
             ["@graphql-codegen/add", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:5.0.0"],\
@@ -3524,20 +3523,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["@emotion/css", [\
-        ["npm:11.11.2", {\
-          "packageLocation": "./.yarn/cache/@emotion-css-npm-11.11.2-dbfa42cf83-1edea109df.zip/node_modules/@emotion/css/",\
-          "packageDependencies": [\
-            ["@emotion/css", "npm:11.11.2"],\
-            ["@emotion/babel-plugin", "npm:11.11.0"],\
-            ["@emotion/cache", "npm:11.11.0"],\
-            ["@emotion/serialize", "npm:1.1.2"],\
-            ["@emotion/sheet", "npm:1.2.2"],\
-            ["@emotion/utils", "npm:1.2.1"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["@emotion/eslint-plugin", [\
         ["npm:11.11.0", {\
           "packageLocation": "./.yarn/cache/@emotion-eslint-plugin-npm-11.11.0-27e29c96e4-2d555b6790.zip/node_modules/@emotion/eslint-plugin/",\
@@ -3589,22 +3574,22 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@emotion/react", [\
-        ["npm:11.11.1", {\
-          "packageLocation": "./.yarn/cache/@emotion-react-npm-11.11.1-a07d6a6ebd-aec3c36650.zip/node_modules/@emotion/react/",\
+        ["npm:11.11.0", {\
+          "packageLocation": "./.yarn/cache/@emotion-react-npm-11.11.0-fda75c579c-2653e7c3de.zip/node_modules/@emotion/react/",\
           "packageDependencies": [\
-            ["@emotion/react", "npm:11.11.1"]\
+            ["@emotion/react", "npm:11.11.0"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.1", {\
-          "packageLocation": "./.yarn/__virtual__/@emotion-react-virtual-8a00c590e2/0/cache/@emotion-react-npm-11.11.1-a07d6a6ebd-aec3c36650.zip/node_modules/@emotion/react/",\
+        ["virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0", {\
+          "packageLocation": "./.yarn/__virtual__/@emotion-react-virtual-7013f62aba/0/cache/@emotion-react-npm-11.11.0-fda75c579c-2653e7c3de.zip/node_modules/@emotion/react/",\
           "packageDependencies": [\
-            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.1"],\
+            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@babel/runtime", "npm:7.18.9"],\
             ["@emotion/babel-plugin", "npm:11.11.0"],\
             ["@emotion/cache", "npm:11.11.0"],\
             ["@emotion/serialize", "npm:1.1.2"],\
-            ["@emotion/use-insertion-effect-with-fallbacks", "virtual:8a00c590e2d4f723d371fb93e858f2042e6f8ed1446e72873a2c1f464215c4a506fc37e636b1ffc988e64631dd63be0ed3fafbe6c9dd9aaeb3f3e67b6b904c5a#npm:1.0.1"],\
+            ["@emotion/use-insertion-effect-with-fallbacks", "virtual:7013f62aba1876d0f9d6a0c336e719c69f084c4787de082a897f6766125231124a8ad444f52d450afac6381b5053df3a10a53fc782b175ed7d096c60c2e54746#npm:1.0.1"],\
             ["@emotion/utils", "npm:1.2.1"],\
             ["@emotion/weak-memoize", "npm:0.3.1"],\
             ["@types/react", "npm:18.2.22"],\
@@ -3656,9 +3641,9 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/runtime", "npm:7.18.9"],\
             ["@emotion/babel-plugin", "npm:11.11.0"],\
             ["@emotion/is-prop-valid", "npm:1.2.1"],\
-            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.1"],\
+            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@emotion/serialize", "npm:1.1.2"],\
-            ["@emotion/use-insertion-effect-with-fallbacks", "virtual:8a00c590e2d4f723d371fb93e858f2042e6f8ed1446e72873a2c1f464215c4a506fc37e636b1ffc988e64631dd63be0ed3fafbe6c9dd9aaeb3f3e67b6b904c5a#npm:1.0.1"],\
+            ["@emotion/use-insertion-effect-with-fallbacks", "virtual:7013f62aba1876d0f9d6a0c336e719c69f084c4787de082a897f6766125231124a8ad444f52d450afac6381b5053df3a10a53fc782b175ed7d096c60c2e54746#npm:1.0.1"],\
             ["@emotion/utils", "npm:1.2.1"],\
             ["@types/emotion__react", null],\
             ["@types/react", "npm:18.2.22"],\
@@ -3690,10 +3675,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:8a00c590e2d4f723d371fb93e858f2042e6f8ed1446e72873a2c1f464215c4a506fc37e636b1ffc988e64631dd63be0ed3fafbe6c9dd9aaeb3f3e67b6b904c5a#npm:1.0.1", {\
-          "packageLocation": "./.yarn/__virtual__/@emotion-use-insertion-effect-with-fallbacks-virtual-098a2f9154/0/cache/@emotion-use-insertion-effect-with-fallbacks-npm-1.0.1-730758c66c-700b6e5bbb.zip/node_modules/@emotion/use-insertion-effect-with-fallbacks/",\
+        ["virtual:7013f62aba1876d0f9d6a0c336e719c69f084c4787de082a897f6766125231124a8ad444f52d450afac6381b5053df3a10a53fc782b175ed7d096c60c2e54746#npm:1.0.1", {\
+          "packageLocation": "./.yarn/__virtual__/@emotion-use-insertion-effect-with-fallbacks-virtual-2473c5f411/0/cache/@emotion-use-insertion-effect-with-fallbacks-npm-1.0.1-730758c66c-700b6e5bbb.zip/node_modules/@emotion/use-insertion-effect-with-fallbacks/",\
           "packageDependencies": [\
-            ["@emotion/use-insertion-effect-with-fallbacks", "virtual:8a00c590e2d4f723d371fb93e858f2042e6f8ed1446e72873a2c1f464215c4a506fc37e636b1ffc988e64631dd63be0ed3fafbe6c9dd9aaeb3f3e67b6b904c5a#npm:1.0.1"],\
+            ["@emotion/use-insertion-effect-with-fallbacks", "virtual:7013f62aba1876d0f9d6a0c336e719c69f084c4787de082a897f6766125231124a8ad444f52d450afac6381b5053df3a10a53fc782b175ed7d096c60c2e54746#npm:1.0.1"],\
             ["@types/react", "npm:18.2.22"],\
             ["react", "npm:18.2.0"]\
           ],\
@@ -5281,7 +5266,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mui/styled-engine", "virtual:80b5cbfb6e9e733ba2e34ea89376a24b5cbe54f52b2b1bdd54c6b3307f359b4bf5fff2e78cea78a633e9568fae5f6036419d5f256555b17273b896654bc6a0e4#npm:5.14.10"],\
             ["@babel/runtime", "npm:7.23.1"],\
             ["@emotion/cache", "npm:11.11.0"],\
-            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.1"],\
+            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@emotion/styled", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@types/emotion__react", null],\
             ["@types/emotion__styled", null],\
@@ -5314,7 +5299,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@mui/system", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:5.14.10"],\
             ["@babel/runtime", "npm:7.23.1"],\
-            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.1"],\
+            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@emotion/styled", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@mui/private-theming", "virtual:80b5cbfb6e9e733ba2e34ea89376a24b5cbe54f52b2b1bdd54c6b3307f359b4bf5fff2e78cea78a633e9568fae5f6036419d5f256555b17273b896654bc6a0e4#npm:5.14.10"],\
             ["@mui/styled-engine", "virtual:80b5cbfb6e9e733ba2e34ea89376a24b5cbe54f52b2b1bdd54c6b3307f359b4bf5fff2e78cea78a633e9568fae5f6036419d5f256555b17273b896654bc6a0e4#npm:5.14.10"],\
@@ -13286,9 +13271,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["raz.media.web", "workspace:."],\
             ["@apollo/client", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:3.8.4"],\
-            ["@emotion/css", "npm:11.11.2"],\
             ["@emotion/eslint-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
-            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.1"],\
+            ["@emotion/react", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@emotion/styled", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:11.11.0"],\
             ["@feature-sliced/eslint-config", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:0.1.0-beta.6"],\
             ["@graphql-codegen/add", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:5.0.0"],\

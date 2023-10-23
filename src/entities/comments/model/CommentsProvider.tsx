@@ -10,12 +10,15 @@ import {
   useState,
 } from 'react'
 import { useBoolean } from 'shared/lib'
+import { useIsTabletAndBelow } from 'shared/ui/theme/responsive'
 import { commentAdapter } from '../lib/commentAdapter'
 import { Comment, useCommentsLazyQuery } from '.'
 
 export type CommentsContextValue = {
   opened: boolean
   comments: Comment[]
+  loading?: boolean
+  loaded?: boolean
   postUid?: string
   setPostUid: Dispatch<string>
   openHandler: VoidFunction
@@ -25,6 +28,8 @@ export type CommentsContextValue = {
 export const CommentsContext = createContext<CommentsContextValue>({
   opened: false,
   comments: [],
+  loading: false,
+  loaded: false,
   postUid: undefined,
   setPostUid: () => undefined,
   openHandler: () => undefined,
@@ -39,9 +44,11 @@ type Props = {
 
 export const CommentsProvider: FC<Props> = ({ children }) => {
   const router = useRouter()
-
-  const [commentsLazyQuery, { data, startPolling, stopPolling }] =
-    useCommentsLazyQuery()
+  const tabletAndBelow = useIsTabletAndBelow()
+  const [
+    commentsLazyQuery,
+    { data, loading, error, startPolling, stopPolling },
+  ] = useCommentsLazyQuery()
   const [postUid, setPostUid] = useState<string | undefined>(undefined)
   const [opened, { trusty: openHandler, falsy: closeHandler }] = useBoolean()
   const comments = useMemo(
@@ -52,6 +59,8 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
   const value: CommentsContextValue = {
     opened,
     comments,
+    loading,
+    loaded: !!data || !!error,
     postUid,
     setPostUid,
     openHandler,
@@ -60,8 +69,12 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
 
   // Закрываем комменты, когда уходим со страницы
   useEffect(() => {
-    closeHandler()
-  }, [closeHandler, router.route])
+    if (router.route === '/post/[uid]' && !tabletAndBelow) {
+      openHandler()
+    }
+
+    return () => closeHandler()
+  }, [closeHandler, openHandler, router.route, tabletAndBelow])
 
   useEffect(() => {
     if (postUid) {
@@ -74,7 +87,7 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (opened) {
-      startPolling(3_000)
+      startPolling(30_000)
     }
     return () => stopPolling()
   }, [opened, startPolling, stopPolling])

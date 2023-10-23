@@ -8,6 +8,7 @@ export const themeDark: Theme = {
   name: 'dark',
   colors: {
     logo: '#FFF',
+    blockquote: '#ceced8',
 
     primary: '#E2E2E8',
     contrastPrimary: '#1F2025',

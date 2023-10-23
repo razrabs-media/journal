@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Styrene B LC';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+
+  src: url('./styrene/styrene-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Styrene B LC';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+
+  src: url('./styrene/styrene-medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Styrene B LC';
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+
+
+  src: url('./styrene/styrene-bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+
+
+  src: url('./jetbrains/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+
+
+  src: url('./jetbrains/JetBrainsMono-Bold.woff2') format('woff2');
+}

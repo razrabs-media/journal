@@ -42,7 +42,7 @@ export const Recommendation = (props: {
           key={post.uid}
           uppercase
           as={Link}
-          href={`post/${post.uid}`}
+          href={`/post/${post.uid}`}
           sx={{ typography: { xs: 'h5', md: 'h3' } }}
         >
           {post.title}

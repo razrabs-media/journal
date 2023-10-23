@@ -7,6 +7,9 @@ export const StyledHeader = styled.header``
 // TODO: это заголовок + описание. над неймингом еще надо подумать
 export const PostTextWrapper = styled.div`
   padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
 `
 
@@ -36,7 +39,7 @@ export const TagsAndShare = styled.div`
   align-items: baseline;
   margin-top: 14px;
 
-  ${MediaScreen.mobile} {
+  ${MediaScreen.tabletAndBelow} {
     flex-direction: column;
   }
 `
@@ -69,7 +72,7 @@ export const ShareBlock = styled.div`
     }
   }
 
-  ${MediaScreen.mobile} {
+  ${MediaScreen.tabletAndBelow} {
     width: 100%;
     justify-content: space-evenly;
     height: 52px;

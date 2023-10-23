@@ -1,9 +1,8 @@
 import styled from '@emotion/styled'
 import { FC, useEffect, useState } from 'react'
-import { Badge } from 'shared/ui'
-import { Typography } from 'shared/ui'
-import { ShareButton, ShareType } from 'shared/ui'
+import { Badge, DateAgo, Image, Typography } from 'shared/ui'
 import { useIsTabletAndBelow } from 'shared/ui/theme/responsive'
+import PostAuthor from '../post-author'
 import {
   Description,
   PostTextWrapper,
@@ -28,11 +27,9 @@ DefaultShareButton.defaultProps = {
   letterSpacing: 1,
 }
 
-// Для FloatedPreview нас интересует ссылка на FirstRow, а не на Header
 export const PostHeader: FC<Props> = (props) => {
   const isTabletAndBelow = useIsTabletAndBelow()
   const [href, setHref] = useState('')
-  const [canShare, setCanShare] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -40,7 +37,6 @@ export const PostHeader: FC<Props> = (props) => {
     }
 
     setHref(window.location.href)
-    setCanShare(!!navigator.canShare)
   }, [])
 
   const onDefaultShareClick = () => {
@@ -52,11 +48,32 @@ export const PostHeader: FC<Props> = (props) => {
   }
 
   return (
-    <StyledHeader ref={props.headerVisibilityRef}>
+    <StyledHeader>
       <PostTextWrapper>
         <Title uppercase as='h1' itemProp='headline name' weight='medium'>
           {props.title}
         </Title>
+        <div>
+          <PostAuthor url={props.githubAuthor?.usernameUrl}>
+            {props.githubAuthor?.name}
+          </PostAuthor>
+
+          <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
+        </div>
+
+        <Image
+          key={props.uid}
+          priority
+          align='center'
+          alt={props.title}
+          fit='cover'
+          itemProp='image'
+          loadingSize='sm'
+          maxH={505}
+          src={props.previewUrl}
+          width='100%'
+        />
+
         <Description color='secondary' itemProp='description' size='xl'>
           {props.description}
         </Description>
@@ -76,22 +93,11 @@ export const PostHeader: FC<Props> = (props) => {
         </TagsBlock>
 
         <ShareBlock>
-          {props.commentsButton}
+          {isTabletAndBelow && props.commentsButton}
 
-          {isTabletAndBelow && canShare ? (
-            <DefaultShareButton onClick={onDefaultShareClick}>
-              Поделиться
-            </DefaultShareButton>
-          ) : (
-            <>
-              <ShareButton
-                as='a'
-                href={`https://twitter.com/intent/tweet?url=${href}`}
-                shareType={ShareType.Twitter}
-              />
-              <ShareButton shareType={ShareType.Url} />
-            </>
-          )}
+          <DefaultShareButton onClick={onDefaultShareClick}>
+            Поделиться
+          </DefaultShareButton>
         </ShareBlock>
       </TagsAndShare>
     </StyledHeader>

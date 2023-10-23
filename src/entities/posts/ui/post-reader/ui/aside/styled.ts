@@ -67,7 +67,7 @@ export const ShareBlock = styled.div`
     }
   }
 
-  ${MediaScreen.mobile} {
+  ${MediaScreen.desktopAndBelow} {
     width: 100%;
     justify-content: space-evenly;
     height: 52px;

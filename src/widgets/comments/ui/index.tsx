@@ -9,7 +9,7 @@ import {
   useDisplayAnimation,
 } from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
-import { CrossIcon, IconButton } from 'shared/ui'
+import { CrossIcon, IconButton, Spinner } from 'shared/ui'
 import { useIsTabletAndBelow } from 'shared/ui/theme/responsive'
 import Comment, { CommentForwardedRef } from './comment'
 import { CommentsEmpty } from './comments-empty'
@@ -31,10 +31,11 @@ const TRANSITION_TIME = 150
 export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   const router = useRouter()
   const refContainer = useRef<HTMLDivElement>(null)
-  const { opened, postUid, comments, closeHandler } = useContextComments()
-  const ref = useDisableScroll(opened)
+  const { opened, postUid, loaded, comments, closeHandler } =
+    useContextComments()
   const commentsRefs = useRef<Record<string, CommentForwardedRef | null>>({})
   const isTabletAndBelow = useIsTabletAndBelow()
+  const ref = useDisableScroll(opened && isTabletAndBelow)
 
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
     errorPolicy: 'all',
@@ -123,17 +124,32 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
     >
       <Header>
         <HeaderTexts>
-          <CommentsAmount>Комменты: {comments?.length}</CommentsAmount>
+          <CommentsAmount>
+            Комменты: {!loaded ? '...' : comments?.length}
+          </CommentsAmount>
 
           {postTitle && isTabletAndBelow && <PostTitle>{postTitle}</PostTitle>}
         </HeaderTexts>
 
-        <IconButton color='primary' onClick={closeHandler}>
-          <CrossIcon />
-        </IconButton>
+        {isTabletAndBelow && (
+          <IconButton color='primary' onClick={closeHandler}>
+            <CrossIcon />
+          </IconButton>
+        )}
       </Header>
-
-      {comments.length ? (
+      {!loaded && (
+        <div
+          style={{
+            gridArea: 'content',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Spinner />
+        </div>
+      )}
+      {loaded && !!comments.length && (
         <CommentsContainer ref={refContainer}>
           {comments.map((comment) => (
             <Comment
@@ -154,9 +170,9 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
             />
           ))}
         </CommentsContainer>
-      ) : (
-        <CommentsEmpty />
       )}
+
+      {loaded && !comments.length && <CommentsEmpty />}
 
       <CommentsAction area='action'>
         {data?.currentUser ? (
