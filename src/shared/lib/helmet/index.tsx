@@ -39,10 +39,10 @@ export const Helmet = ({
       <title>{brandedTitle}</title>
 
       {/* Prefetch */}
-      <link href='//github.com' rel='preconnect' />
+      {/* <link href='//github.com' rel='preconnect' />
       <link href='//github.com' rel='dns-prefetch' />
       <link href='//raw.githubusercontent.com' rel='preconnect' />
-      <link href='//raw.githubusercontent.com' rel='dns-prefetch' />
+      <link href='//raw.githubusercontent.com' rel='dns-prefetch' /> */}
 
       {/* Basic */}
       <link href={canonicalUrl} rel='canonical' />
