@@ -10,8 +10,11 @@ export const DrawerArea = styled.div`
 // noinspection CssInvalidPropertyValue
 export const DrawerBlock = styled.div<Props>`
   min-height: 100vh;
+  min-height: 100dvh;
   height: 100vh;
-  height: -webkit-fill-available;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
   position: sticky;
   top: 0;
   right: 0;
@@ -19,13 +22,13 @@ export const DrawerBlock = styled.div<Props>`
   width: 100%;
   display: ${({ open }) => (open ? 'flex' : 'none')};
 
-  @supports (-webkit-touch-callout: none) {
-    height: 100dvh;
-    min-height: 100dvh;
-  }
-
   ${MediaScreen.tabletAndBelow} {
     width: 100% !important;
     max-width: 100%;
+  }
+
+  @supports (-webkit-touch-callout: none) {
+    min-height: 100dvh;
+    height: 100dvh;
   }
 `
