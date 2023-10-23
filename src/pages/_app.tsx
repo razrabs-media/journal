@@ -15,7 +15,7 @@ import { useTheme } from 'widgets/header/ui/themeToggler/handler'
 import { CommentsProvider } from 'entities/comments'
 import { initializeApollo, useApollo } from 'shared/api'
 import { getContextMedia, getRuntime, withMediaProvider } from 'shared/lib'
-import { body, FONT_FACE, Footer, globalStyles } from 'shared/ui'
+import { body, Footer, globalStyles } from 'shared/ui'
 import { CurrentTime, CurrentTimeQuery } from '../entities/clock'
 import { Layout } from '../entities/layout'
 
@@ -61,8 +61,15 @@ const typography = {
     fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
     fontSize: '24px',
     fontWeight: 400,
-    lineHeight: 1.2,
+    lineHeight: 1.4,
   },
+  body1: {
+    fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
+    fontSize: '20px',
+    fontWeight: 400,
+    lineHeight: 1.4,
+  },
+
   body2: {
     fontFamily: "Styrene B LC, 'Helvetica', 'Arial', sans-serif",
     fontSize: '16px',
@@ -92,9 +99,30 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
     typography,
   })
 
+  const MainLayout = pageProps.post ? (
+    <CommentsProvider>
+      <Layout
+        drawerContent={<CommentsWidget postTitle={pageProps.post?.title} />}
+      >
+        <Header currentTime={pageProps.currentTime} toggleTheme={toggleTheme} />
+
+        <Component {...pageProps} />
+
+        <Footer />
+      </Layout>
+    </CommentsProvider>
+  ) : (
+    <Layout>
+      <Header currentTime={pageProps.currentTime} toggleTheme={toggleTheme} />
+
+      <Component {...pageProps} />
+
+      <Footer />
+    </Layout>
+  )
+
   return (
     <>
-      {/* https://nextjs.org/docs/messages/no-document-viewport-meta */}
       <Head>
         <meta
           content='width=device-width, height=device-height, initial-scale=1'
@@ -104,27 +132,9 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider theme={theme}>
         <MUIThemeProvider theme={muiSystemThemeForGrid}>
-          <Global styles={body(theme)} />
-          <Global styles={FONT_FACE} />
           <Global styles={globalStyles(theme)} />
-          <ApolloProvider client={apolloClient}>
-            <CommentsProvider>
-              <Layout
-                drawerContent={
-                  <CommentsWidget postTitle={pageProps.post?.title} />
-                }
-              >
-                <Header
-                  currentTime={pageProps.currentTime}
-                  toggleTheme={toggleTheme}
-                />
-
-                <Component {...pageProps} />
-
-                <Footer />
-              </Layout>
-            </CommentsProvider>
-          </ApolloProvider>
+          <Global styles={body(theme)} />
+          <ApolloProvider client={apolloClient}>{MainLayout}</ApolloProvider>
         </MUIThemeProvider>
       </ThemeProvider>
     </>

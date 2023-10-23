@@ -17,6 +17,7 @@ export const themeLight: Theme = {
   name: 'light',
   colors: {
     logo: '#000',
+    blockquote: '#2e2e34',
 
     primary: '#1D1D21',
     contrastPrimary: '#E2E2E8',

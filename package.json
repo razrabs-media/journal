@@ -20,8 +20,7 @@
   },
   "dependencies": {
     "@apollo/client": "3.8.4",
-    "@emotion/css": "11.11.2",
-    "@emotion/react": "11.11.1",
+    "@emotion/react": "11.11.0",
     "@emotion/styled": "11.11.0",
     "@mui/system": "5.14.10",
     "body-scroll-lock": "4.0.0-beta.0",

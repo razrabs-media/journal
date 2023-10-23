@@ -3,7 +3,7 @@ import {
   disableBodyScroll,
   enableBodyScroll,
 } from 'body-scroll-lock'
-import { useEffect, useRef } from 'react'
+import { MutableRefObject, useEffect, useRef } from 'react'
 
 export const useDisableScroll = (opened: boolean) => {
   const ref = useRef<HTMLDivElement>(null)
@@ -59,5 +59,5 @@ export const useDisableScroll = (opened: boolean) => {
       clearAllBodyScrollLocks()
     }
   })
-  return ref
+  return ref as MutableRefObject<null | HTMLDivElement>
 }

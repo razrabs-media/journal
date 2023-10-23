@@ -3,6 +3,9 @@
 
 module.exports = {
   reactStrictMode: true,
+  compiler: {
+    emotion: true,
+  },
   images: {
     domains: [
       'avatars.githubusercontent.com',

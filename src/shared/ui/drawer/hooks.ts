@@ -10,6 +10,7 @@ export const useResize = () => {
         const logo = changedRef.current
 
         if (logo) {
+          logo.style.setProperty('position', 'fixed')
           logo.style.setProperty('width', `${contentRect.width}px`)
         }
       }

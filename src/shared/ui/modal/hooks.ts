@@ -10,9 +10,11 @@ const showDialog = () => {
 const closeDialog = () => {
   const { body } = document
   const scrollY = body.style.top
-  body.style.position = ''
+  body.style.position = 'initial'
   body.style.top = ''
-  window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  if (scrollY) {
+    window.scrollTo(0, parseInt(scrollY) * -1)
+  }
 }
 
 const listener = () => {
