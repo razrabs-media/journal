@@ -11,6 +11,16 @@ import type {
 } from 'react'
 import { useState } from 'react'
 
+const GITHUB_REPOSITORY_NAME = 'razrabs-media'
+const GITHUB_MAIN_BRANCH = 'main'
+const GITHUB_RAW_HOST = 'raw.githubusercontent.com'
+
+const ALLOWED_HOST = [
+  GITHUB_RAW_HOST,
+  'github.com',
+  'avatars.githubusercontent.com',
+]
+
 const SIZE_MAP = {
   micro: 40,
   xs: 320,
@@ -159,28 +169,42 @@ const Image: FC<ImageProps> = (props) => {
     )
   }
 
-  const isAllowedHost = (src?: string) => {
+  const checkImageHost = (src?: string): [string | undefined, boolean] => {
     try {
       if (!src) {
-        return false
+        return [src, false]
       }
-      const ALLOWED_HOST = [
-        'raw.githubusercontent.com',
-        'github.com',
-        'avatars.githubusercontent.com',
-      ]
-      const srcUrl = new URL(src)
 
-      return ALLOWED_HOST.some((host) => host === srcUrl.hostname)
+      const srcUrl = new URL(src)
+      const splitedPathname = srcUrl.pathname.split('/')
+
+      const needReplaceBranch =
+        srcUrl.hostname === GITHUB_RAW_HOST &&
+        splitedPathname[1] === GITHUB_REPOSITORY_NAME
+
+      if (needReplaceBranch) {
+        splitedPathname[3] = GITHUB_MAIN_BRANCH
+      }
+
+      const pathname = splitedPathname.join('/')
+      srcUrl.pathname = pathname
+
+      const shouldOptimize = !ALLOWED_HOST.some(
+        (host) => host === srcUrl.hostname,
+      )
+
+      return [srcUrl.href, shouldOptimize]
     } catch (err) {
       setError(true)
-      return false
+      return [src, false]
     }
   }
 
   const imageLoadingWidth = props.loadingSize
     ? SIZE_MAP[props.loadingSize] + 'px'
     : '100%'
+
+  const [imageHref, shouldOptimized] = checkImageHost(src)
 
   return (
     <ImageWrapper
@@ -197,9 +221,9 @@ const Image: FC<ImageProps> = (props) => {
         placeholder='empty'
         priority={priority}
         sizes={imageLoadingWidth}
-        src={src || ''}
+        src={imageHref || ''}
         title={props.title || props.alt || 'image'}
-        unoptimized={!isAllowedHost(src)}
+        unoptimized={shouldOptimized}
         onError={_onError}
       />
     </ImageWrapper>

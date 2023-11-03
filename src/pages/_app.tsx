@@ -99,28 +99,6 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
     typography,
   })
 
-  const MainLayout = pageProps.post ? (
-    <CommentsProvider>
-      <Layout
-        drawerContent={<CommentsWidget postTitle={pageProps.post?.title} />}
-      >
-        <Header currentTime={pageProps.currentTime} toggleTheme={toggleTheme} />
-
-        <Component {...pageProps} />
-
-        <Footer />
-      </Layout>
-    </CommentsProvider>
-  ) : (
-    <Layout>
-      <Header currentTime={pageProps.currentTime} toggleTheme={toggleTheme} />
-
-      <Component {...pageProps} />
-
-      <Footer />
-    </Layout>
-  )
-
   return (
     <>
       <Head>
@@ -134,7 +112,24 @@ const _App = memo(({ Component, pageProps }: AppProps) => {
         <MUIThemeProvider theme={muiSystemThemeForGrid}>
           <Global styles={globalStyles(theme)} />
           <Global styles={body(theme)} />
-          <ApolloProvider client={apolloClient}>{MainLayout}</ApolloProvider>
+          <ApolloProvider client={apolloClient}>
+            <CommentsProvider>
+              <Layout
+                drawerContent={
+                  <CommentsWidget postTitle={pageProps.post?.title} />
+                }
+              >
+                <Header
+                  currentTime={pageProps.currentTime}
+                  toggleTheme={toggleTheme}
+                />
+
+                <Component {...pageProps} />
+
+                <Footer />
+              </Layout>
+            </CommentsProvider>
+          </ApolloProvider>
         </MUIThemeProvider>
       </ThemeProvider>
     </>

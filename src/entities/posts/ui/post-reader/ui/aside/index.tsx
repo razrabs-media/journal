@@ -35,6 +35,13 @@ export const Aside: FC<Props> = (props) => {
 
   return (
     <StyledHeader isShowDataAside={props.isShowDataAside}>
+      <TagsBlock itemScope itemProp='about' itemType='https://schema.org/Thing'>
+        {props.tags?.map((tag) => (
+          <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
+            {tag}
+          </Badge>
+        ))}
+      </TagsBlock>
       <ImageWrapper open={props.open}>
         <Image
           key={props.uid}
@@ -59,32 +66,18 @@ export const Aside: FC<Props> = (props) => {
       </ImageWrapper>
 
       {props.isShowDataAside ? (
-        <>
-          <DateAndShareBlock>
-            <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
+        <DateAndShareBlock>
+          <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
 
-            <ShareBlock>
-              <ShareButton
-                as='a'
-                href={`https://twitter.com/intent/tweet?url=${href}`}
-                shareType={ShareType.Twitter}
-              />
-              <ShareButton isShorten shareType={ShareType.Url} />
-            </ShareBlock>
-          </DateAndShareBlock>
-
-          <TagsBlock
-            itemScope
-            itemProp='about'
-            itemType='https://schema.org/Thing'
-          >
-            {props.tags?.map((tag) => (
-              <Badge key={tag} itemProp='name' margin='2px 4px 0 0'>
-                {tag}
-              </Badge>
-            ))}
-          </TagsBlock>
-        </>
+          <ShareBlock>
+            <ShareButton
+              as='a'
+              href={`https://twitter.com/intent/tweet?url=${href}`}
+              shareType={ShareType.Twitter}
+            />
+            <ShareButton isShorten shareType={ShareType.Url} />
+          </ShareBlock>
+        </DateAndShareBlock>
       ) : (
         <>
           <PostAuthor url={props.githubAuthor?.usernameUrl}>

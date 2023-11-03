@@ -7,7 +7,7 @@ export const useTheme = (
   initialTheme?: Theme['name'],
 ): [Theme, VoidFunction] => {
   const [theme, setTheme] = useState(
-    initialTheme === 'light' ? themeLight : themeDark,
+    initialTheme === 'dark' ? themeDark : themeLight,
   )
 
   const toggleTheme = () => {

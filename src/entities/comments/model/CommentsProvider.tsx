@@ -10,7 +10,6 @@ import {
   useState,
 } from 'react'
 import { useBoolean } from 'shared/lib'
-import { useIsTabletAndBelow } from 'shared/ui/theme/responsive'
 import { commentAdapter } from '../lib/commentAdapter'
 import { Comment, useCommentsLazyQuery } from '.'
 
@@ -44,7 +43,6 @@ type Props = {
 
 export const CommentsProvider: FC<Props> = ({ children }) => {
   const router = useRouter()
-  const tabletAndBelow = useIsTabletAndBelow()
   const [
     commentsLazyQuery,
     { data, loading, error, startPolling, stopPolling },
@@ -69,15 +67,11 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
 
   // Закрываем комменты, когда уходим со страницы
   useEffect(() => {
-    if (router.route === '/post/[uid]' && !tabletAndBelow) {
-      openHandler()
-    }
-
-    return () => closeHandler()
-  }, [closeHandler, openHandler, router.route, tabletAndBelow])
+    closeHandler()
+  }, [closeHandler, router.route, postUid])
 
   useEffect(() => {
-    if (postUid) {
+    if (postUid && opened) {
       commentsLazyQuery({
         variables: { postUid, perPage: 3_000 },
         fetchPolicy: 'no-cache',
@@ -87,7 +81,7 @@ export const CommentsProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (opened) {
-      startPolling(30_000)
+      startPolling(10_000)
     }
     return () => stopPolling()
   }, [opened, startPolling, stopPolling])

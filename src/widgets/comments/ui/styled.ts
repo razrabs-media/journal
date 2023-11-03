@@ -67,4 +67,5 @@ export const CommentsAction = styled(GridArea)`
 
 export const CommentsLogin = styled(ModalAction)`
   background: transparent;
+  stroke: ${({ theme }) => theme.colors.primary};
 `

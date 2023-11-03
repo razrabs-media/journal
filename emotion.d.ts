@@ -4,6 +4,11 @@ declare module '@emotion/react' {
   export interface Theme {
     name: 'light' | 'dark'
     colors: {
+      text: {
+        heading: string
+        regular: string
+      }
+      divider: string
       logo: string
       blockquote: string
 

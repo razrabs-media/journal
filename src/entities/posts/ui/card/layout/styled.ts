@@ -6,10 +6,10 @@ export const StyledCard = styled.div`
   flex-direction: column;
 
   & > * {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: 0 !important;
     }
   }
 
@@ -25,7 +25,7 @@ export const Content = styled.div`
   flex-direction: column;
 
   & > * {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 
     &:last-child {
       margin-bottom: 0;

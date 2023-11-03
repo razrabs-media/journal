@@ -73,6 +73,7 @@ const FeedPage: NextPage<Props> = ({
                   <PostCard
                     {...post}
                     noDisplayDate
+                    small
                     preview={post.previewUrl || ''}
                     previewProps={desktopPreviewProps}
                     type={PostType.Article}

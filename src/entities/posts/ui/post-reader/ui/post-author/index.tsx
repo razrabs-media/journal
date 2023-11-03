@@ -8,24 +8,21 @@ type StyleBadgeProps = {
   margin?: CSSProperties['margin']
 }
 const StyledTypography = styled(Typography)<StyleBadgeProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: fit-content;
-  column-gap: 4px;
-
-  margin: ${({ margin }) => (margin ? margin : 0)};
-
-  font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   line-height: 100%;
+  font-family: 'Inter', Arial, sans-serif;
   color: ${({ theme }) => theme.colors.primary};
 `
 
 const StyledLink = styled.a`
-  color: ${({ theme }) => theme.colors.brand};
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 1px;
+  font-family: 'Inter', Arial, sans-serif;
+  text-transform: uppercase;
 `
 
 type BadgeProps = {
@@ -47,7 +44,6 @@ const PostAuthor: FC<BadgeProps> = forwardRef<any, BadgeProps>(
       size='sm'
       {...props}
     >
-      Автор статьи:
       <StyledLink
         href={url ?? undefined}
         itemProp='url'
