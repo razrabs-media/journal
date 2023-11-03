@@ -2,11 +2,6 @@ import styled from '@emotion/styled'
 import { MediaScreen } from 'shared/ui/theme/responsive'
 import { Props } from './types'
 
-export const DrawerArea = styled.div`
-  grid-area: drawer;
-  position: relative;
-`
-
 // noinspection CssInvalidPropertyValue
 export const DrawerBlock = styled.div<Props>`
   min-height: 100vh;
@@ -15,14 +10,19 @@ export const DrawerBlock = styled.div<Props>`
   height: 100dvh;
   max-height: 100vh;
   max-height: 100dvh;
-  position: sticky;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 100;
   width: 100%;
-  display: ${({ open }) => (open ? 'flex' : 'none')};
+  display: flex;
+  width: 530px;
+  transform: ${({ open }) => (open ? 'none' : 'translateX(110%)')};
+  transition: transform 300ms ease 0s;
 
   ${MediaScreen.tabletAndBelow} {
+    transform: none;
+    display: ${({ open }) => (open ? 'flex' : 'none')};
     width: 100% !important;
     max-width: 100%;
   }

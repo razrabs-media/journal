@@ -1,7 +1,17 @@
+import styled from '@emotion/styled'
 import { FC, useMemo } from 'react'
 import { parseDate } from 'shared/lib/parse-date'
-import { Typography } from 'shared/ui'
 import { Props } from './types'
+
+const StyledTypography = styled.time`
+  font-family: 'Inter', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.secondary};
+`
 
 export const DateAgo: FC<Props> = ({
   date,
@@ -16,9 +26,14 @@ export const DateAgo: FC<Props> = ({
   )
 
   return (
-    <Typography as='time' className={className} {...restProps} dateTime={date}>
+    <StyledTypography
+      as='time'
+      className={className}
+      {...restProps}
+      dateTime={date}
+    >
       {parsedDate}
-    </Typography>
+    </StyledTypography>
   )
 }
 

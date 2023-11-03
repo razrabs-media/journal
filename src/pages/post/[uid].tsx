@@ -1,7 +1,6 @@
 import { GetServerSideProps, NextPage } from 'next'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import { OpenCommentsButton } from 'features/comments'
 import { useContextComments } from 'entities/comments'
 import {
   GetPost,
@@ -15,7 +14,7 @@ import {
 } from 'entities/posts'
 import { initializeApollo } from 'shared/api'
 import { Helmet } from 'shared/lib'
-import { Divider, Stack } from 'shared/ui'
+import { Button, Divider, FullwidthButton, Image, Stack } from 'shared/ui'
 import { Mobile, TabletAndAbove } from 'shared/ui/theme/responsive'
 import { default as Typography } from 'shared/ui/typography/unstable_typography'
 import { Grid } from 'shared/ui/unstable_grid'
@@ -27,7 +26,7 @@ export type Props = {
 }
 
 const Post: NextPage<Props> = ({ post, recommendation }) => {
-  const { opened, openHandler, setPostUid } = useContextComments()
+  const { openHandler, setPostUid } = useContextComments()
 
   const tagNames = post.tags?.map((tag) => tag.name)
 
@@ -36,7 +35,7 @@ const Post: NextPage<Props> = ({ post, recommendation }) => {
   }, [setPostUid, post.uid])
 
   return (
-    <Stack spacing={10}>
+    <Stack alignItems='center' spacing={10}>
       <article itemScope itemType='https://schema.org/Article'>
         <Helmet
           description={post.description}
@@ -54,16 +53,44 @@ const Post: NextPage<Props> = ({ post, recommendation }) => {
         <PostReader
           {...post}
           commentsButton={
-            <OpenCommentsButton onClick={openHandler}>
-              {'Комменты: '}
-              <span itemProp='commentCount'>{post.comments?.length ?? 0}</span>
-            </OpenCommentsButton>
+            <Stack alignItems='center' direction='row' spacing={0.5}>
+              <Button onClick={openHandler}>
+                <Stack direction='row' spacing={1.25}>
+                  <span>Комменты</span>
+                  <span>∙</span>
+                  <span itemProp='commentCount'>
+                    {post.comments?.length ?? 0}
+                  </span>
+                </Stack>
+              </Button>
+              {post.comments &&
+                post.comments
+                  .slice(post.comments.length - 3, post.comments.length)
+                  .reverse()
+                  .map((comment) => (
+                    <Image
+                      key={comment.uid}
+                      alt={comment.author.publicName || 'user avatar'}
+                      fit='fill'
+                      h={24}
+                      loadingSize='micro'
+                      src={comment.author.avatarUrl || ''}
+                      w={24}
+                    />
+                  ))}
+            </Stack>
           }
           githubAuthor={post.githubAuthor ?? undefined}
           previewUrl={post.previewUrl ?? undefined}
           publicationDate={post.createdAt}
           tags={tagNames}
         />
+
+        <FullwidthButton onClick={openHandler}>
+          {post.comments && post.comments?.length > 0
+            ? `Читать комменты (${post.comments?.length})`
+            : 'Написать коммент'}
+        </FullwidthButton>
       </article>
 
       {recommendation && (
@@ -83,7 +110,7 @@ const Post: NextPage<Props> = ({ post, recommendation }) => {
             <Grid
               container
               columnSpacing={{ xs: 0, sm: 3 }}
-              columns={{ xs: 1, sm: 2, lg: opened ? 2 : 4 }}
+              columns={{ xs: 1, sm: 2, lg: 4 }}
               direction={{ xs: 'column', sm: 'row' }}
               rowSpacing={{ xs: 2.5, sm: 4 }}
             >
@@ -94,6 +121,7 @@ const Post: NextPage<Props> = ({ post, recommendation }) => {
                       <PostCard
                         {...recommendationPost}
                         noDisplayDate
+                        small
                         preview={recommendationPost.previewUrl ?? ''}
                         type={PostType.Article}
                       />

@@ -4,30 +4,33 @@ import { MediaScreen } from 'shared/ui/theme/responsive'
 
 export const StyledHeader = styled.header``
 
-// TODO: это заголовок + описание. над неймингом еще надо подумать
+// TODO: это заголовок над неймингом еще надо подумать
 export const PostTextWrapper = styled.div`
-  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
-`
+  margin-top: 40px;
+  font-family: 'Inter', Arial, sans-serif;
 
-export const Title = styled(Typography)`
-  font-size: 32px;
-  letter-spacing: inherit;
-
-  ${MediaScreen.mobile} {
-    font-size: 24px;
+  ${MediaScreen.tabletAndBelow} {
+    margin-top: 32px;
   }
 `
+export const ImageWrapper = styled.div`
+  margin-top: 40px;
 
-export const Description = styled(Typography)`
+  ${MediaScreen.tabletAndBelow} {
+    margin-top: 32px;
+  }
+`
+export const Title = styled(Typography)`
+  font-size: 40px;
+  letter-spacing: -1px;
+  line-height: 100%;
+  font-weight: 700;
   margin-top: 16px;
-  letter-spacing: inherit;
 
   ${MediaScreen.mobile} {
-    font-size: 24px;
+    font-size: 28px;
   }
 `
 
@@ -37,7 +40,7 @@ export const TagsAndShare = styled.div`
   justify-content: space-between;
   grid-area: tags-and-share;
   align-items: baseline;
-  margin-top: 14px;
+  margin-top: 16px;
 
   ${MediaScreen.tabletAndBelow} {
     flex-direction: column;
@@ -62,6 +65,8 @@ export const ShareBlock = styled.div`
   flex-direction: row;
   align-items: center;
   white-space: nowrap;
+  justify-content: space-between;
+  margin-top: 24px;
 
   & > button,
   a {
@@ -74,15 +79,19 @@ export const ShareBlock = styled.div`
 
   ${MediaScreen.tabletAndBelow} {
     width: 100%;
-    justify-content: space-evenly;
-    height: 52px;
+    justify-content: space-between;
     margin-top: 20px;
+  }
+`
 
-    background-color: ${({ theme }) => theme.colors.contrastSecondary};
+export const InfoWrapper = styled.div`
+  font-family: 'Inter', Arial, sans-serif;
+  font-size: 12px;
+  span {
+    margin-right: 10px;
 
-    button {
-      flex-grow: 1;
-      height: 100%;
+    &:last-child {
+      margin-right: 0;
     }
   }
 `

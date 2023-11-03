@@ -9,4 +9,5 @@ export const Action = styled.button`
   justify-content: space-between;
   border: none;
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+  stroke: ${({ theme }) => theme.colors.primary};
 `

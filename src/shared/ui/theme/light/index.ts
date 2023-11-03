@@ -16,6 +16,11 @@ import { FallbackX } from './components/FallbackX'
 export const themeLight: Theme = {
   name: 'light',
   colors: {
+    text: {
+      heading: '#1D1D21',
+      regular: '#1D1D21',
+    },
+    divider: 'rgba(0, 0, 0, 0.1)',
     logo: '#000',
     blockquote: '#2e2e34',
 

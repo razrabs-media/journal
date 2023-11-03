@@ -1,10 +1,9 @@
-import styled from '@emotion/styled'
 import { FC, useEffect, useState } from 'react'
-import { Badge, DateAgo, Image, Typography } from 'shared/ui'
-import { useIsTabletAndBelow } from 'shared/ui/theme/responsive'
+import { Badge, Button, DateAgo, Divider, Image } from 'shared/ui'
 import PostAuthor from '../post-author'
 import {
-  Description,
+  ImageWrapper,
+  InfoWrapper,
   PostTextWrapper,
   ShareBlock,
   StyledHeader,
@@ -14,21 +13,7 @@ import {
 } from './styled'
 import type { Props } from './types'
 
-export const DefaultShareButton = styled(Typography)`
-  cursor: pointer;
-  background: none;
-  border: none;
-`
-DefaultShareButton.defaultProps = {
-  as: 'button',
-  size: 'sm',
-  color: 'secondary',
-  uppercase: true,
-  letterSpacing: 1,
-}
-
 export const PostHeader: FC<Props> = (props) => {
-  const isTabletAndBelow = useIsTabletAndBelow()
   const [href, setHref] = useState('')
 
   useEffect(() => {
@@ -49,36 +34,6 @@ export const PostHeader: FC<Props> = (props) => {
 
   return (
     <StyledHeader>
-      <PostTextWrapper>
-        <Title uppercase as='h1' itemProp='headline name' weight='medium'>
-          {props.title}
-        </Title>
-        <div>
-          <PostAuthor url={props.githubAuthor?.usernameUrl}>
-            {props.githubAuthor?.name}
-          </PostAuthor>
-
-          <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
-        </div>
-
-        <Image
-          key={props.uid}
-          priority
-          align='center'
-          alt={props.title}
-          fit='cover'
-          itemProp='image'
-          loadingSize='sm'
-          maxH={505}
-          src={props.previewUrl}
-          width='100%'
-        />
-
-        <Description color='secondary' itemProp='description' size='xl'>
-          {props.description}
-        </Description>
-      </PostTextWrapper>
-
       <TagsAndShare>
         <TagsBlock
           itemScope
@@ -91,15 +46,43 @@ export const PostHeader: FC<Props> = (props) => {
             </Badge>
           ))}
         </TagsBlock>
+      </TagsAndShare>
+      <Title as='h1' itemProp='headline name' weight='medium'>
+        {props.title}
+      </Title>
+      <PostTextWrapper>
+        <InfoWrapper>
+          <PostAuthor as='span' url={props.githubAuthor?.usernameUrl}>
+            {props.githubAuthor?.name}
+          </PostAuthor>
+          <span>∙</span>
+          <DateAgo date={props.publicationDate} letterSpacing={1} size='sm' />
+        </InfoWrapper>
+        <ImageWrapper>
+          {props.previewUrl ? (
+            <Image
+              key={props.uid}
+              priority
+              align='center'
+              alt={props.title}
+              fit='cover'
+              itemProp='image'
+              loadingSize='sm'
+              maxH={505}
+              src={props.previewUrl}
+              width='100%'
+            />
+          ) : (
+            <Divider />
+          )}
+        </ImageWrapper>
 
         <ShareBlock>
-          {isTabletAndBelow && props.commentsButton}
+          {props.commentsButton}
 
-          <DefaultShareButton onClick={onDefaultShareClick}>
-            Поделиться
-          </DefaultShareButton>
+          <Button onClick={onDefaultShareClick}>Поделиться</Button>
         </ShareBlock>
-      </TagsAndShare>
+      </PostTextWrapper>
     </StyledHeader>
   )
 }

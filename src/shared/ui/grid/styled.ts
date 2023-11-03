@@ -25,7 +25,6 @@ export const MainGrid = styled.div`
   grid-template-rows: 54px 1fr auto;
   row-gap: 24px;
   overflow: hidden;
-  max-width: 1552px;
   margin: 0 auto;
 
   ${MediaScreen.mobile} {

@@ -16,7 +16,7 @@ export const StyledRow = styled.div<SizeProps>`
   }
 
   .title {
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
   }
 
   &:hover {

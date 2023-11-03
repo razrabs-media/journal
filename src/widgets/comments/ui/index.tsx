@@ -3,13 +3,10 @@ import { FC, useCallback, useEffect, useRef, useState } from 'react'
 import { useSendComment } from 'widgets/comments/model'
 import { useCurrentUserLazyQuery } from 'features/auth'
 import { commentAdapter, useContextComments } from 'entities/comments'
-import {
-  useClientSide,
-  useDisableScroll,
-  useDisplayAnimation,
-} from 'shared/lib'
+import { useClientSide } from 'shared/lib'
 import { parseDate } from 'shared/lib/parse-date'
 import { CrossIcon, IconButton, Spinner } from 'shared/ui'
+import { useDisableScroll } from 'shared/ui/modal/hooks'
 import { useIsTabletAndBelow } from 'shared/ui/theme/responsive'
 import Comment, { CommentForwardedRef } from './comment'
 import { CommentsEmpty } from './comments-empty'
@@ -26,16 +23,16 @@ import {
 } from './styled'
 import { Props } from './types'
 
-const TRANSITION_TIME = 150
-
 export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   const router = useRouter()
   const refContainer = useRef<HTMLDivElement>(null)
-  const { opened, postUid, loaded, comments, closeHandler } =
+
+  const { opened, postUid, comments, loaded, closeHandler } =
     useContextComments()
+
   const commentsRefs = useRef<Record<string, CommentForwardedRef | null>>({})
   const isTabletAndBelow = useIsTabletAndBelow()
-  const ref = useDisableScroll(opened && isTabletAndBelow)
+  useDisableScroll(!(opened && isTabletAndBelow))
 
   const [currentUserQuery, { data }] = useCurrentUserLazyQuery({
     errorPolicy: 'all',
@@ -47,11 +44,6 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
 
   const [replyUid, setReplyUid] = useState<string | undefined>(undefined)
   const [newCommentUid, setNewCommentUid] = useState<string | null>(null)
-
-  const { display, animationIn, animationOut } = useDisplayAnimation(
-    opened,
-    TRANSITION_TIME,
-  )
 
   const onCommentClick = useCallback(
     (newReplyUid: string) => {
@@ -103,8 +95,8 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   }, [setReplyUid])
 
   useEffect(() => {
-    if (opened) refContainer.current?.focus()
-  }, [opened])
+    if (opened && isTabletAndBelow) refContainer.current?.focus()
+  }, [opened, isTabletAndBelow])
 
   useEffect(() => {
     if (newCommentUid && commentsRefs.current[newCommentUid]) {
@@ -115,13 +107,7 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
   }, [newCommentUid, comments, onScrollToComment])
 
   return (
-    <CommentsWrapper
-      animationIn={animationIn}
-      animationOut={animationOut}
-      ref={ref}
-      shouldDisplay={display}
-      transitionTime={TRANSITION_TIME}
-    >
+    <CommentsWrapper>
       <Header>
         <HeaderTexts>
           <CommentsAmount>
@@ -131,11 +117,9 @@ export const CommentsWidget: FC<Props> = ({ postTitle }) => {
           {postTitle && isTabletAndBelow && <PostTitle>{postTitle}</PostTitle>}
         </HeaderTexts>
 
-        {isTabletAndBelow && (
-          <IconButton color='primary' onClick={closeHandler}>
-            <CrossIcon />
-          </IconButton>
-        )}
+        <IconButton color='primary' onClick={closeHandler}>
+          <CrossIcon />
+        </IconButton>
       </Header>
       {!loaded && (
         <div

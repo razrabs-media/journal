@@ -6,13 +6,18 @@ export const StyledFooter = styled.footer`
   display: grid;
   grid-auto-flow: row;
   padding: 20px 0 0 0;
-  border-top: 1px solid ${({ theme }) => theme.colors.logo};
   overflow: hidden;
-  margin-top: 96px;
   overflow-wrap: initial;
 
   ${MediaScreen.mobile} {
     height: 205px;
+    margin-top: 70px;
+  }
+`
+
+export const Wrapper = styled.div`
+  margin-top: 96px;
+  ${MediaScreen.mobile} {
     margin-top: 70px;
   }
 `

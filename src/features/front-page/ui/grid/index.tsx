@@ -5,6 +5,8 @@ export const FrontPageGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, minmax(300px, 1fr));
   gap: 32px 24px;
+  margin: 0 auto;
+  max-width: 1920px;
 
   // Если экран планшета - расставить контент точно не выйдет, так как колонок теперь 2
   // Отдаем это дело в руки grid-auto-flow, с доверием к тому, что контент уже отсортирован
