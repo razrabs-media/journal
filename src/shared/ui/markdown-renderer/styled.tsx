@@ -109,7 +109,7 @@ export const StyledReactMarkdown = styled(ReactMarkdown)`
   }
 
   pre {
-    background: ${({ theme }) => theme.colors.backgroundSecondary}${({ theme }) => theme.colors.backgroundSecondary};
+    background: ${({ theme }) => theme.colors.backgroundSecondary};
   }
 
   code {
