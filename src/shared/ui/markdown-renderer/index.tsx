@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { useTheme } from '@emotion/react'
+import styled from '@emotion/styled'
 import { FC } from 'react'
 import { Components } from 'react-markdown'
 import ReactPlayer from 'react-player/lazy'
@@ -9,6 +10,7 @@ import remarkGemoji from 'remark-gemoji'
 import remarkGfm from 'remark-gfm'
 import { CopyButton, Image } from 'shared/ui'
 import { ThemeName } from 'shared/ui/theme'
+import { MediaScreen } from '../theme/responsive'
 import a11yEmoji from './remark-emoji'
 import { StyledReactMarkdown } from './styled'
 import { codeTheme } from './theme'
@@ -17,6 +19,16 @@ import { codeTheme } from './theme'
 
 const MATCH_URL_YOUTUBE =
   /(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:embed\/|v\/|watch\/|watch\?v=|watch\?.+&v=|shorts\/))((\w|-){11})|youtube\.com\/playlist\?list=|youtube\.com\/user\//
+
+const CodeWrapper = styled.div`
+  position: relative;
+  /* TODO: в базовом гриде *fr'ы, что не могут ограничить ширину, в будущем не помешает избавиться */
+  max-width: calc(100vw - 48px);
+
+  ${MediaScreen.mobile} {
+    max-width: calc(100vw - 20px);
+  }
+`
 
 const handleCopyButton = async (code: string) => {
   await navigator.clipboard.writeText(code)
@@ -51,7 +63,7 @@ const getComponents = (themeName: ThemeName): Components => ({
     const codeString = String(children).replace(/\n$/, '')
     const propsWithoutNode = { ...props, node: undefined }
     return !inline && match ? (
-      <>
+      <CodeWrapper>
         <SyntaxHighlighter
           PreTag='div'
           codeTagProps={{
@@ -68,7 +80,7 @@ const getComponents = (themeName: ThemeName): Components => ({
           {codeString}
         </SyntaxHighlighter>
         <CopyButton onClick={() => handleCopyButton(codeString)} />
-      </>
+      </CodeWrapper>
     ) : (
       <code className={className} {...props}>
         {children}
