@@ -65,7 +65,7 @@ const Post: NextPage<Props> = ({ post, recommendation }) => {
               </Button>
               {post.comments &&
                 post.comments
-                  .slice(post.comments.length - 3, post.comments.length)
+                  .slice(-3)
                   .reverse()
                   .map((comment) => (
                     <Image
