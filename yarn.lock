@@ -3698,12 +3698,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-syntax-highlighter@npm:15.5.7":
-  version: 15.5.7
-  resolution: "@types/react-syntax-highlighter@npm:15.5.7"
+"@types/react-syntax-highlighter@npm:15.5.10":
+  version: 15.5.10
+  resolution: "@types/react-syntax-highlighter@npm:15.5.10"
   dependencies:
     "@types/react": "*"
-  checksum: 1918d01baaa9bf485093fb04167d0dc87131be708bd68d32d3f614c0e7dba05de765fc62df139fa1972836b13e27983a2d89552eda5b5a38691a4ec300949648
+  checksum: 07da5fa432883130289aac2547bd5ddcb568c33b834983829933067c379ddb9a6de200d10174dabb0b4476ba3fce54761c7c8be1ede8a51cd0c1b1ca9cb6867e
   languageName: node
   linkType: hard
 
@@ -9647,7 +9647,7 @@ __metadata:
     "@types/node": 20.7.0
     "@types/react": 18.2.22
     "@types/react-dom": 18.2.7
-    "@types/react-syntax-highlighter": 15.5.7
+    "@types/react-syntax-highlighter": 15.5.10
     "@types/ua-parser-js": 0.7.37
     "@typescript-eslint/eslint-plugin": 6.7.3
     "@typescript-eslint/parser": 6.7.3

@@ -51,7 +51,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:20.7.0"],\
             ["@types/react", "npm:18.2.22"],\
             ["@types/react-dom", "npm:18.2.7"],\
-            ["@types/react-syntax-highlighter", "npm:15.5.7"],\
+            ["@types/react-syntax-highlighter", "npm:15.5.10"],\
             ["@types/ua-parser-js", "npm:0.7.37"],\
             ["@typescript-eslint/eslint-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:6.7.3"],\
             ["@typescript-eslint/parser", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:6.7.3"],\
@@ -6258,10 +6258,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/react-syntax-highlighter", [\
-        ["npm:15.5.7", {\
-          "packageLocation": "./.yarn/cache/@types-react-syntax-highlighter-npm-15.5.7-e846956091-1918d01baa.zip/node_modules/@types/react-syntax-highlighter/",\
+        ["npm:15.5.10", {\
+          "packageLocation": "./.yarn/cache/@types-react-syntax-highlighter-npm-15.5.10-79d91c57bd-07da5fa432.zip/node_modules/@types/react-syntax-highlighter/",\
           "packageDependencies": [\
-            ["@types/react-syntax-highlighter", "npm:15.5.7"],\
+            ["@types/react-syntax-highlighter", "npm:15.5.10"],\
             ["@types/react", "npm:18.0.24"]\
           ],\
           "linkType": "HARD"\
@@ -13293,7 +13293,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:20.7.0"],\
             ["@types/react", "npm:18.2.22"],\
             ["@types/react-dom", "npm:18.2.7"],\
-            ["@types/react-syntax-highlighter", "npm:15.5.7"],\
+            ["@types/react-syntax-highlighter", "npm:15.5.10"],\
             ["@types/ua-parser-js", "npm:0.7.37"],\
             ["@typescript-eslint/eslint-plugin", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:6.7.3"],\
             ["@typescript-eslint/parser", "virtual:d435a988be334706b2ff55a3b5924722172df5ff7fa1a730f7a4bc8b0e0afcfd33a278155e3652a8a2956fc42a9ff8a2fd526028d4dd2796af67dc816e452340#npm:6.7.3"],\
