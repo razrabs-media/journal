@@ -23,8 +23,8 @@ const ALLOWED_HOST = [
 
 const SIZE_MAP = {
   micro: 40,
-  xs: 320,
-  sm: 540,
+  xs: 640,
+  sm: 768,
   md: 1024,
   lg: 1280,
   xl: 1600,
